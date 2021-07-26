@@ -41,9 +41,9 @@ class ClientResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->line('You are receiving this email because we received a password reset request for your account.')
-        ->action('Reset Password', url('client/reset', $this->token))
-        ->line('If you did not request a password reset, no further action is required.');
+        ->line('Você está recebendo essa mensagem porque deseja alterar sua senha.')
+        ->action('Resetar Senha', url('client/reset', $this->token))
+        ->line('Se você não solicitou uma redefinição de senha, nenhuma ação adicional será necessária.');
     }
 
     /**

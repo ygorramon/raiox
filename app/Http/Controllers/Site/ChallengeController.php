@@ -126,6 +126,9 @@ class ChallengeController extends Controller
         $challenge->update([
             'status' => 'ENVIADO'
         ]);
+        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
+
+
     }
 
     public $message = [
@@ -207,12 +210,12 @@ class ChallengeController extends Controller
         'ritual_ss.date_format' => 'O campo Horário que sentiu sono do Ritual Noturno deve ser preenchido no formato HH:mm',
 
         'ritual_in.required' => 'O campo Horário que iniciou Ritual Noturno é de preenchimento obrigatório',
-        'ritutal_in.date_format' => 'O campo Horário que iniciou Ritual Noturno deve ser preenchido no formato HH:mm',
-        'ritutal_in.after_or_equal' => 'O campo Horário que iniciou Ritual Noturno deve ser um horário após o Horário que sentiu sono do Ritual Noturno',
+        'ritual_in.date_format' => 'O campo Horário que iniciou Ritual Noturno deve ser preenchido no formato HH:mm',
+        'ritual_in.after_or_equal' => 'O campo Horário que iniciou Ritual Noturno deve ser um horário após o Horário que sentiu sono do Ritual Noturno',
 
         'ritual_d.required' => 'O campo Horário que dormiu no Ritual Noturno é de preenchimento obrigatório',
-        'ritutal_d.date_format' => 'O campo Horário que dormiu no Ritual Noturno deve ser preenchido no formato HH:mm',
-        'ritutal_d.after_or_equal' => 'O campo Horário que dormiu no Ritual Noturno deve ser um horário após o Horário que iniciou o Ritual Noturno',
+        'ritual_d.date_format' => 'O campo Horário que dormiu no Ritual Noturno deve ser preenchido no formato HH:mm',
+        'ritual_d.after_or_equal' => 'O campo Horário que dormiu no Ritual Noturno deve ser um horário após o Horário que iniciou o Ritual Noturno',
 
         'despertar1_a.date_format' => 'O campo Horário que acordou  do Despertar 1 deve ser preenchido no formato HH:mm ',
         'despertar1_a.required_unless' => 'Preencha os dados completos do Despertar 1',

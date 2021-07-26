@@ -31,7 +31,7 @@ class LoginClientController extends Controller
             'password' => 'required|min:6'
         ]);
 
-
+if(isset(Client::where('email',$request->email)->first()->expireAt)){
 if(Client::where('email',$request->email)->first()->expireAt>=date_format(now(),'Y-m-d')){
         if (Auth::guard('clients')
         ->attempt(['email' => $request->email, 'password' => $request->password,
@@ -45,7 +45,7 @@ if(Client::where('email',$request->email)->first()->expireAt>=date_format(now(),
         return back()
         ->withInput($request->only('email', 'remember'))
         ->with('message','Usuário ou Senha incorretos');
-    }
+    }}
         return back()
         ->withInput($request->only('email', 'remember'))
         ->with('message','Usuário Expirado');

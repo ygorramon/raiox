@@ -12,26 +12,28 @@
   <div class="col s12">
     <div class="container">
       <div id="login-page" class="row">
-      
+
         <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
           <form class="login-form" method="POST" action="{{route('clients.login')}}">
             @csrf
             <div class="row">
               <div class="input-field col s12 center-align mt-10">
-              @if (session('message'))
-            <div class="row">
-                <div class="col s12">
+                @if (session('message'))
+                <div class="row">
+                  <div class="col s12">
                     <div class="card-panel red">
-                        <span class="white-text">
+                      <span class="white-text">
                         {{session('message')}}</span>
                     </div>
+                  </div>
                 </div>
-            </div>
 
-            @endif
+                @endif
                 <h5>Desafio de 7 Dias</h5>
               </div>
+
             </div>
+
             <div class="row margin">
               <div class="input-field col s12">
                 <i class="material-icons prefix pt-2">person_outline</i>
@@ -69,15 +71,28 @@
                 <p class="margin right-align medium-small"><a href="{{route('clientes.reset')}}">Esqueceu a senha?</a></p>
               </div>
             </div>
+
+
           </form>
+          <div class="card-alert card purple lighten-5">
+            <div class="card-content purple-text">
+              <a href="https://api.whatsapp.com/send?phone=5588993005582" target="_blank " class="btn"> Dúvidas : Fale Conosco pelo Whatsapp Aqui </a>
+            </div>
+          </div>
         </div>
+
       </div>
+
     </div>
-    <div class="content-overlay"></div>
+
   </div>
+
 </div>
 
 </div>
+
 </div>
+
 </div>
+
 @endsection

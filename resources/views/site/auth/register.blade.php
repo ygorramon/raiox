@@ -115,6 +115,11 @@
                 </div>
               </div>
           </form>
+          <div class="card-alert card purple lighten-5">
+            <div class="card-content purple-text">
+              <a href="https://api.whatsapp.com/send?phone=5588993005582" target="_blank " class="btn"> Dúvidas : Fale Conosco pelo Whatsapp Aqui </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

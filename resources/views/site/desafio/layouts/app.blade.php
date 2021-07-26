@@ -29,6 +29,7 @@
     <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
       <li class="bold"><a class="waves-effect waves-cyan " href="{{route('desafio.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Desafios</span></a>
       </li>
+      </li>
 
       <li class="bold"><a class="waves-effect waves-cyan " href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 
@@ -53,6 +54,7 @@
 
 
     @yield('content')
+    
   </div>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>

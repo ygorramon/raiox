@@ -15,6 +15,17 @@
     <form class="login-form" method="POST" action="{{route('clients.password.email')}}">
         @csrf
       <div class="row">
+      @if (session('status'))
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel green">
+                        <span class="white-text">
+                        {{session('status')}}</span>
+                    </div>
+                </div>
+            </div>
+
+            @endif
         <div class="input-field col s12">
           <h5 class="ml-4">Recuperar Senha</h5>
         </div>

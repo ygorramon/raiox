@@ -21,8 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('sexBaby')->nullable();
             $table->string('active')->nullable();
             $table->date('expireAt')->nullable();
-            $table->date('birthBaby')->nullable();
-            $table->string('phone')->unique();          
+            $table->date('birthBaby')->nullable();         
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

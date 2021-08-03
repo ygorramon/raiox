@@ -61,3 +61,4 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::post('/novo_usuario', 'Admin\ClientsController@apiUser' );

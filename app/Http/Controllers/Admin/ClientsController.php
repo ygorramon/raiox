@@ -129,7 +129,7 @@ class ClientsController extends Controller
     }
 
     public function apiUser(Request $request){
-        if($request->hottok='zvD4cmVBDG89aHErkpMd1pPhOITHvL8089877'){
+        if($request->hottok==env('HOTTOKEN')){
         $client = $this->repository->create([
             'email' => $request->email,
             'active' => 1,

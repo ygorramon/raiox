@@ -34,7 +34,8 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.create');
+
     }
 
     /**
@@ -45,7 +46,13 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = $this->repository->create([
+            'email' => $request->email,
+            'active' => 1,
+            'expireAt' => now()->addDays($request->expire),
+        ]);
+
+     return redirect()->route('clients.index');
     }
 
     /**
@@ -56,7 +63,12 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
+        if (!$client = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+       
+        return view ('admin.clients.show', compact('client'));
     }
 
     /**
@@ -90,7 +102,12 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$client = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+        $client->delete();
+
+        return redirect()->route('clients.index');
     }
 
 

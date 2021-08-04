@@ -128,7 +128,7 @@ class ClientsController extends Controller
 
         return view('admin.clients.index', compact('clients', 'filters'));
     }
-
+ 
     public function apiUser(Request $request){
         $client = $this->repository->create([
             'email' => $request->email,

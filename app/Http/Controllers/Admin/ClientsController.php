@@ -128,14 +128,14 @@ class ClientsController extends Controller
 
         return view('admin.clients.index', compact('clients', 'filters'));
     }
- 
+
     public function apiUser(Request $request){
+        if($request->hottok==env('HOTTOKEN')){
         $client = $this->repository->create([
             'email' => $request->email,
             'active' => 1,
             'expireAt' => now()->addDays($request->expire),
-            'nameBaby' => $request->hottok,
         ]);
-    
+    }
     }
 }

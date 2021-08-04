@@ -22,6 +22,8 @@ class ClientsController extends Controller
      */
     public function index()
     {
+
+        dd(env('HOTTOKEN'));
         $clients = $this->repository->latest()->paginate();
 
         return view('admin.clients.index', compact('clients'));

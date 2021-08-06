@@ -408,7 +408,7 @@
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="ritual_d" name="ritual_d" class="timepicker" value="{{ old('ritual_d',date_format(\Carbon\Carbon::parse($ritual->end),'H:i')) }}"> 
+                                                    <input type="text" id="ritual_d" name="ritual_d" class="timepicker" value="{{ old('ritual_d',date_format(\Carbon\Carbon::parse($ritual->end),'H:i')) }}">
                                                     <label for="ritual_d">Horário que dormiu</label>
 
                                                 </div>
@@ -438,19 +438,20 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar1_fd" id="despertar1_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar1_fd', $wakes[0]->sleepingMode ) == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar1_fd', $wakes[0]->sleepingMode ) == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar1_fd', $wakes[0]->sleepingMode) == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar1_fd', $wakes[0]->sleepingMode) == 3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ old('despertar1_fd', $wakes[0]->sleepingMode) == 4 ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar1_fd', $wakes[0]->sleepingMode)) == false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
+
                                                 <div class="input-field col m3 s12" id="despertar1_fd_outro">
-                                                    <input type="text" id="despertar1_fd_outro" name=" despertar1_fd_outro" value="{{ old('despertar1_fd_outro')}}">
+                                                    <input type="text" id="despertar1_fd_outro" name=" despertar1_fd_outro" value="{{ old('despertar1_fd_outro', $wakes[0]->sleepingMode)}}">
                                                     <label for="despertar1_fd_outro">Como Dormiu</label>
                                                 </div>
                                                 @else
-                                                
+
                                                 <div class="input-field col m3 s12">
                                                     <input type="text" id="despertar1_a" name="despertar1_a" class="timepicker" value="{{ old('despertar1_a')}}">
                                                     <label for="despertar1_a">Horário que acordou</label>
@@ -464,7 +465,7 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar1_fd" id="despertar1_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar1_fd') == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar1_fd') == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar1_fd') == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar1_fd') == 3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ old('despertar1_fd') == 4 ? "selected" : "" }} value="4">Outro</option>
@@ -475,7 +476,7 @@
                                                     <input type="text" id="despertar1_fd_outro" name=" despertar1_fd_outro" value="{{ old('despertar1_fd_outro')}}">
                                                     <label for="despertar1_fd_outro">Como Dormiu</label>
                                                 </div>
-                                            @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -502,19 +503,19 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar2_fd" id="despertar2_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar2_fd', $wakes[1]->sleepingMode ) == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar2_fd', $wakes[1]->sleepingMode ) == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar2_fd', $wakes[1]->sleepingMode) == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar2_fd', $wakes[1]->sleepingMode) == 3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ old('despertar2_fd', $wakes[1]->sleepingMode) == 4 ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar2_fd', $wakes[1]->sleepingMode)) == false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar2_fd_outro">
-                                                    <input type="text" id="despertar2_fd_outro" name=" despertar2_fd_outro" value="{{ old('despertar2_fd_outro')}}">
+                                                    <input type="text" id="despertar2_fd_outro" name=" despertar2_fd_outro" value="{{ old('despertar2_fd_outro', $wakes[1]->sleepingMode)}}">
                                                     <label for="despertar2_fd_outro">Como Dormiu</label>
                                                 </div>
                                                 @else
-                                                
+
                                                 <div class="input-field col m3 s12">
                                                     <input type="text" id="despertar2_a" name="despertar2_a" class="timepicker" value="{{ old('despertar2_a')}}">
                                                     <label for="despertar2_a">Horário que acordou</label>
@@ -528,7 +529,7 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar2_fd" id="despertar2_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar2_fd') == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar2_fd') == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar2_fd') == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar2_fd') == 3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ old('despertar2_fd') == 4 ? "selected" : "" }} value="4">Outro</option>
@@ -539,7 +540,7 @@
                                                     <input type="text" id="despertar2_fd_outro" name=" despertar2_fd_outro" value="{{ old('despertar2_fd_outro')}}">
                                                     <label for="despertar2_fd_outro">Como Dormiu</label>
                                                 </div>
-                                            @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -566,19 +567,19 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar3_fd" id="despertar3_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar3_fd', $wakes[2]->sleepingMode ) == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar3_fd', $wakes[2]->sleepingMode ) == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar3_fd', $wakes[2]->sleepingMode) == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar3_fd', $wakes[2]->sleepingMode) == 3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ old('despertar3_fd', $wakes[2]->sleepingMode) == 4 ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar3_fd', $wakes[2]->sleepingMode)) == false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar3_fd_outro">
-                                                    <input type="text" id="despertar3_fd_outro" name=" despertar3_fd_outro" value="{{ old('despertar3_fd_outro')}}">
+                                                    <input type="text" id="despertar3_fd_outro" name=" despertar3_fd_outro" value="{{ old('despertar3_fd_outro', $wakes[2]->sleepingMode)}}">
                                                     <label for="despertar3_fd_outro">Como Dormiu</label>
                                                 </div>
                                                 @else
-                                                
+
                                                 <div class="input-field col m3 s12">
                                                     <input type="text" id="despertar3_a" name="despertar3_a" class="timepicker" value="{{ old('despertar3_a')}}">
                                                     <label for="despertar3_a">Horário que acordou</label>
@@ -592,7 +593,7 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar3_fd" id="despertar3_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar3_fd') == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar3_fd') == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar3_fd') == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar3_fd') == 3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ old('despertar3_fd') == 4 ? "selected" : "" }} value="4">Outro</option>
@@ -603,7 +604,7 @@
                                                     <input type="text" id="despertar3_fd_outro" name=" despertar3_fd_outro" value="{{ old('despertar3_fd_outro')}}">
                                                     <label for="despertar3_fd_outro">Como Dormiu</label>
                                                 </div>
-                                            @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -630,19 +631,19 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar4_fd" id="despertar4_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar4_fd', $wakes[3]->sleepingMode ) == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar4_fd', $wakes[3]->sleepingMode ) == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar4_fd', $wakes[3]->sleepingMode) == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar4_fd', $wakes[3]->sleepingMode) == 3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ old('despertar4_fd', $wakes[3]->sleepingMode) == 4 ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar4_fd', $wakes[3]->sleepingMode)) == false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar4_fd_outro">
-                                                    <input type="text" id="despertar4_fd_outro" name=" despertar4_fd_outro" value="{{ old('despertar4_fd_outro')}}">
+                                                    <input type="text" id="despertar4_fd_outro" name=" despertar4_fd_outro" value="{{ old('despertar4_fd_outro', $wakes[3]->sleepingMode)}}">
                                                     <label for="despertar4_fd_outro">Como Dormiu</label>
                                                 </div>
                                                 @else
-                                                
+
                                                 <div class="input-field col m3 s12">
                                                     <input type="text" id="despertar4_a" name="despertar4_a" class="timepicker" value="{{ old('despertar4_a')}}">
                                                     <label for="despertar4_a">Horário que acordou</label>
@@ -656,7 +657,7 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar4_fd" id="despertar4_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar4_fd') == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar4_fd') == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar4_fd') == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar4_fd') == 3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ old('despertar4_fd') == 4 ? "selected" : "" }} value="4">Outro</option>
@@ -667,7 +668,7 @@
                                                     <input type="text" id="despertar4_fd_outro" name=" despertar4_fd_outro" value="{{ old('despertar4_fd_outro')}}">
                                                     <label for="despertar4_fd_outro">Como Dormiu</label>
                                                 </div>
-                                            @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -694,19 +695,19 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar5_fd" id="despertar5_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar5_fd', $wakes[4]->sleepingMode ) == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar5_fd', $wakes[4]->sleepingMode ) == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar5_fd', $wakes[4]->sleepingMode) == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar5_fd', $wakes[4]->sleepingMode) == 3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ old('despertar5_fd', $wakes[4]->sleepingMode) == 4 ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar5_fd', $wakes[4]->sleepingMode)) == false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar5_fd_outro">
-                                                    <input type="text" id="despertar5_fd_outro" name=" despertar5_fd_outro" value="{{ old('despertar5_fd_outro')}}">
+                                                    <input type="text" id="despertar5_fd_outro" name=" despertar5_fd_outro" value="{{ old('despertar5_fd_outro', $wakes[4]->sleepingMode)}}">
                                                     <label for="despertar5_fd_outro">Como Dormiu</label>
                                                 </div>
                                                 @else
-                                                
+
                                                 <div class="input-field col m3 s12">
                                                     <input type="text" id="despertar5_a" name="despertar5_a" class="timepicker" value="{{ old('despertar5_a')}}">
                                                     <label for="despertar5_a">Horário que acordou</label>
@@ -720,7 +721,7 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar5_fd" id="despertar5_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar5_fd') == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar5_fd') == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar5_fd') == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar5_fd') == 3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ old('despertar5_fd') == 4 ? "selected" : "" }} value="4">Outro</option>
@@ -731,7 +732,7 @@
                                                     <input type="text" id="despertar5_fd_outro" name=" despertar5_fd_outro" value="{{ old('despertar5_fd_outro')}}">
                                                     <label for="despertar5_fd_outro">Como Dormiu</label>
                                                 </div>
-                                            @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -758,19 +759,19 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar6_fd" id="despertar6_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar6_fd', $wakes[5]->sleepingMode ) == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar6_fd', $wakes[5]->sleepingMode ) == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar6_fd', $wakes[5]->sleepingMode) == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar6_fd', $wakes[5]->sleepingMode) == 3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ old('despertar6_fd', $wakes[5]->sleepingMode) == 4 ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar6_fd', $wakes[5]->sleepingMode)) == false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar6_fd_outro">
-                                                    <input type="text" id="despertar6_fd_outro" name=" despertar6_fd_outro" value="{{ old('despertar6_fd_outro')}}">
+                                                    <input type="text" id="despertar6_fd_outro" name=" despertar6_fd_outro" value="{{ old('despertar6_fd_outro', $wakes[5]->sleepingMode)}}">
                                                     <label for="despertar6_fd_outro">Como Dormiu</label>
                                                 </div>
                                                 @else
-                                                
+
                                                 <div class="input-field col m3 s12">
                                                     <input type="text" id="despertar6_a" name="despertar6_a" class="timepicker" value="{{ old('despertar6_a')}}">
                                                     <label for="despertar6_a">Horário que acordou</label>
@@ -784,7 +785,7 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar6_fd" id="despertar6_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option {{ old('despertar6_fd') == 1 ? "selected" : "" }}  value="1">Sozinho</option>
+                                                        <option {{ old('despertar6_fd') == 1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar6_fd') == 2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar6_fd') == 3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ old('despertar6_fd') == 4 ? "selected" : "" }} value="4">Outro</option>
@@ -795,7 +796,7 @@
                                                     <input type="text" id="despertar6_fd_outro" name=" despertar6_fd_outro" value="{{ old('despertar6_fd_outro')}}">
                                                     <label for="despertar6_fd_outro">Como Dormiu</label>
                                                 </div>
-                                            @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -851,6 +852,7 @@
             $("select").formSelect();
         });
 
+
         $('#despertar1_fd_outro').hide();
 
         $('#despertar1_fd').change(function() {
@@ -858,6 +860,17 @@
                 $('#despertar1_fd_outro').show();
             }
         });
+
+        if ($('#despertar1_fd').val() === '4') {
+            $('#despertar1_fd_outro').show();
+        }
+
+        $('#despertar1_fd').change(function() {
+            if ($(this).val() != '4') {
+                $('#despertar1_fd_outro').hide();
+            }
+        });
+
         $('#despertar2_fd_outro').hide();
 
         $('#despertar2_fd').change(function() {
@@ -865,21 +878,57 @@
                 $('#despertar2_fd_outro').show();
             }
         });
+
+        if ($('#despertar2_fd').val() === '4') {
+            $('#despertar2_fd_outro').show();
+        }
+
+        $('#despertar2_fd').change(function() {
+            if ($(this).val() != '4') {
+                $('#despertar2_fd_outro').hide();
+            }
+        });
+
         $('#despertar3_fd_outro').hide();
+
 
         $('#despertar3_fd').change(function() {
             if ($(this).val() === '4') {
                 $('#despertar3_fd_outro').show();
             }
         });
+
+        if ($('#despertar3_fd').val() === '4') {
+            $('#despertar3_fd_outro').show();
+        }
+
+        $('#despertar3_fd').change(function() {
+            if ($(this).val() != '4') {
+                $('#despertar3_fd_outro').hide();
+            }
+        });
+
         $('#despertar4_fd_outro').hide();
+
 
         $('#despertar4_fd').change(function() {
             if ($(this).val() === '4') {
                 $('#despertar4_fd_outro').show();
             }
         });
+
+        if ($('#despertar4_fd').val() === '4') {
+            $('#despertar4_fd_outro').show();
+        }
+
+        $('#despertar4_fd').change(function() {
+            if ($(this).val() != '4') {
+                $('#despertar4_fd_outro').hide();
+            }
+        });
+
         $('#despertar5_fd_outro').hide();
+
 
         $('#despertar5_fd').change(function() {
             if ($(this).val() === '4') {
@@ -887,12 +936,37 @@
             }
         });
 
+        if ($('#despertar5_fd').val() === '4') {
+            $('#despertar5_fd_outro').show();
+        }
+
+        $('#despertar5_fd').change(function() {
+            if ($(this).val() != '4') {
+                $('#despertar5_fd_outro').hide();
+            }
+        });
+
         $('#despertar6_fd_outro').hide();
 
+        
         $('#despertar6_fd').change(function() {
             if ($(this).val() === '4') {
                 $('#despertar6_fd_outro').show();
             }
         });
+
+        if ($('#despertar6_fd').val() === '4') {
+            $('#despertar6_fd_outro').show();
+        }
+
+        $('#despertar6_fd').change(function() {
+            if ($(this).val() != '4') {
+                $('#despertar65_fd_outro').hide();
+            }
+        });
+
+
+
+
     </script>
     @endsection

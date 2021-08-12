@@ -28,4 +28,13 @@ class Challenge extends Model
   
     }
 
+    public function client()
+    {
+        return $this->belongsTo('App\Models\Client');
+    }
+    public function chat()
+    {
+        return $this->hasOne('App\Models\Chat');
+  
+    }
 }

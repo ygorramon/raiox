@@ -26,7 +26,138 @@
                     </div>
 
                   </div>
-                  @else
+                  @endif
+                  @if($challenge->status=='RESPONDIDO')
+                  <div class="row">
+                    <div class="col s12">
+                      <h4 class="card-title">Análise do Seu Desafio (Clique em cada Passo abaixo) </h4>
+                    </div>
+
+                    <ul class="collapsible">
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 1</div>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo1}}</textarea>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 2</div>
+                        <div class="collapsible-body"><textarea class="materialize-textarea" disabled> {{$challenge->passo2}}</textarea></div>
+                      </li>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 3</div>
+                        <div class="collapsible-body">
+                          <ul class="collapsible">
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Despertar</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_despertar}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Rotina Alimentar</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_alimentar}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Rotina de Sonecas</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_sonecas}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Ambiente de Sonecas</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_sonecas}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Sono Noturno</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_sono_noturno}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Ambiente do Sono Noturno</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_noturno}}</textarea>
+                              </div>
+                            </li>
+                        </div>
+
+                      </li>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 4</div>
+                        <div class="collapsible-body">
+                          <ul class="collapsible">
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Associações da Soneca</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_sonecas}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Associações do Sono Noturno</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_noturno}}</textarea>
+                              </div>
+                            </li>
+                          </ul>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Conclusão</div>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->conclusao}}</textarea>
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="collapsible">
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">message</i>Chat</div>
+                        <div class="collapsible-body">
+                          @if($challenge->chat()->first()==null)
+                          Envie uma mensagem ao Dr. Odilo Queiroz sobre seu desafio!
+                          <form action="{{route('challenge.chat.store', $challenge->id)}}" method="POST">
+                            @csrf
+                            <label >Responder:</label>
+                            <textarea class="materialize-textarea" name="message"></textarea>
+                            <button class="btn btn-primary">Enviar </button>
+                          </form>
+                          @endif
+                          @if($challenge->chat()->first()!=null)
+                          @if($challenge->chat()->first()->status=='mae')
+                          @foreach($challenge->chat()->first()->messages as $message)
+                          @if($message->type==1)
+                          <label >Eu:</label>
+                          <textarea class="materialize-textarea" readonly> {{$message->content}}</textarea>
+                          @endif
+                          @if($message->type==2)
+                          <label >Dr. Odilo:</label>
+                          <textarea class="materialize-textarea" readonly> {{$message->content}}</textarea>
+                          @endif
+                          @endforeach
+                          Aguarde o retorno do Dr. Odilo!
+                          @endif
+
+                         
+                          @if($challenge->chat()->first()->status=='odilo')
+                          @foreach($challenge->chat()->first()->messages as $message)
+                          @if($message->type==1)
+                          <label >Eu:</label>
+                          <textarea class="materialize-textarea" readonly> {{$message->content}}</textarea>
+                          @endif
+                          @if($message->type==2)
+                          <label >Dr. Odilo:</label>
+                          <textarea class="materialize-textarea" readonly> {{$message->content}}</textarea>
+                          @endif
+                          @endforeach
+                          <form action="{{route('challenge.chat.store', $challenge->id)}}" method="POST">
+                            @csrf
+                            <label >Responder:</label>
+                            <textarea class="materialize-textarea" name="message"></textarea>
+                            <button class="btn btn-primary">Enviar </button>
+                          </form>
+                          @endif
+@endif
+                        </div>
+                      </li>
+
+                    </ul>
+
+                  </div>
+                  
+                  @endif
+                  @if($challenge->status=='INICIADO')
                   <h4 class="card-title">Análise Diária</h4>
 
                   <div class="row">
@@ -205,12 +336,12 @@
 
   @if(!isset($challenge->analyzes()->where('day','7')->first()->day))
 
-    <td><a href="{{route('analyze.create',[$challenge->id,7])}}" class="btn waves-effect waves-light red "> Dia 7 </a>
-</div>
-@else
-<td><a href="{{route('analyze.edit',[$challenge->id,7])}}" class="btn waves-effect waves-light red "> Dia 7 </a> </div>
-  @endif
-  @if(isset($challenge->analyzes()->where('day','7')->first()->day))
+  <td><a href="{{route('analyze.create',[$challenge->id,7])}}" class="btn waves-effect waves-light red "> Dia 7 </a>
+    </div>
+    @else
+  <td><a href="{{route('analyze.edit',[$challenge->id,7])}}" class="btn waves-effect waves-light red "> Dia 7 </a> </div>
+    @endif
+    @if(isset($challenge->analyzes()->where('day','7')->first()->day))
   <td> <i class="material-icons">check</i> {{date_format($challenge->analyzes()->where('day','7')->first()->created_at,'d/m/Y') }} </td>
   @else
   <td>NÃO</td>
@@ -227,11 +358,19 @@
 @if(isset($challenge->analyzes()->where('day','7')->first()->day))
 <tr>
   @if(date_format(now(),'Y-d-m')>=date_format($challenge->analyzes()->where('day','7')->first()->created_at->addDays(1),'Y-d-m'))
+
+  @if(!isset($challenge->form()->first()->id))
+
   <td><a href="{{route('analyze.form',$challenge->id)}}" class="btn waves-effect waves-light red "> Formulário Final </a></td>
 
-  @if(isset($challenge->form()->get()->id))
+  @else
+  <td><a href="{{route('analyze.form.edit',$challenge->id)}}" class="btn waves-effect waves-light red "> Formulário Final </a> </div>
+    @endif
+
+
+    @if(isset($challenge->form()->first()->id))
   <td> <i class="material-icons">check</i>
-    {{date_format($challenge->form()->get()->created_at,'d/m/Y') }}
+    {{date_format($challenge->form()->first()->created_at,'d/m/Y') }}
   </td>
   @else
   <td>NÃO</td>
@@ -285,8 +424,15 @@
 <script>
   @if(session('sucesso'))
   M.toast({
-    html: '{{session('sucesso')}}'
+    html: '{{session('
+    sucesso ')}}'
   })
   @endif
+  $(document).ready(function() {
+    $('.collapsible').collapsible({
+      accordion: true
+    });
+  });
 </script>
+
 @endsection

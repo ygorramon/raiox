@@ -47,9 +47,15 @@ class ChallengeController extends Controller
     public function show($id)
     {
         if (!$challenge = $this->repository->find($id)
-            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+           ) {
             return redirect()->back();
         }
+        if( $this->repository->find($id)->client_id != Auth::guard('clients')->user()->id){
+            return redirect()->back();
+
+        }
+
+       // dd(Auth::guard('clients')->user()->id);
         $challenge = $this->repository->find($id);
 
         $analyzes = $challenge->analyzes()->get();
@@ -64,9 +70,16 @@ class ChallengeController extends Controller
             return redirect()->back();
         }
         if (!$challenge = $this->repository->find($id)
-            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+           ) {
             return redirect()->back();
         }
+
+        if(!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+            return redirect()->back();
+        }
+
+        
+
         $challenge = $this->repository->find($id);
         if (isset($this->repository->find($id)->analyzes()->where('day', $day)->first()->day)) {
             return redirect()->back();
@@ -92,11 +105,18 @@ class ChallengeController extends Controller
     }
     public function analyzeCreateForm($id)
     {
-        if (!$challenge = $this->repository->find($id)
-            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+        if (!$challenge = $this->repository->find($id))
+        {
+        return redirect()->back();
+    }
 
-            return redirect()->back();
-        }
+    if(  !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+        return redirect()->back();
+
+    }
+
+
+
         if (isset($this->repository->find($id)->form()->first()->id)) {
             return redirect()->back();
         }
@@ -113,6 +133,25 @@ class ChallengeController extends Controller
 
 
         return view('site.desafio.form', compact('challenge'));
+    }
+
+    public function analyzeEditForm($id){
+        if (!$challenge = $this->repository->find($id)
+           ) {
+            return redirect()->back();
+        }
+
+        if(!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+            return redirect()->back();
+        }
+
+        $challenge = $this->repository->find($id);
+        if(!$form=$challenge->form){
+            return redirect()->back();
+        }
+//dd($form);
+return view ('site.desafio.form-edit', compact('challenge','form'));
+
     }
 
     public function desafioUpdate($id)
@@ -334,9 +373,14 @@ class ChallengeController extends Controller
     public function analyzeStoreForm(Request $request, $id)
     {
 
-        if (!$challenge = $this->repository->find($id)
-            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+        if (!$challenge = $this->repository->find($id))
+            {
             return redirect()->back();
+        }
+
+        if(  !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+            return redirect()->back();
+
         }
         $challenge = $this->repository->find($id);
 
@@ -352,21 +396,7 @@ class ChallengeController extends Controller
         if ($request->ritual_retira == null) {
             $request->ritual_retira = "N";
         }
-        if ($request->obstaculos_colica == null) {
-            $request->obstaculos_colica = "N";
-        }
-        if ($request->obstaculos_refluxo == null) {
-            $request->obstaculos_refluxo = "N";
-        }
-        if ($request->obstaculos_gases == null) {
-            $request->obstaculos_gases = "N";
-        }
-        if ($request->obstaculos_APLV == null) {
-            $request->obstaculos_APLV = "N";
-        }
-        if ($request->obstaculos_APLV == null) {
-            $request->obstaculos_APLV = "N";
-        }
+        
         if ($request->soneca_acordado_berco == null) {
             $request->soneca_acordado_berco = "N";
         }
@@ -391,6 +421,10 @@ class ChallengeController extends Controller
         if ($request->soneca_outro == null) {
             $request->soneca_outro = "N";
         }
+        
+        if ($request->soneca_outro == "S") {
+            $request->soneca_outro = $request->soneca_outro_text;
+        }
 
         if ($request->associacao_soneca_ruido_branco == null) {
             $request->associacao_soneca_ruido_branco = "N";
@@ -407,9 +441,25 @@ class ChallengeController extends Controller
         if ($request->associacao_soneca_mamar == null) {
             $request->associacao_soneca_mamar = "N";
         }
+
+        if($request->associacao_soneca_cc==null){
+            $request->associacao_soneca_cc="N";
+        }
+
+        if($request->associacao_soneca_colo==null){
+            $request->associacao_soneca_colo="N";
+        }
+
+        
         if ($request->associacao_soneca_outro == null) {
             $request->associacao_soneca_outro = "N";
         }
+
+        if ($request->associacao_soneca_outro == "S") {
+            $request->associacao_soneca_outro = $request->associacao_soneca_outro_text;
+        }
+
+
 
         if ($request->associacao_noturno_ruido_branco == null) {
             $request->associacao_noturno_ruido_branco = "N";
@@ -426,9 +476,24 @@ class ChallengeController extends Controller
         if ($request->associacao_noturno_mamar == null) {
             $request->associacao_noturno_mamar = "N";
         }
+
+        if($request->associacao_noturno_cc==null){
+            $request->associacao_noturno_cc="N";
+        }
+
+        if($request->associacao_noturno_colo==null){
+            $request->associacao_noturno_colo="N";
+        }
+
         if ($request->associacao_noturno_outro == null) {
             $request->associacao_noturno_outro = "N";
         }
+
+        if ($request->associacao_noturno_outro == "S") {
+            $request->associacao_noturno_outro = $request->associacao_noturno_outro_text;
+        }
+
+
         if ($request->conclusao_imaturidade == null) {
             $request->conclusao_imaturidade = "N";
         }
@@ -461,7 +526,7 @@ class ChallengeController extends Controller
         $form = $challenge->form()->create([
 
             'ritualGoodMorning' => $request->ritualBomDia,
-            'jump' => $request->salto,
+           
             'ritualGoodMorningLight' => $request->ritual_luz,
             'ritualGoodMorningNoise' => $request->ritual_ruido,
             'ritualGoodMorningStimulus' => $request->ritual_estimulo,
@@ -469,10 +534,7 @@ class ChallengeController extends Controller
             'typeEatingRoutine' => $request->rotinaAlimentar,
             'routineDifficulties' => $request->dificuldadeRotinaAlimentar,
             'weightGain' => $request->ganhoPeso,
-            'colicObstacle' => $request->obstaculos_colica,
-            'refluxObstacle' => $request->obstaculos_refluxo,
-            'gasObstacle' => $request->obstaculos_gases,
-            'aplvObstacle' => $request->obstaculos_APLV,
+            
             'energyExpenditure' => $request->gastoEnergia,
             'noticeSigns' => $request->sinaisSono,
             'slowDown' => $request->desacelera,
@@ -481,8 +543,8 @@ class ChallengeController extends Controller
             'environmentNapsNoises' => $request->soneca_ruidos,
             'environmentNapsTemperature' => $request->soneca_temperatura,
             'whereSleepCrib' => $request->soneca_acordado_berco,
-            'whereSleepLap' => $request->soneca_dorme_colo_berco,
-            'whereSleepLapCrib' => $request->soneca_dorme_colo,
+            'whereSleepLap' => $request->soneca_dorme_colo ,
+            'whereSleepLapCrib' => $request->soneca_dorme_colo_berco,
             'whereSleepSharedBed' => $request->soneca_cama_compartilhada,
             'whereSleepCar' => $request->soneca_carrinho,
             'whereSleepRede' => $request->soneca_rede,
@@ -493,6 +555,8 @@ class ChallengeController extends Controller
             'napAssociationPacifier' => $request->associacao_soneca_chupeta,
             'napAssociationSuckFinger' => $request->associacao_soneca_chupar_dedo,
             'napAssociationSuckle' => $request->associacao_soneca_mamar,
+            'napAssociationCC' => $request->associacao_soneca_cc,
+            'napAssociationLap' => $request->associacao_soneca_colo,      
             'napAssociationOther' => $request->associacao_soneca_outro,
             'enoughNap' => $request->soneca_suficiente,
             'wakeUpNap' => $request->soneca_acorda,
@@ -505,6 +569,8 @@ class ChallengeController extends Controller
             'ritualAssociationPacifier' => $request->associacao_noturno_chupeta,
             'ritualAssociationSuckFinger' => $request->associacao_noturno_chupar_dedo,
             'ritualAssociationSuckle' => $request->associacao_noturno_mamar,
+            'ritualAssociationCC' => $request->associacao_noturno_cc,
+            'ritualAssociationLap'=>$request->associacao_noturno_colo,
             'ritualAssociationOther' => $request->associacao_noturno_outro,
             'conclusionImmaturity' => $request->conclusao_imaturidade,
             'conclusionHungry' => $request->conclusao_fome,
@@ -513,11 +579,226 @@ class ChallengeController extends Controller
             'conclusionAnguish' => $request->conclusao_angustia,
             'conclusionScreens' => $request->conclusao_telas,
             'conclusionStress' => $request->conclusao_estresse,
-            'comments' => '',
+            'comments' => $request->observacoes,
 
         ]);
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
     }
+
+    public function analyzeUpdateForm(Request $request, $id){
+
+        if (!$challenge = $this->repository->find($id)
+            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+            return redirect()->back();
+        }
+        $challenge = $this->repository->find($id);
+
+        if ($request->ritual_luz == null) {
+            $request->ritual_luz = "N";
+        }
+        if ($request->ritual_ruido == null) {
+            $request->ritual_ruido = "N";
+        }
+        if ($request->ritual_estimulo == null) {
+            $request->ritual_estimulo = "N";
+        }
+        if ($request->ritual_retira == null) {
+            $request->ritual_retira = "N";
+        }
+        
+        if ($request->soneca_acordado_berco == null) {
+            $request->soneca_acordado_berco = "N";
+        }
+        if ($request->soneca_dorme_colo_berco == null) {
+            $request->soneca_dorme_colo_berco = "N";
+        }
+        if ($request->soneca_dorme_colo == null) {
+            $request->soneca_dorme_colo = "N";
+        }
+        if ($request->soneca_cama_compartilhada == null) {
+            $request->soneca_cama_compartilhada = "N";
+        }
+        if ($request->soneca_cama_compartilhada == null) {
+            $request->soneca_cama_compartilhada = "N";
+        }
+        if ($request->soneca_carrinho == null) {
+            $request->soneca_carrinho = "N";
+        }
+        if ($request->soneca_rede == null) {
+            $request->soneca_rede = "N";
+        }
+        if ($request->soneca_outro == null) {
+            $request->soneca_outro = "N";
+        }
+        
+        if ($request->soneca_outro == "S") {
+            $request->soneca_outro = $request->soneca_outro_text;
+        }
+
+        if ($request->associacao_soneca_ruido_branco == null) {
+            $request->associacao_soneca_ruido_branco = "N";
+        }
+        if ($request->associacao_soneca_naninha == null) {
+            $request->associacao_soneca_naninha = "N";
+        }
+        if ($request->associacao_soneca_chupeta == null) {
+            $request->associacao_soneca_chupeta = "N";
+        }
+        if ($request->associacao_soneca_chupar_dedo == null) {
+            $request->associacao_soneca_chupar_dedo = "N";
+        }
+        if ($request->associacao_soneca_mamar == null) {
+            $request->associacao_soneca_mamar = "N";
+        }
+
+        if($request->associacao_soneca_cc==null){
+            $request->associacao_soneca_cc="N";
+        }
+
+        if($request->associacao_soneca_colo==null){
+            $request->associacao_soneca_colo="N";
+        }
+
+        
+        if ($request->associacao_soneca_outro == null) {
+            $request->associacao_soneca_outro = "N";
+        }
+
+        if ($request->associacao_soneca_outro == "S") {
+            $request->associacao_soneca_outro = $request->associacao_soneca_outro_text;
+        }
+
+
+
+        if ($request->associacao_noturno_ruido_branco == null) {
+            $request->associacao_noturno_ruido_branco = "N";
+        }
+        if ($request->associacao_noturno_naninha == null) {
+            $request->associacao_noturno_naninha = "N";
+        }
+        if ($request->associacao_noturno_chupeta == null) {
+            $request->associacao_noturno_chupeta = "N";
+        }
+        if ($request->associacao_noturno_chupar_dedo == null) {
+            $request->associacao_noturno_chupar_dedo = "N";
+        }
+        if ($request->associacao_noturno_mamar == null) {
+            $request->associacao_noturno_mamar = "N";
+        }
+
+        if($request->associacao_noturno_cc==null){
+            $request->associacao_noturno_cc="N";
+        }
+
+        if($request->associacao_noturno_colo==null){
+            $request->associacao_noturno_colo="N";
+        }
+
+        if ($request->associacao_noturno_outro == null) {
+            $request->associacao_noturno_outro = "N";
+        }
+
+        if ($request->associacao_noturno_outro == "S") {
+            $request->associacao_noturno_outro = $request->associacao_noturno_outro_text;
+        }
+
+
+        if ($request->conclusao_imaturidade == null) {
+            $request->conclusao_imaturidade = "N";
+        }
+        if ($request->conclusao_fome == null) {
+            $request->conclusao_fome = "N";
+        }
+        if ($request->conclusao_dor == null) {
+            $request->conclusao_dor = "N";
+        }
+        if ($request->conclusao_salto == null) {
+            $request->conclusao_salto = "N";
+        }
+        if ($request->conclusao_angustia == null) {
+            $request->conclusao_angustia = "N";
+        }
+        if ($request->conclusao_telas == null) {
+            $request->conclusao_telas = "N";
+        }
+        if ($request->conclusao_estresse == null) {
+            $request->conclusao_estresse = "N";
+        }
+
+$form=$challenge->form();
+
+
+
+
+
+
+
+        $form->update([
+
+            'ritualGoodMorning' => $request->ritualBomDia,
+           
+            'ritualGoodMorningLight' => $request->ritual_luz,
+            'ritualGoodMorningNoise' => $request->ritual_ruido,
+            'ritualGoodMorningStimulus' => $request->ritual_estimulo,
+            'ritualGoodMorningRemove' => $request->ritual_retira,
+            'typeEatingRoutine' => $request->rotinaAlimentar,
+            'routineDifficulties' => $request->dificuldadeRotinaAlimentar,
+            'weightGain' => $request->ganhoPeso,
+            
+            'energyExpenditure' => $request->gastoEnergia,
+            'noticeSigns' => $request->sinaisSono,
+            'slowDown' => $request->desacelera,
+            'ritualType' => $request->ritualSonecasChoro,
+            'environmentNapsLights' => $request->soneca_luzes,
+            'environmentNapsNoises' => $request->soneca_ruidos,
+            'environmentNapsTemperature' => $request->soneca_temperatura,
+            'whereSleepCrib' => $request->soneca_acordado_berco,
+            'whereSleepLap' => $request->soneca_dorme_colo ,
+            'whereSleepLapCrib' => $request->soneca_dorme_colo_berco,
+            'whereSleepSharedBed' => $request->soneca_cama_compartilhada,
+            'whereSleepCar' => $request->soneca_carrinho,
+            'whereSleepRede' => $request->soneca_rede,
+            'whereSleepOther' => $request->soneca_outro,
+            'environmentNapBother' => $request->soneca_local_incomoda,
+            'napAssociationWhiteNoise' => $request->associacao_soneca_ruido_branco,
+            'napAssociationCloth' => $request->associacao_soneca_naninha,
+            'napAssociationPacifier' => $request->associacao_soneca_chupeta,
+            'napAssociationSuckFinger' => $request->associacao_soneca_chupar_dedo,
+            'napAssociationSuckle' => $request->associacao_soneca_mamar,
+            'napAssociationCC' => $request->associacao_soneca_cc,
+            'napAssociationLap' => $request->associacao_soneca_colo,      
+            'napAssociationOther' => $request->associacao_soneca_outro,
+            'enoughNap' => $request->soneca_suficiente,
+            'wakeUpNap' => $request->soneca_acorda,
+            'nightRitual' => $request->ritaualNoturno,
+            'environmentRitualLights' => $request->sn_luzes,
+            'environmentRitualNoises' => $request->sn_ruidos,
+            'environmentRitualTemperature' => $request->sn_temperatura,
+            'ritualAssociationWhiteNoise' => $request->associacao_noturno_ruido_branco,
+            'ritualAssociationCloth' => $request->associacao_noturno_naninha,
+            'ritualAssociationPacifier' => $request->associacao_noturno_chupeta,
+            'ritualAssociationSuckFinger' => $request->associacao_noturno_chupar_dedo,
+            'ritualAssociationSuckle' => $request->associacao_noturno_mamar,
+            'ritualAssociationCC' => $request->associacao_noturno_cc,
+            'ritualAssociationLap'=>$request->associacao_noturno_colo,
+            'ritualAssociationOther' => $request->associacao_noturno_outro,
+            'conclusionImmaturity' => $request->conclusao_imaturidade,
+            'conclusionHungry' => $request->conclusao_fome,
+            'conclusionAche' => $request->conclusao_dor,
+            'conclusionJump' => $request->conclusao_salto,
+            'conclusionAnguish' => $request->conclusao_angustia,
+            'conclusionScreens' => $request->conclusao_telas,
+            'conclusionStress' => $request->conclusao_estresse,
+            'comments' => $request->observacoes,
+
+        ]);
+        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
+   
+    }
+
+
+
+
     public function analyzeStore(Request $request, $id, $day)
     {
         //dd(\Carbon\Carbon::parse('00:25')->diffInMinutes(\Carbon\Carbon::parse('23:50'),true));
@@ -1100,4 +1381,23 @@ class ChallengeController extends Controller
         }
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Análise atualizada');
     }
+
+    public function chatStore(Request $request, $id){
+        if (!$challenge = $this->repository->find($id)
+        ) {
+         return redirect()->back();
+     }
+     $challenge=$this->repository->find($id);
+     if($challenge->chat()->first()==null){
+       $chat=$challenge->chat()->create(['status'=>'mae']);
+     }else{
+         $chat=$challenge->chat()->first();
+     }
+    $chat->update(['status'=>'mae']);
+    $chat->messages()->create(['content'=>$request->message, 'type'=>'1']);
+    return redirect()->route('desafio.show', $challenge->id);
+
+   
+    }
+  
 }

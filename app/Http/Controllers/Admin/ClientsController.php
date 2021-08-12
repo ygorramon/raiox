@@ -134,7 +134,7 @@ class ClientsController extends Controller
         $client = $this->repository->create([
             'email' => $request->email,
             'active' => 1,
-            'expireAt' => now()->addDays($request->expire),
+            'expireAt' => now()->addDays(180),
         ]);
     }
     }

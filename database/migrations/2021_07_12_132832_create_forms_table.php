@@ -16,7 +16,6 @@ class CreateFormsTable extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('challenge_id');
-            $table->string('jump');
             $table->string('ritualGoodMorning');
             $table->string('weightGain');
             $table->string('ritualGoodMorningLight');
@@ -25,10 +24,7 @@ class CreateFormsTable extends Migration
             $table->string('ritualGoodMorningRemove');
             $table->string('typeEatingRoutine');
             $table->string('routineDifficulties');
-            $table->string('colicObstacle');
-            $table->string('refluxObstacle');
-            $table->string('gasObstacle');
-            $table->string('aplvObstacle');
+            
             $table->string('energyExpenditure');
             $table->string('noticeSigns');
             $table->string('slowDown');
@@ -49,6 +45,8 @@ class CreateFormsTable extends Migration
             $table->string('napAssociationPacifier');
             $table->string('napAssociationSuckFinger');
             $table->string('napAssociationSuckle');
+            $table->string('napAssociationCC');
+            $table->string('napAssociationLap');            
             $table->string('napAssociationOther');
             $table->string('enoughNap');
             $table->string('wakeUpNap');
@@ -61,6 +59,9 @@ class CreateFormsTable extends Migration
             $table->string('ritualAssociationPacifier');
             $table->string('ritualAssociationSuckFinger');
             $table->string('ritualAssociationSuckle');
+            $table->string('ritualAssociationCC');
+            $table->string('ritualAssociationLap');
+           
             $table->string('ritualAssociationOther');
             $table->string('conclusionImmaturity');
             $table->string('conclusionHungry');
@@ -69,7 +70,7 @@ class CreateFormsTable extends Migration
             $table->string('conclusionAnguish');
             $table->string('conclusionScreens');
             $table->string('conclusionStress');
-            $table->text('comments');
+            $table->text('comments')->nullable();
 
             $table->timestamps();
             $table->foreign('challenge_id')

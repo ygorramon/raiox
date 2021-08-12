@@ -424,8 +424,7 @@
 <script>
   @if(session('sucesso'))
   M.toast({
-    html: '{{session('
-    sucesso ')}}'
+    html: '{{session('sucesso')}}'
   })
   @endif
   $(document).ready(function() {

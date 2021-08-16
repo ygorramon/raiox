@@ -21,17 +21,20 @@ Route::prefix('admin')->group(function () {
             Route::post('/situacoes/{url}/respostas', 'Admin\AnswerController@store')->name('situacoes.respostas.store');
             Route::put('/situacoes/{id}/respostas/{answerId}', 'Admin\AnswerController@update')->name('situacoes.respostas.update');
             Route::get('/situacoes/{id}/answer/{answerId}/edit', 'Admin\AnswerController@edit')->name('situacoes.respostas.edit');
-        
-            Route::get('/desafios/disponiveis' , 'Admin\ChallengeController@availables')->name('challenge.availables');
-            Route::get('/desafios/meus' , 'Admin\ChallengeController@myChallenges')->name('challenge.my');
-            Route::get('/desafios/meus/{id}' , 'Admin\ChallengeController@showMyChallenge')->name('challenge.meus.show');
-            Route::get('/desafios/meus/{id}/responder' , 'Admin\ChallengeController@responder')->name('challenge.meus.responder');
-            Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
-            Route::put('/desafios/meus/{id}/responder' , 'Admin\ChallengeController@responderUpdate')->name('challenge.meus.responder.update');
-            Route::get('/desafios/meus/{id}/chat' , 'Admin\ChallengeController@chat')->name('challenge.meus.chat');
-            Route::post('/desafios/meus/{id}/chat' , 'Admin\ChallengeController@chatStore')->name('challenge.meus.chat.store');
 
-            Route::get('/desafios/disponiveis/{id}' , 'Admin\ChallengeController@showAvailables')->name('challenge.availables.show');
+            Route::get('/desafios/disponiveis', 'Admin\ChallengeController@availables')->name('challenge.availables');
+            Route::get('/desafios/meus', 'Admin\ChallengeController@myChallenges')->name('challenge.my');
+            Route::get('/desafios/meus/{id}', 'Admin\ChallengeController@showMyChallenge')->name('challenge.meus.show');
+            Route::get('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responder')->name('challenge.meus.responder');
+            Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
+            Route::put('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responderUpdate')->name('challenge.meus.responder.update');
+            Route::get('/desafios/meus/{id}/chat', 'Admin\ChallengeController@chat')->name('challenge.meus.chat');
+            Route::post('/desafios/meus/{id}/chat', 'Admin\ChallengeController@chatStore')->name('challenge.meus.chat.store');
+            Route::get('/desafios/meus/chats/todos', 'Admin\ChallengeController@chats')->name('challenge.meus.chats');
+
+            Route::get('/desafios/meus/chats/abertos', 'Admin\ChallengeController@chatAbertos')->name('challenge.meus.chats.abertos');
+
+            Route::get('/desafios/disponiveis/{id}', 'Admin\ChallengeController@showAvailables')->name('challenge.availables.show');
             Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
         });
     Auth::routes();
@@ -58,8 +61,8 @@ Route::middleware('auth.client:clients')
         Route::get('/desafio/{id}/form/edit', 'Site\ChallengeController@analyzeEditForm')->name('analyze.form.edit');
         Route::put('/desafio/{id}/form/edit', 'Site\ChallengeController@analyzeUpdateForm')->name('analyze.form.update');
 
-        Route::post('/desafio/{id}/chat','Site\ChallengeController@chatStore')->name('challenge.chat.store');
-       
+        Route::post('/desafio/{id}/chat', 'Site\ChallengeController@chatStore')->name('challenge.chat.store');
+
 
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioUpdate')->name('desafio.update');
     });

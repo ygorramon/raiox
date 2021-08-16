@@ -248,36 +248,20 @@ return [
         [
             'text'    => 'Desafios',
             'icon'    => 'fas fa-fw fa-share',
+            'key'  => 'desafios',
+
             'submenu' => [
-                [
-                    'text' => 'Disponíveis',
-                    'url'  => '/admin/desafios/disponiveis',
-                ],
-                [
-                    'text'    => 'Meus Desafios',
-                    'url'     => '/admin/desafios/meus',
-                   
-                ],
-                [
-                    'text' => 'Finalizados',
-                    'url'  => '#',
-                ],
+                
+               
             ],
         ],
         [
             'text'    => 'Chats',
             'icon'    => 'fas fa-fw fa-share',
+            'key' => 'chats',
             'submenu' => [
                
-                [
-                    'text'    => 'Em aberto',
-                    'url'     => '#',
-                   
-                ],
-                [
-                    'text' => 'Finalizados',
-                    'url'  => '#',
-                ],
+                
             ],
         ],
         [

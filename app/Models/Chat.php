@@ -13,4 +13,10 @@ class Chat extends Model
     public function messages(){
         return $this->hasMany(Message::class);
     } 
+
+
+public function challenge(){
+    return $this->belongsTo(Challenge::class);
+}
+
 }

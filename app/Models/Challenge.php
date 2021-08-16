@@ -37,4 +37,37 @@ class Challenge extends Model
         return $this->hasOne('App\Models\Chat');
   
     }
+
+    public function naps()
+    {
+        return $this->hasManyThrough('App\Models\Nap', 'App\Models\Analyze',
+    
+        'challenge_id', // Foreign key on users table...
+        'analyze_id', // Foreign key on posts table...
+        'id', // Local key on countries table...
+        'id' );
+
+    }
+
+    public function rituals()
+    {
+        return $this->hasManyThrough('App\Models\Ritual', 'App\Models\Analyze',
+    
+        'challenge_id', // Foreign key on users table...
+        'analyze_id', // Foreign key on posts table...
+        'id', // Local key on countries table...
+        'id' );
+
+    }
+
+    public function wakes()
+    {
+        return $this->hasManyThrough('App\Models\Wake', 'App\Models\Analyze',
+    
+        'challenge_id', // Foreign key on users table...
+        'analyze_id', // Foreign key on posts table...
+        'id', // Local key on countries table...
+        'id' );
+
+    }
 }

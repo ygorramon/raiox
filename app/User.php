@@ -40,4 +40,16 @@ class User extends Authenticatable
     public function challenges(){
         return $this->hasMany(Challenge::class);
     }
+    public function chats(){
+        return $this->hasManyThrough('App\Models\Chat', 'App\Models\Challenge',
+    
+        'user_id', // Foreign key on users table...
+        'challenge_id', // Foreign key on posts table...
+        'id', // Local key on countries table...
+        'id' );
+    }
+
+    
+
+    
 }

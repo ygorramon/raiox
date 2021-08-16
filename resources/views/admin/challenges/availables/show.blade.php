@@ -561,35 +561,35 @@
                         <label for="ritualBomDia">Causa dos Despertares:</label>
                         @if($challenge->form->conclusionImmaturity=='S')
                         <span class="badge bg-green">Imaturidade</span>
-                        
+
                         @endif
 
                         @if($challenge->form->conclusionHungry=='S')
                         <span class="badge bg-green">Fome</span>
-                        
+
                         @endif
                         @if($challenge->form->conclusionAche=='S')
                         <span class="badge bg-green">Dor</span>
-                       
+
                         @endif
                         @if($challenge->form->conclusionJump=='S')
                         <span class="badge bg-green">Salto de Desenvolvimento</span>
-                        
+
                         @endif
 
                         @if($challenge->form->conclusionAnguish=='S')
                         <span class="badge bg-green">Angústia da Separação</span>
-                        
+
                         @endif
                         @if($challenge->form->conclusionScreens=='S')
                         <span class="badge bg-green">Telas</span>
-                        
+
                         @endif
                         @if($challenge->form->conclusionScreens=='S')
                         <span class="badge bg-green">Estresse excessivo</span>
-                        
+
                         @endif
-                       
+
 
 
                     </div>
@@ -599,13 +599,13 @@
             <div class="col-md-12 ">
 
 
-                    <div>
-                        <label for="ritualBomDia">Observações:</label>
-                        <textarea class="form-control" rows="6">{{ $challenge->form->comments }}</textarea>
+                <div>
+                    <label for="ritualBomDia">Observações:</label>
+                    <textarea class="form-control" rows="6">{{ $challenge->form->comments }}</textarea>
 
 
-                    </div>
                 </div>
+            </div>
 
 
         </div>
@@ -620,6 +620,7 @@
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">DIA {{$analyze->day}} - {{\Carbon\Carbon::parse($analyze->date)->format('d/m/Y')}}</h3>
+
                     </div>
 
                     <div class="card-body">
@@ -628,6 +629,7 @@
                                 @else
                                 <span class="badge bg-red">{{$analyze->timeWokeUp}}</span>
                                 @endif
+
                         </h5>
                         <h5>Efeito Vulcânico:
                             @if($analyze->volcanicEffect=='N' )
@@ -635,7 +637,12 @@
                             @else
                             <span class="badge bg-red">SIM</span>
                             @endif
+                            Janela para a Idade <span class="badge bg-green">({{getIdade($challenge->client->birthBaby)}}) DIAS</span>
+                            MIN: <span class="badge bg-green">{{getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio}}</span> - MAX: <span class="badge bg-green">{{getJanela(now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby)))->janelaIdealFim}}</span>
+                            MAX Sinal de Sono: <span class="badge bg-green">{{getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim-30}}</span>
+
                         </h5>
+
 
                         <table class="table table-bordered">
 
@@ -647,7 +654,7 @@
                                     <th>Horário Acordou</th>
                                     <th>Duração </th>
                                     <th>Janela</th>
-                                    <th>Janela Ideal </th>
+                                    <th>Janela Sinal de Sono </th>
                                 </tr>
                                 @foreach($analyze->naps as $nap)
                                 <tr>
@@ -659,7 +666,7 @@
                                     <td>
                                         @if($nap->duration<40) <span class="badge bg-red">{{$nap->duration}}</span>
                                             @else
-                                            @if($nap->duration>120 && $client->babyAge>180)
+                                            @if($nap->duration>120 && $challenge->client->babyAge>180)
                                             <span class="badge bg-red">{{$nap->duration}}</span>
                                             @else
                                             <span class="badge bg-green">{{$nap->duration}}</span>
@@ -668,11 +675,27 @@
                                     </td>
                                     <td>
 
-                                        <span class="badge bg-green">{{$nap->window}}</span>
+                                        @if($nap->window >= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio
+                                        && $nap->window <= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim)
+                                            <span class="badge bg-green">{{$nap->window}}</span>
+                                            @else
+                                            <span class="badge bg-red">{{$nap->window}}</span>
+                                            @endif
 
 
                                     </td>
-                                    <td> Janela </td>
+                                    @php
+                                    $var=getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+
+                                    @endphp
+                                    <td>
+                                        @if($var-($nap->window-$nap->windowSignalSlept)>=30)
+                                        <span class="badge bg-green"> {{$nap->window-$nap->windowSignalSlept}}</span>
+                                        @else
+                                        <span class="badge bg-red"> {{$nap->window-$nap->windowSignalSlept}} </span>
+                                        @endif
+
+                                    </td>
                                 </tr>
                                 @endforeach
                                 @foreach($analyze->rituals as $ritual)
@@ -688,7 +711,23 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <span class="badge bg-red">{{$ritual->window}}</span>
+                                        @if($ritual->window >= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio
+                                        && $ritual->window <= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim)
+                                            <span class="badge bg-green">{{$ritual->window}}</span>
+                                            @else
+                                            <span class="badge bg-red">{{$ritual->window}}</span>
+                                            @endif
+                                    </td>
+                                    <td>
+                                   
+                                    
+                                        @if($var-($ritual->window-$ritual->windowSignalSlept)>=30)
+                                        <span class="badge bg-green"> {{$ritual->window-$ritual->windowSignalSlept}}</span>
+                                        @else
+                                        <span class="badge bg-red"> {{$ritual->window-$ritual->windowSignalSlept}} </span>
+                                        @endif
+
+                                    
                                     </td>
 
                                 </tr>

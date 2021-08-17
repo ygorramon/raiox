@@ -77,10 +77,8 @@ class ChallengeController extends Controller
       $form = $challenge->form()->first();
       $janela = getJanela(getIdade($client->birthBaby));
       $qtd_sinais_sono_tardio=$challenge->naps;
-      $keyed = $qtd_sinais_sono_tardio->mapWithKeys(function ($item, $key) {
-         return [$item['window'] => $item['window']*2];
-     });
-     dd( $keyed);
+      
+   
      
       $qtd_janelas_inadequadas_fim = count($challenge->naps->where('window', '>', $janela->janelaIdealFim));
       $qtd_janelas_inadequadas_inicio = count($challenge->naps->where('window', '<', $janela->janelaIdealInicio));

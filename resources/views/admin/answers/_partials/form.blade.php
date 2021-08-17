@@ -1,6 +1,6 @@
 @section('plugins.Summernote', true)
 
-@include('admin.includes.alerts')
+
 
 @csrf
 <div class="form-group">

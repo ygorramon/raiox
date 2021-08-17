@@ -18,7 +18,7 @@
     <div class="card">
         <div class="card-body">
             <form action="{{route('situacoes.respostas.store',$category->id)}}" method="post">
-                @include('admin.pages.answers._partials.form')
+                @include('admin.answers._partials.form')
             </form>
         </div>
     </div>

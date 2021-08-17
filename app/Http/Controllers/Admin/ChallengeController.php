@@ -76,11 +76,17 @@ class ChallengeController extends Controller
       $client = $challenge->client()->first();
       $form = $challenge->form()->first();
       $janela = getJanela(getIdade($client->birthBaby));
-
+      $qtd_sinais_sono_tardio=$challenge->naps;
+      $keyed = $qtd_sinais_sono_tardio->mapWithKeys(function ($item, $key) {
+         return [$item['window'] => $item['window']*2];
+     });
+     dd( $keyed);
+     
       $qtd_janelas_inadequadas_fim = count($challenge->naps->where('window', '>', $janela->janelaIdealFim));
       $qtd_janelas_inadequadas_inicio = count($challenge->naps->where('window', '<', $janela->janelaIdealInicio));
       $qtd_janelas_rituals_inadequadas_fim = count($challenge->rituals->where('window', '>', $janela->janelaIdealFim));
       $qtd_janelas_rituals_inadequadas_inicio = count($challenge->rituals->where('window', '<', $janela->janelaIdealInicio));
+      $qtd_janelas_longas=$qtd_janelas_inadequadas_fim+$qtd_janelas_rituals_inadequadas_fim;
       $qtd_janelas_inadequadas = $qtd_janelas_inadequadas_fim + $qtd_janelas_inadequadas_inicio + $qtd_janelas_rituals_inadequadas_fim + $qtd_janelas_rituals_inadequadas_inicio;
       $qtd_rituals_inicio_inadequados = count($challenge->rituals->where('start', '>', '21:00:00'));
       $qtd_sonecas_inadequadas = count($challenge->naps->where('duration', '<', 40));
@@ -124,6 +130,16 @@ class ChallengeController extends Controller
       $sex = getSex($client->sexBaby);
       $situacaoGanhoPeso = getGanhoPeso($babyAge, $client->weightGain);
 
+      $passo1['mensagem'] = Category::where('sex', $sex)
+         ->where(
+            'description',
+            'PASSO 1 - MENSAGEM GERAL '
+         )
+         ->first()->answers()->get();
+
+         if($qtd_janelas_inadequadas<=1){
+
+         }
       if ($babyAge < 90) {
          $passo2['imaturidade'] = Category::where('sex', $sex)
             ->where(
@@ -524,7 +540,7 @@ class ChallengeController extends Controller
          }
 
        }
-
+       $passo1['mensagem'] = stringReplace($passo1['mensagem'][rand(0, count($passo1['mensagem']) - 1)]->response, $client);
       if (!$passo2['imaturidade'] == "") {
          $passo2['imaturidade'] = stringReplace($passo2['imaturidade'][rand(0, count($passo2['imaturidade']) - 1)]->response, $client);
       }
@@ -582,10 +598,12 @@ class ChallengeController extends Controller
        }
       return view('admin.challenges.meus.responder', [
          'challenge' => $challenge,
+         'passo1' => (object)$passo1,
          'passo2' => (object)$passo2, 
          'passo3' => (object)$passo3,
          'qtd_sonecas_inadequadas'=>$qtd_sonecas_inadequadas,
-        'qtd_janelas_inadequadas' =>$qtd_janelas_inadequadas,
+         'qtd_sinais_sono_tardio' =>$qtd_sinais_sono_tardio,
+        'qtd_janelas_inadequadas' =>$qtd_janelas_longas,
         'qtd_dias_acordou_cedo'=>$qtd_dias_acordou_cedo,
         'qtd_dias_acordou_tarde'=>$qtd_dias_acordou_tarde,
         'acordou_mais_cedo'=>$acordou_mais_cedo,
@@ -596,7 +614,7 @@ class ChallengeController extends Controller
 
    public function responderUpdate($id, Request $request)
    {
-      dd($request);
+    
       if (!$challenge = $this->repository->find($id)) {
          return redirect()->back();
       }

@@ -70,16 +70,24 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label for="idadeBebe">Quantidade de Janelas de Sono Inadequadas:</label>
+                    <label for="idadeBebe">Quantidade de Janelas de Sono Longas:</label>
 
                     <div>
                         <input type="text" readonly class="form-control" id="idadeBebe" value="{{$qtd_janelas_inadequadas}}" >
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <label for="idadeBebe">Quantidade de Sinais de Sono Tardios:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="idadeBebe" value="{{$qtd_sinais_sono_tardio}}" >
+                    </div>
+                </div>
                 
             </div>
         </div>
-            <textarea name="passo1" class="form-control" style="height:auto"></textarea>
+            <textarea name="passo1" class="form-control" style="height:auto">
+            {{$passo1->mensagem}}</textarea>
         </div>
     </div>
     <div class="card card-info">

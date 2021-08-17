@@ -83,7 +83,7 @@ function formatDateAndTime($value, $format = 'd/m/Y')
   function stringReplace($text, $client)
   {
     $nome_mae_primeiro = explode(" ", $client->name);
-    $nome_baby_primeiro = explode(" ", $client->babyName);
+    $nome_baby_primeiro = explode(" ", $client->nameBaby);
     $array_from_to = array(
       'nome_mae_primeiro' => $nome_mae_primeiro[0],
       'nome_bebe_primeiro' => $nome_baby_primeiro[0]

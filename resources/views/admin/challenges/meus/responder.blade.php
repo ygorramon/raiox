@@ -151,8 +151,8 @@
             • TELAS: {{$passo2->telas}}
 
             • STRESS: {{$passo2->stress}}</textarea>
+            
         </div>
-    </div>
     <div class="card card-info">
         <div class="card-header">
             <h3 class="card-title">Passo 3</h3>
@@ -233,13 +233,13 @@
                 </div>
 
             </div>
-
-        </div>
-        
-            <textarea name="passo3_despertar" class="form-control" style="height:auto">
+            <textarea name="passo3_despertar" class="form-control" style="height:auto" >
             • Horário de Despertar: {{$passo3->despertar}}
             • Ritual do Bom dia: {{$passo3->ritualBomDia}}
             </textarea>
+        </div>
+        
+            
         </div>
         <div class="card-header">
             <h3 class="card-title ">Rotina Alimentar</h3>

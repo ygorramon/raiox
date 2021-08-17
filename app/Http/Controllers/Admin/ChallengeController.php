@@ -596,6 +596,7 @@ class ChallengeController extends Controller
 
    public function responderUpdate($id, Request $request)
    {
+      dd($request);
       if (!$challenge = $this->repository->find($id)) {
          return redirect()->back();
       }

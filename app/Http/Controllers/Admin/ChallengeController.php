@@ -76,8 +76,9 @@ class ChallengeController extends Controller
       $client = $challenge->client()->first();
       $form = $challenge->form()->first();
       $janela = getJanela(getIdade($client->birthBaby));
-      $qtd_sinais_sono_tardio=$challenge->naps;
-      
+      $qtd_sinais_sono_tardio=0;
+
+     
    
      
       $qtd_janelas_inadequadas_fim = count($challenge->naps->where('window', '>', $janela->janelaIdealFim));
@@ -86,15 +87,29 @@ class ChallengeController extends Controller
       $qtd_janelas_rituals_inadequadas_inicio = count($challenge->rituals->where('window', '<', $janela->janelaIdealInicio));
       $qtd_janelas_longas=$qtd_janelas_inadequadas_fim+$qtd_janelas_rituals_inadequadas_fim;
       $qtd_janelas_inadequadas = $qtd_janelas_inadequadas_fim + $qtd_janelas_inadequadas_inicio + $qtd_janelas_rituals_inadequadas_fim + $qtd_janelas_rituals_inadequadas_inicio;
+      
       $qtd_rituals_inicio_inadequados = count($challenge->rituals->where('start', '>', '21:00:00'));
       $qtd_sonecas_inadequadas = count($challenge->naps->where('duration', '<', 40));
       $qtd_sonecas_longas = count($challenge->naps->where('duration', '>', 120));
+      $qtd_ritual_sonecas_longo = count($challenge->naps->where('windowSignalSlept', '>', 30));
       $qtd_ritual_inadequado = count($challenge->rituals->where('duration', '>', 30));
       $qtd_dias_acordou_cedo = count($challenge->analyzes->where('timeWokeUp', '<', '06:00:00'));
       $qtd_dias_acordou_tarde = count($challenge->analyzes->where('timeWokeUp', '>', '08:00:00'));
       $qtd_despertares_inadequadas = count($challenge->wakes->where('duration', '>', 60));
       $acordou_mais_cedo = $challenge->analyzes->min('timeWokeUp');
       $acordou_mais_tarde = $challenge->analyzes->max('timeWokeUp');
+      foreach($challenge->naps as $item){
+         if($item->window-$item->windowSignalSlept>$janela->janelaIdealFim-30){
+          $qtd_sinais_sono_tardio++;
+         }
+      }
+      foreach($challenge->rituals as $item){
+       if($item->window-$item->windowSignalSlept>$janela->janelaIdealFim-30){
+        $qtd_sinais_sono_tardio++;
+       }
+    }
+    $passo1['orientacao']="";
+    $passo1['sinalSono']="";
       $passo2['imaturidade'] = "";
       $passo2['fome'] = "";
       $passo2['dor'] = "";
@@ -136,8 +151,107 @@ class ChallengeController extends Controller
          ->first()->answers()->get();
 
          if($qtd_janelas_inadequadas<=1){
-
+            if($qtd_sinais_sono_tardio<=1 && $qtd_ritual_sonecas_longo<=1){
+               $passo1['orientacao'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Janela de sono adequada e sinais de sono adequados e ritual < 30 minutos'
+               )
+               ->first()->answers()->get();
+            }
+            if($qtd_sinais_sono_tardio<=1 && $qtd_ritual_sonecas_longo>1){
+               $passo1['orientacao'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Janela de sono adequada e sinais de sono adequados e ritual > 30 minutos'
+               )
+               ->first()->answers()->get();
+            }
          }
+
+         if($qtd_janelas_inadequadas>1){
+            if($qtd_sinais_sono_tardio>1 && $qtd_ritual_sonecas_longo>1){
+               $passo1['orientacao'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Janela de sono longa e sinais de sono longos e ritual > 30 minutos'
+               )
+               ->first()->answers()->get();
+               
+            }
+            if($qtd_sinais_sono_tardio>1 && $qtd_ritual_sonecas_longo<=1){
+               $passo1['orientacao'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Janela de sono longa e sinais de sono longos e ritual < 30 minutos'
+               )
+               ->first()->answers()->get();
+               
+            }
+            if($qtd_sinais_sono_tardio<=1 && $qtd_ritual_sonecas_longo>1){
+               $passo1['orientacao'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Janela de sono longa e sinais de sono bons e ritual < 30 minutos'
+               )
+               ->first()->answers()->get();
+               
+            }
+         }
+         if($qtd_sinais_sono_tardio>1 && $qtd_janelas_inadequadas>1){
+            if($babyAge<120){
+               $passo1['sinalSono'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Sinais de sono longos - 0 a 119 dias'
+               )
+               ->first()->answers()->get();   
+            }
+            if($babyAge>=120 && $babyAge<180){
+               $passo1['sinalSono'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Sinais de sono longos - 120 a 179 dias'
+               )
+               ->first()->answers()->get();   
+            }
+            if($babyAge>=180 && $babyAge<270){
+               $passo1['sinalSono'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Sinais de sono longos - 180 a 269 dias'
+               )
+               ->first()->answers()->get();   
+            }
+            if($babyAge>=270 && $babyAge<365){
+               $passo1['sinalSono'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Sinais de sono longos - 270 a 364 dias'
+               )
+               ->first()->answers()->get();   
+            }
+            if($babyAge>=365 && $babyAge<540){
+               $passo1['sinalSono'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Sinais de sono longos - 365 a 539 dias'
+               )
+               ->first()->answers()->get();   
+            }
+            if($babyAge>540){
+               $passo1['sinalSono'] = Category::where('sex', $sex)
+               ->where(
+                  'description',
+                  'PASSO 1 - Sinais de sono longos - 540 dias ou mais'
+               )
+               ->first()->answers()->get();   
+            }
+         }
+
+       
+
+
       if ($babyAge < 90) {
          $passo2['imaturidade'] = Category::where('sex', $sex)
             ->where(
@@ -539,6 +653,12 @@ class ChallengeController extends Controller
 
        }
        $passo1['mensagem'] = stringReplace($passo1['mensagem'][rand(0, count($passo1['mensagem']) - 1)]->response, $client);
+       if (!$passo1['orientacao'] == "") {
+         $passo1['orientacao'] = stringReplace($passo1['orientacao'][rand(0, count($passo1['orientacao']) - 1)]->response, $client);
+      }
+       if (!$passo1['sinalSono'] == "") {
+         $passo1['sinalSono'] = stringReplace($passo1['sinalSono'][rand(0, count($passo1['sinalSono']) - 1)]->response, $client);
+      }
       if (!$passo2['imaturidade'] == "") {
          $passo2['imaturidade'] = stringReplace($passo2['imaturidade'][rand(0, count($passo2['imaturidade']) - 1)]->response, $client);
       }
@@ -599,6 +719,7 @@ class ChallengeController extends Controller
          'passo1' => (object)$passo1,
          'passo2' => (object)$passo2, 
          'passo3' => (object)$passo3,
+         'qtd_ritual_sonecas_longo' =>$qtd_ritual_sonecas_longo,
          'qtd_sonecas_inadequadas'=>$qtd_sonecas_inadequadas,
          'qtd_sinais_sono_tardio' =>$qtd_sinais_sono_tardio,
         'qtd_janelas_inadequadas' =>$qtd_janelas_longas,

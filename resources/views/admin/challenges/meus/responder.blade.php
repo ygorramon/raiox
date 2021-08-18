@@ -63,10 +63,10 @@
             </div>
             <div class="row">
                 <div class="col-md-4 ">
-                    <label for="sonecasInadequadas">Quantidade de Sonecas Inadequadas (curtas):</label>
+                    <label for="sonecasInadequadas">Quantidade de Ritual de Sonecas Longo:</label>
 
                     <div>
-                        <input type="text" readonly class="form-control" id="sonecasInadequadas" value="{{$qtd_sonecas_inadequadas}}" placeholder="nomeMae">
+                        <input type="text" readonly class="form-control" id="sonecasInadequadas" value="{{$qtd_ritual_sonecas_longo}}" placeholder="nomeMae">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -87,7 +87,19 @@
             </div>
         </div>
             <textarea name="passo1" class="form-control" style="height:auto">
-            {{$passo1->mensagem}}</textarea>
+            {{$passo1->mensagem}}
+            @if($passo1->orientacao=="")
+            @else
+
+            {{$passo1->orientacao}}
+            @endif
+
+            @if($passo1->sinalSono=="")
+            @else
+            
+            {{$passo1->sinalSono}}
+            @endif
+        </textarea>
         </div>
     </div>
     <div class="card card-info">

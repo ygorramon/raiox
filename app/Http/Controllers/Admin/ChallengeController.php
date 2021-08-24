@@ -18,7 +18,7 @@ class ChallengeController extends Controller
 
    public function availables()
    {
-      $challenges = $this->repository->where('status', 'ENVIADO')->where('user_id', null)->paginate();
+      $challenges = $this->repository->where('status', 'ENVIADO')->where('user_id', null)->orderBy('sended_at')->paginate();
       return view('admin.challenges.availables.index', compact('challenges'));
    }
    public function myChallenges()
@@ -741,7 +741,7 @@ class ChallengeController extends Controller
       $challenge = $this->repository->with('client')->find($id);
 
       $challenge->update([
-         'status' => 'RESPONDIDO', 'passo1' => $request->passo1,
+         'status' => 'RESPONDIDO', 'answered_at'=>now(), 'passo1' => $request->passo1,
          'passo2' => $request->passo2,
          'passo3_despertar' => $request->passo3_despertar,
          'passo3_rotina_alimentar' => $request->passo3_rotina_alimentar,
@@ -756,6 +756,16 @@ class ChallengeController extends Controller
 
 
       return redirect()->route('challenge.meus.show', $id);
+   }
+
+   public function respostas($id){
+      if (!$challenge = $this->repository->find($id)) {
+         return redirect()->back();
+      }
+
+      $challenge = $this->repository->with('client')->find($id);
+
+      return view('admin.challenges.meus.respostas', compact('challenge'));
    }
 
    public function chat($id)

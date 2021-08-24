@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/desafios/meus', 'Admin\ChallengeController@myChallenges')->name('challenge.my');
             Route::get('/desafios/meus/{id}', 'Admin\ChallengeController@showMyChallenge')->name('challenge.meus.show');
             Route::get('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responder')->name('challenge.meus.responder');
+            Route::get('/desafios/meus/{id}/respostas', 'Admin\ChallengeController@respostas')->name('challenge.meus.respostas');
             Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
             Route::put('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responderUpdate')->name('challenge.meus.responder.update');
             Route::get('/desafios/meus/{id}/chat', 'Admin\ChallengeController@chat')->name('challenge.meus.chat');
@@ -65,6 +66,9 @@ Route::middleware('auth.client:clients')
 
 
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioUpdate')->name('desafio.update');
+        Route::get('/profile', 'Site\ChallengeController@clientEdit')->name('client.profile.edit');
+        Route::put('/profile', 'Site\ChallengeController@clientUpdate')->name('client.profile.update');
+
     });
 Route::get('/login', 'Auth\LoginClientController@showClientLoginForm');
 Route::get('/cadastro', 'Auth\RegisterClientController@showClientRegisterForm')->name('clientes.register');

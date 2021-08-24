@@ -163,7 +163,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         }
         $challenge = $this->repository->find($id);
         $challenge->update([
-            'status' => 'ENVIADO'
+            'status' => 'ENVIADO','sended_at'=>now(),
         ]);
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
 
@@ -1399,5 +1399,48 @@ $form=$challenge->form();
 
    
     }
+
+    public function clientEdit(){
+     $client=Auth::guard('clients')->user();
+   return view('site.desafio.profile-edit', compact('client'));
+    }
+public  $messageClient=[
+         
+    'name.required' => 'O campo Nome da Mãe é de preenchimento obrigatório',
+    'name.max' => 'O campo Nome da Mãe permite no máximo 255 caracteres',
+    'name.min' => 'O campo Nome da Mãe permite no mínimo 3 caracteres',
+    'nameBaby.required' => 'O campo Nome do Bebê é de preenchimento obrigatório',
+    'nameBaby.max' => 'O campo Nome da Mãe permite no máximo 255 caracteres',
+    'nameBaby.min' => 'O campo Nome do Bebê permite no mínimo 3 caracteres',
+    'birthBaby.required' => 'O campo Nascimento do Bebê é de preenchimento obrigatório',
+    'birthBaby.date_format' => 'O campo Nascimento do Bebê deve ser preenchido com uma data válida no formato dd/mm/yyyy',
+    'sexBaby.required' => 'O campo Sexo do Bebê é de preenchimento obrigatório',
+       
+];
+    protected function validatorClient(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255|min:3',
+            'nameBaby' => 'required|string|max:255|min:3',
+            'birthBaby' => 'required|date_format:d/m/Y',
+            'sexBaby' => 'required|string|max:255',
+           
+        ],$this->messageClient);
+    } 
+    
+    public function clientUpdate(Request $request){
+        $client=Auth::guard('clients')->user();
+        $this->validatorClient($request->all())->validate();
+
+        $client->update(['name'=>$request->name,
+        'nameBaby'=>$request->nameBaby,
+        'birthBaby'=>\Carbon\Carbon::createFromFormat('d/m/Y', $request->birthBaby)->format('Y-m-d'),
+        'sexBaby'=>$request->sexBaby,]);
+
+        $challenge=$client->challenges->last();
+        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Dados atualizados');       
+
+
+       }
   
 }

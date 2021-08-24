@@ -5,6 +5,12 @@ function formatDateAndTime($value, $format = 'd/m/Y')
     return Carbon\Carbon::parse($value)->format($format);
 }
 
+function formatDateAndTimeHours($value, $format = 'd/m/Y H:i')
+{
+    
+    return Carbon\Carbon::parse($value)->format($format);
+}
+
  function getJanela($bebe_idade)
   {
     if ($bebe_idade < 59) {

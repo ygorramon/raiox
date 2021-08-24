@@ -25,6 +25,8 @@
                 <tr>
                     <th>Nome da Mãe</th>
                     <th>Nome do Bebê</th>
+                    <th>Data de Envio</th>
+                    <th> Outros desafios </th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -33,7 +35,20 @@
                 <tr>
                     <td>{{ $challenge->client->name }}</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
-
+                    <td> {{formatDateAndTimeHours($challenge->sended_at)}}</td>
+                    <td> 
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false"> <span class="badge bg-teal">{{$challenge->client->challenges()->count()}}</span>
+                  
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu" style="">
+                    @foreach($challenge->client->challenges()->get() as $challenge)      
+                      <a class="dropdown-item" target="_blank" href="{{route('challenge.meus.respostas', $challenge->id)}}">{{formatDateAndTimeHours($challenge->sended_at)}} -  {{!empty($challenge->user) ? $challenge->user->name:''}}</a>                  
+                      @endforeach
+                    </div>
+                  </div>                  
+                    </td>
                     <td>
 
                         <a href="{{route('challenge.availables.show', $challenge->id)}}" class="btn btn-warning">VER</a>

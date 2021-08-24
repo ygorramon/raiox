@@ -382,7 +382,14 @@
 
   @endif
 </tr>
+<tr>
+  <td>
+  <a href="{{route('client.profile.edit')}}" class="btn waves-effect waves-light red "> Atualize seus Dados </a>
+  </td>
+  <td></td>
+</tr>
 @endif
+
 @if(isset($challenge->form()->first()->id))
 <tr>
   <td>
@@ -391,6 +398,7 @@
       {{ method_field('PUT') }}
       <button class="btn">Enviar Desafio</button>
   </td>
+  <td></td>
 </tr>
 
 

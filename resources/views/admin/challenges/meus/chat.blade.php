@@ -19,19 +19,19 @@
     @if($challenge->chat()->first()->status=='mae')
     @foreach($challenge->chat()->first()->messages as $message)
     @if($message->type==1)
-    <label>Mãe:</label>
-    <textarea class="form-control" readonly> {{$message->content}}</textarea>
+    <label>Mãe:  em - {{formatDateAndTimeHours($message->created_at)}}</label>
+    <textarea class="form-control" style="background-color: green;color:#fff;height:auto" readonly > {{$message->content}}</textarea>
    @endif
    @if($message->type==2)
-    <label>Eu:</label>
-    <textarea class="form-control" readonly> {{$message->content}}</textarea>
+    <label>Eu:  em - {{formatDateAndTimeHours($message->created_at)}}</label>
+    <textarea class="form-control"  style="height:auto" readonly> {{$message->content}}</textarea>
    @endif
 
     @endforeach
     <form action="{{route('challenge.meus.chat.store', $challenge->id)}}" method="POST">
         @csrf
         <label>Responder:</label>
-        <textarea class="form-control" name="message"> </textarea>
+        <textarea class="form-control" name="message" style="height:auto"> </textarea>
         <button class="btn btn-primary" type="submit">Enviar</button>
     </form>
     @endif
@@ -39,18 +39,31 @@
     @if($challenge->chat()->first()->status=='odilo')
     @foreach($challenge->chat()->first()->messages as $message)
     @if($message->type==1)
-    <label>Mãe:</label>
-    <textarea class="form-control" readonly> {{$message->content}}</textarea>
+    <label>Mãe:  em - {{formatDateAndTimeHours($message->created_at)}}</label>
+    <textarea class="form-control"  style="background-color: green;color:#fff;height:auto" readonly > {{$message->content}}</textarea>
     @endif
     @if($message->type==2)
-    <label>Eu:</label>
-    <textarea class="form-control" readonly> {{$message->content}}</textarea>
+    <label>Eu:  em - {{formatDateAndTimeHours($message->created_at)}}</label>
+    <textarea class="form-control"   style="height:auto" readonly > {{$message->content}}</textarea>
    @endif
 
     @endforeach
     @endif
 
 </div>
+@section('js')
+<script>
+    $(document).ready(function() {
+        $(".form-control").overlayScrollbars({
 
+            textarea: {
+                dynHeight: true,
+                
+            }
+
+        });
+    });
+</script>
+@stop
 
 @endsection

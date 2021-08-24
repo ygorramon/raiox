@@ -18,6 +18,8 @@ class CreateChallengesTable extends Migration
             $table->string('status');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->dateTime('sended_at')->nullable();
+            $table->dateTime('answered_at')->nullable();
             $table->text('passo1')->nullable();
             $table->text('passo2')->nullable();
             $table->text('passo3_despertar')->nullable();

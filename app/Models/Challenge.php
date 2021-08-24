@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Challenge extends Model
 {
     protected $fillable = [
-        'status','user_id','client_id','passo1','passo2',
+        'status','sended_at','answered_at','user_id','client_id','passo1','passo2',
         'passo3_despertar','passo3_rotina_alimentar',
         'passo3_rotina_sonecas','passo3_rotina_sonecas',
         'passo3_ambiente_sonecas','passo3_ambiente_noturno',
@@ -68,6 +68,10 @@ class Challenge extends Model
         'analyze_id', // Foreign key on posts table...
         'id', // Local key on countries table...
         'id' );
+
+    }
+    public function user(){
+        return $this->belongsTo('App\User');
 
     }
 }

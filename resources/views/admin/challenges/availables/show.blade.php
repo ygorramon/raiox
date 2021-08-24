@@ -654,7 +654,7 @@
                                     <th>Horário Acordou</th>
                                     <th>Duração </th>
                                     <th>Janela</th>
-                                    <th>Janela Sinal de Sono </th>
+                                    <th>Janela Sinal de Sono / Duração Ritual </th>
                                 </tr>
                                 @foreach($analyze->naps as $nap)
                                 <tr>
@@ -694,7 +694,7 @@
                                         @else
                                         <span class="badge bg-red"> {{$nap->window-$nap->windowSignalSlept}} </span>
                                         @endif
-
+                                        / {{$nap->windowSignalSlept}}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -717,6 +717,7 @@
                                             @else
                                             <span class="badge bg-red">{{$ritual->window}}</span>
                                             @endif
+                                         
                                     </td>
                                     <td>
                                    
@@ -726,7 +727,7 @@
                                         @else
                                         <span class="badge bg-red"> {{$ritual->window-$ritual->windowSignalSlept}} </span>
                                         @endif
-
+                                        / {{$ritual->windowSignalSlept}}
                                     
                                     </td>
 

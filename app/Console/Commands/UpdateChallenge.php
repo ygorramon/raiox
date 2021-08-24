@@ -42,6 +42,7 @@ class UpdateChallenge extends Command
         $headers = ['Desafio', 'Enviado'];
 
        Challenge::where('answered_at','<',now()->subDays(15))->update(['status' => 'FINALIZADO']);
-        
+       $this->info('Atualizado');
+  
     }
 }

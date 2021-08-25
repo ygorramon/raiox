@@ -48,7 +48,7 @@ class ChallengeTelegramNotification extends Notification
         $challenge=Challenge::find($notifiable->id);
         return TelegramMessage::create()
         // Optional recipient user id.
-        ->to('239037731')
+        ->to('-404420854')
         // Markdown supported.
         ->content("Desafio Enviado \n *Nome:*" . $challenge->client->name."\n *Nome do Bebê:*" . $challenge->client->nameBaby);
     }

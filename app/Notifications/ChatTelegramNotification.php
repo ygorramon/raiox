@@ -48,7 +48,7 @@ class ChatTelegramNotification extends Notification
        // dd($challenge);
         return TelegramMessage::create()
         // Optional recipient user id.
-        ->to('239037731')
+        ->to('-404420854')
         // Markdown supported.
         ->content("Novo Chat \n *Nome:*" . $challenge->client->name."\n*Nome do Bebê:*" . $challenge->client->nameBaby."\n*Terapeuta:*". $challenge->user->name);
     }

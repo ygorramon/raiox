@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Challenge extends Model
 {
+    use Notifiable;
+
     protected $fillable = [
         'status','sended_at','answered_at','user_id','client_id','passo1','passo2',
         'passo3_despertar','passo3_rotina_alimentar',

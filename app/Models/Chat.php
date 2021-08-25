@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Chat extends Model
 {
+    use Notifiable;
     protected $fillable = [
         'status','challenge_id'
     ];

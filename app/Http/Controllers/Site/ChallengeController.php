@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Challenge;
-
+use App\Notifications\ChallengeTelegramNotification;
+use App\Notifications\ChatTelegramNotification;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 class ChallengeController extends Controller
 {
+
     public function __construct(Challenge $challenge)
     {
 
@@ -165,6 +167,8 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         $challenge->update([
             'status' => 'ENVIADO','sended_at'=>now(),
         ]);
+        $challenge->notify(new ChallengeTelegramNotification());
+
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
 
 
@@ -1395,6 +1399,9 @@ $form=$challenge->form();
      }
     $chat->update(['status'=>'mae']);
     $chat->messages()->create(['content'=>$request->message, 'type'=>'1']);
+
+    $chat->notify(new ChatTelegramNotification());
+
     return redirect()->route('desafio.show', $challenge->id);
 
    

@@ -281,6 +281,19 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Relatórios',
+            'icon'    => 'fas fa-fw fa-user',
+            'submenu' => [
+               
+                [
+                    'text'    => 'Visualizar',
+                    'url'     => '/admin/relatorios',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
+               
+            ],
+        ],
     ],
 
     /*

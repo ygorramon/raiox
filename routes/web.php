@@ -37,6 +37,8 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/desafios/disponiveis/{id}', 'Admin\ChallengeController@showAvailables')->name('challenge.availables.show');
             Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
+            Route::get('/relatorios', 'Admin\DashboardController@relatorios')->name('relatorios.index');
+            Route::post('/relatorios/search', 'Admin\DashboardController@search')->name('relatorios.search');
         });
     Auth::routes();
 });

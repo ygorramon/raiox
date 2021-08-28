@@ -27,7 +27,7 @@ class ChallengeController extends Controller
 
 
 
-      $challenges = Auth::user()->challenges()->paginate();
+      $challenges = Auth::user()->challenges()->orderBy('status','asc')->orderBy('answered_at','desc')->paginate();
       return view('admin.challenges.meus.index', compact('challenges'));
    }
 

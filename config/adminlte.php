@@ -291,6 +291,16 @@ return [
                     'url'     => '/admin/relatorios',
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
+                [
+                    'text'    => 'Desafios Atrasados',
+                    'url'     => '/admin/relatorios/desafios-atrasados',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
+                [
+                    'text'    => 'Chats Atrasados',
+                    'url'     => '/admin/relatorios/chats-atrasados',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
                
             ],
         ],

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Challenge;
+use App\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -53,4 +55,16 @@ class DashboardController extends Controller
            
         return view ('admin.relatorios.todos', compact('challenges','messages','request'));
         }
+
+
+        public function atrasados(){
+           $challenges=Challenge::whereIn('status',['ENVIADO','ANALISE','RESPONDIDO','FINALIZADO'])->orderBy('status','asc')->orderBy('answered_at','desc')->paginate();
+           return view ('admin.relatorios.atrasados', compact('challenges'));
+        }
+
+        public function chats(){
+         $chats=Chat::orderBy('status','asc')->paginate();
+         return view ('admin.relatorios.chats', compact('chats'));
+      }
+
 }

@@ -39,6 +39,9 @@ Route::prefix('admin')->group(function () {
             Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
             Route::get('/relatorios', 'Admin\DashboardController@relatorios')->name('relatorios.index');
             Route::post('/relatorios/search', 'Admin\DashboardController@search')->name('relatorios.search');
+            Route::get('/relatorios/desafios-atrasados', 'Admin\DashboardController@atrasados')->name('relatorios.atrasados');
+            Route::get('/relatorios/chats-atrasados', 'Admin\DashboardController@chats')->name('relatorios.chats-atrasados');
+
         });
     Auth::routes();
 });

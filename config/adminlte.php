@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'DESAFIO 7 DIAS',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>DESAFIO</b>7 DIAS',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img_class' => 'brand-image  elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Desafio 7 Dias',
 
     /*
     |--------------------------------------------------------------------------
@@ -191,8 +191,8 @@ return [
     'dashboard_url' => 'admin/home',
     'logout_url' => 'admin/logout',
     'login_url' => 'admin/login',
-    'register_url' => 'admin/register',
-    'password_reset_url' => 'admin/password/reset',
+    'register_url' => false,
+    'password_reset_url' => false,
     'password_email_url' => 'admin/password/email',
     'profile_url' => false,
 

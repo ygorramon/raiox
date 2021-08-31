@@ -21,9 +21,10 @@
                                 <table class="bordered">
                                     <thead><th>Desafio</th><th>Status</th><td>Ações</td></thead>
                                 @forelse ($challenges as $key => $challenge)
-                                
+                                <tr>
                                 <td>{{$key+1}}</td><td>{{$challenge->status}}</td>
                                 <td><a href="{{route('desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a></td>
+                                </tr>
                                 @empty
                                 </table>
                                 <form action="{{route('desafio.store')}}" method="POST">
@@ -34,7 +35,7 @@
                                 </li>
                                 @endforelse
 
-                                @if(isset($latest_challenge) && $latest_challenge->status=='Finalizado')
+                                @if(isset($latest_challenge) && $latest_challenge->status=='FINALIZADO')
                                 <form action="{{route('desafio.store')}}" method="POST">
                                     @csrf
                                     <li class="collection-item dismissable">

@@ -19,6 +19,7 @@ class ChallengeController extends Controller
    public function availables()
    {
       $challenges = $this->repository->where('status', 'ENVIADO')->where('user_id', null)->orderBy('sended_at')->paginate();
+      
       return view('admin.challenges.availables.index', compact('challenges'));
    }
    public function myChallenges()
@@ -33,10 +34,13 @@ class ChallengeController extends Controller
 
    public function getChallenge($id)
    {
+     
       if (!$challenge = $this->repository->find($id)) {
          return redirect()->back();
       }
+     
       $user = Auth::user();
+     
       $this->repository->find($id)->update(['user_id' => $user->id, 'status' => 'ANALISE']);
       return redirect()->route('challenge.availables');
    }
@@ -739,20 +743,37 @@ class ChallengeController extends Controller
       }
 
       $challenge = $this->repository->with('client')->find($id);
-
-      $challenge->update([
-         'status' => 'RESPONDIDO', 'answered_at'=>now(), 'passo1' => $request->passo1,
-         'passo2' => $request->passo2,
-         'passo3_despertar' => $request->passo3_despertar,
-         'passo3_rotina_alimentar' => $request->passo3_rotina_alimentar,
-         'passo3_rotina_sonecas' => $request->passo3_rotina_sonecas,
-         'passo3_ambiente_sonecas' => $request->passo3_ambiente_sonecas,
-         'passo3_sono_noturno' => $request->passo3_sono_noturno,
-         'passo3_ambiente_noturno' => $request->passo3_ambiente_noturno,
-         'passo4_associacoes_sonecas' => $request->passo4_associacoes_sonecas,
-         'passo4_associacoes_noturno' => $request->passo4_associacoes_noturno,
-         'conclusao' => $request->conclusao,
-      ]);
+      if($challenge->status=='RESPONDIDO'){
+         $challenge->update([
+            'status' => 'RESPONDIDO', 'passo1' => $request->passo1,
+            'passo2' => $request->passo2,
+            'passo3_despertar' => $request->passo3_despertar,
+            'passo3_rotina_alimentar' => $request->passo3_rotina_alimentar,
+            'passo3_rotina_sonecas' => $request->passo3_rotina_sonecas,
+            'passo3_ambiente_sonecas' => $request->passo3_ambiente_sonecas,
+            'passo3_sono_noturno' => $request->passo3_sono_noturno,
+            'passo3_ambiente_noturno' => $request->passo3_ambiente_noturno,
+            'passo4_associacoes_sonecas' => $request->passo4_associacoes_sonecas,
+            'passo4_associacoes_noturno' => $request->passo4_associacoes_noturno,
+            'conclusao' => $request->conclusao,
+         ]);
+      }
+      if($challenge->status=='ANALISE'){
+         $challenge->update([
+            'status' => 'RESPONDIDO', 'answered_at'=>now(), 'passo1' => $request->passo1,
+            'passo2' => $request->passo2,
+            'passo3_despertar' => $request->passo3_despertar,
+            'passo3_rotina_alimentar' => $request->passo3_rotina_alimentar,
+            'passo3_rotina_sonecas' => $request->passo3_rotina_sonecas,
+            'passo3_ambiente_sonecas' => $request->passo3_ambiente_sonecas,
+            'passo3_sono_noturno' => $request->passo3_sono_noturno,
+            'passo3_ambiente_noturno' => $request->passo3_ambiente_noturno,
+            'passo4_associacoes_sonecas' => $request->passo4_associacoes_sonecas,
+            'passo4_associacoes_noturno' => $request->passo4_associacoes_noturno,
+            'conclusao' => $request->conclusao,
+         ]);
+      }
+      
 
 
       return redirect()->route('challenge.meus.show', $id);

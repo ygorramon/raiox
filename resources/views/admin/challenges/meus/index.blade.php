@@ -46,6 +46,12 @@
 EM- {{formatDateAndTimeHours($challenge->answered_at)}}
 
                             @endif
+                            @if($challenge->status=='FINALIZADO')
+                        <span class="badge bg-green">
+                            {{ $challenge->status }} 
+</span>
+
+                            @endif
                     </td>
                     <td> 
                     <div class="btn-group">
@@ -54,7 +60,7 @@ EM- {{formatDateAndTimeHours($challenge->answered_at)}}
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu" role="menu" style="">
-                    @foreach($challenge->client->challenges()->get() as $challenge)      
+                    @foreach($challenge->client->challenges()->where('status','RESPONDIDO')->get() as $challenge)      
                       <a class="dropdown-item" target="_blank" href="{{route('challenge.meus.respostas', $challenge->id)}}">{{formatDateAndTimeHours($challenge->sended_at)}} - {{$challenge->user->name}}</a>                  
                       @endforeach
                     </div>

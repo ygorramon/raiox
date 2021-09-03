@@ -144,7 +144,7 @@
                           <form action="{{route('challenge.chat.store', $challenge->id)}}" method="POST">
                             @csrf
                             <label >Responder:</label>
-                            <textarea class="materialize-textarea" name="message"></textarea>
+                            <textarea class="materialize-textarea" name="message" required></textarea>
                             <button class="btn btn-primary">Enviar </button>
                           </form>
                           @endif

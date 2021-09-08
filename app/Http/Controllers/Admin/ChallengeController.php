@@ -467,7 +467,7 @@ class ChallengeController extends Controller
        }
 
        if($qtd_ritual_inadequado==0){
-         if($client->form->ritualType=="S"){
+         if($challenge->form->ritualType=="S"){
            $passo3['ritualNoturno']=Category::where('sex',$sex)
            ->where('description', 
            'PASSO 3 - RITUAL NOTURNO - ADEQUADO + sem choro')

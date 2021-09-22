@@ -18,6 +18,7 @@
     </div>
     
     <a class="btn-lg btn-warning" href="{{route('challenge.meus.respostas', $challenge->id)}}" target="__blank">Respostas do desafio </a>
+    <a class="btn-lg btn-warning" href="{{route('challenge.meus.show', $challenge->id)}}" target="__blank">Desafio  </a>
 
     @if($challenge->chat()->first()->status=='mae')
     @foreach($challenge->chat()->first()->messages as $message)

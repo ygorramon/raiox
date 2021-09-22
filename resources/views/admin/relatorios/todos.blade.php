@@ -40,6 +40,7 @@
                       <th style="width: 10px">#</th>
                       <th>Nome da Mãe</th>
                       <th>Nome do Bebê</th>
+                      <th> Bonus </th>
                       <th style="width: 40px">Ações</th>
                     </tr>
                   </thead>
@@ -51,6 +52,10 @@
                       <td>
                       {{$desafio->nameBaby}}
                       </td>
+                      <td> @if($desafio->bonus=='1')
+                    <span class="badge bg-green">   SIM </span>
+                    @else <span class="badge bg-red">   NÃO </span> @endif
+                    </td>
                       <td><a target="__blank" href="{{route('challenge.meus.respostas', $desafio->desafio_id)}}"><span class="badge bg-warning">Ver</span></a></td>
                     </tr>
                     @endforeach

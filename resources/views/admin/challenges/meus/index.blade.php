@@ -37,7 +37,8 @@
                     <td>{{ $challenge->client->name }}</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
                     <td> @if($challenge->client->bonus=='1')
-                        SIM @else NÃO @endif
+                    <span class="badge bg-green">   SIM </span>
+                    @else <span class="badge bg-red">   NÃO </span> @endif
                     </td>
                     <td> @if($challenge->status=='ANALISE')
                         <span class="badge bg-yellow">

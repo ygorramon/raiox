@@ -25,6 +25,7 @@
                 <tr>
                     <th>Nome da Mãe</th>
                     <th>Nome do Bebê</th>
+                    <th>Bonus</th>
                     <th>Status</th>
                     <th> Outros desafios </th>
                     <th>Ações</th>
@@ -35,6 +36,9 @@
                 <tr>
                     <td>{{ $challenge->client->name }}</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
+                    <td> @if($challenge->client->bonus=='1')
+                        SIM @else NÃO @endif
+                    </td>
                     <td> @if($challenge->status=='ANALISE')
                         <span class="badge bg-yellow">
                             {{ $challenge->status }}</span>

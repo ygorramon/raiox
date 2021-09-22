@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Schema\Builder;
 use App\Models\Category;
+use App\Notifications\ChallengeBonusNotification;
 
 class ChallengeController extends Controller
 {
@@ -772,6 +773,10 @@ class ChallengeController extends Controller
             'passo4_associacoes_noturno' => $request->passo4_associacoes_noturno,
             'conclusao' => $request->conclusao,
          ]);
+         if($challenge->client->bonus==1){
+            $challenge->notify(new ChallengeBonusNotification());
+
+         }
       }
       
 

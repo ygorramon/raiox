@@ -56,7 +56,7 @@
                     <span class="badge bg-green">   SIM </span>
                     @else <span class="badge bg-red">   NÃO </span> @endif
                     </td>
-                      <td><a target="__blank" href="{{route('challenge.meus.respostas', $desafio->desafio_id)}}"><span class="badge bg-warning">Ver</span></a></td>
+                      <td><a target="__blank" href="{{route('challenge.meus.show', $desafio->desafio_id)}}"><span class="badge bg-warning">Desafio</span></a><a target="__blank" href="{{route('challenge.meus.respostas', $desafio->desafio_id)}}"><span class="badge bg-warning">Respostas</span></a></td>
                     </tr>
                     @endforeach
                   </tbody>

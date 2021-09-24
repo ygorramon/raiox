@@ -685,6 +685,7 @@
 
                                     </td>
                                     @php
+                                    
                                     $var=getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
 
                                     @endphp
@@ -720,7 +721,11 @@
                                          
                                     </td>
                                     <td>
-                                   
+                                    @php
+                                    
+                                    $var=getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+
+                                    @endphp
                                     
                                         @if($var-($ritual->window-$ritual->windowSignalSlept)>=30)
                                         <span class="badge bg-green"> {{$ritual->window-$ritual->windowSignalSlept}}</span>

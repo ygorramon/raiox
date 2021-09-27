@@ -72,6 +72,20 @@ class ChallengeController extends Controller
       return view('admin.challenges.meus.show', compact('challenge'));
    }
 
+   public function showMyChallengeBlack($id)
+   {
+
+
+      if (!$challenge = $this->repository->find($id)) {
+         return redirect()->back();
+      }
+
+      $challenge = $this->repository->with('client')->find($id);
+
+
+      return view('admin.challenges.meus.show-black', compact('challenge'));
+   }
+
    public function responder($id)
    {
       if (!$challenge = $this->repository->find($id)) {

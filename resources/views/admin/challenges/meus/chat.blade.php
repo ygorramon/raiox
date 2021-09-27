@@ -52,6 +52,14 @@
    @endif
 
     @endforeach
+
+    <form action="{{route('challenge.meus.chat.store', $challenge->id)}}" method="POST">
+        @csrf
+        <label>Responder:</label>
+        <textarea class="form-control" name="message" style="height:auto"> </textarea>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+
     @endif
 
 </div>

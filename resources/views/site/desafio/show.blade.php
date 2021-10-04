@@ -27,6 +27,101 @@
 
                   </div>
                   @endif
+                  @if($challenge->status=='FINALIZADO')
+                  <div class="row">
+                    <div class="col s12">
+                      <h4 class="card-title">Análise do Seu Desafio (Clique em cada Passo abaixo) </h4>
+                    </div>
+
+                    <ul class="collapsible">
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 1</div>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo1}}</textarea>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 2</div>
+                        <div class="collapsible-body"><textarea class="materialize-textarea" disabled> {{$challenge->passo2}}</textarea></div>
+                      </li>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 3</div>
+                        <div class="collapsible-body">
+                          <ul class="collapsible">
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Despertar</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_despertar}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Rotina Alimentar</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_alimentar}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Rotina de Sonecas</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_sonecas}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Ambiente de Sonecas</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_sonecas}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Sono Noturno</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_sono_noturno}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Ambiente do Sono Noturno</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_noturno}}</textarea>
+                              </div>
+                            </li>
+                        </div>
+
+                      </li>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Passo 4</div>
+                        <div class="collapsible-body">
+                          <ul class="collapsible">
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Associações da Soneca</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_sonecas}}</textarea>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">place</i>Associações do Sono Noturno</div>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_noturno}}</textarea>
+                              </div>
+                            </li>
+                          </ul>
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>Conclusão</div>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->conclusao}}</textarea>
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="collapsible">
+                      <li>
+                        <div class="collapsible-header"><i class="material-icons">message</i>Chat</div>
+                        <div class="collapsible-body">
+                         
+                          @if($challenge->chat()->first()!=null)
+                          @foreach($challenge->chat()->first()->messages as $message)
+                          @if($message->type==1)
+                          <label >Eu:</label>
+                          <textarea class="materialize-textarea" readonly> {{$message->content}}</textarea>
+                          @endif
+                          @if($message->type==2)
+                          <label >Dr. Odilo:</label>
+                          <textarea class="materialize-textarea" readonly> {{$message->content}}</textarea>
+                          @endif
+                          @endforeach
+                          
+
+                         
+                          
+@endif
                   @if($challenge->status=='RESPONDIDO')
                   <div class="row">
                     <div class="col s12">

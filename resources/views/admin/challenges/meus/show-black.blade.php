@@ -445,11 +445,14 @@
 
                     <div>
                         <label for="ritualBomDia"> Tipo de ritual noturno:</label>
-                        @if($challenge->form->nightRitual=='N')
-                        <span class="badge bg-black">NÃO</span>
+                        @if($challenge->form->ritualType=='Sem')
+                        <span class="badge bg-black">Sem Choro</span>
                         @endif
-                        @if($challenge->form->nightRitual=='S')
-                        <span class="badge bg-black">SIM</span>
+                        @if($challenge->form->ritualType=='Eventualmente')
+                        <span class="badge bg-black">Eventualmente com Choro</span>
+                        @endif
+                        @if($challenge->form->ritualType=='Com')
+                        <span class="badge bg-black">Com Choro</span>
                         @endif
 
                     </div>

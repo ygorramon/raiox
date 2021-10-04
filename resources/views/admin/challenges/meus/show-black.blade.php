@@ -699,6 +699,20 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                </tbody>
+                        </table>
+                        <br>
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                    <th>#</th>
+                                    <th>Sinal de Sono </th>
+                                    <th>Horário Início </th>
+                                    <th>Horário Dormiu</th>
+                                    <th>Duração </th>
+                                    <th>Janela</th>
+                                    <th>Janela Sinal de Sono / Duração Ritual </th>
+                                </tr>
                                 @foreach($analyze->rituals as $ritual)
                                 <tr>
                                     <td>Ritual</td>

@@ -122,6 +122,7 @@
                          
                           
 @endif
+@endif
                   @if($challenge->status=='RESPONDIDO')
                   <div class="row">
                     <div class="col s12">

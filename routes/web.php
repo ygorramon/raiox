@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/desafios/meus', 'Admin\ChallengeController@myChallenges')->name('challenge.my');
             Route::get('/desafios/meus/{id}', 'Admin\ChallengeController@showMyChallenge')->name('challenge.meus.show');
             Route::get('/desafios/meus/black/{id}', 'Admin\ChallengeController@showMyChallengeBlack')->name('challenge.meus.show.black');
+            Route::get('/desafios/meus/nowindow/{id}', 'Admin\ChallengeController@showMyChallengeNoWindow')->name('challenge.meus.show.noWindow');
             Route::get('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responder')->name('challenge.meus.responder');
             Route::get('/desafios/meus/{id}/respostas', 'Admin\ChallengeController@respostas')->name('challenge.meus.respostas');
             Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');

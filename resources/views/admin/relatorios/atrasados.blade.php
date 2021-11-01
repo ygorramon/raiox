@@ -55,6 +55,12 @@
 </span>
 
                             @endif
+                            @if($challenge->status=='FINALIZADO')
+                        <span class="badge bg-blue">
+                            {{ $challenge->status }} 
+</span>
+
+                            @endif
                     </td>
                     <td> 
                     {{ formatDateAndTimeHours($challenge->sended_at) }}   

@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
+                    <th> Status do Desafio </th>
                     <th>Terapeuta</th>
                     <th>Última mensagem</th>
                     <th>Horário da última mensagem</th>
@@ -29,7 +30,27 @@
             <tbody>
                 @foreach ($chats as $chat)
                 <tr>
-                    <td>{{ $chat->challenge->client->name }}</td>
+                <td>{{ $chat->challenge->client->name }}</td>
+                <td> @if($chat->challenge->status=='ANALISE')
+                        <span class="badge bg-yellow">
+                            {{ $chat->$challenge->status }}</span>
+                            @endif
+                            @if($chat->challenge->status=='ENVIADO')
+                        <span class="badge bg-yellow">
+                            {{ $chat->challenge->status }}</span>
+                            @endif
+                            @if($chat->challenge->status=='RESPONDIDO')
+                        <span class="badge bg-green">
+                            {{ $chat->challenge->status }} 
+</span>
+
+                            @endif
+                            @if($chat->challenge->status=='FINALIZADO')
+                        <span class="badge bg-blue">
+                            {{ $chat->challenge->status }} 
+</span>
+
+                            @endif
                     <td>{{$chat->challenge->user->name ?? ''}}</td>
                     <td>@if($chat->status=='mae')  <span class="badge bg-yellow"> CLIENTE </span> @else  <span class="badge bg-green"> TERAPEUTA </span>@endif</td>
                     <td> {{formatDateAndTimeHours($chat->messages->last()->created_at)}}</td>

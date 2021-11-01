@@ -141,6 +141,7 @@ class ChallengeController extends Controller
         $qtd_sinais_sono_tardio++;
        }
     }
+
     $passo1['orientacao']="";
     $passo1['sinalSono']="";
       $passo2['imaturidade'] = "";
@@ -174,7 +175,7 @@ class ChallengeController extends Controller
 
       $babyAge = getIdade($client->birthBaby);
       $sex = getSex($client->sexBaby);
-      $situacaoGanhoPeso = getGanhoPeso($babyAge, $client->weightGain);
+      $situacaoGanhoPeso = getGanhoPeso($babyAge, $challenge->form->weightGain);
 
       $passo1['mensagem'] = Category::where('sex', $sex)
          ->where(

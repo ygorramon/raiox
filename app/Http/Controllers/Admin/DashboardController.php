@@ -58,12 +58,12 @@ class DashboardController extends Controller
 
 
         public function atrasados(){
-           $challenges=Challenge::whereIn('status',['ENVIADO','ANALISE','RESPONDIDO','FINALIZADO'])->orderBy('status','asc')->orderBy('answered_at','desc')->paginate();
+           $challenges=Challenge::whereIn('status',['ENVIADO','ANALISE','RESPONDIDO','FINALIZADO'])->orderBy('sended_at','desc')->get();
            return view ('admin.relatorios.atrasados', compact('challenges'));
         }
 
         public function chats(){
-         $chats=Chat::orderBy('status','asc')->paginate();
+         $chats=Chat::orderBy('status','asc')->get();
          return view ('admin.relatorios.chats', compact('chats'));
       }
 

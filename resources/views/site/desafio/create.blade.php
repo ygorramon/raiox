@@ -97,17 +97,17 @@
                                             <h5>Soneca 1</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca1_ss" class="timepicker">
+                                                    <input type="text" id="time" name="soneca1_ss" value="{{ old('soneca1_ss') }}" class="timepicker">
                                                     <label for="soneca1_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="soneca1_hd" name="soneca1_hd" class="timepicker">
+                                                    <input type="text" id="soneca1_hd" name="soneca1_hd" value="{{ old('soneca1_hd') }}" class="timepicker">
                                                     <label for="soneca1_hd">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca1_ha" class="timepicker">
+                                                    <input type="text" id="time" name="soneca1_ha" value="{{ old('soneca1_ha') }}" class="timepicker">
                                                     <label for="soneca1_ha">Horário que acordou</label>
 
                                                 </div>
@@ -124,17 +124,17 @@
                                             <h5>Soneca 2</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca2_ss" class="timepicker">
+                                                    <input type="text" id="time" name="soneca2_ss" value="{{ old('soneca2_ss') }}" class="timepicker">
                                                     <label for="soneca2_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="soneca1_hd" name="soneca2_hd" class="timepicker">
+                                                    <input type="text" id="soneca1_hd" name="soneca2_hd" value="{{ old('soneca2_hd') }}" class="timepicker">
                                                     <label for="soneca2_hd">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca2_ha" class="timepicker">
+                                                    <input type="text" id="time" name="soneca2_ha" value="{{ old('soneca2_ha') }}" class="timepicker">
                                                     <label for="soneca2_ha">Horário que acordou</label>
 
                                                 </div>
@@ -151,17 +151,17 @@
                                             <h5>Soneca 3</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca3_ss" class="timepicker">
+                                                    <input type="text" id="time" name="soneca3_ss" value="{{ old('soneca3_ss') }}" class="timepicker">
                                                     <label for="soneca3_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="soneca1_hd" name="soneca3_hd" class="timepicker">
+                                                    <input type="text" id="soneca1_hd" name="soneca3_hd" value="{{ old('soneca3_hd') }}" class="timepicker">
                                                     <label for="soneca3_hd">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca3_ha" class="timepicker">
+                                                    <input type="text" id="time" name="soneca3_ha" value="{{ old('soneca3_ha') }}" class="timepicker">
                                                     <label for="soneca3_ha">Horário que acordou</label>
 
                                                 </div>
@@ -178,17 +178,17 @@
                                             <h5>Soneca 4</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca4_ss" class="timepicker">
+                                                    <input type="text" id="time" name="soneca4_ss" value="{{ old('soneca4_ss') }}" class="timepicker">
                                                     <label for="soneca4_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="soneca1_hd" name="soneca4_hd" class="timepicker">
+                                                    <input type="text" id="soneca1_hd" name="soneca4_hd" value="{{ old('soneca4_hd') }}" class="timepicker">
                                                     <label for="soneca4_hd">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca4_ha" class="timepicker">
+                                                    <input type="text" id="time" name="soneca4_ha" value="{{ old('soneca4_ha') }}" class="timepicker">
                                                     <label for="soneca4_ha">Horário que acordou</label>
 
                                                 </div>
@@ -205,17 +205,17 @@
                                             <h5>Soneca 5</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca5_ss" class="timepicker">
+                                                    <input type="text" id="time" name="soneca5_ss" value="{{ old('soneca5_ss') }}" class="timepicker">
                                                     <label for="soneca5_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="soneca1_hd" name="soneca5_hd" class="timepicker">
+                                                    <input type="text" id="soneca1_hd" name="soneca5_hd" value="{{ old('soneca5_hd') }}" class="timepicker">
                                                     <label for="soneca5_hd">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca5_ha" class="timepicker">
+                                                    <input type="text" id="time" name="soneca5_ha" value="{{ old('soneca5_ha') }}" class="timepicker">
                                                     <label for="soneca5_ha">Horário que acordou</label>
 
                                                 </div>
@@ -232,17 +232,17 @@
                                             <h5>Soneca 6</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca6_ss" class="timepicker">
+                                                    <input type="text" id="time" name="soneca6_ss" value="{{ old('soneca6_ss') }}" class="timepicker">
                                                     <label for="soneca6_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="soneca1_hd" name="soneca6_hd" class="timepicker">
+                                                    <input type="text" id="soneca1_hd" name="soneca6_hd" value="{{ old('soneca6_hd') }}"  class="timepicker">
                                                     <label for="soneca6_hd">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="soneca6_ha" class="timepicker">
+                                                    <input type="text" id="time" name="soneca6_ha" value="{{ old('soneca6_ha') }}" class="timepicker">
                                                     <label for="soneca6_ha">Horário que acordou</label>
 
                                                 </div>
@@ -288,17 +288,17 @@
                                             <h5>Ritual</h5>
                                             <div class="row">
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="ritual_ss" name="ritual_ss" class="timepicker">
+                                                    <input type="text" id="ritual_ss" name="ritual_ss" value="{{ old('ritual_ss') }}" class="timepicker">
                                                     <label for="ritual_ss">Horário que sentiu sono</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="time" name="ritual_in" class="timepicker">
+                                                    <input type="text" id="time" name="ritual_in" value="{{ old('ritual_in') }}" class="timepicker">
                                                     <label for="ritual_in">Horário que iniciou</label>
 
                                                 </div>
                                                 <div class="input-field col m4 s12">
-                                                    <input type="text" id="ritual_d" name="ritual_d" class="timepicker">
+                                                    <input type="text" id="ritual_d" name="ritual_d" value="{{ old('ritual_d') }}" class="timepicker">
                                                     <label for="ritual_d">Horário que dormiu</label>
 
                                                 </div>
@@ -315,27 +315,27 @@
                                             <h5>Despertar 1</h5>
                                             <div class="row">
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar1_a" name="despertar1_a" class="timepicker">
+                                                    <input type="text" id="despertar1_a" name="despertar1_a" value="{{ old('despertar1_a') }}" class="timepicker">
                                                     <label for="despertar1_a">Horário que acordou</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar1_d" name="despertar1_d" class="timepicker">
+                                                    <input type="text" id="despertar1_d" name="despertar1_d" value="{{ old('despertar1_d') }}" class="timepicker">
                                                     <label for="despertar1_d">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar1_fd" id="despertar1_fd">
-                                                        <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option value="1">Sozinho</option>
-                                                        <option value="2">Ninando no berço/cama</option>
-                                                        <option value="3">Mamando</option>
-                                                        <option value="4">Outro</option>
+                                                        <option  value="" disabled selected>Selecione uma opção</option>
+                                                        <option {{ old('despertar1_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
+                                                        <option {{ old('despertar1_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
+                                                        <option {{ old('despertar1_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
+                                                        <option {{ is_numeric(old('despertar1_fd'))==false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar1_fd_outro">
-                                                    <input  type="text" id="despertar1_fd_outro"" name=" despertar1_fd_outro">
+                                                    <input  type="text" id="despertar1_fd_outro"" name=" despertar1_fd_outro" value="{{ old('despertar1_fd_outro') }}">
                                                     <label for="despertar1_fd_outro">Como Dormiu</label>
                                                 </div>
 
@@ -352,28 +352,28 @@
                                             <h5>Despertar 2</h5>
                                             <div class="row">
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar2_a" name="despertar2_a" class="timepicker">
+                                                    <input type="text" id="despertar2_a" name="despertar2_a"  value="{{ old('despertar2_a') }}" class="timepicker">
                                                     <label for="despertar2_a">Horário que acordou</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar2_d" name="despertar2_d" class="timepicker">
+                                                    <input type="text" id="despertar2_d" name="despertar2_d" value="{{ old('despertar2_d') }}" class="timepicker">
                                                     <label for="despertar2_d">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar2_fd" id="despertar2_fd">
-                                                        <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option value="1">Sozinho</option>
-                                                        <option value="2">Ninando no berço/cama</option>
-                                                        <option value="3">Mamando</option>
-                                                        <option value="4">Outro</option>
+                                                        <option  value="" disabled selected>Selecione uma opção</option>
+                                                        <option {{ old('despertar2_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
+                                                        <option {{ old('despertar2_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
+                                                        <option {{ old('despertar2_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
+                                                        <option {{ is_numeric(old('despertar2_fd'))==false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar2_fd_outro">
-                                                    <input type="text" id="despertar2_fd_outro"" name=" despertar2_fd_outro">
+                                                    <input type="text" id="despertar2_fd_outro"" value="{{ old('despertar2_fd_outro') }}" name=" despertar2_fd_outro">
                                                     <label for="despertar2_fd_outro">Como Dormiu</label>
                                                 </div>
 
@@ -390,12 +390,12 @@
                                             <h5>Despertar 3</h5>
                                             <div class="row">
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar3_a" name="despertar3_a" class="timepicker">
+                                                    <input type="text" id="despertar3_a" name="despertar3_a" value="{{ old('despertar3_a') }}"  class="timepicker">
                                                     <label for="despertar3_a">Horário que acordou</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar3_d" name="despertar3_d" class="timepicker">
+                                                    <input type="text" id="despertar3_d" name="despertar3_d" value="{{ old('despertar3_d') }}" class="timepicker">
                                                     <label for="despertar3_d">Horário que dormiu</label>
 
                                                 </div>
@@ -403,16 +403,16 @@
                                                 <div class="input-field col m3 s12" >
                                                     <select name="despertar3_fd" id="despertar3_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option value="1">Sozinho</option>
-                                                        <option value="2">Ninando no berço/cama</option>
-                                                        <option value="3">Mamando</option>
-                                                        <option value="4">Outro</option>
+                                                        <option {{ old('despertar3_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
+                                                        <option {{ old('despertar3_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
+                                                        <option {{ old('despertar3_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
+                                                        <option {{ is_numeric(old('despertar3_fd'))==false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar3_fd_outro">
-                                                    <input  type="text" id="despertar3_fd_outro"" name=" despertar3_fd_outro">
+                                                    <input  type="text" id="despertar3_fd_outro"" name=" despertar3_fd_outro" value="{{ old('despertar3_fd_outro') }}">
                                                     <label for="despertar3_fd_outro">Como Dormiu</label>
                                                 </div>
 
@@ -429,28 +429,28 @@
                                             <h5>Despertar 4</h5>
                                             <div class="row">
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar4_a" name="despertar4_a" class="timepicker">
+                                                    <input type="text" id="despertar4_a" name="despertar4_a" value="{{ old('despertar4_a') }}" class="timepicker">
                                                     <label for="despertar4_a">Horário que acordou</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar4_d" name="despertar4_d" class="timepicker">
+                                                    <input type="text" id="despertar4_d" name="despertar4_d" value="{{ old('despertar4_d') }}" class="timepicker">
                                                     <label for="despertar4_d">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar4_fd" id="despertar4_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option value="1">Sozinho</option>
-                                                        <option value="2">Ninando no berço/cama</option>
-                                                        <option value="3">Mamando</option>
-                                                        <option value="4">Outro</option>
+                                                        <option {{ old('despertar4_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
+                                                        <option {{ old('despertar4_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
+                                                        <option {{ old('despertar4_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
+                                                        <option {{is_numeric(old('despertar4_fd'))==false ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar4_fd_outro">
-                                                    <input type="text" id="despertar4_fd_outro"" name=" despertar4_fd_outro">
+                                                    <input type="text" id="despertar4_fd_outro"" name=" despertar4_fd_outro" value="{{ old('despertar4_fd_outro') }}">
                                                     <label for="despertar4_fd_outro">Como Dormiu</label>
                                                 </div>
 
@@ -467,28 +467,28 @@
                                             <h5>Despertar 5</h5>
                                             <div class="row">
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar5_a" name="despertar5_a" class="timepicker">
+                                                    <input type="text" id="despertar5_a" name="despertar5_a" value="{{ old('despertar5_a') }}" class="timepicker">
                                                     <label for="despertar5_a">Horário que acordou</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar5_d" name="despertar5_d" class="timepicker">
+                                                    <input type="text" id="despertar5_d" name="despertar5_d" value="{{ old('despertar5_d') }}" class="timepicker">
                                                     <label for="despertar5_d">Horário que dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar5_fd" id="despertar5_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option value="1">Sozinho</option>
-                                                        <option value="2">Ninando no berço/cama</option>
-                                                        <option value="3">Mamando</option>
-                                                        <option value="4">Outro</option>
+                                                        <option {{ old('despertar5_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
+                                                        <option {{ old('despertar5_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
+                                                        <option {{ old('despertar5_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
+                                                        <option {{ is_numeric(old('despertar5_fd')==false) ? "selected" : "" }}value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar5_fd_outro">
-                                                    <input  type="text" id="despertar5_fd_outro"" name=" despertar5_fd_outro">
+                                                    <input  type="text" id="despertar5_fd_outro"" name=" despertar5_fd_outro" value="{{ old('despertar5_fd_outro') }}">
                                                     <label for="despertar5_fd_outro">Como Dormiu</label>
                                                 </div>
 
@@ -505,12 +505,12 @@
                                             <h5>Despertar 6</h5>
                                             <div class="row">
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar6_a" name="despertar6_a" class="timepicker">
+                                                    <input type="text" id="despertar6_a" name="despertar6_a" value="{{ old('despertar6_a') }}" class="timepicker">
                                                     <label for="despertar6_a">Horário que acordou</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12">
-                                                    <input type="text" id="despertar6_d" name="despertar6_d" class="timepicker">
+                                                    <input type="text" id="despertar6_d" name="despertar6_d" value="{{ old('despertar6_d') }}" class="timepicker">
                                                     <label for="despertar6_d">Horário que dormiu</label>
 
                                                 </div>
@@ -518,16 +518,16 @@
                                                 <div class="input-field col m3 s12">
                                                     <select name="despertar6_fd" id="despertar6_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option value="1">Sozinho</option>
-                                                        <option value="2">Ninando no berço/cama</option>
-                                                        <option value="3">Mamando</option>
-                                                        <option value="4">Outro</option>
+                                                        <option {{ old('despertar6_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
+                                                        <option {{ old('despertar6_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
+                                                        <option {{ old('despertar6_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
+                                                        <option {{ is_numeric(old('despertar6_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar6_fd_outro">
-                                                    <input  type="text" id="despertar6_fd_outro"" name=" despertar6_fd_outro">
+                                                    <input  type="text" id="despertar6_fd_outro"" name=" despertar6_fd_outro" value="{{ old('despertar6_fd_outro') }}">
                                                     <label for="despertar6_fd_outro">Como Dormiu</label>
                                                 </div>
                                             </div>

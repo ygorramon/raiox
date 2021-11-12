@@ -50,11 +50,11 @@
                         <span class="badge bg-green">  {{diffDate($chat->messages->last()->created_at,now())}} </span>
                         @endif
 
-                        @if(diffDate($chat->messages->last()->created_at,now()) >= 24 && diffDate($chat->messages->last()->created_at,now()) < 48)
+                        @if(diffDate($chat->messages->last()->created_at,now()) >= 24 && diffDate($chat->messages->last()->created_at,now()) < 36)
                         <span class="badge bg-yellow">  {{diffDate($chat->messages->last()->created_at,now())}} </span>
                         @endif
 
-                        @if(diffDate($chat->messages->last()->created_at,now()) >=48)
+                        @if(diffDate($chat->messages->last()->created_at,now()) >=36)
                         <span class="badge bg-red">  {{diffDate($chat->messages->last()->created_at,now())}} </span>
                         @endif
 

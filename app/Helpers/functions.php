@@ -110,5 +110,5 @@ return $data;
 
 function diffDate($date_start, $date_end){
 return  \Carbon\Carbon::parse($date_end)
-->diffInDays(\Carbon\Carbon::parse($date_start));
+->diffInWeekdays(\Carbon\Carbon::parse($date_start));
 }

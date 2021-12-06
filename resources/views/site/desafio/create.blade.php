@@ -330,7 +330,7 @@
                                                         <option {{ old('despertar1_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar1_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar1_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ is_numeric(old('despertar1_fd'))==false ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar1_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
                                                 </div>
@@ -367,7 +367,7 @@
                                                         <option {{ old('despertar2_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar2_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar2_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ is_numeric(old('despertar2_fd'))==false ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar2_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
@@ -406,7 +406,7 @@
                                                         <option {{ old('despertar3_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar3_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar3_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{ is_numeric(old('despertar3_fd'))==false ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{ is_numeric(old('despertar3_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
@@ -444,7 +444,7 @@
                                                         <option {{ old('despertar4_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar4_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar4_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
-                                                        <option {{is_numeric(old('despertar4_fd'))==false ? "selected" : "" }} value="4">Outro</option>
+                                                        <option {{is_numeric(old('despertar4_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
                                                     <label>Como dormiu</label>
 
@@ -591,12 +591,18 @@
             if ($(this).val() === '4') {
                 $('#despertar1_fd_outro').show();
             }
+            if ($(this).val() != '4') {
+                $('#despertar1_fd_outro').hide();
+            }
         });
         $('#despertar2_fd_outro').hide();
 
         $('#despertar2_fd').change(function() {
             if ($(this).val() === '4') {
                 $('#despertar2_fd_outro').show();
+            }
+            if ($(this).val() != '4') {
+                $('#despertar2_fd_outro').hide();
             }
         });
         $('#despertar3_fd_outro').hide();
@@ -605,12 +611,18 @@
             if ($(this).val() === '4') {
                 $('#despertar3_fd_outro').show();
             }
+            if ($(this).val() != '4') {
+                $('#despertar3_fd_outro').hide();
+            }
         });
         $('#despertar4_fd_outro').hide();
 
         $('#despertar4_fd').change(function() {
             if ($(this).val() === '4') {
                 $('#despertar4_fd_outro').show();
+            }
+            if ($(this).val() != '4') {
+                $('#despertar4_fd_outro').hide();
             }
         });
         $('#despertar5_fd_outro').hide();
@@ -619,6 +631,9 @@
             if ($(this).val() === '4') {
                 $('#despertar5_fd_outro').show();
             }
+            if ($(this).val() != '4') {
+                $('#despertar5_fd_outro').hide();
+            }
         });
 
         $('#despertar6_fd_outro').hide();
@@ -626,6 +641,9 @@
         $('#despertar6_fd').change(function() {
             if ($(this).val() === '4') {
                 $('#despertar6_fd_outro').show();
+            }
+            if ($(this).val() != '4') {
+                $('#despertar6_fd_outro').hide();
             }
         });
     </script>

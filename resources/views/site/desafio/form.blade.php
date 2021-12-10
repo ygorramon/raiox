@@ -34,7 +34,7 @@
                                 <h4 class="card-title ">
                                     Você possui um Ritual do Bom Dia bem estabelecido?
                                 </h4>
-                                <select name="ritualBomDia">
+                                <select class="browser-default" name="ritualBomDia">
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
@@ -86,7 +86,7 @@
                             <div class="col s12 m6 l6">
 
                                 Qual dessas opções mais se encaixa com a rotina alimentar do seu bebê?
-                                <select name="rotinaAlimentar">
+                                <select class="browser-default" name="rotinaAlimentar">
                                     <option value="1">Aleitamento Materno Exclusivo</option>
                                     <option value="2">Uso exclusivo de Fórmulas Infantis</option>
                                     <option value="3">Aleitamento Materno + Uso de Fórmulas Infantis</option>
@@ -96,7 +96,7 @@
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">
-                                Possui alguma dificuldade com Rotina Alimentar? <select name="dificuldadeRotinaAlimentar">
+                                Possui alguma dificuldade com Rotina Alimentar? <select class="browser-default" name="dificuldadeRotinaAlimentar">
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
@@ -108,7 +108,7 @@
                             <div class="col s12 m6 l6">
 
                                 Qual o ganho de peso do bebê em gramas, nos ultimos 30 dias?
-                                <select name="ganhoPeso">
+                                <select class="browser-default" name="ganhoPeso">
                                     <option value="N">NÃO SEI</option>
                                     <option value="NP"> Não ganhou ou perdeu peso </option>
                                     <option value="100">Por volta de 100 gramas</option>
@@ -148,7 +148,7 @@
                             <div class="col s12 m6 l6">
 
                                 Como está o gasto energético do seu bebê no tempo acordado?
-                                <select name="gastoEnergia">
+                                <select class="browser-default" name="gastoEnergia">
                                     <option value="Adequado">Adequado</option>
                                     <option value="Inadequado">Inadequado</option>
                                     <option value="Nao_sabe">Não Sei</option>
@@ -156,7 +156,7 @@
                             </div>
                             <div class="col s12 m6 l6">
                                 Você consegue perceber os sinais de sono emitidos?
-                                <select name="sinaisSono">
+                                <select class="browser-default" name="sinaisSono">
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
@@ -167,14 +167,14 @@
 
                             <div class="col s12 m6 l6">
                                 Você lembrou de “desacelerar" após perceber os sinais de sono?
-                                <select name="desacelera">
+                                <select class="browser-default" name="desacelera">
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">
                                 É um ritual de sonecas tranquilo ou há choro envolvido?
-                                <select name="ritualSonecasChoro">
+                                <select class="browser-default" name="ritualSonecasChoro">
                                     <option value="Sem">Sem choro</option>
                                     <option value="Com">Com choro</option>
                                     <option value="Eventualmente">Eventualmente com choro</option>
@@ -186,7 +186,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente de sonecas? Luzes?
-                                <select name="soneca_luzes">
+                                <select class="browser-default" name="soneca_luzes">
                                     <option value="T">Totalmente escuro</option>
                                     <option value="P">Parcialmente escuro (Quando as barreiras não vedam 100%)</option>
                                     <option value="C">Ambiente claro</option>
@@ -194,7 +194,7 @@
                             </div>
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente de sonecas? Ruídos?
-                                <select name="soneca_ruidos">
+                                <select class="browser-default" name="soneca_ruidos">
                                     <option value="S">Silencioso (com ou sem a ajuda de música ou ruído branco)</option>
                                     <option value="P">Parcialmente silencioso (quando não é capaz de isolar 100%)</option>
                                     <option value="C">Com ruídos</option>
@@ -206,7 +206,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente de sonecas? Temperatura?
-                                <select name="soneca_temperatura" class="">
+                                <select class="browser-default" name="soneca_temperatura" class="">
                                     <option value="A">Adequada (variável, mas aproximadamente 24ºC)</option>
                                     <option value="C">Calor</option>
                                     <option value="F">Frio</option>
@@ -273,7 +273,7 @@
 
                             <div class="col s12 m6 l6">
                                 O local das sonecas te incomoda?
-                                <select name="soneca_local_incomoda">
+                                <select class="browser-default" name="soneca_local_incomoda">
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
 
@@ -345,7 +345,7 @@
 
                                 <div class="col s12 m6 l6">
                                     Acha que essa duração tem sido suficiente pra ele?
-                                    <select name="soneca_suficiente">
+                                    <select class="browser-default" name="soneca_suficiente">
                                         <option value="S">SIM</option>
                                         <option value="N">NÃO</option>
 
@@ -354,7 +354,7 @@
                                 <br>
                                 <div class="col s12 m6 l6">
                                     Como seu bebê costuma acordar das sonecas?
-                                    <select name="soneca_acorda" class="">
+                                    <select class="browser-default" name="soneca_acorda" class="">
                                         <option value="A">Sempre alegre e disposto</option>
                                         <option value="ES">Eventualmente acorda ainda com sono</option>
                                         <option value="FS">Frequentemente acorda ainda com sono</option>
@@ -379,14 +379,14 @@
 
                             <div class="col s12 m6 l6">
                                 Você faz um ritual para o sono noturno?
-                                <select name="ritaualNoturno">
+                                <select class="browser-default" name="ritaualNoturno">
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente do sono noturno? Luzes?
-                                <select name="sn_luzes" class="">
+                                <select class="browser-default" name="sn_luzes" class="">
                                     <option value="E">Totalmente escuro</option>
                                     <option value="P">Parcialmente escuro (Quando as barreiras não vedam 100%)</option>
                                     <option value="C">Ambiente claros</option>
@@ -399,7 +399,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente do sono noturno? Ruídos?
-                                <select name="sn_ruidos" class="">
+                                <select class="browser-default" name="sn_ruidos" class="">
                                     <option value="S">Silencioso (com ou sem a ajuda de música ou ruído branco)</option>
                                     <option value="P">Parcialmente silencioso (quando não é capaz de isolar 100%)</option>
                                     <option value="C">Com ruídos</option>
@@ -408,7 +408,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente do sono noturno? Temperatura?
-                                <select name="sn_temperatura" class="">
+                                <select class="browser-default" name="sn_temperatura" class="">
                                     <option value="A">Adequada (variável, mas aproximadamente 24ºC)</option>
                                     <option value="C">Calor</option>
                                     <option value="F">Frio</option>

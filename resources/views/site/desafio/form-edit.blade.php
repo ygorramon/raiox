@@ -35,7 +35,7 @@
                                 <h4 class="card-title ">
                                     Você possui um Ritual do Bom Dia bem estabelecido?
                                 </h4>
-                                <select name="ritualBomDia">
+                                <select class="browser-default" name="ritualBomDia">
                                     <option {{ old('ritualBomDia', $form->ritualGoodMorning ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                     <option {{ old('ritualBomDia', $form->ritualGoodMorning ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
 
@@ -88,7 +88,7 @@
                             <div class="col s12 m6 l6">
 
                                 Qual dessas opções mais se encaixa com a rotina alimentar do seu bebê?
-                                <select name="rotinaAlimentar">
+                                <select class="browser-default" name="rotinaAlimentar">
                                     <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '1' ? "selected" : "" }} value="1">Aleitamento Materno Exclusivo</option>
                                     <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '2' ? "selected" : "" }} value="2">Uso exclusivo de Fórmulas Infantis</option>
                                     <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '3' ? "selected" : "" }} value="3">Aleitamento Materno + Uso de Fórmulas Infantis</option>
@@ -98,7 +98,7 @@
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">
-                                Possui alguma dificuldade com Rotina Alimentar? <select name="dificuldadeRotinaAlimentar">
+                                Possui alguma dificuldade com Rotina Alimentar? <select class="browser-default" name="dificuldadeRotinaAlimentar">
                                     <option {{ old('dificuldadeRotinaAlimentar', $form->routineDifficulties ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                     <option {{ old('dificuldadeRotinaAlimentar', $form->routineDifficulties ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
                                 </select>
@@ -110,7 +110,7 @@
                             <div class="col s12 m6 l6">
 
                                 Qual o ganho de peso do bebê em gramas, nos ultimos 30 dias?
-                                <select name="ganhoPeso">
+                                <select class="browser-default" name="ganhoPeso">
                                     <option {{ old('ganhoPeso', $form->weightGain ) == 'N' ? "selected" : "" }} value="N">NÃO SEI</option>
                                     <option {{ old('ganhoPeso', $form->weightGain ) == 'NP' ? "selected" : "" }} value="NP"> Não ganhou ou perdeu peso </option>
                                     <option {{ old('ganhoPeso', $form->weightGain ) == '100' ? "selected" : "" }} value="100">Por volta de 100 gramas</option>
@@ -150,7 +150,7 @@
                             <div class="col s12 m6 l6">
 
                                 Como está o gasto energético do seu bebê no tempo acordado?
-                                <select name="gastoEnergia">
+                                <select class="browser-default" name="gastoEnergia">
                                     <option {{ old('gastoEnergia', $form->energyExpenditure ) == 'Adequado' ? "selected" : "" }} value="Adequado">Adequado</option>
                                     <option {{ old('gastoEnergia', $form->energyExpenditure ) == 'Inadequado' ? "selected" : "" }} value="Inadequado">Inadequado</option>
                                     <option {{ old('gastoEnergia', $form->energyExpenditure ) == 'Nao_sabe' ? "selected" : "" }} value="Nao_sabe">Não Sei</option>
@@ -158,7 +158,7 @@
                             </div>
                             <div class="col s12 m6 l6">
                                 Você consegue perceber os sinais de sono emitidos?
-                                <select name="sinaisSono">
+                                <select class="browser-default" name="sinaisSono">
                                     <option {{ old('sinaisSono', $form->noticeSigns ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                     <option {{ old('sinaisSono', $form->noticeSigns ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
                                 </select>
@@ -169,14 +169,14 @@
 
                             <div class="col s12 m6 l6">
                                 Você lembrou de “desacelerar" após perceber os sinais de sono?
-                                <select name="desacelera">
+                                <select class="browser-default" name="desacelera">
                                     <option {{ old('desacelera', $form->slowDown ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                     <option {{ old('desacelera', $form->slowDown ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">
                                 É um ritual de sonecas tranquilo ou há choro envolvido?
-                                <select name="ritualSonecasChoro">
+                                <select class="browser-default" name="ritualSonecasChoro">
                                     <option {{ old('ritualSonecasChoro', $form->ritualType ) == 'Sem' ? "selected" : "" }} value="Sem">Sem choro</option>
                                     <option {{ old('ritualSonecasChoro', $form->ritualType ) == 'Com' ? "selected" : "" }} value="Com">Com choro</option>
                                     <option {{ old('ritualSonecasChoro', $form->ritualType ) == 'Eventualmente' ? "selected" : "" }} value="Eventualmente">Eventualmente com choro</option>
@@ -188,7 +188,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente de sonecas? Luzes?
-                                <select name="soneca_luzes">
+                                <select class="browser-default" name="soneca_luzes">
                                     <option {{ old('soneca_luzes', $form->environmentNapsLights ) == 'T' ? "selected" : "" }} value="T">Totalmente escuro</option>
                                     <option {{ old('soneca_luzes', $form->environmentNapsLights ) == 'P' ? "selected" : "" }} value="P">Parcialmente escuro (Quando as barreiras não vedam 100%)</option>
                                     <option {{ old('soneca_luzes', $form->environmentNapsLights ) == 'C' ? "selected" : "" }} value="C">Ambiente claro</option>
@@ -196,7 +196,7 @@
                             </div>
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente de sonecas? Ruídos?
-                                <select name="soneca_ruidos">
+                                <select class="browser-default" name="soneca_ruidos">
                                     <option {{ old('soneca_ruidos', $form->environmentNapsNoises ) == 'S' ? "selected" : "" }} value="S">Silencioso (com ou sem a ajuda de música ou ruído branco)</option>
                                     <option {{ old('soneca_ruidos', $form->environmentNapsNoises ) == 'P' ? "selected" : "" }} value="P">Parcialmente silencioso (quando não é capaz de isolar 100%)</option>
                                     <option {{ old('soneca_ruidos', $form->environmentNapsNoises ) == 'C' ? "selected" : "" }} value="C">Com ruídos</option>
@@ -208,7 +208,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente de sonecas? Temperatura?
-                                <select name="soneca_temperatura">
+                                <select class="browser-default" name="soneca_temperatura">
                                     <option {{ old('soneca_temperatura', $form->environmentNapsTemperature ) == 'A' ? "selected" : "" }} value="A">Adequada (variável, mas aproximadamente 24ºC)</option>
                                     <option {{ old('soneca_temperatura', $form->environmentNapsTemperature ) == 'C' ? "selected" : "" }} value="C">Calor</option>
                                     <option {{ old('soneca_temperatura', $form->environmentNapsTemperature ) == 'F' ? "selected" : "" }} value="F">Frio</option>
@@ -275,7 +275,7 @@
 
                             <div class="col s12 m6 l6">
                                 O local das sonecas te incomoda?
-                                <select name="soneca_local_incomoda">
+                                <select class="browser-default" name="soneca_local_incomoda">
                                     <option {{ old('soneca_local_incomoda', $form->environmentNapBother ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                     <option {{ old('soneca_local_incomoda', $form->environmentNapBother ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
 
@@ -347,7 +347,7 @@
 
                                 <div class="col s12 m6 l6">
                                     Acha que essa duração tem sido suficiente pra ele?
-                                    <select name="soneca_suficiente">
+                                    <select class="browser-default" name="soneca_suficiente">
                                         <option {{ old('soneca_suficiente', $form->enoughNap ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                         <option {{ old('soneca_suficiente', $form->enoughNap ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
 
@@ -356,7 +356,7 @@
                                 <br>
                                 <div class="col s12 m6 l6">
                                     Como seu bebê costuma acordar das sonecas?
-                                    <select name="soneca_acorda" class="">
+                                    <select class="browser-default" name="soneca_acorda" class="">
                                         <option {{ old('soneca_acorda', $form->wakeUpNap ) == 'A' ? "selected" : "" }} value="A">Sempre alegre e disposto</option>
                                         <option {{ old('soneca_acorda', $form->wakeUpNap ) == 'ES' ? "selected" : "" }} value="ES">Eventualmente acorda ainda com sono</option>
                                         <option {{ old('soneca_acorda', $form->wakeUpNap ) == 'FS' ? "selected" : "" }} value="FS">Frequentemente acorda ainda com sono</option>
@@ -381,14 +381,14 @@
 
                             <div class="col s12 m6 l6">
                                 Você faz um ritual para o sono noturno?
-                                <select name="ritaualNoturno">
+                                <select class="browser-default" name="ritaualNoturno">
                                     <option {{ old('ritaualNoturno', $form->nightRitual ) == 'S' ? "selected" : "" }} value="S">SIM</option>
                                     <option {{ old('ritaualNoturno', $form->nightRitual ) == 'N' ? "selected" : "" }} value="N">NÃO</option>
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente do sono noturno? Luzes?
-                                <select name="sn_luzes" class="">
+                                <select class="browser-default" name="sn_luzes" class="">
                                     <option {{ old('sn_luzes', $form->environmentRitualLights ) == 'E' ? "selected" : "" }} value="E">Totalmente escuro</option>
                                     <option {{ old('sn_luzes', $form->environmentRitualLights ) == 'P' ? "selected" : "" }} value="P">Parcialmente escuro (Quando as barreiras não vedam 100%)</option>
                                     <option {{ old('sn_luzes', $form->environmentRitualLights ) == 'C' ? "selected" : "" }} value="C">Ambiente claros</option>
@@ -401,7 +401,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente do sono noturno? Ruídos?
-                                <select name="sn_ruidos" class="">
+                                <select class="browser-default" name="sn_ruidos" class="">
                                     <option {{ old('sn_ruidos', $form->environmentRitualNoises ) == 'S' ? "selected" : "" }} value="S">Silencioso (com ou sem a ajuda de música ou ruído branco)</option>
                                     <option {{ old('sn_ruidos', $form->environmentRitualNoises ) == 'P' ? "selected" : "" }} value="P">Parcialmente silencioso (quando não é capaz de isolar 100%)</option>
                                     <option {{ old('sn_ruidos', $form->environmentRitualNoises ) == 'C' ? "selected" : "" }} value="C">Com ruídos</option>
@@ -410,7 +410,7 @@
 
                             <div class="col s12 m6 l6">
                                 Como está seu ambiente do sono noturno? Temperatura?
-                                <select name="sn_temperatura" class="">
+                                <select class="browser-default" name="sn_temperatura" class="">
                                     <option {{ old('sn_temperatura', $form->environmentRitualTemperature ) == 'A' ? "selected" : "" }} value="A">Adequada (variável, mas aproximadamente 24ºC)</option>
                                     <option {{ old('sn_temperatura', $form->environmentRitualTemperature ) == 'C' ? "selected" : "" }} value="C">Calor</option>
                                     <option {{ old('sn_temperatura', $form->environmentRitualTemperature ) == 'F' ? "selected" : "" }} value="F">Frio</option>

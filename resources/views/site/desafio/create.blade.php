@@ -324,15 +324,17 @@
                                                     <label for="despertar1_d">Horário que dormiu</label>
 
                                                 </div>
-                                                <div class="input-field col m3 s12">
-                                                    <select name="despertar1_fd" id="despertar1_fd">
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                <br>
+                                                    <select class="browser-default" name="despertar1_fd" id="despertar1_fd">
                                                         <option  value="" disabled selected>Selecione uma opção</option>
                                                         <option {{ old('despertar1_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar1_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar1_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ is_numeric(old('despertar1_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
-                                                    <label>Como dormiu</label>
+                                                    
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar1_fd_outro">
                                                     <input  type="text" id="despertar1_fd_outro"" name=" despertar1_fd_outro" value="{{ old('despertar1_fd_outro') }}">
@@ -361,15 +363,15 @@
                                                     <label for="despertar2_d">Horário que dormiu</label>
 
                                                 </div>
-                                                <div class="input-field col m3 s12">
-                                                    <select name="despertar2_fd" id="despertar2_fd">
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                    <select class="browser-default" name="despertar2_fd" id="despertar2_fd">
                                                         <option  value="" disabled selected>Selecione uma opção</option>
                                                         <option {{ old('despertar2_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar2_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar2_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ is_numeric(old('despertar2_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
-                                                    <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar2_fd_outro">
@@ -400,15 +402,15 @@
 
                                                 </div>
 
-                                                <div class="input-field col m3 s12" >
-                                                    <select name="despertar3_fd" id="despertar3_fd">
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                    <select class="browser-default" name="despertar3_fd" id="despertar3_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
                                                         <option {{ old('despertar3_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar3_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar3_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ is_numeric(old('despertar3_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
-                                                    <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar3_fd_outro">
@@ -438,15 +440,14 @@
                                                     <label for="despertar4_d">Horário que dormiu</label>
 
                                                 </div>
-                                                <div class="input-field col m3 s12">
-                                                    <select name="despertar4_fd" id="despertar4_fd">
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>                                                    <select class="browser-default" name="despertar4_fd" id="despertar4_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
                                                         <option {{ old('despertar4_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar4_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar4_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{is_numeric(old('despertar4_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
-                                                    <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar4_fd_outro">
@@ -476,15 +477,14 @@
                                                     <label for="despertar5_d">Horário que dormiu</label>
 
                                                 </div>
-                                                <div class="input-field col m3 s12">
-                                                    <select name="despertar5_fd" id="despertar5_fd">
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>                                                    <select class="browser-default" name="despertar5_fd" id="despertar5_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
                                                         <option {{ old('despertar5_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar5_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar5_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ is_numeric(old('despertar5_fd')==false) ? "selected" : "" }}value="4">Outro</option>
                                                     </select>
-                                                    <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar5_fd_outro">
@@ -515,15 +515,14 @@
 
                                                 </div>
 
-                                                <div class="input-field col m3 s12">
-                                                    <select name="despertar6_fd" id="despertar6_fd">
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>                                                    <select class="browser-default" name="despertar6_fd" id="despertar6_fd">
                                                         <option value="" disabled selected>Selecione uma opção</option>
                                                         <option {{ old('despertar6_fd')==1 ? "selected" : "" }} value="1">Sozinho</option>
                                                         <option {{ old('despertar6_fd')==2 ? "selected" : "" }} value="2">Ninando no berço/cama</option>
                                                         <option {{ old('despertar6_fd')==3 ? "selected" : "" }} value="3">Mamando</option>
                                                         <option {{ is_numeric(old('despertar6_fd')==false) ? "selected" : "" }} value="4">Outro</option>
                                                     </select>
-                                                    <label>Como dormiu</label>
 
                                                 </div>
                                                 <div class="input-field col m3 s12" id="despertar6_fd_outro">

@@ -36,12 +36,12 @@
                     <ul class="collapsible">
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Passo 1</div>
-                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo1}}</textarea>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo1}}</textarea>
                         </div>
                       </li>
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Passo 2</div>
-                        <div class="collapsible-body"><textarea class="materialize-textarea" disabled> {{$challenge->passo2}}</textarea></div>
+                        <div class="collapsible-body"><textarea class="materialize-textarea" readonly> {{$challenge->passo2}}</textarea></div>
                       </li>
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Passo 3</div>
@@ -49,32 +49,32 @@
                           <ul class="collapsible">
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Despertar</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_despertar}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_despertar}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Rotina Alimentar</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_alimentar}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_rotina_alimentar}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Rotina de Sonecas</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_sonecas}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_rotina_sonecas}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Ambiente de Sonecas</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_sonecas}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_ambiente_sonecas}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Sono Noturno</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_sono_noturno}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_sono_noturno}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Ambiente do Sono Noturno</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_noturno}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_ambiente_noturno}}</textarea>
                               </div>
                             </li>
                         </div>
@@ -86,18 +86,18 @@
                           <ul class="collapsible">
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Associações da Soneca</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_sonecas}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo4_associacoes_sonecas}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Associações do Sono Noturno</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_noturno}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo4_associacoes_noturno}}</textarea>
                               </div>
                             </li>
                           </ul>
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Conclusão</div>
-                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->conclusao}}</textarea>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->conclusao}}</textarea>
                         </div>
                       </li>
                     </ul>
@@ -132,12 +132,12 @@
                     <ul class="collapsible">
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Passo 1</div>
-                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo1}}</textarea>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" readonly > {{$challenge->passo1}}</textarea>
                         </div>
                       </li>
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Passo 2</div>
-                        <div class="collapsible-body"><textarea class="materialize-textarea" disabled> {{$challenge->passo2}}</textarea></div>
+                        <div class="collapsible-body"><textarea class="materialize-textarea" readonly> {{$challenge->passo2}}</textarea></div>
                       </li>
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Passo 3</div>
@@ -145,32 +145,32 @@
                           <ul class="collapsible">
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Despertar</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_despertar}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_despertar}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Rotina Alimentar</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_alimentar}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_rotina_alimentar}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Rotina de Sonecas</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_rotina_sonecas}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_rotina_sonecas}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Ambiente de Sonecas</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_sonecas}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_ambiente_sonecas}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Sono Noturno</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_sono_noturno}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_sono_noturno}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Ambiente do Sono Noturno</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo3_ambiente_noturno}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo3_ambiente_noturno}}</textarea>
                               </div>
                             </li>
                         </div>
@@ -182,18 +182,18 @@
                           <ul class="collapsible">
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Associações da Soneca</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_sonecas}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo4_associacoes_sonecas}}</textarea>
                               </div>
                             </li>
                             <li>
                               <div class="collapsible-header"><i class="material-icons">place</i>Associações do Sono Noturno</div>
-                              <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->passo4_associacoes_noturno}}</textarea>
+                              <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->passo4_associacoes_noturno}}</textarea>
                               </div>
                             </li>
                           </ul>
                       <li>
                         <div class="collapsible-header"><i class="material-icons">place</i>Conclusão</div>
-                        <div class="collapsible-body"> <textarea class="materialize-textarea" disabled> {{$challenge->conclusao}}</textarea>
+                        <div class="collapsible-body"> <textarea class="materialize-textarea" readonly> {{$challenge->conclusao}}</textarea>
                         </div>
                       </li>
                     </ul>

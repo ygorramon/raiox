@@ -27,6 +27,17 @@
 
                   </div>
                   @endif
+                  @if($challenge->status=='ANALISE')
+                  <div class="row">
+                    <div class="col s12">
+                      <h4 class="card-title">O Dr. Odilo está analisando seu Desafio! </h4>
+                    </div>
+                    <div class="col s12">
+                      <h4 class="card-title">Em breve você receberá a análise! </h4>
+                    </div>
+
+                  </div>
+                  @endif
                   @if($challenge->status=='FINALIZADO')
                   <div class="row">
                     <div class="col s12">
@@ -197,9 +208,24 @@
                         </div>
                       </li>
                     </ul>
+@if ($challenge->status=='RESPONDIDO')
+                    <div class="card">
+                    <div class="card-content">
+                    <span class="card-title"> INFORMAÇÕES SOBRE O CHAT</span>
+                       
+                      
+      
+      <p> O CHAT abaixo ficará disponível por 30 Dias após a resposta do seu desafio!</p>
+      <p> Você só pode colocar uma mensagem até o dr Odilo responder.</p>
+      <p> Esse CHAT finalizará no dia {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(30)->format('d/m/y')}} </p>
+      <p> Restam {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(30)->diffInDays(now())}}</b> Dias de Chat </p>
+      </div>
+    </div>
+@endif
+
                     <ul class="collapsible">
                       <li>
-                        <div class="collapsible-header"><i class="material-icons">message</i>Chat</div>
+                        <div class="collapsible-header"><i class="material-icons">message</i>Chat  </div>
                         <div class="collapsible-body">
                           @if($challenge->chat()->first()==null)
                           Envie uma mensagem ao Dr. Odilo Queiroz sobre seu desafio!

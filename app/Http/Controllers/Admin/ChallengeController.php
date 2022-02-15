@@ -851,7 +851,7 @@ class ChallengeController extends Controller
 
    public function chatAbertos()
    {
-      $chats = Auth::user()->chats()->where('chats.status', 'mae')->with('challenge')->where('challenges.status', 'RESPONDIDO')->paginate();
+      $chats = Auth::user()->chats()->where('chats.status', 'mae')->with('challenge')->where('challenges.status', 'RESPONDIDO')->get();
 
       return view('admin.chats.abertos', compact('chats'));
    }

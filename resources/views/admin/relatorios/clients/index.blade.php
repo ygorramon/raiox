@@ -20,6 +20,7 @@
             <button type="submit" class="btn btn-dark">Filtrar</button>
         </form>
     </div>
+    @if(isset($clients))
     <div class="card-body">
         <table class="table table-condensed">
             <thead>
@@ -46,4 +47,5 @@
             </tbody>
         </table>
     </div>
+    @endif
     @stop

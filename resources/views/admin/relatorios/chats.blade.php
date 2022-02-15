@@ -13,7 +13,7 @@
 <div class="card">
     
     <div class="card-body">
-        <table class="table table-condensed">
+        <table class="table table-condensed" id="table">
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
@@ -70,4 +70,20 @@
     </div>
     
 </div>
+@section ('js')
+<script>
+$(document).ready(function() {
+    $('#table').DataTable({
+       "paging":   false,
+       "language": {
+         
+    "search":         "Filtrar: ",
+  
+       },
+       "dom": '<"top"<f><"clear">',
+        "order": [[ 5, "desc" ]]
+    });
+} );
+</script>
+@endsection
 @stop

@@ -301,6 +301,11 @@ return [
                     'url'     => '/admin/relatorios/chats-atrasados',
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
+                [
+                    'text'    => 'Buscar Cliente',
+                    'url'     => '/admin/relatorios/clients',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
                
             ],
         ],
@@ -342,7 +347,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

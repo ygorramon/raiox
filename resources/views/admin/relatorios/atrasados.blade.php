@@ -5,22 +5,17 @@
 @section('content_header')
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-    <li class="breadcrumb-item active"><a href="{{ route('challenge.availables') }}" class="active">Desafios Diponíveis</a></li>
+    <li class="breadcrumb-item active">Desafios Atrasados</li>
 </ol>
 
 @stop
 
 @section('content')
 <div class="card">
-    <div class="card-header">
-        <form action="#" method="POST" class="form form-inline">
-            @csrf
-            <input type="text" name="filter" placeholder="Filtrar:" class="form-control" value="{{ $filters['filter'] ?? '' }}">
-            <button type="submit" class="btn btn-dark">Filtrar</button>
-        </form>
-    </div>
+  
+    
     <div class="card-body">
-        <table class="table table-condensed">
+        <table class="table table-condensed" id="table">
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
@@ -30,7 +25,7 @@
 
                     <th>Data de Envio</th>
                     <th>Data de Resposta</th>
-                    <th>Diferença em Dias</th>
+                    <th>Diferença em Horas</th>
 
                   
                 </tr>
@@ -65,10 +60,22 @@
                     <td> 
                     {{ formatDateAndTimeHours($challenge->sended_at) }}   
                     </td>
+                    @if(isset($challenge->answered_at))
                     <td>
                     {{ formatDateAndTimeHours($challenge->answered_at) }}                          
                     </td>
-                    <td>{{diffDate($challenge->sended_at,$challenge->answered_at)}}</td>
+                    @else
+                    <td></td>
+                    @endif
+                    @if(diffDate($challenge->sended_at,$challenge->answered_at)<24)
+                    <td><span class="badge bg-green">{{diffDate($challenge->sended_at,$challenge->answered_at)}}</span></td>
+                    @endif
+                    @if(diffDate($challenge->sended_at,$challenge->answered_at)>=24 && diffDate($challenge->sended_at,$challenge->answered_at)<48)
+                    <td><span class="badge bg-yellow">{{diffDate($challenge->sended_at,$challenge->answered_at)}}</span></td>
+                    @endif
+                     @if(diffDate($challenge->sended_at,$challenge->answered_at)>=48)
+                    <td><span class="badge bg-red">{{diffDate($challenge->sended_at,$challenge->answered_at)}}</span></td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
@@ -76,4 +83,20 @@
     </div>
     
 </div>
+@section ('js')
+<script>
+$(document).ready(function() {
+    $('#table').DataTable({
+       "paging":   false,
+       "language": {
+         
+    "search":         "Filtrar: ",
+  
+       },
+       "dom": '<"top"<f><"clear">',
+        "order": [[ 5, "desc" ]]
+    });
+} );
+</script>
+@endsection
 @stop

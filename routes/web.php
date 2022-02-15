@@ -43,9 +43,14 @@ Route::prefix('admin')->group(function () {
             Route::post('/relatorios/search', 'Admin\DashboardController@search')->name('relatorios.search');
             Route::get('/relatorios/desafios-atrasados', 'Admin\DashboardController@atrasados')->name('relatorios.atrasados');
             Route::get('/relatorios/chats-atrasados', 'Admin\DashboardController@chats')->name('relatorios.chats-atrasados');
+            Route::get('/relatorios/clients', 'Admin\DashboardController@relatorioClientsIndex')->name('relatorios.clients.index');
+            Route::any('/relatorios/clients/search', 'Admin\DashboardController@relatorioClientsSearch')->name('relatorios.clients.search');
+            Route::get('/relatorios/clients/{id}/desafios', 'Admin\DashboardController@relatorioClientsDesafios')->name('relatorios.clients.desafios');
+
 
         });
     Auth::routes();
+
 });
 
 
@@ -97,3 +102,4 @@ Route::get('/admin', function () {
 });
 
 Route::post('/novo_usuario', 'Admin\ClientsController@apiUser');
+Route::post('/novo_usuario_terapeuta', 'Admin\ClientsController@apiUserTerapeuta');

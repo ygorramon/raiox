@@ -5,11 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Challenge;
 use App\Models\Chat;
+use App\Models\Client;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+
+   public function __construct(Client $client)
+   {
+       $this->client = $client;
+
+   }
+
     public function relatorios(){
 
 
@@ -67,4 +76,32 @@ class DashboardController extends Controller
          return view ('admin.relatorios.chats', compact('chats'));
       }
 
+      public function relatorioClientsIndex(){
+         return view ('admin.relatorios.clients.index');
+      }
+
+      public function relatorioClientsSearch(Request $request){
+       
+         
+             $filters = $request->only('filter');
+     
+             $clients = $this->client
+                                 ->where(function($query) use ($request) {
+                                     if ($request->filter) {
+                                         $query->orWhere('name', 'LIKE', "%{$request->filter}%");
+                                         $query->orWhere('email', $request->filter);
+                                     }
+                                 })
+                                 ->latest()
+                                 ->paginate();
+     
+             return view('admin.relatorios.clients.index', compact('clients', 'filters'));
+           
+      }
+
+      public function relatorioClientsDesafios($id){
+         $challenges = $this->client->find($id)->challenges()->get();
+         return view ('admin.relatorios.clients.desafios', compact('challenges'));
+      }
+      
 }

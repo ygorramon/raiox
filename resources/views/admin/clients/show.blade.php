@@ -13,6 +13,10 @@
                 <li>
                     <strong>Email: </strong> {{ $client->email }}
                 </li>
+                 <li>
+                    <strong>Turma: </strong>  {{ $client->class }}
+                </li>
+                
                 <li>
                     <strong>Expira em : </strong> {{ \Carbon\Carbon::parse($client->expireAt)->format('d/m/Y') }}
                 </li>

@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
+                     <th> Turma </th>
                     <th> Status do Desafio </th>
                     <th>Terapeuta</th>
                     <th>Última mensagem</th>
@@ -33,6 +34,7 @@
                 @if($chat->status=='mae')
                 <tr>
                 <td>{{ $chat->challenge->client->name }}</td>
+                 <td>{{ $chat->challenge->client->class }}</td>
                 <td> 
                             @if($chat->challenge->status=='RESPONDIDO')
                         <span class="badge bg-green">

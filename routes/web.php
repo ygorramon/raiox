@@ -46,7 +46,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/relatorios/clients', 'Admin\DashboardController@relatorioClientsIndex')->name('relatorios.clients.index');
             Route::any('/relatorios/clients/search', 'Admin\DashboardController@relatorioClientsSearch')->name('relatorios.clients.search');
             Route::get('/relatorios/clients/{id}/desafios', 'Admin\DashboardController@relatorioClientsDesafios')->name('relatorios.clients.desafios');
-
+            Route::get('/relatorios/terapeutas', 'Admin\DashboardController@usersIndex')->name('relatorios.users.index');
+        Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
 
         });
     Auth::routes();

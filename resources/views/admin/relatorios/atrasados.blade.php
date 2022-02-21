@@ -19,6 +19,7 @@
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
+                    <th>Turma</th>
                     <th>Terapeuta</th>
 
                     <th>Status</th>
@@ -34,6 +35,7 @@
                 @foreach ($challenges as $challenge)
                 <tr>
                     <td>{{ $challenge->client->name }}</td>
+                    <td>{{ $challenge->client->class }}</td>
                     <td>{{ $challenge->user->name ?? ''}}</td>
 
                     <td> @if($challenge->status=='ANALISE')

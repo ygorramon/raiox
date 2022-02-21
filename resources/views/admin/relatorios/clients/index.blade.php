@@ -27,6 +27,7 @@
                 <tr>
                     <th>Nome da Mãe</th>
                     <th>E-mail</th>
+                    <th>Turma</th>
 
                     <th width="270">Ações</th>
                 </tr>
@@ -36,6 +37,7 @@
                 <tr>
                     <td>{{ $client->name }}</td>
                     <td>{{ $client->email }}</td>
+                    <td>{{ $client->class }}</td>
                     
 
                     <td style="width=10px;">

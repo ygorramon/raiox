@@ -7,6 +7,7 @@ use App\Models\Challenge;
 use App\Models\Chat;
 use App\Models\Client;
 use App\Models\Message;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -104,4 +105,15 @@ class DashboardController extends Controller
          return view ('admin.relatorios.clients.desafios', compact('challenges'));
       }
       
+      public function usersIndex(){
+         $users = User::all();
+         return view ('admin.relatorios.terapeutas.index', compact('users'));
+      }
+
+   public function usersShow($id)
+   {
+      $user=User::find($id);
+     
+      return view('admin.relatorios.terapeutas.show', compact('user'));
+   }
 }

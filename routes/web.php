@@ -49,7 +49,7 @@ Route::prefix('admin')->group(function () {
             Route::any('/relatorios/clients/search', 'Admin\DashboardController@relatorioClientsSearch')->name('relatorios.clients.search');
             Route::get('/relatorios/clients/{id}/desafios', 'Admin\DashboardController@relatorioClientsDesafios')->name('relatorios.clients.desafios');
             Route::get('/relatorios/terapeutas', 'Admin\DashboardController@usersIndex')->name('relatorios.users.index');
-        Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
+            Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
 
         });
     Auth::routes();
@@ -83,6 +83,10 @@ Route::middleware('auth.client:clients')
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioUpdate')->name('desafio.update');
         Route::get('/profile', 'Site\ChallengeController@clientEdit')->name('client.profile.edit');
         Route::put('/profile', 'Site\ChallengeController@clientUpdate')->name('client.profile.update');
+
+    Route::get('/edit-message/{id}/', 'Site\ChallengeController@messageEdit')->name('client.message.edit');
+    Route::put('/edit-message/{id}/', 'Site\ChallengeController@messageUpdate')->name('client.message.update');
+
 
     });
 Route::get('/login', 'Auth\LoginClientController@showClientLoginForm');

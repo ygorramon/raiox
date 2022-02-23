@@ -10,6 +10,7 @@ use App\Notifications\ChallengeTelegramNotification;
 use App\Notifications\ChatTelegramNotification;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\Models\Message;
 
 class ChallengeController extends Controller
 {
@@ -88,14 +89,24 @@ class ChallengeController extends Controller
         }
 
         if ($day > 1) {
+            if($this->repository->find($id)->client->liberado==1){
+                if (
+                    !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
+                    
+
+                ) {
+                    return redirect()->back();
+                } 
+            }
+            else
             if (
                 !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
                 || !(date_format(now(), 'Y-m-d') >= date_format($challenge->analyzes()->where('day', $day - 1)->first()->created_at->addDays(1), 'Y-m-d'))
+
             ) {
                 return redirect()->back();
             }
         }
-
 
 
 
@@ -124,6 +135,16 @@ class ChallengeController extends Controller
         }
         $challenge = $this->repository->find($id);
 
+        if ($this->repository->find($id)->client->liberado == 1) {
+            if (
+                !isset($this->repository->find($id)->analyzes()->where('day', '7')->first()->day)
+            ) {
+                return redirect()->back();
+            }
+
+        }
+        
+        else
         if (
             !isset($this->repository->find($id)->analyzes()->where('day', '7')->first()->day)
             || !(date_format(now(), 'Y-m-d') >= date_format($challenge->analyzes()->where('day', '7')->first()->created_at->addDays(1), 'Y-m-d'))
@@ -1411,6 +1432,24 @@ $form=$challenge->form();
      $client=Auth::guard('clients')->user();
    return view('site.desafio.profile-edit', compact('client'));
     }
+
+    public function messageEdit($id)
+    {
+       $message = Message::find($id);
+        return view('site.desafio.edit-message', compact('message'));
+    }
+
+    public function messageUpdate(Request $request, $id)
+    {
+        $message = Message::find($id);
+        $message->update(['content'=>$request->content]);
+
+        $challenge=$message->chat->challenge()->first();
+        
+
+        return redirect()->route('desafio.show',$challenge->id);
+    }
+
 public  $messageClient=[
          
     'name.required' => 'O campo Nome da Mãe é de preenchimento obrigatório',

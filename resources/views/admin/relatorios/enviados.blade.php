@@ -5,7 +5,7 @@
 @section('content_header')
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-    <li class="breadcrumb-item active">Desafios Atrasados</li>
+    <li class="breadcrumb-item active">Todos os desafios</li>
 </ol>
 
 @stop
@@ -19,15 +19,15 @@
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
+                      <th>Email</th>
                     <th>Turma</th>
                     <th>Terapeuta</th>
 
                     <th>Status</th>
+                   <th>Ações</th>
 
-                    <th>Data de Envio</th>
-                    <th>Data de Resposta</th>
-                    <th>Diferença em Horas</th>
 
+                  
                   
                 </tr>
             </thead>
@@ -35,6 +35,7 @@
                 @foreach ($challenges as $challenge)
                 <tr>
                     <td>{{ $challenge->client->name }}</td>
+                    <td>{{ $challenge->client->email }}</td>
                     <td>{{ $challenge->client->class }}</td>
                     <td>{{ $challenge->user->name ?? ''}}</td>
 
@@ -59,25 +60,16 @@
 
                             @endif
                     </td>
-                    <td> 
-                    {{ formatDateAndTimeHours($challenge->sended_at) }}   
+                   @if($challenge->status!='INICIADO')
+                    <td><a class="btn btn-primary" href="{{route('challenge.meus.show', $challenge->id)}}"> Ver Desafio</a>
+                    <a class="btn btn-warning" href="{{route('challenge.meus.respostas', $challenge->id)}}"> Ver Respostas</a>
+                    @if(isset($challenge->chat))
+                     <a class="btn btn-success" href="{{route('challenge.meus.chat', $challenge->id)}}"> Ver Chat</a>
+                        @endif
                     </td>
-                    @if(isset($challenge->answered_at))
-                    <td>
-                    {{ formatDateAndTimeHours($challenge->answered_at) }}                          
-                    </td>
-                    @else
-                    <td></td>
                     @endif
-                    @if(diffDate($challenge->sended_at,$challenge->answered_at)<24)
-                    <td><span class="badge bg-green">{{diffDate($challenge->sended_at,$challenge->answered_at)}}</span></td>
-                    @endif
-                    @if(diffDate($challenge->sended_at,$challenge->answered_at)>=24 && diffDate($challenge->sended_at,$challenge->answered_at)<48)
-                    <td><span class="badge bg-yellow">{{diffDate($challenge->sended_at,$challenge->answered_at)}}</span></td>
-                    @endif
-                     @if(diffDate($challenge->sended_at,$challenge->answered_at)>=48)
-                    <td><span class="badge bg-red">{{diffDate($challenge->sended_at,$challenge->answered_at)}}</span></td>
-                    @endif
+
+                   </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -89,14 +81,13 @@
 <script>
 $(document).ready(function() {
     $('#table').DataTable({
-       "paging":   false,
+       "paging":   true,
        "language": {
          
     "search":         "Filtrar: ",
   
        },
-       "dom": '<"top"<f><"clear">',
-        "order": [[ 6, "desc" ]]
+        "order": [[2 , "desc" ]]
     });
 } );
 </script>

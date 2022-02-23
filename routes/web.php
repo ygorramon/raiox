@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/relatorios', 'Admin\DashboardController@relatorios')->name('relatorios.index');
             Route::post('/relatorios/search', 'Admin\DashboardController@search')->name('relatorios.search');
             Route::get('/relatorios/desafios-atrasados', 'Admin\DashboardController@atrasados')->name('relatorios.atrasados');
+             Route::get('/relatorios/enviados', 'Admin\DashboardController@enviados')->name('relatorios.enviados');
+
             Route::get('/relatorios/chats-atrasados', 'Admin\DashboardController@chats')->name('relatorios.chats-atrasados');
             Route::get('/relatorios/clients', 'Admin\DashboardController@relatorioClientsIndex')->name('relatorios.clients.index');
             Route::any('/relatorios/clients/search', 'Admin\DashboardController@relatorioClientsSearch')->name('relatorios.clients.search');

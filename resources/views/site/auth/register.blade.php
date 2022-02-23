@@ -50,7 +50,7 @@
               <div class="input-field col s12">
                 <i class="material-icons prefix pt-2">person_outline</i>
                 <input id="name" type="text" name="name" class="validate" value="{{ old('name') }}" required="">
-                <label for="name" class="center-align">Nome da Mãe</label>
+                <label for="name" class="center-align">Nome  da Mãe (COM SOBRENOME)</label>
               </div>
             </div>
             <div class="row margin">

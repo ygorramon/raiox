@@ -292,6 +292,11 @@ return [
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
                 [
+                    'text'    => 'Desafios Enviados',
+                    'url'     => '/admin/relatorios/enviados',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
+                [
                     'text'    => 'Desafios Atrasados',
                     'url'     => '/admin/relatorios/desafios-atrasados',
                     'icon'    => 'fas fa-fw fa-eye',

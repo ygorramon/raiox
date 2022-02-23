@@ -83,7 +83,7 @@ $(document).ready(function() {
   
        },
        "dom": '<"top"<f><"clear">',
-        "order": [[ 5, "desc" ]]
+        "order": [[ 6, "desc" ]]
     });
 } );
 </script>

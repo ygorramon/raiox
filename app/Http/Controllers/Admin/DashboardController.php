@@ -116,4 +116,10 @@ class DashboardController extends Controller
      
       return view('admin.relatorios.terapeutas.show', compact('user'));
    }
+
+   public function enviados()
+   {
+      $challenges = Challenge::whereIn('status', ['ENVIADO', 'ANALISE','RESPONDIDO','FINALIZADO'])->orderBy('sended_at', 'desc')->get();
+      return view('admin.relatorios.enviados', compact('challenges'));
+   }
 }

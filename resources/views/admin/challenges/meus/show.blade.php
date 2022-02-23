@@ -19,14 +19,22 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-md-6 ">
+                <div class="col-md-4 ">
                     <label for="nomeMae">Nome da Mãe/Pai:</label>
 
                     <div>
                         <input type="text" readonly class="form-control" id="nomeMae" value="{{$challenge->client->name}}" placeholder="nomeMae">
                     </div>
                 </div>
-                <div class="col-md-6">
+
+                 <div class="col-md-4 ">
+                    <label for="nomeMae">E-mail</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeMae" value="{{$challenge->client->email}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <label for="nomeBebe">Nome do(a) Bebê:</label>
 
                     <div>

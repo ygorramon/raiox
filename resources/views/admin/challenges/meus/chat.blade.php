@@ -13,7 +13,7 @@
 @section('content')
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title">Chat</h3>
+        <h3 class="card-title">Chat - Terapeuta - {{$challenge->user->name}}</h3>
 
     </div>
     
@@ -23,7 +23,7 @@
     @if($challenge->chat()->first()->status=='mae')
     @foreach($challenge->chat()->first()->messages as $message)
     @if($message->type==1)
-    <label>Mãe ({{$challenge->client->name}}) / Bebê ({{$challenge->client->nameBaby}}):  em - {{formatDateAndTimeHours($message->created_at)}} </label>
+    <label>Mãe ({{$challenge->client->name}}) / E-mail ({{$challenge->client->email}}) / Bebê ({{$challenge->client->nameBaby}}):  em - {{formatDateAndTimeHours($message->created_at)}} </label>
     <textarea class="form-control" style="background-color: green;color:#fff;height:auto" readonly > {{$message->content}}</textarea>
    @endif
    @if($message->type==2)

@@ -26,6 +26,7 @@
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
+                    <th>Nome do Bebê</th>
                     <th>E-mail</th>
                     <th>Turma</th>
 
@@ -36,6 +37,7 @@
                 @foreach ($clients as $client)
                 <tr>
                     <td>{{ $client->name }}</td>
+                    <td>{{ $client->nameBaby }}</td>
                     <td>{{ $client->email }}</td>
                     <td>{{ $client->class }}</td>
                     

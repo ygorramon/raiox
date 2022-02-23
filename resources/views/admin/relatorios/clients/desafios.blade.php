@@ -19,6 +19,7 @@
                 <tr>
                     <th> Nº do desafio</th>
                     <th>Nome da Mãe</th>
+                     <th>Email</th>
                     <th>Status</th>
                     <th>Data do Envio</th>
                     <th>Data da Resposta</th>
@@ -32,7 +33,7 @@
                 <tr>
                     <td> {{$challenge->id}}</td>
                     <td>{{ $challenge->client->name }}</td>
-
+                    <td>{{ $challenge->client->email }}</td>
                    @if($challenge->status=='INICIADO') <td><span class="badge bg-red">{{ $challenge->status }}</span></td>@endif
                    @if($challenge->status=='ENVIADO') <td><span class="badge bg-orange">{{ $challenge->status }}</span></td>@endif
                    @if($challenge->status=='ANALISE') <td><span class="badge bg-yellow">{{ $challenge->status }}</span></td>@endif

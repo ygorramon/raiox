@@ -380,7 +380,7 @@
       @endif
 
       @if(isset($challenge->analyzes()->where('day','4')->first()->day))
-      <td> <i class="material-icons">check</i> {{date_format(new DateTime($challenge->analyzes()->where('day','2')->first()->date),'d/m/Y') }}
+      <td> <i class="material-icons">check</i> {{date_format(new DateTime($challenge->analyzes()->where('day','4')->first()->date),'d/m/Y') }}
       </td>
       @else
       <td>NÃO</td>

@@ -20,7 +20,7 @@
         </form>
     </div>
     <div class="card-body">
-        <table class="table table-condensed">
+        <table class="table table-condensed" id="table">
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
@@ -29,7 +29,7 @@
                     <th>Bonus</th>
                     <th>Status</th>
                     <th> Outros desafios </th>
-                    <th>Ações</th>
+                    <th>Ações</th> 
                 </tr>
             </thead>
             <tbody>
@@ -73,9 +73,9 @@ EM- {{formatDateAndTimeHours($challenge->answered_at)}}
                     </div>
                   </div>                  
                     </td>
+                   
                     <td>
-                    <td>
-{{$challenge->id}}
+
                         <a href="{{route('challenge.meus.show', $challenge->id)}}" class="btn btn-warning">VER</a>
                         @if($challenge->status=='ANALISE')
                         <a href="{{route('challenge.meus.responder', $challenge->id)}}" class="btn btn-warning">Responder</a>
@@ -92,12 +92,24 @@ EM- {{formatDateAndTimeHours($challenge->answered_at)}}
             </tbody>
         </table>
     </div>
-    <div class="card-footer">
-        @if (isset($filters))
-        {!! $challenges->appends($filters)->links() !!}
-        @else
-        {!! $challenges->links() !!}
-        @endif
-    </div>
+    
 </div>
+
+@section ('js')
+<script>
+$(document).ready(function() {
+    $('#table').DataTable({
+       "paging":   true,
+       "language": {
+         
+     "search":         "Filtrar: ",
+  
+       },
+       
+        "order": [[4 , "desc" ]]
+       
+    });
+} );
+</script>
+@endsection
 @stop

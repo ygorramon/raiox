@@ -105,7 +105,7 @@ $(document).ready(function() {
   
        },
        
-        "order": [[4 , "desc" ]]
+        "order": [[4 , "asc" ]]
        
     });
 } );

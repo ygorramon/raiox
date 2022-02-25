@@ -481,7 +481,7 @@ class ChallengeController extends Controller
          }
       }
 
-      if ($form->routineDifficulties = 'N') {
+      if ($form->routineDifficulties == 'N') {
          $passo3['rotinaAlimentar'] = Category::where('sex', $sex)
             ->where(
                'description',
@@ -489,6 +489,16 @@ class ChallengeController extends Controller
             )
             ->first()->answers()->get();
       }
+
+      if ($form->routineDifficulties == 'S') {
+         $passo3['rotinaAlimentar'] = Category::where('sex', $sex)
+            ->where(
+               'description',
+               'PASSO 3 - ROTINA ALIMENTAR - SEM DIFICULDADES'
+            )
+            ->first()->answers()->get();
+      }
+
       if($qtd_ritual_inadequado>0){
          $passo3['ritualNoturno']=Category::where('sex',$sex)
          ->where('description', 

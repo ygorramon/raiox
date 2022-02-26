@@ -494,7 +494,7 @@ class ChallengeController extends Controller
          $passo3['rotinaAlimentar'] = Category::where('sex', $sex)
             ->where(
                'description',
-               'PASSO 3 - ROTINA ALIMENTAR - SEM DIFICULDADES'
+               'PASSO 3 - ROTINA ALIMENTAR - COM DIFICULDADES'
             )
             ->first()->answers()->get();
       }

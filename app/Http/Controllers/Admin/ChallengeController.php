@@ -650,26 +650,27 @@ class ChallengeController extends Controller
          
        }
        if($qtd_sonecas_inadequadas==0 && $qtd_sonecas_longas>0){
-         if($client->babyAge<=28){
+         if($babyAge<=28){
            $passo3['duracaoSonecas']=Category::where('sex',$sex)
          ->where('description', 
          'PASSO 3 - SONECA- DURAÇÃO - LONGA < 28')
          ->first()->answers()->get();
+         
          }else
-         if($client->babyAge>28 && $client->babyAge<=90)
+         if($babyAge>28 && $babyAge<=90)
          {
            $passo3['duracaoSonecas']=Category::where('sex',$sex)
          ->where('description', 
          'PASSO 3 - SONECA- DURAÇÃO - LONGA > 28 <90')
          ->first()->answers()->get();
          }else
-         if($client->babyAge>90){
-           if($qtd_despertares_inadequadas>0){
+         if($babyAge>90){
+           
            $passo3['duracaoSonecasDespertar']=Category::where('sex',$sex)
          ->where('description', 
          'PASSO 3 - SONECA- DURAÇÃO - LONGA > 90 - DESPERTAR')
          ->first()->answers()->get();
-           }
+           
            if($form->conclusionHungry=='S' || $situacaoGanhoPeso=="Inadequado"){
              $passo3['duracaoSonecasFome']=Category::where('sex',$sex)
          ->where('description', 

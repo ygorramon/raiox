@@ -13,17 +13,17 @@
                 <div id="card-widgets">
                     <div class="row">
                         <div class="col s12">
-                        <!--div id="modal1" class="modal">
+                        <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Informação</h4>
-      <p>Gostaria de avisar que a partir de amanhã,<b> 24/12</b> estarei de recesso. O recesso acabará dia <b> 02/01</b>. Entre esses dias eu responderei no dia <b> 27/12 </b> para não ficarmos muito tempo sem avaliar a rotina!</p>
+      <p>Informo que, durante o feriado de carnaval, o suporte do desafio acontecerá apenas na segunda-feira, 28/02/2022. Retornaremos nossas atividades na quinta-feira, 03/03/2022. </p>
     Dr. Odilo Queiroz
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
   </div>
--->
+
                             <ul id="task-card" class="collection with-header animate fadeLeft">
                                 <li class="collection-header red">
                                     <h5 class="task-card-title mb-3">Meus Desafios</h5>
@@ -80,7 +80,7 @@
 </div>
 
 @section('js')
-<!--
+
 <script>
 $(document).ready(function(){
     $('.modal').modal({
@@ -89,5 +89,5 @@ $(document).ready(function(){
     $('#modal1').modal('open');
   });
   </script>
--->
+
 @endsection

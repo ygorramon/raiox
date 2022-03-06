@@ -13,7 +13,7 @@
                 <div id="card-widgets">
                     <div class="row">
                         <div class="col s12">
-                        <div id="modal1" class="modal">
+                        <!--div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Informação</h4>
       <p>Informo que, durante o feriado de carnaval, o suporte do desafio acontecerá apenas na segunda-feira, 28/02/2022. Retornaremos nossas atividades na quinta-feira, 03/03/2022. </p>
@@ -23,6 +23,7 @@
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
   </div>
+<-->
 
                             <ul id="task-card" class="collection with-header animate fadeLeft">
                                 <li class="collection-header red">
@@ -80,7 +81,7 @@
 </div>
 
 @section('js')
-
+<!--
 <script>
 $(document).ready(function(){
     $('.modal').modal({
@@ -89,5 +90,5 @@ $(document).ready(function(){
     $('#modal1').modal('open');
   });
   </script>
-
+-->
 @endsection

@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user->challenges as $challenge)
+                @foreach ($user->challenges->where('status','RESPONDIDO') as $challenge)
                 <tr>
                     <td>{{ $challenge->client->name }} <br>({{ $challenge->client->email}})</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
@@ -42,7 +42,7 @@
                     <td>
 
                         <a href="{{route('challenge.availables.show', $challenge->id)}}" class="btn btn-warning">VER</a>
-                        <a href="" class="btn btn-primary">Trasnferir</a>
+                        <a href="{{route('relatorios.challenge.transferir', $challenge->id)}}" class="btn btn-primary">Trasnferir</a>
                     </td>
                 </tr>
                 @endforeach

@@ -53,6 +53,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/relatorios/clients/{id}/desafios', 'Admin\DashboardController@relatorioClientsDesafios')->name('relatorios.clients.desafios');
             Route::get('/relatorios/terapeutas', 'Admin\DashboardController@usersIndex')->name('relatorios.users.index');
             Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
+            Route::get('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallenge')->name('relatorios.challenge.transferir');
+            Route::put('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallengeUpdate')->name('relatorios.challenge.transferir.update');
 
         });
     Auth::routes();

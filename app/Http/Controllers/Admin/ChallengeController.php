@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Schema\Builder;
 use App\Models\Category;
+use App\Models\Message;
 use App\Notifications\ChallengeBonusNotification;
 
 class ChallengeController extends Controller
@@ -872,5 +873,18 @@ class ChallengeController extends Controller
       $chats = Auth::user()->chats()->with('challenge')->paginate();
 
       return view('admin.chats.index', compact('chats'));
+   }
+
+   public function messageEdit($id){
+      $message = Message::find($id);
+     return view ('admin.challenges.meus.edit-chat', compact('message'));
+   }
+
+   public function messageUpdate($id, Request $request){
+    
+      $message = Message::find($id);
+     $challenge=$message->chat->challenge;
+      $message->update(['content'=>$request->content]);
+      return view('admin.challenges.meus.chat', compact('challenge'));
    }
 }

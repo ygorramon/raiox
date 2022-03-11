@@ -52,6 +52,11 @@
    @endif
 
     @endforeach
+    <div class="row">
+      
+                <a href="{{route('challenge.meus.message.edit',$challenge->chat()->first()->messages->last()->id)}}" class="btn btn-primary" >Editar última mensagem</a>
+       
+    </div>
 
     <form action="{{route('challenge.meus.chat.store', $challenge->id)}}" method="POST">
         @csrf

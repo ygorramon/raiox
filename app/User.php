@@ -49,6 +49,21 @@ class User extends Authenticatable
         'id' );
     }
 
+    public function messages()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Message',
+            'App\Models\Chat',
+            'App\Models\Challenge',
+            'message_id',
+            'user_id', // Foreign key on users table...
+            'challenge_id', // Foreign key on posts table...
+            'id', // Local key on countries table...
+            'id',
+            'id'
+        );
+    }
+
     
 
     

@@ -292,6 +292,11 @@ return [
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
                 [
+                    'text'    => 'Terapeutas',
+                    'url'     => '/admin/relatorios/terapeutas',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
+                [
                     'text'    => 'Desafios Enviados',
                     'url'     => '/admin/relatorios/enviados',
                     'icon'    => 'fas fa-fw fa-eye',

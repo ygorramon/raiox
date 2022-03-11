@@ -21,12 +21,49 @@
                 <tr>
                    
                     <th>Terapeuta</th>
+                    <th>Desafios Ativos</th>
+                    <th>Chats Atrasados</th>
+                    <th>Desafios  últimos 7 Dias</th>
+                    <th>Chats últimos 7 Dias</th>
+
                     <th>Ações</th>
                </tr>
             </thead>
             <tbody> 
                  @foreach ($users as $user)
-                 <tr><td>{{$user->name}}</td><td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Ver relatório</a></td></tr>
+                 <tr><td>{{$user->name}}</td>
+                    <td> {{count($user->challenges->where('status','RESPONDIDO'))}} </td>
+                    <td>{{count(
+DB::table('chats')
+                    
+                    ->join('challenges', 'challenges.id', '=', 'chats.challenge_id')
+                    ->join('users', 'users.id', '=', 'challenges.user_id')
+                    ->select( 'chats.*')
+                    
+                    ->where('challenges.status','Respondido')
+                    ->where('chats.status','mae')
+                    ->where('users.id',$user->id)
+                //    ->whereBetween('messages.created_at', ['2021-08-01',now()])
+                    ->get())
+                    }}
+                    </td>
+                    <td>{{count(DB::table('challenges')
+           ->join('users','users.id','=','challenges.user_id')
+           ->join('clients','clients.id','=','challenges.client_id')
+           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
+           ->where('users.id',$user->id)
+->where('answered_at', '>', \Carbon\Carbon::now()->subDays(7))           ->get())}}</td>
+
+ <td>{{count(DB::table('messages')
+           ->join('chats', 'chats.id', '=', 'messages.chat_id')
+           ->join('challenges', 'challenges.id', '=', 'chats.challenge_id')
+           ->join('users', 'users.id', '=', 'challenges.user_id')
+           ->select('users.name', 'chats.*')
+           ->where('messages.type','2')
+           ->where('users.id',$user->id)
+           ->where('messages.created_at', '>', \Carbon\Carbon::now()->subDays(7))
+           ->get())}}</td>
+                    <td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Ver relatório</a></td></tr>
                  @endforeach
             </tbody>
    </table>

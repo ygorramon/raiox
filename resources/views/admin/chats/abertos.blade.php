@@ -28,7 +28,7 @@
             <tbody>
                 @foreach ($chats as $chat)
                 <tr>
-                    <td>{{ $chat->challenge->client->name }}</td>
+                   <td>{{ $chat->challenge->client->name }} <br>({{ $chat->challenge->client->email}})</td>
                     <td>{{  $chat->challenge->client->nameBaby }}</td>
                    <td> {{formatDateAndTimeHours($chat->messages->last()->created_at)}}</td>
                     <td>

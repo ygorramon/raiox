@@ -5,7 +5,7 @@
 @section('content_header')
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-    <li class="breadcrumb-item active">Terapeutas</li>
+    <li class="breadcrumb-item active">Terapeutas - Desafios</li>
 </ol>
 
 @stop
@@ -19,8 +19,38 @@
 <h4> Terapeuta: {{$user->name}}</h4>
 
 <br>
-<h5> Desafios Ativos: {{count($user->challenges->where('status','RESPONDIDO'))}} </h5>
-<br>
-<h5> Chats Atrasados: {{count($user->chats()->where('chats.status', 'mae')->with('challenge')->where('challenges.status', 'RESPONDIDO')->get())}}</h5>
+
+  <div class="card-body">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Nome da Mãe</th>
+                    <th>Nome do Bebê</th>
+                     <th>Turma</th>
+                   
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($user->challenges as $challenge)
+                <tr>
+                    <td>{{ $challenge->client->name }} <br>({{ $challenge->client->email}})</td>
+                    <td>{{ $challenge->client->nameBaby }}</td>
+                   <td>{{ $challenge->client->class }}</td>
+
+                    
+                    <td>
+
+                        <a href="{{route('challenge.availables.show', $challenge->id)}}" class="btn btn-warning">VER</a>
+                        <a href="" class="btn btn-primary">Trasnferir</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+
+
+
+</div>
     @stop

@@ -35,7 +35,7 @@
             <tbody>
                 @foreach ($challenges as $challenge)
                 <tr>
-                    <td>{{ $challenge->client->name }}</td>
+                     <td>{{ $challenge->client->name }} <br>({{ $challenge->client->email}})</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
                    <td>{{ $challenge->client->class }}</td>
 

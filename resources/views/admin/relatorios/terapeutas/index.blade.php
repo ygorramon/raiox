@@ -26,7 +26,7 @@
                     <th>Desafios  últimos 7 Dias</th>
                     <th>Chats últimos 7 Dias</th>
 
-                    <th>Ações</th>
+                    <th>Desafio</th>
                </tr>
             </thead>
             <tbody> 
@@ -63,7 +63,7 @@ DB::table('chats')
            ->where('users.id',$user->id)
            ->where('messages.created_at', '>', \Carbon\Carbon::now()->subDays(7))
            ->get())}}</td>
-                    <td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Ver relatório</a></td></tr>
+                    <td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Desafios</a></td></tr>
                  @endforeach
             </tbody>
    </table>

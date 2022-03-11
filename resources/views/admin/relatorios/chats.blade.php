@@ -33,7 +33,7 @@
                 @if($chat->challenge->status=="RESPONDIDO")
                 @if($chat->status=='mae')
                 <tr>
-                <td>{{ $chat->challenge->client->name }}</td>
+                    <td>{{ $chat->challenge->client->name }} <br>({{ $chat->challenge->client->email}})</td>
                  <td>{{ $chat->challenge->client->class }}</td>
                 <td> 
                             @if($chat->challenge->status=='RESPONDIDO')

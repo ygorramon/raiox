@@ -122,4 +122,17 @@ class DashboardController extends Controller
       $challenges = Challenge::whereIn('status', ['ENVIADO', 'ANALISE','RESPONDIDO','FINALIZADO'])->orderBy('sended_at', 'desc')->get();
       return view('admin.relatorios.enviados', compact('challenges'));
    }
+
+   public function transferirChallenge($id){
+      $challenge=Challenge::find($id);
+      $users = User::all();
+     return view ('admin.relatorios.terapeutas.transfer-challenge',compact('challenge','users'));
+   }
+
+   public function transferirChallengeUpdate($id, Request $request){
+$challenge=Challenge::find($id);
+$challenge->update(['user_id'=>$request->user]);
+      return redirect()->route('relatorios.users.index');
+   }
+   
 }

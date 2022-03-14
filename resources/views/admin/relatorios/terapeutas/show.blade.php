@@ -21,13 +21,14 @@
 <br>
 
   <div class="card-body">
-        <table class="table table-condensed">
+        <table class="table table-condensed" id="table">
             <thead>
                 <tr>
                     <th>Nome da Mãe</th>
                     <th>Nome do Bebê</th>
                      <th>Turma</th>
-                   
+                     <th>Última mensagem</th>
+                   <th>Diferença em Horas</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -37,7 +38,26 @@
                     <td>{{ $challenge->client->name }} <br>({{ $challenge->client->email}})</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
                    <td>{{ $challenge->client->class }}</td>
+                   @if(isset($challenge->chat))
+                    <td>@if($challenge->chat->status=='mae')  <span class="badge bg-yellow"> CLIENTE </span> @else  <span class="badge bg-green"> TERAPEUTA </span>@endif</td>
+                    <td>@if($challenge->chat->status=='mae')
+                        @if(diffDate($challenge->chat->messages->last()->created_at,now()) < 24 )
+                        <span class="badge bg-green">  {{diffDate($challenge->chat->messages->last()->created_at,now())}} </span>
+                        @endif
 
+                        @if(diffDate($challenge->chat->messages->last()->created_at,now()) >= 24 && diffDate($challenge->chat->messages->last()->created_at,now()) < 36)
+                        <span class="badge bg-yellow">  {{diffDate($challenge->chat->messages->last()->created_at,now())}} </span>
+                        @endif
+
+                        @if(diffDate($challenge->chat->messages->last()->created_at,now()) >=36)
+                        <span class="badge bg-red">  {{diffDate($challenge->chat->messages->last()->created_at,now())}} </span>
+                        @endif
+
+                        @else
+                        @endif</td>
+                    @else
+                    <td></td> <td></td>
+                    @endif
                     
                     <td>
 
@@ -53,4 +73,20 @@
 
 
 </div>
+@section ('js')
+<script>
+$(document).ready(function() {
+    $('#table').DataTable({
+       "paging":   false,
+       "language": {
+         
+    "search":         "Filtrar: ",
+  
+       },
+       "dom": '<"top"<f><"clear">',
+        "order": [[ 4, "desc" ]]
+    });
+} );
+</script>
+@endsection
     @stop

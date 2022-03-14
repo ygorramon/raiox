@@ -28,6 +28,7 @@
                     <th>Nome do Bebê</th>
                      <th>Turma</th>
                      <th>Última mensagem</th>
+                     <th>Horário da Última Mensagem</th>
                    <th>Diferença em Horas</th>
                     <th>Ações</th>
                 </tr>
@@ -39,7 +40,10 @@
                     <td>{{ $challenge->client->nameBaby }}</td>
                    <td>{{ $challenge->client->class }}</td>
                    @if(isset($challenge->chat))
+                                    
+
                     <td>@if($challenge->chat->status=='mae')  <span class="badge bg-yellow"> CLIENTE </span> @else  <span class="badge bg-green"> TERAPEUTA </span>@endif</td>
+                       <td> {{formatDateAndTimeHours($challenge->chat->messages->last()->created_at)}}</td>
                     <td>@if($challenge->chat->status=='mae')
                         @if(diffDate($challenge->chat->messages->last()->created_at,now()) < 24 )
                         <span class="badge bg-green">  {{diffDate($challenge->chat->messages->last()->created_at,now())}} </span>
@@ -56,7 +60,7 @@
                         @else
                         @endif</td>
                     @else
-                    <td></td> <td></td>
+                    <td></td> <td></td> <td></td>
                     @endif
                     
                     <td>
@@ -84,7 +88,7 @@ $(document).ready(function() {
   
        },
        "dom": '<"top"<f><"clear">',
-        "order": [[ 4, "desc" ]]
+        "order": [[ 5, "desc" ]]
     });
 } );
 </script>

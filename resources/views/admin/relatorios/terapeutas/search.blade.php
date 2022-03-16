@@ -60,7 +60,7 @@ DB::table('chats')
            ->join('clients','clients.id','=','challenges.client_id')
            ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
            ->where('users.id',$user->id)
-->where('answered_at', '=', $date)           ->get())}}</td>
+->whereDate('answered_at', '=', $date)           ->get())}}</td>
 
  <td>{{count(DB::table('messages')
            ->join('chats', 'chats.id', '=', 'messages.chat_id')
@@ -69,7 +69,7 @@ DB::table('chats')
            ->select('users.name', 'chats.*')
            ->where('messages.type','2')
            ->where('users.id',$user->id)
-           ->where('messages.created_at', '=', $date)           ->get())}}</td>
+           ->whereDate('messages.created_at', '=', $date)           ->get())}}</td>
                     <td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Desafios</a></td></tr>
                  @endforeach
             </tbody>

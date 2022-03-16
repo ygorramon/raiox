@@ -110,6 +110,13 @@ class DashboardController extends Controller
          return view ('admin.relatorios.terapeutas.index', compact('users'));
       }
 
+   public function usersSearch(Request $request)
+   {
+      $users = User::all();
+      $date = $request->filter;
+      
+      return view('admin.relatorios.terapeutas.search', compact('users', 'date'));
+   }
    public function usersShow($id)
    {
       $user=User::find($id);

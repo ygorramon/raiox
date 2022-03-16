@@ -16,7 +16,7 @@
         <form action="{{route('relatorios.users.search')}}" method="POST" class="form form-inline">
             @csrf
            Filtrar por dia: 
-            <input type="date" name="filter" placeholder="Filtrar:" class="form-control" value="{{ $filters['filter'] ?? '' }}">
+            <input type="date" name="filter" placeholder="Filtrar:" class="form-control" value="{{ $date ?? '' }}">
             <button type="submit" class="btn btn-dark">Filtrar</button>
         </form>
     </div>
@@ -30,8 +30,8 @@
                     <th>Terapeuta</th>
                     <th>Desafios Ativos</th>
                     <th>Chats Atrasados</th>
-                    <th>Desafios  últimos 7 Dias</th>
-                    <th>Chats últimos 7 Dias</th>
+                    <th>Desafios do dia {{formatDateAndTime($date)}}</th>
+                    <th>Chats do dia {{formatDateAndTime($date)}}</th>
 
                     <th>Desafio</th>
                </tr>
@@ -50,6 +50,7 @@ DB::table('chats')
                     ->where('challenges.status','Respondido')
                     ->where('chats.status','mae')
                     ->where('users.id',$user->id)
+
                 //    ->whereBetween('messages.created_at', ['2021-08-01',now()])
                     ->get())
                     }}
@@ -59,7 +60,7 @@ DB::table('chats')
            ->join('clients','clients.id','=','challenges.client_id')
            ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
            ->where('users.id',$user->id)
-->where('answered_at', '>', \Carbon\Carbon::now()->subDays(7))           ->get())}}</td>
+->where('answered_at', '=', $date)           ->get())}}</td>
 
  <td>{{count(DB::table('messages')
            ->join('chats', 'chats.id', '=', 'messages.chat_id')
@@ -68,8 +69,7 @@ DB::table('chats')
            ->select('users.name', 'chats.*')
            ->where('messages.type','2')
            ->where('users.id',$user->id)
-           ->where('messages.created_at', '>', \Carbon\Carbon::now()->subDays(7))
-           ->get())}}</td>
+           ->where('messages.created_at', '=', $date)           ->get())}}</td>
                     <td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Desafios</a></td></tr>
                  @endforeach
             </tbody>

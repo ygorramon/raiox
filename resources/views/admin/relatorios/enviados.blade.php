@@ -21,6 +21,7 @@
                     <th>Nome da Mãe</th>
                       <th>Email</th>
                     <th>Turma</th>
+                    <th>Data de Envio</th>
                     <th>Terapeuta</th>
 
                     <th>Status</th>
@@ -37,6 +38,7 @@
                     <td>{{ $challenge->client->name }}</td>
                     <td>{{ $challenge->client->email }}</td>
                     <td>{{ $challenge->client->class }}</td>
+                  <td> {{formatDateAndTimeHours($challenge->sended_at)}}</td>
                     <td>{{ $challenge->user->name ?? ''}}</td>
 
                     <td> @if($challenge->status=='ANALISE')

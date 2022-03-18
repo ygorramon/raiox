@@ -188,7 +188,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         $challenge->update([
             'status' => 'ENVIADO','sended_at'=>now(),
         ]);
-        $challenge->notify(new ChallengeTelegramNotification());
+     //   $challenge->notify(new ChallengeTelegramNotification());
 
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
 
@@ -1421,7 +1421,7 @@ $form=$challenge->form();
     $chat->update(['status'=>'mae']);
     $chat->messages()->create(['content'=>$request->message, 'type'=>'1']);
 
-    $chat->notify(new ChatTelegramNotification());
+  //  $chat->notify(new ChatTelegramNotification());
 
     return redirect()->route('desafio.show', $challenge->id);
 

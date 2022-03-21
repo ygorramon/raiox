@@ -835,6 +835,17 @@ class ChallengeController extends Controller
       return view('admin.challenges.meus.respostas', compact('challenge'));
    }
 
+   public function respostas2($id)
+   {
+      if (!$challenge = $this->repository->find($id)) {
+         return redirect()->back();
+      }
+
+      $challenge = $this->repository->with('client')->find($id);
+
+      return view('admin.challenges.meus.respostas-2', compact('challenge'));
+   }
+
    public function chat($id)
    {
       if (!$challenge = $this->repository->find($id)) {
@@ -845,6 +856,19 @@ class ChallengeController extends Controller
 
 
       return view('admin.challenges.meus.chat', compact('challenge'));
+   }
+
+
+   public function chat2($id)
+   {
+      if (!$challenge = $this->repository->find($id)) {
+         return redirect()->back();
+      }
+
+      $challenge = $this->repository->with('client')->find($id);
+
+
+      return view('admin.challenges.meus.chat-2', compact('challenge'));
    }
 
    public function chatStore(Request $request, $id)

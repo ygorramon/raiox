@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/situacoes', 'Admin\AnswerController@categories')->name('situacoes.index');
             Route::get('/situacoes/{id}/respostas', 'Admin\AnswerController@index')->name('situacoes.respostas.index');
+            
             Route::get('/situacoes/{id}/respostas/create', 'Admin\AnswerController@create')->name('situacoes.respostas.create');
             Route::post('/situacoes/{url}/respostas', 'Admin\AnswerController@store')->name('situacoes.respostas.store');
             Route::put('/situacoes/{id}/respostas/{answerId}', 'Admin\AnswerController@update')->name('situacoes.respostas.update');
@@ -29,9 +30,13 @@ Route::prefix('admin')->group(function () {
             Route::get('/desafios/meus/nowindow/{id}', 'Admin\ChallengeController@showMyChallengeNoWindow')->name('challenge.meus.show.noWindow');
             Route::get('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responder')->name('challenge.meus.responder');
             Route::get('/desafios/meus/{id}/respostas', 'Admin\ChallengeController@respostas')->name('challenge.meus.respostas');
+        Route::get('/desafios/meus/{id}/respostas2', 'Admin\ChallengeController@respostas2')->name('challenge.meus.respostas2');
+
             Route::put('/desafio/disponiveis/{id}', 'Admin\ChallengeController@getChallenge')->name('challenge.get');
             Route::put('/desafios/meus/{id}/responder', 'Admin\ChallengeController@responderUpdate')->name('challenge.meus.responder.update');
             Route::get('/desafios/meus/{id}/chat', 'Admin\ChallengeController@chat')->name('challenge.meus.chat');
+            Route::get('/desafios/meus/{id}/chat2', 'Admin\ChallengeController@chat2')->name('challenge.meus.chat2');
+
             Route::post('/desafios/meus/{id}/chat', 'Admin\ChallengeController@chatStore')->name('challenge.meus.chat.store');
             Route::get('/desafios/meus/chat/{id}/message', 'Admin\ChallengeController@messageEdit')->name('challenge.meus.message.edit');
             Route::put('/desafios/meus/{id}/message', 'Admin\ChallengeController@messageUpdate')->name('challenge.meus.messsage.update');

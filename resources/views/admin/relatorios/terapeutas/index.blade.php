@@ -59,7 +59,9 @@ DB::table('chats')
            ->join('clients','clients.id','=','challenges.client_id')
            ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
            ->where('users.id',$user->id)
-->where('answered_at', '>', \Carbon\Carbon::now()->subDays(7))           ->get())}}</td>
+->where('answered_at', '>', \Carbon\Carbon::now()->subDays(7))
+->->where('answered_at', '<', \Carbon\Carbon::now())
+           ->get())}}</td>
 
  <td>{{count(DB::table('messages')
            ->join('chats', 'chats.id', '=', 'messages.chat_id')
@@ -69,6 +71,7 @@ DB::table('chats')
            ->where('messages.type','2')
            ->where('users.id',$user->id)
            ->where('messages.created_at', '>', \Carbon\Carbon::now()->subDays(7))
+           ->where('messages.created_at', '<', \Carbon\Carbon::now())
            ->get())}}</td>
                     <td><a class="btn btn-primary" href="{{route('relatorios.users.show', $user->id)}}">Desafios</a></td></tr>
                  @endforeach

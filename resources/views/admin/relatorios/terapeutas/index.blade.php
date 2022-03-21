@@ -60,7 +60,7 @@ DB::table('chats')
            ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
            ->where('users.id',$user->id)
 ->where('answered_at', '>', \Carbon\Carbon::now()->subDays(7))
-->->where('answered_at', '<', \Carbon\Carbon::now())
+->where('answered_at', '<', \Carbon\Carbon::now())
            ->get())}}</td>
 
  <td>{{count(DB::table('messages')

@@ -113,7 +113,7 @@ Route::post('client/reset', 'Auth\ResetPasswordClientController@reset');
 
 
 Route::get('/', function () {
-    return redirect('/login');
+     return redirect('/login');
 });
 
 Route::get('/admin', function () {

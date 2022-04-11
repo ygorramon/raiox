@@ -62,7 +62,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
             Route::get('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallenge')->name('relatorios.challenge.transferir');
             Route::put('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallengeUpdate')->name('relatorios.challenge.transferir.update');
-
+            //teste
         });
     Auth::routes();
 
@@ -113,7 +113,7 @@ Route::post('client/reset', 'Auth\ResetPasswordClientController@reset');
 
 
 Route::get('/', function () {
-    return redirect('/login');
+     return redirect('/login');
 });
 
 Route::get('/admin', function () {

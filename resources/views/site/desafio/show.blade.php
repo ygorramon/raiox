@@ -10,6 +10,11 @@
   <div class="col s12">
     <div class="container">
       <div class="section">
+        <div class="card-alert">
+            <div class="card-content purple-text">
+              <a href="https://api.whatsapp.com/send?phone=5588993005582" target="_blank " class="btn"> WhatsApp Suporte </a>
+            </div>
+          </div>
         <div id="card-widgets">
           <div class="row">
             <div class="col s12">

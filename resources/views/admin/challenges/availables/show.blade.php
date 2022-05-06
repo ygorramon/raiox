@@ -655,162 +655,212 @@
 
                         <table class="table table-bordered">
 
-                            <tbody>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Sinal de Sono </th>
-                                    <th>Horário Dormiu </th>
-                                    <th>Horário Acordou</th>
-                                    <th>Duração </th>
-                                    <th>Janela</th>
-                                    <th>Janela Sinal de Sono / Duração Ritual </th>
-                                </tr>
-                                @foreach($analyze->naps as $nap)
-                                <tr>
-                                    <td>Soneca {{$nap->number}}</td>
-                                    <td> {{$nap->signalSlept}}</td>
-                                    <td> {{$nap->timeSlept}}</td>
-                                    <td> {{$nap->timeWokeUp}}</td>
+                                    <tbody>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Sinal de Sono </th>
+                                            <th>Horário Dormiu </th>
+                                            <th>Horário Acordou</th>
+                                            <th>Duração </th>
+                                            <th>Janela</th>
+                                            <th>Janela Sinal de Sono </th>
+                                            <th>  Duração Ritual </th>
+                                        </tr>
+                                        @foreach ($analyze->naps as $nap)
+                                            <tr>
+                                                <td>Soneca {{ $nap->number }}</td>
+                                                <td> {{ $nap->signalSlept }}</td>
+                                                <td> {{ $nap->timeSlept }}</td>
+                                                <td> {{ $nap->timeWokeUp }}</td>
 
-                                    <td>
-                                        @if($nap->duration<40) <span class="badge bg-red">{{$nap->duration}}</span>
-                                            @else
-                                            @if($nap->duration>120 && $challenge->client->babyAge>180)
-                                            <span class="badge bg-red">{{$nap->duration}}</span>
-                                            @else
-                                            <span class="badge bg-green">{{$nap->duration}}</span>
-                                            @endif
-                                            @endif
-                                    </td>
-                                    <td>
+                                                <td>
+                                                    @if ($nap->duration < 35)
+                                                        <span class="badge bg-red">{{ $nap->duration }}</span>
+                                                    @endif
+                                                    @if ($nap->duration >= 35 && $nap->duration <= 40)
+                                                        <span class="badge bg-yellow">{{ $nap->duration }}</span>
+                                                    @endif
 
-                                        @if($nap->window >= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio
-                                        && $nap->window <= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim)
-                                            <span class="badge bg-green">{{$nap->window}}</span>
-                                            @else
-                                            <span class="badge bg-red">{{$nap->window}}</span>
-                                            @endif
+                                                    @if ($nap->duration > 40)
+                                                  
+                                                        @if ($nap->duration > 120 &&  now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby))  > 180)
+                                                            <span class="badge bg-orange">{{ $nap->duration }}</span>
+                                                        @else
+                                                            <span class="badge bg-green">{{ $nap->duration }}</span>
+                                                              {{$challenge->client->babyAge}}
+                                                        @endif
+                                                    @endif
 
+                                                </td>
+                                                <td>
 
-                                    </td>
-                                    @php
-                                    $var=getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+                                                    @if ($nap->window >= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio && $nap->window <= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim)
+                                                        <span class="badge bg-green">{{ $nap->window }}</span>
+                                                    @else
+                                                        @if ($nap->window < getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio)
+                                                            <span class="badge bg-yellow">{{ $nap->window }}</span>
+                                                        @endif
 
-                                    @endphp
-                                    <td>
-                                        @if($var-($nap->window-$nap->windowSignalSlept)>=30)
-                                        <span class="badge bg-green"> {{$nap->window-$nap->windowSignalSlept}}</span>
-                                        @else
-                                        <span class="badge bg-red"> {{$nap->window-$nap->windowSignalSlept}} </span>
-                                        @endif
-                                        / {{$nap->windowSignalSlept}}
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                        </table>
-                        <br>
-                        <table class="table table-bordered">
-                            <tbody>
-                            <tr>
-                                    <th>#</th>
-                                    <th>Sinal de Sono </th>
-                                    <th>Horário Início </th>
-                                    <th>Horário Dormiu</th>
-                                    <th>Duração </th>
-                                    <th>Janela</th>
-                                    <th>Janela Sinal de Sono / Duração Ritual </th>
-                                </tr>
-                                @foreach($analyze->rituals as $ritual)
-                                <tr>
-                                    <td>Ritual</td>
-                                    <td> {{$ritual->signalSlept}}</td>
-                                    <td>{{$ritual->start}}</td>
-                                    <td>{{$ritual->end}}</td>
-                                    <td>@if($ritual->duration > 30)
-                                        <span class="badge bg-red">{{$ritual->duration}}</span>
-                                        @else
-                                        <span class="badge bg-green">{{$ritual->duration}}</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($ritual->window >= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio
-                                        && $ritual->window <= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim)
-                                            <span class="badge bg-green">{{$ritual->window}}</span>
-                                            @else
-                                            <span class="badge bg-red">{{$ritual->window}}</span>
-                                            @endif
-                                         
-                                    </td>
-                                    <td>
-                                   
-                                    
-                                        @if($var-($ritual->window-$ritual->windowSignalSlept)>=30)
-                                        <span class="badge bg-green"> {{$ritual->window-$ritual->windowSignalSlept}}</span>
-                                        @else
-                                        <span class="badge bg-red"> {{$ritual->window-$ritual->windowSignalSlept}} </span>
-                                        @endif
-                                        / {{$ritual->windowSignalSlept}}
-                                    
-                                    </td>
-
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <br>
-                        <table class="table table-bordered">
-
-                            <tbody>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Horário que Acordou </th>
-                                    <th>Horário que Dormiu</th>
-                                    <th>Duração Acordado</th>
-                                    <th>Como dormiu</th>
-
-                                </tr>
-                                @foreach($analyze->wakes as $wake)
-                                <tr>
-                                    <td>Despertar {{$wake->number}}</td>
-                                    <td> {{$wake->timeWokeUp}}</td>
-                                    <td> {{$wake->timeSlept}}</td>
-                                    <td> {{$wake->duration}}</td>
-
-                                    <td>@if($wake->sleepingMode==1)
-                                        Sozinho
-                                        @endif
-                                        @if($wake->sleepingMode==2)
-                                        Ninando no berço/cama
-                                        @endif
-                                        @if($wake->sleepingMode==3)
-                                        Mamando
-                                        @endif
-                                        @if(is_numeric($wake->sleepingMode)==false)
-                                        {{$wake->sleepingMode}}
-
-                                        @endif
-
-                                    </td>
-
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                                        @if ($nap->window > getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio)
+                                                            <span class="badge bg-red">{{ $nap->window }}</span>
+                                                        @endif
+                                                    @endif
 
 
 
+                                                </td>
+                                                @php
+                                                    
+                                                    $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+                                                    
+                                                @endphp
+                                                <td>
+                                                    @if ($var - ($nap->window - $nap->windowSignalSlept) >= 30)
+                                                        <span class="badge bg-green">
+                                                            {{ $nap->window - $nap->windowSignalSlept }}</span>
+                                                    @else
+                                                        <span class="badge bg-red">
+                                                            {{ $nap->window - $nap->windowSignalSlept }} </span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($nap->windowSignalSlept >=35)
+                                                    <span class="badge bg-red"> {{ $nap->windowSignalSlept }} </span>
+                                                    @endif
+
+                                                     @if($nap->windowSignalSlept < 35 &&  $nap->windowSignalSlept >= 30)
+                                                    <span class="badge bg-yellow"> {{ $nap->windowSignalSlept }} </span>
+                                                    @endif
+
+                                                      @if($nap->windowSignalSlept < 30)
+                                                    <span class="badge bg-green"> {{ $nap->windowSignalSlept }} </span>
+                                                    @endif
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Sinal de Sono </th>
+                                            <th>Horário Início </th>
+                                            <th>Horário Dormiu</th>
+                                            <th>Duração </th>
+                                            <th>Janela</th>
+                                            <th>Janela Sinal de Sono  </th>
+                                            <th>  T. Sinal de Sono até Início do Ritual </th>
+                                        </tr>
+                                        @foreach ($analyze->rituals as $ritual)
+                                            <tr>
+                                                <td>Ritual</td>
+                                                <td> {{ $ritual->signalSlept }}</td>
+                                                <td>{{ $ritual->start }}</td>
+                                                <td>{{ $ritual->end }}</td>
+                                                <td>
+                                                    @if ($ritual->duration > 30)
+                                                        <span class="badge bg-red">{{ $ritual->duration }}</span>
+                                                    @else
+                                                        <span class="badge bg-green">{{ $ritual->duration }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($ritual->window >= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio && $ritual->window <= getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim)
+                                                        <span class="badge bg-green">{{ $ritual->window }}</span>
+                                                    @else
+                                                        <span class="badge bg-red">{{ $ritual->window }}</span>
+                                                    @endif
+
+                                                </td>
+                                                <td>
+                                                    @php
+                                                        
+                                                        $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+                                                        
+                                                    @endphp
+                                                   
+                                                    @if ($var - ($ritual->window - $ritual->windowSignalSlept) >= 30)
+                                                        <span class="badge bg-green">
+                                                            {{ $ritual->window - $ritual->windowSignalSlept }}</span>
+                                                    @else
+                                                        <span class="badge bg-red">
+                                                            {{ $ritual->window - $ritual->windowSignalSlept }} </span>
+                                                    @endif
+                                                        </td>
+                                                       <td>
+                                                   @if($ritual->windowSignalSlept >=35)
+                                                    <span class="badge bg-red"> {{ $ritual->windowSignalSlept }} </span>
+                                                    @endif
+
+                                                     @if($ritual->windowSignalSlept < 35 &&  $ritual->windowSignalSlept >= 30)
+                                                    <span class="badge bg-yellow"> {{ $ritual->windowSignalSlept}} </span>
+                                                    @endif
+
+                                                      @if($ritual->windowSignalSlept < 30)
+                                                    <span class="badge bg-green"> {{ $ritual->windowSignalSlept }} </span>
+                                                    @endif
+                                                     
+
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br>
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Horário que Acordou </th>
+                                            <th>Horário que Dormiu</th>
+                                            <th>Duração Acordado</th>
+                                            <th>Como dormiu</th>
+
+                                        </tr>
+                                        @foreach ($analyze->wakes as $wake)
+                                            <tr>
+                                                <td>Despertar {{ $wake->number }}</td>
+                                                <td> {{ $wake->timeWokeUp }}</td>
+                                                <td> {{ $wake->timeSlept }}</td>
+                                                <td> {{ $wake->duration }}</td>
+
+                                                <td>
+                                                    @if ($wake->sleepingMode == 1)
+                                                        Sozinho
+                                                    @endif
+                                                    @if ($wake->sleepingMode == 2)
+                                                        Ninando no berço/cama
+                                                    @endif
+                                                    @if ($wake->sleepingMode == 3)
+                                                        Mamando
+                                                    @endif
+                                                    @if (is_numeric($wake->sleepingMode) == false)
+                                                        {{ $wake->sleepingMode }}
+                                                    @endif
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+
+
+
+                        </div>
                     </div>
-
-
-
-                </div>
+                @endforeach
             </div>
-
-            @endforeach
         </div>
     </div>
-</div>
 
-</div>
+    </div>
 @stop

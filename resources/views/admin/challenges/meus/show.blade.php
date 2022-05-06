@@ -687,11 +687,11 @@
                                                     @if ($nap->duration < 35)
                                                         <span class="badge bg-red">{{ $nap->duration }}</span>
                                                     @endif
-                                                    @if ($nap->duration >= 35 && $nap->duration <= 40)
+                                                    @if ($nap->duration >= 35 && $nap->duration < 40)
                                                         <span class="badge bg-yellow">{{ $nap->duration }}</span>
                                                     @endif
 
-                                                    @if ($nap->duration > 40)
+                                                    @if ($nap->duration >= 40)
                                                   
                                                         @if ($nap->duration > 120 &&  now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby))  > 180)
                                                             <span class="badge bg-orange">{{ $nap->duration }}</span>

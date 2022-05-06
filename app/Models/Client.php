@@ -13,7 +13,7 @@ class Client extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password','nameBaby','ageBaby',
+        'name', 'email', 'password','nameBaby','ageBaby','class',
         'sexBaby','active','expireAt','birthBaby','bonus'
     ];
 

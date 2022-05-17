@@ -110,7 +110,7 @@
         <div>
                         <label for="ritualBomDia">Causa dos Despertares:</label>
                         @if($challenge->form->conclusionImmaturity=='S')
-                        <span class="badge bg-green">Imaturidade</span>
+                        <span class="badge bg-green">Exterogestação</span>
                         
                         @endif
 
@@ -157,7 +157,7 @@
             {{$passo2->mensagem}}
             @if($passo2->imaturidade=="")
             @else
-            • IMATURIDADE: {{ $passo2->imaturidade }}
+            • Exterogestação: {{ $passo2->imaturidade }}
             @endif
             • FOME: {{ $passo2->fome}}
 

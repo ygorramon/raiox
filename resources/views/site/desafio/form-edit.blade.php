@@ -502,7 +502,7 @@
                                 <p>
                                     <label>
                                         <input type="checkbox" class="filled-in" {{ old('conclusao_imaturidade', $form->conclusionImmaturity ) != 'N' ? "checked" : "" }} value="S" name="conclusao_imaturidade" />
-                                        <span>Imaturidade</span>
+                                        <span>Exterogestação</span>
                                     </label>
                                 </p>
                                 <p>

@@ -90,9 +90,9 @@
                                     <option value="1">Aleitamento Materno Exclusivo</option>
                                     <option value="2">Uso exclusivo de Fórmulas Infantis</option>
                                     <option value="3">Aleitamento Materno + Uso de Fórmulas Infantis</option>
-                                    <option value="4">Introdução Alimentar + Aleitamento Materno.</option>
-                                    <option value="5">Introdução Alimentar + Uso de Fórmulas Infantis</option>
-                                    <option value="6">Introdução Alimentar + Aleitamento Materno + Uso de Fórmulas Infantis</option>
+                                    <option value="4">Alimentos Sólidos + Aleitamento Materno.</option>
+                                    <option value="5">Alimentos Sólidos + Uso de Fórmulas Infantis</option>
+                                    <option value="6">Alimentos Sólidos + Aleitamento Materno + Uso de Fórmulas Infantis</option>
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">

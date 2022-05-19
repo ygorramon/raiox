@@ -92,9 +92,9 @@
                                     <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '1' ? "selected" : "" }} value="1">Aleitamento Materno Exclusivo</option>
                                     <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '2' ? "selected" : "" }} value="2">Uso exclusivo de Fórmulas Infantis</option>
                                     <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '3' ? "selected" : "" }} value="3">Aleitamento Materno + Uso de Fórmulas Infantis</option>
-                                    <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '4' ? "selected" : "" }} value="4">Introdução Alimentar + Aleitamento Materno.</option>
-                                    <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '5' ? "selected" : "" }} value="5">Introdução Alimentar + Uso de Fórmulas Infantis</option>
-                                    <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '6' ? "selected" : "" }} value="6">Introdução Alimentar + Aleitamento Materno + Uso de Fórmulas Infantis</option>
+                                    <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '4' ? "selected" : "" }} value="4">Alimentos Sólidos + Aleitamento Materno.</option>
+                                    <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '5' ? "selected" : "" }} value="5">Alimentos Sólidos + Uso de Fórmulas Infantis</option>
+                                    <option {{ old('rotinaAlimentar', $form->typeEatingRoutine ) == '6' ? "selected" : "" }} value="6">Alimentos Sólidos + Aleitamento Materno + Uso de Fórmulas Infantis</option>
                                 </select>
                             </div>
                             <div class="col s12 m6 l6">

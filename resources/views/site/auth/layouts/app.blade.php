@@ -13,6 +13,8 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}"  media="screen,projection"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5218910455720826"
+     crossorigin="anonymous"></script>
     @yield('css')
 </head>
 

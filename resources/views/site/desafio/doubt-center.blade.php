@@ -14,7 +14,7 @@
                     <div class="card-alert">
                         <div class="card-content purple-text">
                             <a href="https://api.whatsapp.com/send?phone=5588993005582" target="_blank "
-                                class="btn"> WhatsApp Suporte </a>
+                                class="btn"> Suporte Técnico </a>
                         </div>
                     </div>
                     <div id="card-widgets">

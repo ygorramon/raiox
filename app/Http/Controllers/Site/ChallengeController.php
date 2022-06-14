@@ -11,6 +11,10 @@ use App\Notifications\ChatTelegramNotification;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use App\Models\Message;
+use App\Models\Module;
+use App\Models\Submodule;
+use App\Models\Doubt;
+
 
 class ChallengeController extends Controller
 {
@@ -1488,5 +1492,65 @@ public  $messageClient=[
 
 
        }
-  
+
+       public function doubtCenter(){
+        $modules = Module::all();
+           return view ('site.desafio.doubt-center', compact ('modules'));
+        
+       }
+
+    public function doubtCenterModule($id)
+    {
+
+        if (!$module = Module::find($id)) {
+            return redirect()->back();
+        }
+       
+        return view('site.desafio.doubt-center-show', compact('module'));
+    }
+
+    public function doubtCenterSubmodule($id)
+    {
+
+        if (!$submodule = Submodule::find($id)) {
+            return redirect()->back();
+        }
+
+        return view('site.desafio.queries', compact('submodule'));
+    }
+
+    public function queryShow(){
+        return view ('site.desafio.query');
+    }
+
+    public function query(Request $request){
+        $client = Auth::guard('clients')->user();
+
+        $doubt = $client->doubts()->create([
+            'status' => 'ENVIADO',
+            'sended_at' => now(),
+            'query' => $request->pergunta
+        ]);
+
+        return redirect()->route('my.queries')->with('sucesso', 'Dúvida Enviada!');
+    }
+
+    public function myQueries()
+    {
+        $client = Auth::guard('clients')->user();
+
+        $doubts = $client->doubts()->get();
+        return view ('site.desafio.my-queries', compact ('doubts'));
+    }
+
+
+    public function doubtShow($id)
+    {
+       
+
+        $doubt = Doubt::find($id);
+       
+        return view('site.desafio.myquery-show', compact('doubt'));
+    }
+
 }

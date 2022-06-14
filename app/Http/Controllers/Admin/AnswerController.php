@@ -144,4 +144,13 @@ class AnswerController extends Controller
         
 
     }
+
+    public function respostas()
+    {
+
+        $categories = Category::all();
+        return view('admin.answers.respostas', [
+            'categories' => $categories
+        ]);
+    }
 }

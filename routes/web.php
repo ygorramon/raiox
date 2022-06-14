@@ -12,6 +12,12 @@ Route::prefix('admin')
 Route::prefix('admin')->group(function () {
     Route::middleware('auth')
         ->group(function () {
+            Route::get('/modulos', 'Admin\ModuleController@index')->name('modules.index');
+            Route::get('/modulo/{id}/submodules', 'Admin\ModuleController@submodules')->name('submodules.index');
+            Route::get('/submodule/{id}/queries', 'Admin\ModuleController@queries')->name('queries.index');
+
+            Route::get('/situacoes/respostas', 'Admin\AnswerController@respostas');
+
             Route::resource('/clients', 'Admin\ClientsController');
             Route::any('clients/search', 'Admin\ClientsController@search')->name('clients.search');
 
@@ -76,7 +82,13 @@ Route::middleware('auth.client:clients')
         Route::post('/logout', 'Auth\LoginClientController@logout')->name('clients.logout');
         Route::get('/desafios', 'Site\ChallengeController@index')->name('desafio.index');
         Route::get('/chat', 'Site\ChallengeController@chat')->name('chat.index');
-
+        Route::get('/faq', 'Site\ChallengeController@doubtCenter')->name('doubtCenter.index');
+        Route::get('/faq/{id}/modulo', 'Site\ChallengeController@doubtCenterModule')->name('doubtCenterModule.index');
+        Route::get('/faq/modulo/{id}/submodule', 'Site\ChallengeController@doubtCenterSubmodule')->name('doubtCenterSubModule.index');
+        Route::get('/perguntar', 'Site\ChallengeController@queryShow')->name('query.show');
+        Route::post('/query', 'Site\ChallengeController@query')->name('query.store');
+        Route::get('/perguntas', 'Site\ChallengeController@myQueries')->name('my.queries');
+        Route::get('/pergunta/{id}', 'Site\ChallengeController@doubtShow')->name('my.query.show');
         Route::post('/desafios', 'Site\ChallengeController@store')->name('desafio.store');
         Route::get('/desafio/{id}/', 'Site\ChallengeController@show')->name('desafio.show');
         Route::get('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeCreate')->name('analyze.create');

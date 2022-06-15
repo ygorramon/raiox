@@ -23,6 +23,7 @@
     
     <div class="card-body">
         <h4>Total: {{$totalClients}} Clientes Ativos</h4>
+     <h4>Total: {{$totalClientsAcesso}} Clientes Ativos que Acessaram</h4>
         <table class="table table-condensed">
             <thead>
                 <tr>

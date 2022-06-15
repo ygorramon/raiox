@@ -275,6 +275,11 @@ return [
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
                 [
+                    'text'    => 'Ativos',
+                    'url'     => '/admin/clients-ativos',
+                    'icon'    => 'fas fa-fw fa-eye',
+                ],
+                [
                     'text' => 'Cadastrar',
                     'url'  => '/admin/clients/create',
                     'icon'    => 'fas fa-fw fa-plus',

@@ -28,6 +28,11 @@ class ClientsController extends Controller
         return view('admin.clients.index', compact('clients'));
     }
 
+    public function ativos(){
+        $totalClients= $this->repository->where('active', 1)->where('expireAt', '>', now())->count();
+        $clients =$this->repository->where('active',1)->where('expireAt','>',now())->paginate();
+        return view('admin.clients.ativos', compact('clients', 'totalClients'));
+    }
     /**
      * Show the form for creating a new resource.
      *

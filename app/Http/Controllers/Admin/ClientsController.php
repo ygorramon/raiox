@@ -30,7 +30,7 @@ class ClientsController extends Controller
 
     public function ativos(){
         $totalClients= $this->repository->where('active', 1)->where('expireAt', '>', now())->count();
-        $totalClientsAcesso = $this->repository->where('active', 1)->where('expireAt', '>', now())->where('name','<>','null')->count();
+        $totalClientsAcesso = $this->repository->where('active', 1)->where('expireAt', '>', now())->where('name','<>','null')->where('class','<>', 'Sono para maiores')->count();
         $clients =$this->repository->where('active',1)->where('expireAt','>',now())->paginate();
         return view('admin.clients.ativos', compact('clients', 'totalClients', 'totalClientsAcesso'));
     }

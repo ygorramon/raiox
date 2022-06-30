@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use App\Models\Challenge;
+use App\Models\Doubt;
 use Illuminate\Support\Facades\Auth;
 
 class EventServiceProvider extends ServiceProvider
@@ -53,6 +54,20 @@ class EventServiceProvider extends ServiceProvider
                 'url'  => '#',
                 'label' =>Auth::user()->challenges()->where('status','FINALIZADO')->count(),
 
+            ]);
+
+            $event->menu->addIn('duvidas', [
+                'key' => 'duvidas-atrasadas',
+                'text'    => 'Dúvidas Atrasadas',
+                'url'     => '/admin/duvidas/atrasadas',
+                'label' => Doubt::where('status','ENVIADO')->count(),
+
+            ]);
+            $event->menu->addIn('duvidas', [
+                'key' => 'duvidas-todas',
+                'text' => 'Todas Dúvidas',
+                'url'  => '/admin/duvidas',
+                'label' => Doubt::all()->count(),
             ]);
 
             $event->menu->addIn('chats', [

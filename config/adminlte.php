@@ -242,6 +242,14 @@ return [
             'text' => 'Respostas',
             'url'  => 'admin/situacoes',
         ],
+        ['header' => 'Dúvidas'],
+        [
+            'text'    => 'Dúvidas',
+            'icon'    => 'fas fa-fw fa-share',
+            'key'  => 'duvidas',
+
+            'submenu' => [],
+        ],
         
         ['header' => 'Desafios'],
         

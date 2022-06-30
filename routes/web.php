@@ -15,7 +15,10 @@ Route::prefix('admin')->group(function () {
             Route::get('/modulos', 'Admin\ModuleController@index')->name('modules.index');
             Route::get('/modulo/{id}/submodules', 'Admin\ModuleController@submodules')->name('submodules.index');
             Route::get('/submodule/{id}/queries', 'Admin\ModuleController@queries')->name('queries.index');
-
+            Route::get('/duvidas/atrasadas', 'Admin\ModuleController@doubtsArasadosView')->name('duvidas.atrasadas');
+            Route::get('/duvidas', 'Admin\ModuleController@doubtsView')->name('duvidas.index');
+            Route::get('/duvida/{id}', 'Admin\ModuleController@doubtsShow')->name('duvidas.show');
+            Route::put('/duvida/{id}', 'Admin\ModuleController@doubtsResponder')->name('duvidas.responder');
             Route::get('/situacoes/respostas', 'Admin\AnswerController@respostas');
 
             Route::resource('/clients', 'Admin\ClientsController');
@@ -97,6 +100,8 @@ Route::middleware('auth.client:clients')
         Route::get('/desafio/{id}/edit/{day}', 'Site\ChallengeController@analyzeEdit')->name('analyze.edit');
         Route::put('/desafio/{id}/edit/{day}', 'Site\ChallengeController@analyzeUpdate')->name('analyze.update');
 
+        Route::get('/desafio/{id}/preanalise/{day}','Site\ChallengeController@passo1')->name('analyze.passo1');
+         Route::get('/desafio/{id}/passo2', 'Site\ChallengeController@passo2')->name('analyze.passo2');
         Route::get('/desafio/{id}/form', 'Site\ChallengeController@analyzeCreateForm')->name('analyze.form');
         Route::post('/desafio/{id}/form', 'Site\ChallengeController@analyzeStoreForm')->name('analyze.form.store');
         Route::get('/desafio/{id}/form/edit', 'Site\ChallengeController@analyzeEditForm')->name('analyze.form.edit');
@@ -109,8 +114,8 @@ Route::middleware('auth.client:clients')
         Route::get('/profile', 'Site\ChallengeController@clientEdit')->name('client.profile.edit');
         Route::put('/profile', 'Site\ChallengeController@clientUpdate')->name('client.profile.update');
 
-    Route::get('/edit-message/{id}/', 'Site\ChallengeController@messageEdit')->name('client.message.edit');
-    Route::put('/edit-message/{id}/', 'Site\ChallengeController@messageUpdate')->name('client.message.update');
+        Route::get('/edit-message/{id}/', 'Site\ChallengeController@messageEdit')->name('client.message.edit');
+        Route::put('/edit-message/{id}/', 'Site\ChallengeController@messageUpdate')->name('client.message.update');
 
 
     });

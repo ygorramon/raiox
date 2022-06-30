@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doubt;
 use App\Models\Module;
 use App\Models\Submodule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {
@@ -106,5 +108,32 @@ public function submodules($id)
         $queries =  Submodule::find($id)->queries()->get();
         return view('admin.modules.queries', compact('queries'));
     }
+
+    public function doubtsArasadosView(){
+        $doubts=Doubt::where('status','Enviado')->get();
+        return view('admin.doubts.index', compact('doubts'));
+
+    }
+    public function doubtsShow($id)
+    {
+        $doubt = Doubt::find($id);
+   
+        return view('admin.doubts.show', compact('doubt'));
+    }
+
+    public function doubtsResponder($id, Request $request)
+    {
+        $user = Auth::user();
+        $doubt = Doubt::find($id);
+        $doubt->update(['response' => $request->resposta, 'status'=>'RESPONDIDO', 'user_id'=>$user->id, 'answered_at'=>now()]);
+        return redirect()->route('duvidas.index');
+    }
+
+    public function doubtsView()
+    {
+        $doubts = Doubt::all();
+        return view('admin.doubts.index', compact('doubts'));
+    }
+    
 
 }

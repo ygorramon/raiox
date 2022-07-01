@@ -1553,4 +1553,125 @@ public  $messageClient=[
         return view('site.desafio.myquery-show', compact('doubt'));
     }
 
+    public function passo1($id, $day){
+        $client = Auth::guard('clients')->user();
+
+        $challenge = $this->repository->find($id);
+        $analyze = $challenge->analyzes()->where('day', $day)->first();
+        $ritual = $analyze->rituals()->first();
+        $naps = $analyze->naps()->get();
+        $wakes = $analyze->wakes()->get();
+        $janela = getJanela(getIdade($client->birthBaby));
+        $babyAge = getIdade($client->birthBaby);
+        $qtd_ritual_sonecas_longo = count($analyze->naps->where('windowSignalSlept', '>', 30));
+        $qtd_ritual_inadequado = count($analyze->rituals->where('duration', '>', 30));
+        $qtd_rituais_inadequados= $qtd_ritual_sonecas_longo + $qtd_ritual_inadequado;
+        $qtd_sonecas_inadequadas = count($analyze->naps->where('duration', '<', 40));
+        $qtd_sinais_sono_tardio = 0;
+        $sinais_sono_resposta="";
+        foreach ($analyze->naps as $item) {
+            if ($item->window - $item->windowSignalSlept > $janela->janelaIdealFim - 30) {
+                $qtd_sinais_sono_tardio++;
+            }
+        }
+        foreach ($analyze->rituals as $item) {
+            if ($item->window - $item->windowSignalSlept > $janela->janelaIdealFim - 30) {
+                $qtd_sinais_sono_tardio++;
+            }
+        }
+
+        if($qtd_sinais_sono_tardio==0){
+            $sinais_sono_resposta = "Ótimo! Você consegue perceber os sinais de sono do seu bebê muito bem.
+Vamos conferir os próximos pontos.
+";
+        }
+
+        if($qtd_sinais_sono_tardio > 0){
+            if($babyAge<60){
+                $sinal_sono_esperado= "30 a 50 minutos, até que sinta sono.";                
+            }
+            if ($babyAge >= 60 && $babyAge < 120) {
+                $sinal_sono_esperado = "45 a 50 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 120 && $babyAge < 180) {
+                $sinal_sono_esperado = "70 a 90 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 180 && $babyAge < 210) {
+                $sinal_sono_esperado = "90 a 120 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 210 && $babyAge < 365) {
+                $sinal_sono_esperado = "2 a 3 horas, até que sinta sono.";
+            }
+            if ($babyAge >= 365 && $babyAge < 540) {
+                $sinal_sono_esperado = "3 a 3 horas e meia, até que sinta sono.";
+            }
+            if ($babyAge >540) {
+                $sinal_sono_esperado = "5 a 6 horas até que sinta sono.";
+            }
+             $sinais_sono_resposta= "Como você pode ver, nessa pré-análise foi observado que o intervalo entre o despertar do bebê e ele sentir sono novamente foi muito longo para a idade.
+Nessa idade, o esperado é:\n"
+. $sinal_sono_esperado.
+"\nOu seja, provavelmente seu bebê está emitindo sinais de sono que estão passando despercebidos. A sugestão inicial é que observe com um pouco mais de cuidado e veja se ele emitirá algum sinal de sono dentro desse horário esperado.
+
+Para facilitar, vou deixar aqui uma lista de sinais de sono:
+
+Sinais precoces: (bebê começou a sentir sono)
+- Bocejar 
+- Escondendo o rosto no peito de quem o segura no colo 
+- Fazendo movimentos involuntários com braços e pernas 
+- Esfregando os olhos 
+- Puxando as orelhas/cabelos 
+- Arranhando o próprio rosto/Batendo nas pessoas 
+ 
+Intermediários: (bebê já está sentindo sono há alguns minutos)
+- Olhar parado/fixo em algo 
+- Ficando com os movimentos menos coordenados 
+- Perdendo o interesse nos brinquedos 
+ 
+Tardios: (bebê está sentindo sono há muito tempo)
+-Irritabilidade 
+-Virando/Arqueando o corpo para trás 
+-Caindo muito ou esbarrando em coisas ou pessoas ";
+
+
+        }
+
+        if($qtd_rituais_inadequados == 0){
+$rituais_sono_resposta= "Que bom! Todos os rituais tiveram duração inferior a 30 minutos.
+Isso é essencial para um sono reparador.";
+        }
+
+        if($qtd_rituais_inadequados > 0){
+            $rituais_sono_resposta = "Estou vendo que houve alguns rituais com mais de 30 minutos.
+Nesse primeiro passo, devo apenas te lembrar que o ideal de um ritual é que ele dure menos de 30 minutos e que seja sem choro.
+Faça o seu melhor, mas caso tenha dificuldades com o ritual, conversaremos com mais detalhes no Passo 3. O principal, nesse primeiro momento, é mesmo conseguir perceber os sinais de sono do seu bebê.
+";    
+        }
+
+        if( $qtd_sonecas_inadequadas ==0){
+$duracao_sonecas_resposta= "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
+E estou vendo que todas as sonecas tiveram duração superior a 40 minutos.
+Isso é essencial para um sono reparador e para dormir a noite inteira.
+Parabéns!
+";
+        }
+
+        if($qtd_sonecas_inadequadas > 0){
+            $duracao_sonecas_resposta = "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
+E estou vendo que houve algumas sonecas com duração menor que 40 minutos.
+Nesse primeiro passo, devo apenas te lembrar que o ideal de uma soneca é que ela dure mais de 40 minutos e que seja sem choro.
+Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos com mais detalhes no Passo 3. O principal, nesse primeiro momento, é mesmo conseguir perceber os sinais de sono do seu bebê.
+";       
+        }
+
+    return view('site.desafio.passo1', compact('client','analyze','challenge', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));    
+
+    }
+
+    public function passo2()
+    {
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view ('site.desafio.passo2', compact ('client','babyAge'));
+    }
 }

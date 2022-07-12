@@ -333,8 +333,10 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
 
             var opt = $(this).children("option:selected").val();
             if (opt == 'S') {
-                
+                @if ($babyAge < 90)
                 $('#conclusao').val('Esse é um achado mais tardio, em relação ao padrão de diurese, mas que também estará alterado em casos de prejuízos na alimentação do bebê. Como você referiu não identificar facilmente o padrão de evacuações do seu bebê, o ideal é que procure seu pediatra para avaliar o seu bebê e retornaremos a avaliação após');
+                @endif
+                
                 M.textareaAutoResize($('#conclusao'));
 
             }

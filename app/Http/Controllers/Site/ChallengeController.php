@@ -53,16 +53,14 @@ class ChallengeController extends Controller
 
     public function show($id)
     {
-        if (!$challenge = $this->repository->find($id)
-           ) {
+        if (!$challenge = $this->repository->find($id)) {
             return redirect()->back();
         }
-        if( $this->repository->find($id)->client_id != Auth::guard('clients')->user()->id){
+        if ($this->repository->find($id)->client_id != Auth::guard('clients')->user()->id) {
             return redirect()->back();
-
         }
 
-       // dd(Auth::guard('clients')->user()->id);
+        // dd(Auth::guard('clients')->user()->id);
         $challenge = $this->repository->find($id);
 
         $analyzes = $challenge->analyzes()->get();
@@ -76,16 +74,15 @@ class ChallengeController extends Controller
         if ($day < 1 || $day > 7) {
             return redirect()->back();
         }
-        if (!$challenge = $this->repository->find($id)
-           ) {
+        if (!$challenge = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        if(!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+        if (!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
             return redirect()->back();
         }
 
-        
+
 
         $challenge = $this->repository->find($id);
         if (isset($this->repository->find($id)->analyzes()->where('day', $day)->first()->day)) {
@@ -93,16 +90,15 @@ class ChallengeController extends Controller
         }
 
         if ($day > 1) {
-            if($this->repository->find($id)->client->liberado==1){
+            if ($this->repository->find($id)->client->liberado == 1) {
                 if (
                     !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
-                    
+
 
                 ) {
                     return redirect()->back();
-                } 
-            }
-            else
+                }
+            } else
             if (
                 !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
                 || !(date_format(now(), 'Y-m-d') >= date_format($challenge->analyzes()->where('day', $day - 1)->first()->created_at->addDays(1), 'Y-m-d'))
@@ -122,15 +118,13 @@ class ChallengeController extends Controller
     }
     public function analyzeCreateForm($id)
     {
-        if (!$challenge = $this->repository->find($id))
-        {
-        return redirect()->back();
-    }
+        if (!$challenge = $this->repository->find($id)) {
+            return redirect()->back();
+        }
 
-    if(  !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
-        return redirect()->back();
-
-    }
+        if (!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+            return redirect()->back();
+        }
 
 
 
@@ -145,10 +139,7 @@ class ChallengeController extends Controller
             ) {
                 return redirect()->back();
             }
-
-        }
-        
-        else
+        } else
         if (
             !isset($this->repository->find($id)->analyzes()->where('day', '7')->first()->day)
             || !(date_format(now(), 'Y-m-d') >= date_format($challenge->analyzes()->where('day', '7')->first()->created_at->addDays(1), 'Y-m-d'))
@@ -162,23 +153,22 @@ class ChallengeController extends Controller
         return view('site.desafio.form', compact('challenge'));
     }
 
-    public function analyzeEditForm($id){
-        if (!$challenge = $this->repository->find($id)
-           ) {
+    public function analyzeEditForm($id)
+    {
+        if (!$challenge = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        if(!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+        if (!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
             return redirect()->back();
         }
 
         $challenge = $this->repository->find($id);
-        if(!$form=$challenge->form){
+        if (!$form = $challenge->form) {
             return redirect()->back();
         }
-//dd($form);
-return view ('site.desafio.form-edit', compact('challenge','form'));
-
+        //dd($form);
+        return view('site.desafio.form-edit', compact('challenge', 'form'));
     }
 
     public function desafioUpdate($id)
@@ -190,13 +180,11 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         }
         $challenge = $this->repository->find($id);
         $challenge->update([
-            'status' => 'ENVIADO','sended_at'=>now(),
+            'status' => 'ENVIADO', 'sended_at' => now(),
         ]);
-     //   $challenge->notify(new ChallengeTelegramNotification());
+        //   $challenge->notify(new ChallengeTelegramNotification());
 
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
-
-
     }
 
     public $message = [
@@ -402,14 +390,12 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
     public function analyzeStoreForm(Request $request, $id)
     {
 
-        if (!$challenge = $this->repository->find($id))
-            {
+        if (!$challenge = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        if(  !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id){
+        if (!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
             return redirect()->back();
-
         }
         $challenge = $this->repository->find($id);
 
@@ -425,7 +411,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         if ($request->ritual_retira == null) {
             $request->ritual_retira = "N";
         }
-        
+
         if ($request->soneca_acordado_berco == null) {
             $request->soneca_acordado_berco = "N";
         }
@@ -450,7 +436,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         if ($request->soneca_outro == null) {
             $request->soneca_outro = "N";
         }
-        
+
         if ($request->soneca_outro == "S") {
             $request->soneca_outro = $request->soneca_outro_text;
         }
@@ -471,15 +457,15 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             $request->associacao_soneca_mamar = "N";
         }
 
-        if($request->associacao_soneca_cc==null){
-            $request->associacao_soneca_cc="N";
+        if ($request->associacao_soneca_cc == null) {
+            $request->associacao_soneca_cc = "N";
         }
 
-        if($request->associacao_soneca_colo==null){
-            $request->associacao_soneca_colo="N";
+        if ($request->associacao_soneca_colo == null) {
+            $request->associacao_soneca_colo = "N";
         }
 
-        
+
         if ($request->associacao_soneca_outro == null) {
             $request->associacao_soneca_outro = "N";
         }
@@ -506,12 +492,12 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             $request->associacao_noturno_mamar = "N";
         }
 
-        if($request->associacao_noturno_cc==null){
-            $request->associacao_noturno_cc="N";
+        if ($request->associacao_noturno_cc == null) {
+            $request->associacao_noturno_cc = "N";
         }
 
-        if($request->associacao_noturno_colo==null){
-            $request->associacao_noturno_colo="N";
+        if ($request->associacao_noturno_colo == null) {
+            $request->associacao_noturno_colo = "N";
         }
 
         if ($request->associacao_noturno_outro == null) {
@@ -555,7 +541,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         $form = $challenge->form()->create([
 
             'ritualGoodMorning' => $request->ritualBomDia,
-           
+
             'ritualGoodMorningLight' => $request->ritual_luz,
             'ritualGoodMorningNoise' => $request->ritual_ruido,
             'ritualGoodMorningStimulus' => $request->ritual_estimulo,
@@ -563,7 +549,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             'typeEatingRoutine' => $request->rotinaAlimentar,
             'routineDifficulties' => $request->dificuldadeRotinaAlimentar,
             'weightGain' => $request->ganhoPeso,
-            
+
             'energyExpenditure' => $request->gastoEnergia,
             'noticeSigns' => $request->sinaisSono,
             'slowDown' => $request->desacelera,
@@ -572,7 +558,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             'environmentNapsNoises' => $request->soneca_ruidos,
             'environmentNapsTemperature' => $request->soneca_temperatura,
             'whereSleepCrib' => $request->soneca_acordado_berco,
-            'whereSleepLap' => $request->soneca_dorme_colo ,
+            'whereSleepLap' => $request->soneca_dorme_colo,
             'whereSleepLapCrib' => $request->soneca_dorme_colo_berco,
             'whereSleepSharedBed' => $request->soneca_cama_compartilhada,
             'whereSleepCar' => $request->soneca_carrinho,
@@ -585,7 +571,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             'napAssociationSuckFinger' => $request->associacao_soneca_chupar_dedo,
             'napAssociationSuckle' => $request->associacao_soneca_mamar,
             'napAssociationCC' => $request->associacao_soneca_cc,
-            'napAssociationLap' => $request->associacao_soneca_colo,      
+            'napAssociationLap' => $request->associacao_soneca_colo,
             'napAssociationOther' => $request->associacao_soneca_outro,
             'enoughNap' => $request->soneca_suficiente,
             'wakeUpNap' => $request->soneca_acorda,
@@ -599,7 +585,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             'ritualAssociationSuckFinger' => $request->associacao_noturno_chupar_dedo,
             'ritualAssociationSuckle' => $request->associacao_noturno_mamar,
             'ritualAssociationCC' => $request->associacao_noturno_cc,
-            'ritualAssociationLap'=>$request->associacao_noturno_colo,
+            'ritualAssociationLap' => $request->associacao_noturno_colo,
             'ritualAssociationOther' => $request->associacao_noturno_outro,
             'conclusionImmaturity' => $request->conclusao_imaturidade,
             'conclusionHungry' => $request->conclusao_fome,
@@ -614,7 +600,8 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
     }
 
-    public function analyzeUpdateForm(Request $request, $id){
+    public function analyzeUpdateForm(Request $request, $id)
+    {
 
         if (!$challenge = $this->repository->find($id)
             || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
@@ -634,7 +621,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         if ($request->ritual_retira == null) {
             $request->ritual_retira = "N";
         }
-        
+
         if ($request->soneca_acordado_berco == null) {
             $request->soneca_acordado_berco = "N";
         }
@@ -659,7 +646,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
         if ($request->soneca_outro == null) {
             $request->soneca_outro = "N";
         }
-        
+
         if ($request->soneca_outro == "S") {
             $request->soneca_outro = $request->soneca_outro_text;
         }
@@ -680,15 +667,15 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             $request->associacao_soneca_mamar = "N";
         }
 
-        if($request->associacao_soneca_cc==null){
-            $request->associacao_soneca_cc="N";
+        if ($request->associacao_soneca_cc == null) {
+            $request->associacao_soneca_cc = "N";
         }
 
-        if($request->associacao_soneca_colo==null){
-            $request->associacao_soneca_colo="N";
+        if ($request->associacao_soneca_colo == null) {
+            $request->associacao_soneca_colo = "N";
         }
 
-        
+
         if ($request->associacao_soneca_outro == null) {
             $request->associacao_soneca_outro = "N";
         }
@@ -715,12 +702,12 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             $request->associacao_noturno_mamar = "N";
         }
 
-        if($request->associacao_noturno_cc==null){
-            $request->associacao_noturno_cc="N";
+        if ($request->associacao_noturno_cc == null) {
+            $request->associacao_noturno_cc = "N";
         }
 
-        if($request->associacao_noturno_colo==null){
-            $request->associacao_noturno_colo="N";
+        if ($request->associacao_noturno_colo == null) {
+            $request->associacao_noturno_colo = "N";
         }
 
         if ($request->associacao_noturno_outro == null) {
@@ -754,7 +741,7 @@ return view ('site.desafio.form-edit', compact('challenge','form'));
             $request->conclusao_estresse = "N";
         }
 
-$form=$challenge->form();
+        $form = $challenge->form();
 
 
 
@@ -765,7 +752,7 @@ $form=$challenge->form();
         $form->update([
 
             'ritualGoodMorning' => $request->ritualBomDia,
-           
+
             'ritualGoodMorningLight' => $request->ritual_luz,
             'ritualGoodMorningNoise' => $request->ritual_ruido,
             'ritualGoodMorningStimulus' => $request->ritual_estimulo,
@@ -773,7 +760,7 @@ $form=$challenge->form();
             'typeEatingRoutine' => $request->rotinaAlimentar,
             'routineDifficulties' => $request->dificuldadeRotinaAlimentar,
             'weightGain' => $request->ganhoPeso,
-            
+
             'energyExpenditure' => $request->gastoEnergia,
             'noticeSigns' => $request->sinaisSono,
             'slowDown' => $request->desacelera,
@@ -782,7 +769,7 @@ $form=$challenge->form();
             'environmentNapsNoises' => $request->soneca_ruidos,
             'environmentNapsTemperature' => $request->soneca_temperatura,
             'whereSleepCrib' => $request->soneca_acordado_berco,
-            'whereSleepLap' => $request->soneca_dorme_colo ,
+            'whereSleepLap' => $request->soneca_dorme_colo,
             'whereSleepLapCrib' => $request->soneca_dorme_colo_berco,
             'whereSleepSharedBed' => $request->soneca_cama_compartilhada,
             'whereSleepCar' => $request->soneca_carrinho,
@@ -795,7 +782,7 @@ $form=$challenge->form();
             'napAssociationSuckFinger' => $request->associacao_soneca_chupar_dedo,
             'napAssociationSuckle' => $request->associacao_soneca_mamar,
             'napAssociationCC' => $request->associacao_soneca_cc,
-            'napAssociationLap' => $request->associacao_soneca_colo,      
+            'napAssociationLap' => $request->associacao_soneca_colo,
             'napAssociationOther' => $request->associacao_soneca_outro,
             'enoughNap' => $request->soneca_suficiente,
             'wakeUpNap' => $request->soneca_acorda,
@@ -809,7 +796,7 @@ $form=$challenge->form();
             'ritualAssociationSuckFinger' => $request->associacao_noturno_chupar_dedo,
             'ritualAssociationSuckle' => $request->associacao_noturno_mamar,
             'ritualAssociationCC' => $request->associacao_noturno_cc,
-            'ritualAssociationLap'=>$request->associacao_noturno_colo,
+            'ritualAssociationLap' => $request->associacao_noturno_colo,
             'ritualAssociationOther' => $request->associacao_noturno_outro,
             'conclusionImmaturity' => $request->conclusao_imaturidade,
             'conclusionHungry' => $request->conclusao_fome,
@@ -822,7 +809,6 @@ $form=$challenge->form();
 
         ]);
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
-   
     }
 
 
@@ -1411,62 +1397,61 @@ $form=$challenge->form();
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Análise atualizada');
     }
 
-    public function chatStore(Request $request, $id){
-        if (!$challenge = $this->repository->find($id)
-        ) {
-         return redirect()->back();
-     }
-     $challenge=$this->repository->find($id);
-     if($challenge->chat()->first()==null){
-       $chat=$challenge->chat()->create(['status'=>'mae']);
-     }else{
-         $chat=$challenge->chat()->first();
-     }
-    $chat->update(['status'=>'mae']);
-    $chat->messages()->create(['content'=>$request->message, 'type'=>'1']);
+    public function chatStore(Request $request, $id)
+    {
+        if (!$challenge = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+        $challenge = $this->repository->find($id);
+        if ($challenge->chat()->first() == null) {
+            $chat = $challenge->chat()->create(['status' => 'mae']);
+        } else {
+            $chat = $challenge->chat()->first();
+        }
+        $chat->update(['status' => 'mae']);
+        $chat->messages()->create(['content' => $request->message, 'type' => '1']);
 
-  //  $chat->notify(new ChatTelegramNotification());
+        //  $chat->notify(new ChatTelegramNotification());
 
-    return redirect()->route('desafio.show', $challenge->id);
-
-   
+        return redirect()->route('desafio.show', $challenge->id);
     }
 
-    public function clientEdit(){
-     $client=Auth::guard('clients')->user();
-   return view('site.desafio.profile-edit', compact('client'));
+    public function clientEdit()
+    {
+        $client = Auth::guard('clients')->user();
+        return view('site.desafio.profile-edit', compact('client'));
     }
 
     public function messageEdit($id)
     {
-       $message = Message::find($id);
+        $message = Message::find($id);
         return view('site.desafio.edit-message', compact('message'));
     }
 
     public function messageUpdate(Request $request, $id)
     {
         $message = Message::find($id);
-        $message->update(['content'=>$request->content]);
+        $message->update(['content' => $request->content]);
 
-        $challenge=$message->chat->challenge()->first();
-        
+        $challenge = $message->chat->challenge()->first();
 
-        return redirect()->route('desafio.show',$challenge->id);
+
+        return redirect()->route('desafio.show', $challenge->id);
     }
 
-public  $messageClient=[
-         
-    'name.required' => 'O campo Nome da Mãe é de preenchimento obrigatório',
-    'name.max' => 'O campo Nome da Mãe permite no máximo 255 caracteres',
-    'name.min' => 'O campo Nome da Mãe permite no mínimo 3 caracteres',
-    'nameBaby.required' => 'O campo Nome do Bebê é de preenchimento obrigatório',
-    'nameBaby.max' => 'O campo Nome da Mãe permite no máximo 255 caracteres',
-    'nameBaby.min' => 'O campo Nome do Bebê permite no mínimo 3 caracteres',
-    'birthBaby.required' => 'O campo Nascimento do Bebê é de preenchimento obrigatório',
-    'birthBaby.date_format' => 'O campo Nascimento do Bebê deve ser preenchido com uma data válida no formato dd/mm/yyyy',
-    'sexBaby.required' => 'O campo Sexo do Bebê é de preenchimento obrigatório',
-       
-];
+    public  $messageClient = [
+
+        'name.required' => 'O campo Nome da Mãe é de preenchimento obrigatório',
+        'name.max' => 'O campo Nome da Mãe permite no máximo 255 caracteres',
+        'name.min' => 'O campo Nome da Mãe permite no mínimo 3 caracteres',
+        'nameBaby.required' => 'O campo Nome do Bebê é de preenchimento obrigatório',
+        'nameBaby.max' => 'O campo Nome da Mãe permite no máximo 255 caracteres',
+        'nameBaby.min' => 'O campo Nome do Bebê permite no mínimo 3 caracteres',
+        'birthBaby.required' => 'O campo Nascimento do Bebê é de preenchimento obrigatório',
+        'birthBaby.date_format' => 'O campo Nascimento do Bebê deve ser preenchido com uma data válida no formato dd/mm/yyyy',
+        'sexBaby.required' => 'O campo Sexo do Bebê é de preenchimento obrigatório',
+
+    ];
     protected function validatorClient(array $data)
     {
         return Validator::make($data, [
@@ -1474,30 +1459,31 @@ public  $messageClient=[
             'nameBaby' => 'required|string|max:255|min:3',
             'birthBaby' => 'required|date_format:d/m/Y',
             'sexBaby' => 'required|string|max:255',
-           
-        ],$this->messageClient);
-    } 
-    
-    public function clientUpdate(Request $request){
-        $client=Auth::guard('clients')->user();
+
+        ], $this->messageClient);
+    }
+
+    public function clientUpdate(Request $request)
+    {
+        $client = Auth::guard('clients')->user();
         $this->validatorClient($request->all())->validate();
 
-        $client->update(['name'=>$request->name,
-        'nameBaby'=>$request->nameBaby,
-        'birthBaby'=>\Carbon\Carbon::createFromFormat('d/m/Y', $request->birthBaby)->format('Y-m-d'),
-        'sexBaby'=>$request->sexBaby,]);
+        $client->update([
+            'name' => $request->name,
+            'nameBaby' => $request->nameBaby,
+            'birthBaby' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->birthBaby)->format('Y-m-d'),
+            'sexBaby' => $request->sexBaby,
+        ]);
 
-        $challenge=$client->challenges->last();
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Dados atualizados');       
+        $challenge = $client->challenges->last();
+        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Dados atualizados');
+    }
 
-
-       }
-
-       public function doubtCenter(){
+    public function doubtCenter()
+    {
         $modules = Module::all();
-           return view ('site.desafio.doubt-center', compact ('modules'));
-        
-       }
+        return view('site.desafio.doubt-center', compact('modules'));
+    }
 
     public function doubtCenterModule($id)
     {
@@ -1505,7 +1491,7 @@ public  $messageClient=[
         if (!$module = Module::find($id)) {
             return redirect()->back();
         }
-       
+
         return view('site.desafio.doubt-center-show', compact('module'));
     }
 
@@ -1519,11 +1505,13 @@ public  $messageClient=[
         return view('site.desafio.queries', compact('submodule'));
     }
 
-    public function queryShow(){
-        return view ('site.desafio.query');
+    public function queryShow()
+    {
+        return view('site.desafio.query');
     }
 
-    public function query(Request $request){
+    public function query(Request $request)
+    {
         $client = Auth::guard('clients')->user();
 
         $doubt = $client->doubts()->create([
@@ -1540,20 +1528,21 @@ public  $messageClient=[
         $client = Auth::guard('clients')->user();
 
         $doubts = $client->doubts()->get();
-        return view ('site.desafio.my-queries', compact ('doubts'));
+        return view('site.desafio.my-queries', compact('doubts'));
     }
 
 
     public function doubtShow($id)
     {
-       
+
 
         $doubt = Doubt::find($id);
-       
+
         return view('site.desafio.myquery-show', compact('doubt'));
     }
 
-    public function passo1($id, $day){
+    public function passo1($id, $day)
+    {
         $client = Auth::guard('clients')->user();
 
         $challenge = $this->repository->find($id);
@@ -1565,10 +1554,10 @@ public  $messageClient=[
         $babyAge = getIdade($client->birthBaby);
         $qtd_ritual_sonecas_longo = count($analyze->naps->where('windowSignalSlept', '>', 30));
         $qtd_ritual_inadequado = count($analyze->rituals->where('duration', '>', 30));
-        $qtd_rituais_inadequados= $qtd_ritual_sonecas_longo + $qtd_ritual_inadequado;
+        $qtd_rituais_inadequados = $qtd_ritual_sonecas_longo + $qtd_ritual_inadequado;
         $qtd_sonecas_inadequadas = count($analyze->naps->where('duration', '<', 40));
         $qtd_sinais_sono_tardio = 0;
-        $sinais_sono_resposta="";
+        $sinais_sono_resposta = "";
         foreach ($analyze->naps as $item) {
             if ($item->window - $item->windowSignalSlept > $janela->janelaIdealFim - 30) {
                 $qtd_sinais_sono_tardio++;
@@ -1580,15 +1569,15 @@ public  $messageClient=[
             }
         }
 
-        if($qtd_sinais_sono_tardio==0){
+        if ($qtd_sinais_sono_tardio == 0) {
             $sinais_sono_resposta = "Ótimo! Você consegue perceber os sinais de sono do seu bebê muito bem.
 Vamos conferir os próximos pontos.
 ";
         }
 
-        if($qtd_sinais_sono_tardio > 0){
-            if($babyAge<60){
-                $sinal_sono_esperado= "30 a 50 minutos, até que sinta sono.";                
+        if ($qtd_sinais_sono_tardio > 0) {
+            if ($babyAge < 60) {
+                $sinal_sono_esperado = "30 a 50 minutos, até que sinta sono.";
             }
             if ($babyAge >= 60 && $babyAge < 120) {
                 $sinal_sono_esperado = "45 a 50 minutos, até que sinta sono.";
@@ -1605,13 +1594,13 @@ Vamos conferir os próximos pontos.
             if ($babyAge >= 365 && $babyAge < 540) {
                 $sinal_sono_esperado = "3 a 3 horas e meia, até que sinta sono.";
             }
-            if ($babyAge >540) {
+            if ($babyAge > 540) {
                 $sinal_sono_esperado = "5 a 6 horas até que sinta sono.";
             }
-             $sinais_sono_resposta= "Como você pode ver, nessa pré-análise foi observado que o intervalo entre o despertar do bebê e ele sentir sono novamente foi muito longo para a idade.
+            $sinais_sono_resposta = "Como você pode ver, nessa pré-análise foi observado que o intervalo entre o despertar do bebê e ele sentir sono novamente foi muito longo para a idade.
 Nessa idade, o esperado é:\n"
-. $sinal_sono_esperado.
-"\nOu seja, provavelmente seu bebê está emitindo sinais de sono que estão passando despercebidos. A sugestão inicial é que observe com um pouco mais de cuidado e veja se ele emitirá algum sinal de sono dentro desse horário esperado.
+                . $sinal_sono_esperado .
+                "\nOu seja, provavelmente seu bebê está emitindo sinais de sono que estão passando despercebidos. A sugestão inicial é que observe com um pouco mais de cuidado e veja se ele emitirá algum sinal de sono dentro desse horário esperado.
 
 Para facilitar, vou deixar aqui uma lista de sinais de sono:
 
@@ -1632,46 +1621,80 @@ Tardios: (bebê está sentindo sono há muito tempo)
 -Irritabilidade 
 -Virando/Arqueando o corpo para trás 
 -Caindo muito ou esbarrando em coisas ou pessoas ";
-
-
         }
 
-        if($qtd_rituais_inadequados == 0){
-$rituais_sono_resposta= "Que bom! Todos os rituais tiveram duração inferior a 30 minutos.
+        if ($qtd_rituais_inadequados == 0) {
+            $rituais_sono_resposta = "Que bom! Todos os rituais tiveram duração inferior a 30 minutos.
 Isso é essencial para um sono reparador.";
         }
 
-        if($qtd_rituais_inadequados > 0){
+        if ($qtd_rituais_inadequados > 0) {
             $rituais_sono_resposta = "Estou vendo que houve alguns rituais com mais de 30 minutos.
 Nesse primeiro passo, devo apenas te lembrar que o ideal de um ritual é que ele dure menos de 30 minutos e que seja sem choro.
 Faça o seu melhor, mas caso tenha dificuldades com o ritual, conversaremos com mais detalhes no Passo 3. O principal, nesse primeiro momento, é mesmo conseguir perceber os sinais de sono do seu bebê.
-";    
+";
         }
 
-        if( $qtd_sonecas_inadequadas ==0){
-$duracao_sonecas_resposta= "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
+        if ($qtd_sonecas_inadequadas == 0) {
+            $duracao_sonecas_resposta = "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
 E estou vendo que todas as sonecas tiveram duração superior a 40 minutos.
 Isso é essencial para um sono reparador e para dormir a noite inteira.
 Parabéns!
 ";
         }
 
-        if($qtd_sonecas_inadequadas > 0){
+        if ($qtd_sonecas_inadequadas > 0) {
             $duracao_sonecas_resposta = "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
 E estou vendo que houve algumas sonecas com duração menor que 40 minutos.
 Nesse primeiro passo, devo apenas te lembrar que o ideal de uma soneca é que ela dure mais de 40 minutos e que seja sem choro.
 Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos com mais detalhes no Passo 3. O principal, nesse primeiro momento, é mesmo conseguir perceber os sinais de sono do seu bebê.
-";       
+";
         }
 
-    return view('site.desafio.passo1', compact('client','analyze','challenge', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));    
-
+        return view('site.desafio.passo1', compact('client', 'analyze', 'challenge', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));
     }
 
     public function passo2()
     {
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view ('site.desafio.passo2', compact ('client','babyAge'));
+        return view('site.desafio.passo2', compact('client', 'babyAge'));
+    }
+
+    public function passo3_despertar($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Challenge::find($id)->client;
+        $qtd_dias_acordou_cedo = count($challenge->analyzes->where('timeWokeUp', '<', '06:00:00'));
+        $qtd_dias_acordou_tarde = count($challenge->analyzes->where('timeWokeUp', '>', '08:00:00'));
+        $orientação_acordou_cedo = "";
+        $orientação_acordou_tarde = "";
+        $orientação_acordou_bem ="";
+        if ($qtd_dias_acordou_cedo > 0) {
+            $orientação_acordou_cedo = "Despertar antes de 06:00.
+	Se isso for incômodo para você, lembre que a principal causa para esse despertar tão cedo é a junção de baixos níveis de melatonina (normais para o horário) com um ambiente desajustado, ou seja, que há luz e/ou ruídos.
+	Por isso a orientação inicial é para ajustar ao máximo o seu ambiente do sono.
+	Quanto mais escuro e silencioso ele estiver, melhor.
+	E caso não consiga que ele fique tão silencioso, o uso do ruído branco te ajudará!";
+        }
+        if ($qtd_dias_acordou_tarde > 0) {
+            $orientação_acordou_tarde = "Despertar após às 08:00
+	O ideal e o mais fisiológico para o organismo do ser humano, é que ele acorde até 08:00, tanto porque esse é o horário que o organismo já está liberando cortisol, que é um dos hormônios responsáveis pelo despertar, quanto porque o bebê que acorda tarde costuma dormir cada vez mais tarde.";
+        }
+
+        if (($qtd_dias_acordou_tarde == 0) && ($qtd_dias_acordou_cedo ==0)){
+            $orientação_acordou_bem= "Todos os despertares entre 06:00 e 08:00
+	Vi que os horários dos despertares do seu bebê estão adequados, parabéns! Esses são os horários mais fisiológicos para o seu bebê.
+	Gostaria apenas de lembrar que se você conseguir manter o intervalo entre o despertar mais cedo e o mais tarde em 1 hora, você certamente conseguirá muito mais previsibilidade para o seu dia e poderá se organizar melhor. Ou seja, esse ajuste mais refinado é muito mais para você do que para o seu bebê.
+";
+        }
+
+        return view('site.desafio.passo3_despertar', compact('client', 'challenge', 'orientação_acordou_cedo', 'orientação_acordou_tarde', 'orientação_acordou_bem'));
+    }
+
+    public function passo3_rotina_sonecas($id){
+        $challenge = Challenge::find($id);
+        $client = Challenge::find($id)->client;
+        return view('site.desafio.passo3_rotina_sonecas');
     }
 }

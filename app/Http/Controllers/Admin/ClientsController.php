@@ -145,4 +145,13 @@ class ClientsController extends Controller
         ]);
     
     }
+
+    public function desativeUser(Request $request){
+        $client = $this->repository->where('email',$request->email);
+
+        //dd($client);
+        
+        $client->update(['active'=>0]);
+
+    }
 }

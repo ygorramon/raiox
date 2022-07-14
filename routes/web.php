@@ -141,4 +141,5 @@ Route::get('/admin', function () {
 });
 
 Route::post('/novo_usuario', 'Admin\ClientsController@apiUser');
+Route::post('/desativa_usuario', 'Admin\ClientsController@desativeUser');
 Route::post('/novo_usuario_terapeuta', 'Admin\ClientsController@apiUserTerapeuta');

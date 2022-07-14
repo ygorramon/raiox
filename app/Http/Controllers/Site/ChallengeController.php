@@ -66,7 +66,7 @@ class ChallengeController extends Controller
         $analyzes = $challenge->analyzes()->get();
 
 
-        return view('site.desafio.show2', compact('analyzes', 'challenge'));
+        return view('site.desafio.show', compact('analyzes', 'challenge'));
     }
 
     public function analyzeCreate($id, $day)

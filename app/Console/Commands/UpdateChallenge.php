@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Challenge;
+use App\Models\Client;
 use App\User;
 use Illuminate\Console\Command;
 
@@ -42,7 +43,10 @@ class UpdateChallenge extends Command
         $headers = ['Desafio', 'Enviado'];
 
        Challenge::where('answered_at','<',now()->subDays(30))->update(['status' => 'FINALIZADO']);
+       Client::where('created_at', '<', now()->subDays(6))->update(['liberado' => '1']);
+       
+
        $this->info('Atualizado');
-  
+
     }
 }

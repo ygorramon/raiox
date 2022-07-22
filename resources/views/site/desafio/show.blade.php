@@ -784,7 +784,18 @@
 </div>
 </div>
 
-
+ <div id="card-widgets" class="card">
+          <div class="row">
+            <div class="col s12">
+            <div class="card-alert">
+            <div class="card-content">
+              
+              <a href="{{route('query.show')}}"  class="btn"> Faça sua pergunta Aqui! </a>
+            </div>
+          </div>
+            </div>
+          </div>
+ </div>
 
 
 

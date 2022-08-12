@@ -37,7 +37,7 @@
                                 <td>{{$key+1}}</td><td>{{$challenge->status}}
                                       @if($challenge->status=='RESPONDIDO') <br> ( Chat até <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(30)->format('d/m/y')}} </b> )
                             <br><br>
-                             ( Restam <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(30)->diffInDays(now())}}</b> Dias de Chat ) 
+                             ( Restam <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat ) 
                              @endif
                                 </td>
                                 <td><a href="{{route('desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>

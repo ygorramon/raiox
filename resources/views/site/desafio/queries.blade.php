@@ -41,12 +41,14 @@
                                             @empty
                                             @endforelse
                                         </ul>
+                                        @if(Auth::guard('clients')->user()->liberado!=1)
 <div class="card-alert card purple lighten-5">
             <div class="card-content purple-text">
                 Outra dúvida sobre {{$submodule->description}}?
               <a href="{{route('query.show')}}"  class="btn"> Faça sua pergunta Aqui! </a>
             </div>
           </div>
+          @endif
                                     </div>
 
 

@@ -783,7 +783,7 @@
 
 </div>
 </div>
-
+@if($challenge->client->liberado!=1)
  <div id="card-widgets" class="card">
           <div class="row">
             <div class="col s12">
@@ -796,7 +796,7 @@
             </div>
           </div>
  </div>
-
+@endif
 
 
 @endsection

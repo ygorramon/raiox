@@ -222,8 +222,8 @@
       
       <p> O CHAT abaixo ficará disponível por 30 Dias após a resposta do seu desafio!</p>
       <p> Você só pode colocar uma mensagem até o dr Odilo responder.</p>
-      <p> Esse CHAT finalizará no dia {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(30)->format('d/m/y')}} </p>
-      <p> Restam {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(30)->diffInDays(now())}}</b> Dias de Chat </p>
+      <p> Esse CHAT finalizará no dia {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->format('d/m/y')}} </p>
+      <p> Restam {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat </p>
       <p> Após esse prazo, você poderá realizar um novo desafio </p>
       </div>
     </div>

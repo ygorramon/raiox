@@ -30,6 +30,11 @@ class Challenge extends Model
         return $this->hasOne('App\Models\Form');
   
     }
+    public function formulario()
+    {
+        return $this->hasOne('App\Models\Formulario');
+  
+    }
 
     public function client()
     {

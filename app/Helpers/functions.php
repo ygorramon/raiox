@@ -112,3 +112,46 @@ function diffDate($date_start, $date_end){
 return  \Carbon\Carbon::parse($date_end)
 ->diffInHours(\Carbon\Carbon::parse($date_start));
 }
+
+function mediaWindowEsperada($babyAge){
+  if($babyAge <=60 ){
+    $data['janelaIdealInicio'] = 40;
+    $data['janelaIdealFim'] = 80;
+  }
+}
+
+function getSinalSono($bebe_idade)
+{
+  if ($bebe_idade < 59) {
+    $data['janelaIdealInicio'] = 30;
+    $data['janelaIdealFim'] = 50;
+  }
+
+  if ($bebe_idade >= 59 && $bebe_idade < 120) {
+    $data['janelaIdealInicio'] = 45;
+    $data['janelaIdealFim'] = 60;
+  }
+
+  if ($bebe_idade >= 120 && $bebe_idade < 180) {
+    $data['janelaIdealInicio'] = 70;
+    $data['janelaIdealFim'] = 90;
+  }
+  if ($bebe_idade >= 180 && $bebe_idade < 270) {
+    $data['janelaIdealInicio'] = 90;
+    $data['janelaIdealFim'] = 120;
+  }
+  if ($bebe_idade >= 270 && $bebe_idade < 360) {
+    $data['janelaIdealInicio'] = 120;
+    $data['janelaIdealFim'] = 180;
+  }
+  if ($bebe_idade >= 360 && $bebe_idade < 540) {
+    $data['janelaIdealInicio'] = 120;
+    $data['janelaIdealFim'] = 210;
+  }
+  if ($bebe_idade >= 540) {
+    $data['janelaIdealInicio'] = 120;
+    $data['janelaIdealFim'] = 360;
+  }
+
+  return (object) $data;
+}

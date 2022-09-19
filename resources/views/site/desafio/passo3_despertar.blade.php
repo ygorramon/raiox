@@ -97,6 +97,9 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
             </div>
         </div>
         <div class="col s12">
+            <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
+                @csrf
+              {{ method_field('PUT') }}
             <div id="input-fields" class="card card-tabs">
                 <div class="card-content">
                     <div class="card-title">
@@ -171,7 +174,7 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
                                     
 
 
-                                        <textarea class="materialize-textarea"></textarea>
+                                        <textarea class="materialize-textarea" name="ritual_bom_dia_outros"></textarea>
                                     
                                     
 
@@ -180,13 +183,14 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
                         </div>
                     </div>
         </div>
+        
         <div class="col s12">
              <div class="card">
                  <div class="card-content row">
                     <div class="col s12 m6 l6">
                         <label>Ajustes Horário de Despertar:</label>
                       
-                        <textarea class="materialize-textarea" >{{$orientação_acordou_cedo}}
+                        <textarea class="materialize-textarea" name="conclusao_despertar">{{$orientação_acordou_cedo}}
 {{$orientação_acordou_tarde}}
 {{$orientação_acordou_bem}}</textarea>
                     </div>
@@ -194,10 +198,18 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
                 <div class="card-content row">
                     <div class="col s12 m6 l6">
                         <label>Ajustes Ritual do Bom dia:</label>
-                        <textarea class="materialize-textarea" id="conclusao_rbd"></textarea>
+                        <textarea class="materialize-textarea" id="conclusao_rbd" name="conclusao_rbd"></textarea>
                     </div>
+                     <div class="col s12">
+            <div class="card">
+                        <div class="card-content">
+        <button type="submit" class="btn">Enviar</button>
+                        </div>
+            </div>
+         </div>
                 </div>
-            
+                
+            </form>
         </div>
     @endsection
     @section('js')

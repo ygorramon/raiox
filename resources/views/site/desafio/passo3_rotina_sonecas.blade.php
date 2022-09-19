@@ -97,109 +97,146 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
             </div>
         </div>
         <div class="col s12">
+             <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
+                @csrf
+              {{ method_field('PUT') }}
             <div id="input-fields" class="card card-tabs">
                 <div class="card-content">
                     <div class="card-title">
-                        Despertar
+                       Janelas de Sono
                         <div class="row">
 
-                            @foreach ($challenge->analyzes as $analyze)
+                          
                                 <div class="col s12 m6">
                                     <div class="card">
                                         <div class="card-content">
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        Dia: {{ $analyze->day }} -
-                                                        {{ \Carbon\Carbon::parse($analyze->date)->format('d/m/Y') }}
+                                                        Média de Janela de Sono Adequada
+                                                    </td>
+                                                    <td>
+                                                        {{getSinalSono(getIdade($client->birthBaby))->janelaIdealFim}} minutos
+                                                    </td>
+                                                </tr>
+                                                    <tr>
+                                                    <td>
+                                                        Média de Janela de Sono Adequado do seu Bebê
+                                                    </td>
+                                                    <td>
+                                                        {{$media_janelas}} Minutos
                                                     </td>
                                                 <tr>
-                                                    <td>
-
-                                                        Horário que acordou: </td>
-                                                    <td>
-                                                        @if ($analyze->timeWokeUp >= '06:00:00' && $analyze->timeWokeUp <= '08:00:00')
-                                                            <span class=" badge green">{{ $analyze->timeWokeUp }}</span>
-                                                        @else
-                                                            <span class=" badge red">{{ $analyze->timeWokeUp }}</span>
-                                                        @endif
-                                                    </td>
+                                                   
+                                                   
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12">
-            <div class="card">
-                <div class="card-content">
-                    Ritual do Bom Dia:
-                    <div class="row ">
-                        <div class="col s12 ">
-                            <h4 class="card-title ">
-                                Você faz o ritual do bom dia?
-                            </h4>
-                            <select class="browser-default" name="rbd" id="rbd">
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="S">SIM</option>
-                                <option value="N">NÃO</option>
-                                <option value="N">NÃO SEI</option>
-                            </select>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12">
-            <div class="card">
-                        <div class="card-content">
-                            Outros:
-                            <div class="row ">
-                                <div class="col s12 ">
-                                    <h4 class="card-title ">
-                                       Você deseja comentar sobre o Despertar do seu bebê?
-                                    </h4>
-                                    
-
-
-                                        <textarea class="materialize-textarea"></textarea>
-                                    
-                                    
-
+                                <div class="col s12 m6">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                       Quantidade de Sonecas abaixo de 40 minutos:
+                                                    </td>
+                                                    <td>
+                                                        {{$qtd_sonecas_inadequadas}} 
+                                                    </td>
+                                                </tr>
+                                                   
+                                                   
+                                                   
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                           
+
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col s12">
+             <div class="card">
+                 <div class="card-content row">
+                    <div class="col s12 m12 l12">
+                        <label>Ajustes Rotina de Sonecas:</label>
+                      @if(count($janelas)>0)
+                      
+                        <textarea id="conclusao_rotina_sonecas" class="materialize-textarea" name="ajuste_rotina_sonecas" >Para que a sua compreensão fique mais clara, entenda que janela de sono é o equivalente à soma entre o intervalo que o bebê sentiu sono e o intervalo do ritual da soneca, ok?
+
+Com isso, vi que o seu bebê possui pelo menos uma janela de sono acima do esperado para a idade dele e para as necessidades de sono registradas.
+Primeiro precisamos observar que a média de tempo que o seu bebê levou para sentir sono foi de  {{$media_janelas}} minutos. E se não estiver claro, essa média foi de acordo com as suas anotações.
+Além disso, é preciso entender que após o sentir sono, o bebê deve dormir em até 30 minutos, nor-malmente, já que se passar mais tempo acordado, as chances dele estar cansado demais para dormir bem, são muito grandes.
+Por isso, podemos concluir que a MÉDIA de janela de sono do seu bebê, é de {{$media_janelas + 30}} minutos.
+Com isso, sugiro que, CASO NÃO PERCEBA sinais de sono antes, comece o desacelerar em até {{$media_janelas}} minutos, para que ele durma em até 30 minutos e permaneça dentro da janela de sono espera-da.
+</textarea>
+                        @endif
+                      @if(count($janelas)==0)
+                      
+                        <textarea id="conclusao_rotina_sonecas" class="materialize-textarea" name="ajuste_rotina_sonecas" >Para que a sua compreensão fique mais clara, entenda que janela de sono é o equivalente à soma entre o intervalo que o bebê sentiu sono e o intervalo do ritual da soneca, ok?
+Para que a sua compreensão fique mais clara, entenda que janela de sono é o equivalente à soma entre o intervalo que o bebê sentiu sono e o intervalo do ritual da soneca, ok?
+
+Com isso, vi que o seu bebê possui pelo menos uma janela de sono acima do esperado para a idade, que é de até JANELA DE SONO MÁXIMA, logo, precisaremos avaliar com calma cada um dos 5 pilares das sonecas.
+
+Mas sugiro, nesse primeiro momento, que busque janelas de sono de ATÉ JANELA DE SONO MÁ-XIMA, mas caso perceba sinais de sono antes disso, comece o desacelerar e o ritual.
+Saberemos com mais precisão quando conseguir observar bem os sinais de sono do bebê
+
+JANELA DE SONO MÁXIMA:
+{{getSinalSono(getIdade($client->birthBaby))->janelaIdealFim}} minutos
+
+
+
+</textarea>
+                        @endif
+                    </div>
+                </div>
+                
+             </div>
         </div>
         <div class="col s12">
              <div class="card">
                  <div class="card-content row">
-                    <div class="col s12 m6 l6">
-                        <label>Ajustes Horário de Despertar:</label>
+                    <div class="col s12 m12 l12">
+                        <label>Duração das Sonecas:</label>
+                      @if($qtd_sonecas_inadequadas>0)
                       
-                        <textarea class="materialize-textarea" >{{$orientação_acordou_cedo}}
-{{$orientação_acordou_tarde}}
-{{$orientação_acordou_bem}}</textarea>
+                        <textarea id="conclusao_rotina_sonecas" class="materialize-textarea" name="ajuste_duracao_sonecas" >Vi que pelo menos uma soneca do seu bebê apresenta duração inferior a 40 minutos, o que indica que essa soneca não foi suficientemente reparadora.
+	A duração mínima de um ciclo de sono do bebê é de 40 minutos, logo, o esperado é a soneca tenha no mínimo essa duração e que ele acorde ativo e alegre. Enquanto se tiver menos de 40 minutos, ou se o bebê acordar com sono ou cansado, isso nos indicará que ela precisa ser prolongada e que precisamos avaliar cada um dos 5 pilares das sonecas.
+	Enquanto isso, para prolongar uma soneca, o ideal é que você consiga se antecipar ao desper-tar e já ninar ou amamentar o bebê, fazendo com que ele permaneça dormindo, porém isso não é tão simples de acontecer e nem todas conseguem se antecipar. Nesse caso, faça o bebê dormir novamente o mais rápido que puder, não importa como (ninando, amamentando etc).
+	E caso não consiga que o bebê volte a dormir, pelo menos permaneça no ambiente do sono o suficiente para completar os 40 minutos da soneca. Essa soneca não será tão reparadora, mas seria pior se saísse do quarto.
+
+</textarea>
+                        @endif
+                      @if($qtd_sonecas_inadequadas==0)
+                      
+                        <textarea id="conclusao_rotina_sonecas" class="materialize-textarea" name="ajuste_duracao_sonecas" >Vi que todas as sonecas do seu bebê estão com duração próxima ou maior que 40 minutos, o que é ótimo pois garante que ele está tendo um sono reparador.
+</textarea>
+                        @endif
                     </div>
                 </div>
-                <div class="card-content row">
-                    <div class="col s12 m6 l6">
-                        <label>Ajustes Ritual do Bom dia:</label>
-                        <textarea class="materialize-textarea" id="conclusao_rbd"></textarea>
-                    </div>
+                
+             </div>
+        </div>
+        <div class="col s12">
+            <div class="card">
+                        <div class="card-content">
+        <button type="submit" class="btn">Enviar</button>
+                        </div>
+            </div>
+         </div>
                 </div>
-            
+                
+            </form>
         </div>
     @endsection
+    
     @section('js')
 
         <script>
@@ -228,7 +265,7 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
                     }
 
                 });
-
+ M.textareaAutoResize($('#conclusao_rotina_sonecas'));
             });
         </script>
 

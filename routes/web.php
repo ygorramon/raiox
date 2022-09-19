@@ -102,8 +102,12 @@ Route::middleware('auth.client:clients')
 
         Route::get('/desafio/{id}/preanalise/{day}','Site\ChallengeController@passo1')->name('analyze.passo1');
         Route::get('/desafio/{id}/passo2', 'Site\ChallengeController@passo2')->name('analyze.passo2');
+        Route::post('/desafio/{id}/passo2', 'Site\ChallengeController@formulario_create')->name('analyze.formulario.create');
+        Route::put('/desafio/{id}/update', 'Site\ChallengeController@formulario_update')->name('analyze.formulario.update');
+        Route::get('/desafio/{id}/passo4', 'Site\ChallengeController@passo4')->name('analyze.passo4');
         Route::get('/desafio/{id}/passo3_despertar', 'Site\ChallengeController@passo3_despertar')->name('analyze.passo3_despertar');
         Route::get('/desafio/{id}/passo3_rotina_sonecas', 'Site\ChallengeController@passo3_rotina_sonecas')->name('analyze.passo3_rotina_sonecas');
+        Route::get('/desafio/{id}/passo3_pilares', 'Site\ChallengeController@passo3_pilares')->name('analyze.passo3_pilares');
         Route::get('/desafio/{id}/form', 'Site\ChallengeController@analyzeCreateForm')->name('analyze.form');
         Route::post('/desafio/{id}/form', 'Site\ChallengeController@analyzeStoreForm')->name('analyze.form.store');
         Route::get('/desafio/{id}/form/edit', 'Site\ChallengeController@analyzeEditForm')->name('analyze.form.edit');

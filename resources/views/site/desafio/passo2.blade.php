@@ -69,6 +69,8 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
         </div>
     </div>
     <div class="col s12">
+        <form action="{{route('analyze.formulario.create', $challenge->id)}}" method="post">
+           @csrf
         <div id="input-fields" class="card card-tabs">
             <div class="card-content">
                 <div class="card-title">
@@ -84,7 +86,7 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
                 @if ($babyAge < 90) <div class="card">
                     <div class="card-content">
                         <label>Exterogestação:</label>
-                        <textarea class="materialize-textarea">Seu bebê ainda está na exterogestação. Lembre que ele ainda possui uma imaturidade intensa e muita necessidade de contato e sucção, o que pode causar alguns despertares, mas a tendência é melhorar progressivamente.</textarea>
+                        <textarea class="materialize-textarea" name="ajuste_exterogestacao">Seu bebê ainda está na exterogestação. Lembre que ele ainda possui uma imaturidade intensa e muita necessidade de contato e sucção, o que pode causar alguns despertares, mas a tendência é melhorar progressivamente.</textarea>
                     </div>
             </div>
             @endif
@@ -96,7 +98,7 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
                             <h4 class="card-title ">
                                 Você foi ao pediatra nos últimos 30 dias?
                             </h4>
-                            <select class="browser-default" name="fome_pediatra" id="fome_pediatra">
+                            <select class="browser-default" name="fome_pediatra" id="fome_pediatra" >
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="S">SIM</option>
                                 <option value="N">NÃO</option>
@@ -123,7 +125,7 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
                             <h4 class="card-title ">
                                 O GANHO de peso do seu bebê nos últimos 30 dais está adequado?
                             </h4>
-                            <select class="browser-default" name="fome_peso_atual" id="fome_ganho_peso">
+                            <select class="browser-default" name="fome_ganho_peso" id="fome_ganho_peso" >
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="S">SIM</option>
                                 <option value="N">NÃO</option>
@@ -136,11 +138,11 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
 
                         </div>
 
-                        <div class="col s12 m6 l6" id="fome_pediatra_fraldas">
+                        <div class="col s12 m6 l6" id="fome_pediatra_fraldas" >
                             <h4 class="card-title ">
                                 Você troca de mais de 4 fraldas cheias de urina por dia?
                             </h4>
-                            <select class="browser-default" name="fome_peso_atual" id="fome_fraldas">
+                            <select class="browser-default" name="fome_fraldas" id="fome_fraldas">
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="S">SIM</option>
                                 <option value="N">NÃO</option>
@@ -158,7 +160,7 @@ Como você referiu diminuição na diurese, o ideal é que procure seu pediatra 
                             <h4 class="card-title ">
                                 Você consegue identificar um padrão nas evacuações do seu bebê?
                             </h4>
-                            <select class="browser-default" name="fome_peso_atual" id="fome_evacuacao">
+                            <select class="browser-default" name="fome_evacuacao" id="fome_evacuacao"
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="S">SIM</option>
                                 <option value="N">NÃO</option>
@@ -194,7 +196,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
                         <h4 class="card-title ">
                             O peso atual do seu bebê está adequado?
                         </h4>
-                        <select class="browser-default" name="fome_peso_atual" id="fome_peso_atual_medio">
+                        <select class="browser-default" name="fome_peso_atual" id="fome_peso_atual_medio" >
                             <option value="" disabled selected>Selecione</option>
                             <option value="S">SIM</option>
                             <option value="N">NÃO</option>
@@ -205,7 +207,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
                         <h4 class="card-title ">
                             Você troca de mais de 4 fraldas cheias de urina por dia?
                         </h4>
-                        <select class="browser-default" name="fome_peso_atual" id="fome_fraldas_medio">
+                        <select class="browser-default" name="fome_fraldas" id="fome_fraldas_medio" >
                             <option value="" disabled selected>Selecione</option>
                             <option value="S">SIM</option>
                             <option value="N">NÃO</option>
@@ -216,7 +218,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
                         <h4 class="card-title ">
                             Você consegue identificar um padrão nas evacuações do seu bebê?
                         </h4>
-                        <select class="browser-default" name="fome_peso_atual" id="fome_evacuacao_medio">
+                        <select class="browser-default" name="fome_evacuacoes" id="fome_evacuacao_medio" >
                             <option value="" disabled selected>Selecione</option>
                             <option value="S">SIM</option>
                             <option value="N">NÃO</option>
@@ -231,11 +233,11 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
         <div class="card-content">
             Fome:
             <div class="row ">
-                <div class="col s12 m6 l6" id="fome_pediatra_peso_maior">
+                <div class="col s12 m6 l6" id="fome_pediatra_peso_maior" >
                     <h4 class="card-title ">
                         O peso atual do seu bebê está adequado?
                     </h4>
-                    <select class="browser-default" name="fome_peso_atual" id="fome_peso_atual_maior">
+                    <select class="browser-default" name="fome_peso_atual" id="fome_peso_atual_maior" >
                         <option value="" disabled selected>Selecione</option>
                         <option value="S">SIM</option>
                         <option value="N">NÃO</option>
@@ -257,7 +259,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
                         desconforto? Ex: gases, cólicas, disquesia, refluxo, nascimento de dentes,
                         resfriado, gripe..
                     </h4>
-                    <select class="browser-default" name="dor" id="dor">
+                    <select class="browser-default" name="dor" id="dor" >
                         <option value="" disabled selected>Selecione</option>
                         <option value="S">SIM</option>
                         <option value="N">NÃO</option>
@@ -389,7 +391,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
         </div>
     </div>
 </div>
-
+<button type="submit" class="btn"> Enviar</button>
 
 </div>
 
@@ -398,38 +400,39 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
     <div class="card-content row">
         <div class="col s12 m6 l6">
             <label>Ajustes Fome:</label>
-            <textarea class="materialize-textarea" id="conclusao_fome"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_fome" name="conclusao_fome"></textarea>
         </div>
     </div>
     <div class="card-content row">
         <div class="col s12 m6 l6">
             <label>Ajustes Dor:</label>
-            <textarea class="materialize-textarea" id="conclusao_dor"></textarea>
-            <textarea class="materialize-textarea" id="conclusao_dor_colica"></textarea>
-            <textarea class="materialize-textarea" id="conclusao_dor_refluxo"></textarea>
-            <textarea class="materialize-textarea" id="conclusao_dor_dente"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_dor"  name="conclusao_dor"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_dor_colica"  name="conclusao_dor_colica"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_dor_refluxo" name="conclusao_dor_refluxo"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_dor_dente" name="conclusao_dor_dente"></textarea>
         </div>
     </div>
     <div class="card-content row">
         <div class="col s12 m6 l6">
             <label>Ajustes Salto:</label>
-            <textarea class="materialize-textarea" id="conclusao_salto"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_salto" name="conclusao_salto"></textarea>
         </div>
     </div>
     @if ($babyAge > 180 && $babyAge < 540) <div class="card-content row">
         <div class="col s12 m6 l6">
             <label>Ajustes Angustia da Separação:</label>
-            <textarea class="materialize-textarea" id="conclusao_angustia"></textarea>
+            <textarea class="materialize-textarea" id="conclusao_angustia" name="conclusao_angustia"></textarea>
         </div>
 </div>
 @endif
 <div class="card-content row">
     <div class="col s12 m6 l6">
         <label>Ajustes Telas:</label>
-        <textarea class="materialize-textarea" id="conclusao_telas"></textarea>
+        <textarea class="materialize-textarea" id="conclusao_telas" name="conclusao_telas"></textarea>
     </div>
 </div>
 </div>
+</form>
 </div>
 </div>
 

@@ -480,6 +480,10 @@
   @if(!isset($challenge->form()->first()->id))
 
   <td><a href="{{route('analyze.passo2',$challenge->id)}}" class="btn waves-effect waves-light red "> Passo 2 </a></td>
+  <td><a href="{{route('analyze.passo3_despertar',$challenge->id)}}" class="btn waves-effect waves-light red "> Passo 3 - DESPERTAR </a></td>
+  <td><a href="{{route('analyze.passo3_rotina_sonecas',$challenge->id)}}" class="btn waves-effect waves-light red "> Passo 3 - ROTINA DE SONECAS </a></td>
+  <td><a href="{{route('analyze.passo3_pilares',$challenge->id)}}" class="btn waves-effect waves-light red "> Passo 3 - PILARES </a></td>
+  <td><a href="{{route('analyze.passo4',$challenge->id)}}" class="btn waves-effect waves-light red "> Passo 4 </a></td>
 
   @else
   <td><a href="{{route('analyze.passo2',$challenge->id)}}" class="btn waves-effect waves-light red "> Formulário Final </a> </div>

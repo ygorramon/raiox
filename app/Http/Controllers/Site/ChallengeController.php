@@ -66,7 +66,7 @@ class ChallengeController extends Controller
         $analyzes = $challenge->analyzes()->get();
 
 
-        return view('site.desafio.show', compact('analyzes', 'challenge'));
+        return view('site.desafio.show2', compact('analyzes', 'challenge'));
     }
 
     public function analyzeCreate($id, $day)
@@ -1654,11 +1654,12 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         return view('site.desafio.passo1', compact('client', 'analyze', 'challenge', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));
     }
 
-    public function passo2()
+    public function passo2($id)
     {
+        $challenge=Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo2', compact('client', 'babyAge'));
+        return view('site.desafio.passo2', compact('client', 'babyAge','challenge'));
     }
 
     public function passo3_despertar($id)
@@ -1669,7 +1670,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $qtd_dias_acordou_tarde = count($challenge->analyzes->where('timeWokeUp', '>', '08:00:00'));
         $orientação_acordou_cedo = "";
         $orientação_acordou_tarde = "";
-        $orientação_acordou_bem ="";
+        $orientação_acordou_bem = "";
         if ($qtd_dias_acordou_cedo > 0) {
             $orientação_acordou_cedo = "Despertar antes de 06:00.
 	Se isso for incômodo para você, lembre que a principal causa para esse despertar tão cedo é a junção de baixos níveis de melatonina (normais para o horário) com um ambiente desajustado, ou seja, que há luz e/ou ruídos.
@@ -1682,8 +1683,8 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
 	O ideal e o mais fisiológico para o organismo do ser humano, é que ele acorde até 08:00, tanto porque esse é o horário que o organismo já está liberando cortisol, que é um dos hormônios responsáveis pelo despertar, quanto porque o bebê que acorda tarde costuma dormir cada vez mais tarde.";
         }
 
-        if (($qtd_dias_acordou_tarde == 0) && ($qtd_dias_acordou_cedo ==0)){
-            $orientação_acordou_bem= "Todos os despertares entre 06:00 e 08:00
+        if (($qtd_dias_acordou_tarde == 0) && ($qtd_dias_acordou_cedo == 0)) {
+            $orientação_acordou_bem = "Todos os despertares entre 06:00 e 08:00
 	Vi que os horários dos despertares do seu bebê estão adequados, parabéns! Esses são os horários mais fisiológicos para o seu bebê.
 	Gostaria apenas de lembrar que se você conseguir manter o intervalo entre o despertar mais cedo e o mais tarde em 1 hora, você certamente conseguirá muito mais previsibilidade para o seu dia e poderá se organizar melhor. Ou seja, esse ajuste mais refinado é muito mais para você do que para o seu bebê.
 ";
@@ -1692,9 +1693,139 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         return view('site.desafio.passo3_despertar', compact('client', 'challenge', 'orientação_acordou_cedo', 'orientação_acordou_tarde', 'orientação_acordou_bem'));
     }
 
-    public function passo3_rotina_sonecas($id){
+    public function passo3_rotina_sonecas($id)
+    {
         $challenge = Challenge::find($id);
         $client = Challenge::find($id)->client;
-        return view('site.desafio.passo3_rotina_sonecas');
+        $qtd_sonecas_inadequadas = count($challenge->naps->where('duration', '<', 40));
+
+        $janelas = [];
+
+        foreach ($challenge->naps as $nap) {
+            if (($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+                array_push($janelas, $nap->window - $nap->windowSignalSlept);
+            }
+        }
+
+        foreach ($challenge->rituals as $ritual) {
+            if ($ritual->window < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+                array_push($janelas, $ritual->window);
+            }
+        }
+
+        if (count($janelas) > 0) {
+            $media_janelas = array_sum($janelas) / count($janelas);
+        } else {
+            $media_janelas = 0;
+        }
+
+
+        return view('site.desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas'));
+    }
+    public function passo3_pilares($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Challenge::find($id)->client;
+
+        $qtd_despertares_inadequadas = count($challenge->wakes->where('duration', '>', 30));
+        $qtd_rituais_inadequadas = count($challenge->analyzes->where('day', 3)->first()->naps->where('windowSignalSlept', '>', 30));
+       
+        
+
+        $janelas = [];
+
+        foreach ($challenge->analyzes->where('day',3)->first()->naps as $nap) {
+            if (($nap->window - $nap->windowSignalSlept) > getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+                array_push($janelas, $nap->window - $nap->windowSignalSlept);
+            }
+        }
+
+        foreach ($challenge->analyzes->where('day', 3)->first()->rituals as $ritual) {
+            if ($ritual->window > getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+                array_push($janelas, $ritual->window);
+            }
+        }
+
+
+        if (count($janelas) > 0) {
+            $media_janelas = array_sum($janelas) / count($janelas);
+        } else {
+            $media_janelas = 0;
+        }
+
+
+
+        return view('site.desafio.passo3_pilares', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_despertares_inadequadas', 'qtd_rituais_inadequadas'));
+    }
+    public function passo4($id)
+    {
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view('site.desafio.passo4', compact('client', 'babyAge'));
+    }
+
+
+    public function formulario_create($id, Request $request){
+        $challenge=Challenge::find($id);
+    
+        $challenge->formulario()->create(
+            [
+                'ajustes_fome' => $request->conclusao_fome,
+                'ajustes_dor' => $request->conclusao_dor,
+                'ajustes_dor_colica' => $request->conclusao_dor_colica,
+                'ajustes_dor_refluxo' => $request->conclusao_dor_refluxo,
+                'ajustes_dor_dentes' => $request->conclusao_dor_dente,
+                'ajustes_salto' => $request->conclusao_salto,
+                'ajustes_angustia' => $request->conclusao_angustia,
+                'ajustes_telas' => $request->conclusao_telas, 
+                'telas' => $request->conclusao_telas,
+                'angustia' => $request->angustia, 
+                'angustia_campo_visao' => $request->angustia_sim_campo,
+                'angustia_pai_atende' => $request->angustia_sim_pai,
+                'ajuste_exterogestacao' => $request->ajuste_exterogestacao,
+                'fome_pediatra' => $request->ajuste_exterogestacao,
+                'fome_peso_adequado' => $request->fome_peso_atual,
+                'fome_peso_atual' => $request->fome_peso_atual,
+                'fome_ganho_peso' => $request->fome_ganho_peso,
+                'fome_urina' => $request->fome_fraldas,
+                'fome_evacuacao' => $request->fome_evacuacoes, 
+                'fome_evacuacao' => $request->fome_evacuacoes,
+                'salto' => $request->salto,
+                'salto_marcos' => $request->salto_marcos,
+                
+                
+                ]
+        );
+    }
+    public function formulario_update($id, Request $request){
+
+        $challenge = Challenge::find($id);
+        $challenge->formulario()->update(
+            [
+                'ritual_bom_dia' => $request->rbd,
+                'ritual_bom_dia_outros' => $request->ritual_bom_dia_outros,
+                'ajustes_despertar' => $request->conclusao_despertar,
+                'ajustes_ritual_bom_dia' => $request->conclusao_rbd,
+                'ajuste_rotina_sonecas' => $request->ajuste_rotina_sonecas,
+                'ajuste_duracao_sonecas' => $request->ajuste_duracao_sonecas,
+                'desacelera' => $request->desacelera,
+                'ambiente_luz' => $request->ambiente_luz,
+                'ambiente_barulho' => $request->ambiente_som,
+                'ambiente_temperatura' => $request->ambiente_temperatura,
+                'ritual_choro' => $request->ritual_choro,
+                'ritual_momento' => $request->ritual_choro_sim_select,
+                'gasto_energia_ajuste' => $request->gasto_energia_ajuste,
+                'sinais_sono_ajuste' => $request->sinais_sono_ajuste,
+                'desacelerar_ajuste' => $request->desacelerar_ajuste,
+                'ambiente_luz_ajuste' => $request->ambiente_luz_ajuste,
+                'ambiente_som_ajuste' => $request->ambiente_som_ajuste,
+                'ambiente_temperatura_ajuste' => $request->ambiente_temperatura_ajuste,
+                'ritual_sono_ajuste' => $request->ritual_sono_ajuste,
+
+                
+                
+                
+                ]
+        );
     }
 }

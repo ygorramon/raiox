@@ -61,6 +61,11 @@
             </div>
         </div>
         <div class="col s12">
+              <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
+                @csrf
+              {{ method_field('PUT') }}
+                                          <input type="hidden" value="FEITO" name="passo4">
+
             <div id="input-fields" class="card card-tabs">
                 <div class="card-content">
                     <div class="card-title">
@@ -73,7 +78,7 @@
 
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_colo"
                                             id="dor_colica" />
                                         <span>Colo/ninar</span>
 
@@ -81,7 +86,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_mamar"
                                             id="dor_colica" />
 
                                         <span>Mamar</span>
@@ -90,7 +95,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_cc"
                                             id="dor_colica" />
 
                                         <span>Cama Compartilhada</span>
@@ -99,7 +104,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_rede"
                                             id="dor_colica" />
 
                                         <span>Rede</span>
@@ -108,7 +113,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_chupar_dedo"
                                             id="dor_colica" />
 
                                         <span>Chupar Dedo</span>
@@ -117,7 +122,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_chupeta"
                                             id="dor_colica" />
 
                                         <span>Chupeta</span>
@@ -126,7 +131,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_naninha"
                                             id="dor_colica" />
 
                                         <span>Naninha</span>
@@ -135,7 +140,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_soneca_ruido"
                                             id="dor_colica" />
 
                                         <span>Ruído Branco</span>
@@ -151,7 +156,7 @@
 
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_colo"
                                             id="dor_colica" />
                                         <span>Colo/ninar</span>
 
@@ -159,7 +164,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_mamar"
                                             id="dor_colica" />
 
                                         <span>Mamar</span>
@@ -168,7 +173,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_cc"
                                             id="dor_colica" />
 
                                         <span>Cama Compartilhada</span>
@@ -177,7 +182,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_rede"
                                             id="dor_colica" />
 
                                         <span>Rede</span>
@@ -186,7 +191,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_chupar_dedo"
                                             id="dor_colica" />
 
                                         <span>Chupar Dedo</span>
@@ -195,7 +200,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_chupeta"
                                             id="dor_colica" />
 
                                         <span>Chupeta</span>
@@ -204,7 +209,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_naninha"
                                             id="dor_colica" />
 
                                         <span>Naninha</span>
@@ -213,7 +218,7 @@
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" value="S" name="dor_colica"
+                                        <input type="checkbox" class="filled-in" value="S" name="associacao_sono_ruido"
                                             id="dor_colica" />
 
                                         <span>Ruído Branco</span>
@@ -224,14 +229,14 @@
                             <div class="col s12 m6 l10">
                                 <h4 class="card-title"> As associações do sono te incomodam?
                                 </h4>
-                                <select class="browser-default" name="associacoes_incomodam" id="associacoes_incomodam">
+                                <select class="browser-default" name="associacao_incomoda" id="associacoes_incomodam">
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
                                 <div id="associacoes_incomodam_sim">
                                     <label> Descreva abaixo qual associação mais te incomoda e o porquê.
-                                    <textarea class="materialize-textarea" name="associacoes_descricao"></textarea>
+                                    <textarea class="materialize-textarea" name="associacao_descricao"></textarea>
                                 </div>
 
 
@@ -245,7 +250,17 @@
 
             </div>
         </div>
-    </div>
+    <div class="col s12">
+            <div class="card">
+                        <div class="card-content">
+        <button type="submit" class="btn">Enviar</button>
+                        </div>
+            </div>
+         </div>
+                </div>
+                
+            </form>
+        </div>
 
 @endsection
 @section('js')

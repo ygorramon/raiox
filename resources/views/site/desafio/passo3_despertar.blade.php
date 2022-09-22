@@ -100,6 +100,7 @@ E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvid
             <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
                 @csrf
               {{ method_field('PUT') }}
+              <input type="hidden" value="FEITO" name="passo3_despertar">
             <div id="input-fields" class="card card-tabs">
                 <div class="card-content">
                     <div class="card-title">

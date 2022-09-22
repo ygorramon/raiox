@@ -100,6 +100,8 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
              <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
                 @csrf
               {{ method_field('PUT') }}
+                            <input type="hidden" value="FEITO" name="passo3_rotina">
+
             <div id="input-fields" class="card card-tabs">
                 <div class="card-content">
                     <div class="card-title">

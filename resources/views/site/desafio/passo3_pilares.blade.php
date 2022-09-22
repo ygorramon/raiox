@@ -47,6 +47,11 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
             </div>
         </div>
         <div class="col s12">
+            <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
+                @csrf
+              {{ method_field('PUT') }}
+                                          <input type="hidden" value="FEITO" name="passo3_pilares">
+
             <div id="input-fields" class="card card-tabs">
                 @if ($errors->any())
                     <div class="row">
@@ -98,9 +103,8 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
         </div>
         @if (getIdade($client->birthBaby) > 180)
             <div class="col s12">
-                  <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
-                @csrf
-              {{ method_field('PUT') }}
+                  
+
                 <div id="input-fields" class="card card-tabs">
                     <div class="card-content">
                         <div class="card-title">

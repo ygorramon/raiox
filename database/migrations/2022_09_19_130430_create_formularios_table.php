@@ -21,15 +21,17 @@ class CreateFormulariosTable extends Migration
             $table->text('associacao_soneca_cc')->nullable();
             $table->text('associacao_soneca_rede')->nullable();
             $table->text('associacao_soneca_chupar_dedo')->nullable();
-            $table->text('associacao_soneca_chupar_naninha')->nullable();
-            $table->text('associacao_soneca_chupar_ruido')->nullable();
+            $table->text('associacao_soneca_chupeta')->nullable();
+            $table->text('associacao_soneca_naninha')->nullable();
+            $table->text('associacao_soneca_ruido')->nullable();
             $table->text('associacao_sono_colo')->nullable();
             $table->text('associacao_sono_mamar')->nullable();
             $table->text('associacao_sono_cc')->nullable();
             $table->text('associacao_sono_rede')->nullable();
             $table->text('associacao_sono_chupar_dedo')->nullable();
-            $table->text('associacao_sono_chupar_naninha')->nullable();
-            $table->text('associacao_sono_chupar_ruido')->nullable();
+            $table->text('associacao_sono_chupeta')->nullable();
+            $table->text('associacao_sono_naninha')->nullable();
+            $table->text('associacao_sono_ruido')->nullable();
             $table->text('associacao_incomoda')->nullable();
             $table->text('associacao_descricao')->nullable();
             $table->text('desacelera')->nullable();
@@ -74,6 +76,12 @@ class CreateFormulariosTable extends Migration
             $table->text('passo1_ritual_sono')->nullable();
             $table->text('passo1_duracao_sonecas')->nullable();
             $table->text('ajuste_exterogestacao')->nullable();
+            $table->text('passo2')->nullable();
+            $table->text('passo3_despertar')->nullable();
+            $table->text('passo3_rotina')->nullable();
+            $table->text('passo3_pilares')->nullable();
+            $table->text('passo4')->nullable();
+            $table->text('comentarios')->nullable();
             $table->timestamps();
         });
     }

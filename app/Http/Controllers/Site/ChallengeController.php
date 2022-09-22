@@ -1656,10 +1656,82 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
 
     public function passo2($id)
     {
-        $challenge=Challenge::find($id);
+        $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo2', compact('client', 'babyAge','challenge'));
+        return view('site.desafio.passo2', compact('client', 'babyAge', 'challenge'));
+    }
+
+    public function passo3_despertar_analise($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view('site.desafio.passo3_despertar_analise', compact('client', 'babyAge', 'challenge'));
+    }
+
+    public function passo4_analise($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view('site.desafio.passo4_analise', compact('client', 'babyAge', 'challenge'));
+    }
+    public function conclusao($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        $qtd_dias_acordou_cedo = count($challenge->analyzes->where('timeWokeUp', '<', '06:00:00'));
+        $qtd_dias_acordou_tarde = count($challenge->analyzes->where('timeWokeUp', '>', '08:00:00'));
+        $qtd_sonecas_inadequadas = count($challenge->naps->where('duration', '<', 40));
+
+        $janelas = [];
+
+        foreach ($challenge->naps as $nap) {
+            if (($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+                array_push($janelas, $nap->window - $nap->windowSignalSlept);
+            }
+        }
+
+        foreach ($challenge->rituals as $ritual) {
+            if ($ritual->window < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+                array_push($janelas, $ritual->window);
+            }
+        }
+
+        if (count($janelas) > 0) {
+            $media_janelas = array_sum($janelas) / count($janelas);
+        } else {
+            $media_janelas = 0;
+        }
+
+
+
+
+        return view('site.desafio.conclusao', compact('client', 'babyAge', 'challenge', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas', 'qtd_dias_acordou_cedo', 'qtd_dias_acordou_tarde', 'qtd_sonecas_inadequadas'));
+    }
+    public function passo3_rotina_sonecas_analise($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view('site.desafio.passo3_rotina_sonecas_analise', compact('client', 'babyAge', 'challenge'));
+    }
+    public function passo3_pilares_analise($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view('site.desafio.passo3_pilares_analise', compact('client', 'babyAge', 'challenge'));
+    }
+
+    public function passo2_analise($id)
+    {
+        $challenge = Challenge::find($id);
+        $client = Auth::guard('clients')->user();
+        $babyAge = getIdade($client->birthBaby);
+        return view('site.desafio.passo2_analise', compact('client', 'babyAge', 'challenge'));
     }
 
     public function passo3_despertar($id)
@@ -1729,12 +1801,12 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
 
         $qtd_despertares_inadequadas = count($challenge->wakes->where('duration', '>', 30));
         $qtd_rituais_inadequadas = count($challenge->analyzes->where('day', 3)->first()->naps->where('windowSignalSlept', '>', 30));
-       
-        
+
+
 
         $janelas = [];
 
-        foreach ($challenge->analyzes->where('day',3)->first()->naps as $nap) {
+        foreach ($challenge->analyzes->where('day', 3)->first()->naps as $nap) {
             if (($nap->window - $nap->windowSignalSlept) > getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
                 array_push($janelas, $nap->window - $nap->windowSignalSlept);
             }
@@ -1759,15 +1831,17 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
     }
     public function passo4($id)
     {
+        $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo4', compact('client', 'babyAge'));
+        return view('site.desafio.passo4', compact('client', 'babyAge', 'challenge'));
     }
 
 
-    public function formulario_create($id, Request $request){
-        $challenge=Challenge::find($id);
-    
+    public function formulario_create($id, Request $request)
+    {
+        $challenge = Challenge::find($id);
+
         $challenge->formulario()->create(
             [
                 'ajustes_fome' => $request->conclusao_fome,
@@ -1777,9 +1851,9 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
                 'ajustes_dor_dentes' => $request->conclusao_dor_dente,
                 'ajustes_salto' => $request->conclusao_salto,
                 'ajustes_angustia' => $request->conclusao_angustia,
-                'ajustes_telas' => $request->conclusao_telas, 
+                'ajustes_telas' => $request->conclusao_telas,
                 'telas' => $request->conclusao_telas,
-                'angustia' => $request->angustia, 
+                'angustia' => $request->angustia,
                 'angustia_campo_visao' => $request->angustia_sim_campo,
                 'angustia_pai_atende' => $request->angustia_sim_pai,
                 'ajuste_exterogestacao' => $request->ajuste_exterogestacao,
@@ -1788,44 +1862,103 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
                 'fome_peso_atual' => $request->fome_peso_atual,
                 'fome_ganho_peso' => $request->fome_ganho_peso,
                 'fome_urina' => $request->fome_fraldas,
-                'fome_evacuacao' => $request->fome_evacuacoes, 
+                'fome_evacuacao' => $request->fome_evacuacoes,
                 'fome_evacuacao' => $request->fome_evacuacoes,
                 'salto' => $request->salto,
                 'salto_marcos' => $request->salto_marcos,
-                
-                
-                ]
+                'passo2' => 'FEITO'
+
+            ]
         );
+        return redirect()->route('desafio.show', $challenge->id);
     }
-    public function formulario_update($id, Request $request){
+    public function formulario_update($id, Request $request)
+    {
 
         $challenge = Challenge::find($id);
-        $challenge->formulario()->update(
-            [
-                'ritual_bom_dia' => $request->rbd,
-                'ritual_bom_dia_outros' => $request->ritual_bom_dia_outros,
-                'ajustes_despertar' => $request->conclusao_despertar,
-                'ajustes_ritual_bom_dia' => $request->conclusao_rbd,
-                'ajuste_rotina_sonecas' => $request->ajuste_rotina_sonecas,
-                'ajuste_duracao_sonecas' => $request->ajuste_duracao_sonecas,
-                'desacelera' => $request->desacelera,
-                'ambiente_luz' => $request->ambiente_luz,
-                'ambiente_barulho' => $request->ambiente_som,
-                'ambiente_temperatura' => $request->ambiente_temperatura,
-                'ritual_choro' => $request->ritual_choro,
-                'ritual_momento' => $request->ritual_choro_sim_select,
-                'gasto_energia_ajuste' => $request->gasto_energia_ajuste,
-                'sinais_sono_ajuste' => $request->sinais_sono_ajuste,
-                'desacelerar_ajuste' => $request->desacelerar_ajuste,
-                'ambiente_luz_ajuste' => $request->ambiente_luz_ajuste,
-                'ambiente_som_ajuste' => $request->ambiente_som_ajuste,
-                'ambiente_temperatura_ajuste' => $request->ambiente_temperatura_ajuste,
-                'ritual_sono_ajuste' => $request->ritual_sono_ajuste,
 
-                
-                
-                
+        if ($request->passo3_despertar == "FEITO") {
+            $challenge->formulario()->update(
+                [
+                    'ritual_bom_dia' => $request->rbd,
+                    'ritual_bom_dia_outros' => $request->ritual_bom_dia_outros,
+                    'ajustes_despertar' => $request->conclusao_despertar,
+                    'ajustes_ritual_bom_dia' => $request->conclusao_rbd,
+                    'passo3_despertar' => 'FEITO',
+
                 ]
-        );
+            );
+        }
+
+        if ($request->passo3_rotina == "FEITO") {
+            $challenge->formulario()->update(
+                [
+
+                    'ajuste_rotina_sonecas' => $request->ajuste_rotina_sonecas,
+                    'ajuste_duracao_sonecas' => $request->ajuste_duracao_sonecas,
+                    'passo3_rotina' => 'FEITO',
+
+                ]
+            );
+        }
+
+        if ($request->passo3_pilares == "FEITO") {
+            $challenge->formulario()->update(
+                [
+
+
+                    'desacelera' => $request->desacelera,
+                    'ambiente_luz' => $request->ambiente_luz,
+                    'ambiente_barulho' => $request->ambiente_som,
+                    'ambiente_temperatura' => $request->ambiente_temperatura,
+                    'ritual_choro' => $request->ritual_choro,
+                    'ritual_momento' => $request->ritual_choro_sim_select,
+                    'gasto_energia_ajuste' => $request->gasto_energia_ajuste,
+                    'sinais_sono_ajuste' => $request->sinais_sono_ajuste,
+                    'desacelerar_ajuste' => $request->desacelerar_ajuste,
+                    'ambiente_luz_ajuste' => $request->ambiente_luz_ajuste,
+                    'ambiente_som_ajuste' => $request->ambiente_som_ajuste,
+                    'ambiente_temperatura_ajuste' => $request->ambiente_temperatura_ajuste,
+                    'ritual_sono_ajuste' => $request->ritual_sono_ajuste,
+                    'passo3_pilares' => 'FEITO',
+
+
+                ]
+            );
+        }
+
+        if ($request->conclusao == "FEITO") {
+            $challenge->formulario()->update(
+                [
+                    'comentarios' => $request->comentarios
+                ]
+            );
+        }
+        if ($request->passo4 == "FEITO") {
+            $challenge->formulario()->update(
+                [
+                    'associacao_soneca_mamar' => $request->associacao_soneca_mamar,
+                    'associacao_soneca_cc' => $request->associacao_soneca_cc,
+                    'associacao_soneca_rede' => $request->associacao_soneca_rede,
+                    'associacao_soneca_chupar_dedo'  => $request->associacao_soneca_chupar_dedo,
+                    'associacao_soneca_chupeta'                => $request->associacao_soneca_chupeta,
+                    'associacao_soneca_ruido'                => $request->associacao_soneca_ruido,
+                    'associacao_sono_colo' => $request->associacao_sono_colo,
+                    'associacao_sono_mamar' => $request->associacao_sono_mamar,
+                    'associacao_sono_cc' => $request->associacao_sono_cc,
+                    'associacao_sono_rede' => $request->associacao_sono_rede,
+                    'associacao_sono_chupar_dedo' => $request->associacao_sono_chupar_dedo,
+                    'associacao_sono_naninha' => $request->associacao_sono_naninha,
+                    'associacao_sono_chupeta' => $request->associacao_sono_chupeta,
+                    'associacao_sono_ruido' => $request->associacao_sono_ruido,
+                    'associacao_incomoda' => $request->associacao_incomoda,
+                    'associacao_descricao' => $request->associacao_descricao,
+                    'passo4' => 'FEITO'
+                ]
+            );
+        }
+
+
+        return redirect()->route('desafio.show', $challenge->id);
     }
 }

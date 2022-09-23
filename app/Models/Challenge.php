@@ -15,7 +15,7 @@ class Challenge extends Model
         'passo3_rotina_sonecas','passo3_rotina_sonecas',
         'passo3_ambiente_sonecas','passo3_ambiente_noturno',
         'passo3_sono_noturno','passo4_associacoes_sonecas',
-        'passo4_associacoes_noturno','conclusao'
+        'passo4_associacoes_noturno','conclusao','tipo'
     ];
 
 

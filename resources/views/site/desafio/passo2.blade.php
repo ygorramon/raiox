@@ -161,7 +161,7 @@ Como você referiu diminuição na diurese, o ideal é que procure seu pediatra 
                                 Você consegue identificar um padrão nas evacuações do seu bebê?
                             </h4>
                             <select class="browser-default" name="fome_evacuacao" id="fome_evacuacao"
-                                <option value="" disabled selected>Selecione</option>
+                                <option value=""  selected>Selecione</option>
                                 <option value="S">SIM</option>
                                 <option value="N">NÃO</option>
 

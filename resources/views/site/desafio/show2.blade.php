@@ -21,28 +21,7 @@
 
               <div id="bordered-table" class="card card card-default scrollspy">
                 <div class="card-content">
-                  @if($challenge->status=='ENVIADO')
-                  <div class="row">
-                    <div class="col s12">
-                      <h4 class="card-title">Seu Desafio foi Enviado! </h4>
-                    </div>
-                    <div class="col s12">
-                      <h4 class="card-title">Em breve você receberá a análise! </h4>
-                    </div>
-
-                  </div>
-                  @endif
-                  @if($challenge->status=='ANALISE')
-                  <div class="row">
-                    <div class="col s12">
-                      <h4 class="card-title">O Dr. Odilo está analisando seu Desafio! </h4>
-                    </div>
-                    <div class="col s12">
-                      <h4 class="card-title">Em breve você receberá a análise! </h4>
-                    </div>
-
-                  </div>
-                  @endif
+                 
                   @if($challenge->status=='FINALIZADO')
                   <div class="row">
                     <div class="col s12">
@@ -291,7 +270,7 @@
                   
                   @endif
 @if($challenge->client->liberado==1)
- @if($challenge->status=='INICIADO' || $challenge->status=='ENVIADO-NOVO')
+ @if($challenge->status=='INICIADO' || $challenge->status=='ENVIADO')
                   <h4 class="card-title">Análise Diária</h4>
 
                   <div class="row">
@@ -598,7 +577,7 @@
 
 @endif
 @else
-                  @if($challenge->status=='INICIADO' || $challenge->status=='ENVIADO-NOVO')
+                  @if($challenge->status=='INICIADO' || $challenge->status=='ENVIADO')
                   <h4 class="card-title">Análise Diária</h4>
 
                   <div class="row">

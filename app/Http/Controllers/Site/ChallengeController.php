@@ -47,6 +47,7 @@ class ChallengeController extends Controller
         $client = Auth::guard('clients')->user();
         $challenge = $client->challenges()->create([
             'status' => 'INICIADO',
+            'tipo' => '1'
         ]);
         return redirect()->route('desafio.show', $challenge->id);
     }
@@ -65,8 +66,14 @@ class ChallengeController extends Controller
 
         $analyzes = $challenge->analyzes()->get();
 
+        if($challenge->tipo==1){
 
         return view('site.desafio.show2', compact('analyzes', 'challenge'));
+        }else{
+            return view('site.desafio.show', compact('analyzes', 'challenge'));
+
+        }
+
     }
 
     public function analyzeCreate($id, $day)
@@ -1935,7 +1942,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
                 ]
             );
 
-            $challenge->update(['status' =>'ENVIADO-NOVO']);
+            $challenge->update(['status' =>'ENVIADO']);
         }
         if ($request->passo4 == "FEITO") {
             $challenge->formulario()->update(

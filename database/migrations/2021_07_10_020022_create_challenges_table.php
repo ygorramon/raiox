@@ -21,6 +21,7 @@ class CreateChallengesTable extends Migration
             $table->dateTime('sended_at')->nullable();
             $table->dateTime('answered_at')->nullable();
             $table->text('passo1')->nullable();
+            $table->text('tipo')->nullable();
             $table->text('passo2')->nullable();
             $table->text('passo3_despertar')->nullable();
             $table->text('passo3_rotina_alimentar')->nullable();

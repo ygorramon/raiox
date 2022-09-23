@@ -81,6 +81,7 @@ class CreateFormulariosTable extends Migration
             $table->text('passo3_rotina')->nullable();
             $table->text('passo3_pilares')->nullable();
             $table->text('passo4')->nullable();
+            $table->text('conclusao')->nullable();
             $table->text('comentarios')->nullable();
             $table->timestamps();
         });

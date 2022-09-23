@@ -137,16 +137,15 @@ Como esse é um tópico muito individual, as suas orientações virão em breve,
                             informação adicional que considere relevante, dúvida ou individualidade do seu bebê.
                             Vamos juntos chegar à noite inteira de sono do seu bebê!
                         </h6>
-   <form action="">
+   
                         <label>Comentários:</label>
-                     
-                             <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
+                        <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
                 @csrf
               {{ method_field('PUT') }}
                             <input type="hidden" name="conclusao" value="FEITO">
 
                         <textarea class="materialize-textarea" name="comentarios"></textarea>
-                        <button class="btn">Enviar</button> 
+                        <button type="submit" class="btn">Enviar</button>
                         </form>
                     </div>
                 </div>

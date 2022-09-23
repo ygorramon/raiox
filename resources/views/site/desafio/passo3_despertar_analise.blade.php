@@ -11,7 +11,7 @@
     <div class="card-content row">
         <div class="col s12 m6 l6">
             <label>Ajustes Ritual do Bom dia:</label>
-            <textarea class="materialize-textarea" id="conclusao_fome" name="conclusao_fome">{{$challenge->formulario()->first()->ritual_sono_ajuste ?? ''}}
+            <textarea class="materialize-textarea" id="conclusao_fome" name="conclusao_fome">{{$challenge->formulario()->first()->ajustes_ritual_bom_dia ?? ''}}
             </textarea>
         </div>
     </div>

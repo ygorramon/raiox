@@ -8,7 +8,7 @@
 @section('content')
     <div id="modal1" class="modal">
         <div class="modal-content">
-            <h4>Passo 3: - Despertar:</h4>
+            <h4>Passo 3: - Rotina de Sonecas</h4>
             <textarea class="materialize-textarea">Agora a nossa pré-análise será de um dos pontos mais importantes de todos, dentro dos 4 passos do sono do bebê. Avaliaremos a rotina de sonecas do seu bebê.
 
 Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as suas dúvidas, dificuldades, particularidades e resultados no seu chat exclusivo. Não se preocupe, que o seu desafio não se resume a uma pré-análise automática!

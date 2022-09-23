@@ -1930,9 +1930,12 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         if ($request->conclusao == "FEITO") {
             $challenge->formulario()->update(
                 [
-                    'comentarios' => $request->comentarios
+                    'comentarios' => $request->comentarios,
+                    'conclusao' =>'FEITO'
                 ]
             );
+
+            $challenge->update(['status' =>'ENVIADO-NOVO']);
         }
         if ($request->passo4 == "FEITO") {
             $challenge->formulario()->update(

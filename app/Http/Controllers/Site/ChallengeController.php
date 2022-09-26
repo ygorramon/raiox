@@ -1942,7 +1942,9 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
                 ]
             );
 
-            $challenge->update(['status' =>'ENVIADO']);
+            $challenge->update([
+                'status' => 'ENVIADO', 'sended_at' => now(),
+            ]);
         }
         if ($request->passo4 == "FEITO") {
             $challenge->formulario()->update(

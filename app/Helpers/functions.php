@@ -155,3 +155,17 @@ function getSinalSono($bebe_idade)
 
   return (object) $data;
 }
+
+function setStatus($text){
+
+if($text == 'S')
+{
+    $data['color'] = 'bg-green';
+    $data['value'] = 'SIM';
+}else{
+    $data['color'] = 'bg-red';
+    $data['value'] = 'NÃO';
+}
+
+return (object) $data;
+}

@@ -69,8 +69,14 @@ class ChallengeController extends Controller
 
       $challenge = $this->repository->with('client')->find($id);
 
+      if($challenge->tipo=='1'){
+         return view('admin.challenges.availables.new-show', compact('challenge'));
 
-      return view('admin.challenges.availables.show', compact('challenge'));
+      }else{
+         return view('admin.challenges.availables.show', compact('challenge'));
+
+      }
+
    }
 
    public function showMyChallenge($id)
@@ -84,7 +90,11 @@ class ChallengeController extends Controller
       $challenge = $this->repository->with('client')->find($id);
 
 
-      return view('admin.challenges.meus.show', compact('challenge'));
+      if ($challenge->tipo == '1') {
+         return view('admin.challenges.availables.new-show', compact('challenge'));
+      } else {
+         return view('admin.challenges.availables.show', compact('challenge'));
+      }
    }
 
    public function showMyChallengeBlack($id)
@@ -117,9 +127,15 @@ class ChallengeController extends Controller
 
    public function responder($id)
    {
+     
       if (!$challenge = $this->repository->find($id)) {
          return redirect()->back();
       }
+      if ($challenge->tipo == 1) {
+
+      }
+      else{
+
       $challenge = $this->repository->with('client')->find($id);
       $client = $challenge->client()->first();
       $form = $challenge->form()->first();
@@ -789,6 +805,7 @@ class ChallengeController extends Controller
         'acordou_mais_tarde'=>$acordou_mais_tarde
       
       ]);
+   }
    }
 
    public function responderUpdate($id, Request $request)

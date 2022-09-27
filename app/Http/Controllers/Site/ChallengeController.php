@@ -1799,7 +1799,8 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         }
 
 
-        return view('site.desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas'));
+        return view('site.desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', '
+        ', 'qtd_sonecas_inadequadas'));
     }
     public function passo3_rotina_sonecas2($id)
     {
@@ -1842,14 +1843,14 @@ dd($janelas);
 
         $janelas = [];
 
-        foreach ($challenge->analyzes->where('day', 3)->first()->naps as $nap) {
-            if (($nap->window - $nap->windowSignalSlept) > getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+        foreach ($challenge->naps as $nap) {
+            if ((($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) && (($nap->window - $nap->windowSignalSlept) >= getSinalSono(getIdade($client->birthBaby))->janelaIdealInicio)) {
                 array_push($janelas, $nap->window - $nap->windowSignalSlept);
             }
         }
 
-        foreach ($challenge->analyzes->where('day', 3)->first()->rituals as $ritual) {
-            if ($ritual->window > getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+        foreach ($challenge->rituals as $ritual) {
+            if ($ritual->window < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim && $ritual->window >= getSinalSono(getIdade($client->birthBaby))->janelaIdealInicio) {
                 array_push($janelas, $ritual->window);
             }
         }

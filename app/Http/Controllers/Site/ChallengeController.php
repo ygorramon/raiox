@@ -1810,13 +1810,13 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $janelas = [];
 
         foreach ($challenge->naps as $nap) {
-            if (($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+            if ((($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) && (($nap->window - $nap->windowSignalSlept) >= getSinalSono(getIdade($client->birthBaby))->janelaIdealInicio)) {
                 array_push($janelas, $nap->window - $nap->windowSignalSlept);
             }
         }
 
         foreach ($challenge->rituals as $ritual) {
-            if ($ritual->window < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
+            if ($ritual->window < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim && $ritual->window >= getSinalSono(getIdade($client->birthBaby))->janelaIdealInicio) {
                 array_push($janelas, $ritual->window);
             }
         }

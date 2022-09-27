@@ -115,6 +115,7 @@ Route::middleware('auth.client:clients')
         Route::get('/desafio/{id}/passo3_despertar', 'Site\ChallengeController@passo3_despertar')->name('analyze.passo3_despertar');
         Route::get('/desafio/{id}/passo3_despertar_analise', 'Site\ChallengeController@passo3_despertar_analise')->name('analyze.passo3_despertar.analise');
         Route::get('/desafio/{id}/passo3_rotina_sonecas', 'Site\ChallengeController@passo3_rotina_sonecas')->name('analyze.passo3_rotina_sonecas');
+        Route::get('/desafio/{id}/passo3_rotina_sonecas2', 'Site\ChallengeController@passo3_rotina_sonecas2')->name('analyze.passo3_rotina_sonecas2');
         Route::get('/desafio/{id}/passo3_rotina_sonecas_analise', 'Site\ChallengeController@passo3_rotina_sonecas_analise')->name('analyze.passo3_rotina_sonecas.analise');
         Route::get('/desafio/{id}/passo3_pilares', 'Site\ChallengeController@passo3_pilares')->name('analyze.passo3_pilares');
         Route::get('/desafio/{id}/passo3_pilares_analise', 'Site\ChallengeController@passo3_pilares_analise')->name('analyze.passo3_pilares.analise');

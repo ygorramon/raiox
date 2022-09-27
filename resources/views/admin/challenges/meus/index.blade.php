@@ -76,7 +76,7 @@ EM- {{formatDateAndTimeHours($challenge->answered_at)}}
                     <td>
 
                         <a href="{{route('challenge.meus.show', $challenge->id)}}" class="btn btn-warning">VER</a>
-                        @if($challenge->status=='ANALISE')
+                        @if($challenge->status=='ANALISE' && $challenge->tipo!='1')
                         <a href="{{route('challenge.meus.responder', $challenge->id)}}" class="btn btn-warning">Responder</a>
                         @endif
                         @if($challenge->status=='RESPONDIDO')

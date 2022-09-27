@@ -130,7 +130,7 @@ Como esse é um tópico muito individual, as suas orientações virão em breve,
 
 
 
-
+@if($challenge->status=='INICIADO')
 
                         <h6>Em breve entraremos em contato com você, mas vou deixar mais um espaço para você escrever
                             algu-ma
@@ -147,6 +147,7 @@ Como esse é um tópico muito individual, as suas orientações virão em breve,
                         <textarea class="materialize-textarea" name="comentarios"></textarea>
                         <button type="submit" class="btn">Enviar</button>
                         </form>
+                        @ENDIF
                     </div>
                 </div>
             </div>

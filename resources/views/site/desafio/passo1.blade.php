@@ -293,8 +293,10 @@ Saberemos ao avaliar as suas anotações sobre a duração das sonecas;</textare
                         <div class="row">
                             <h5>Análise</h5>
                             Sinais de sono: <textarea class="materialize-textarea">{{$sinais_sono_resposta}}</textarea><br>
-                            Ritual do sono: (sonecas e sono noturno) <textarea class="materialize-textarea">{{$rituais_sono_resposta}}</textarea>
-                            Duração das sonecas: <textarea class="materialize-textarea">{{$duracao_sonecas_resposta}}</textarea>
+                            Ritual do sono: (sonecas e sono noturno) <textarea class="materialize-textarea">{{$rituais_sono_resposta}}
+                            </textarea>
+                            Duração das sonecas: <textarea class="materialize-textarea">{{$duracao_sonecas_resposta}}
+                            </textarea>
                         </div>
                     </div>
                 </div>

@@ -36,6 +36,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/desafios/disponiveis', 'Admin\ChallengeController@availables')->name('challenge.availables');
             Route::get('/desafios/novo_disponiveis', 'Admin\ChallengeController@new_availables')->name('challenge.new_availables');
             Route::get('/desafios/meus', 'Admin\ChallengeController@myChallenges')->name('challenge.my');
+            Route::post('/desafios/meus/{id}/chatIniciar', 'Admin\ChallengeController@chatIniciar')->name('challenge.meus.iniciarchat');
+
             Route::get('/desafios/meus/{id}', 'Admin\ChallengeController@showMyChallenge')->name('challenge.meus.show');
             Route::get('/desafios/meus/black/{id}', 'Admin\ChallengeController@showMyChallengeBlack')->name('challenge.meus.show.black');
             Route::get('/desafios/meus/nowindow/{id}', 'Admin\ChallengeController@showMyChallengeNoWindow')->name('challenge.meus.show.noWindow');

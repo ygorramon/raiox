@@ -942,4 +942,25 @@ class ChallengeController extends Controller
       $message->update(['content'=>$request->content]);
       return view('admin.challenges.meus.chat', compact('challenge'));
    }
+   public function chatIniciar(Request $request, $id)
+   {
+      if (!$challenge = $this->repository->find($id)) {
+         return redirect()->back();
+      }
+      $challenge = $this->repository->find($id);
+      if ($challenge->chat()->first() == null) {
+         $chat = $challenge->chat()->create(['status' => 'odilo']);
+      } else {
+         $chat = $challenge->chat()->first();
+      }
+      $challenge->update(['status' =>'RESPONDIDO' , 'answered_at' => now() ]);
+      $chat->update(['status' => 'odilo']);
+      $chat->messages()->create(['content' => $request->message, 'type' => '2']);
+
+      //  $chat->notify(new ChatTelegramNotification());
+
+      return redirect()->route('challenge.my');
+   }
+
+   
 }

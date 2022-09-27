@@ -322,45 +322,166 @@
 
 
 <label> Ajustes Fome: </label>
-<textarea class="form-control">{{$challenge->formulario->ajustes_fome}}</textarea>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_fome}}</textarea>
 
 <h5>PASSO 2 -  DOR:</h5>
 
 <label> Ajustes Dor - Geral: </label>
-<textarea class="form-control">{{$challenge->formulario->ajustes_dor}}</textarea>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor}}</textarea>
 <label> Ajustes Dor -Cólicas: </label>
 
-<textarea class="form-control">{{$challenge->formulario->ajustes_dor_colica}}</textarea>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor_colica}}</textarea>
 
 <label> Ajustes Dor - Refluxo: </label>
 
-<textarea class="form-control">{{$challenge->formulario->ajustes_dor_refluxo}}</textarea>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor_refluxo}}</textarea>
 
 <label> Ajustes Dor - Dentes: </label>
 
-<textarea class="form-control">{{$challenge->formulario->ajustes_dor_dentes}}</textarea>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_dor_dentes}}</textarea>
 
 <h5>PASSO 2 - Salto de Desenvolvimento:</h5>
 
 <label>Salto ?:</label> <span class="badge  {{setStatus($challenge->formulario->salto)->color}}">{{setStatus($challenge->formulario->salto)->value}}</span> <br>
 <label>Marcos:</label> <span class="badge  {{setStatus($challenge->formulario->salto_marcos)->color}}">{{setStatus($challenge->formulario->salto_marcos)->value}}</span> <br>
 <label> Ajustes Salto: </label>
-<textarea class="form-control">{{$challenge->formulario->ajustes_salto}}</textarea>  
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_salto}}</textarea>  
 <h5>PASSO 2 - Angustia da Separação:</h5>
 
 <label>Angustia ?:</label> <span class="badge  {{setStatus($challenge->formulario->angustia)->color}}">{{setStatus($challenge->formulario->angustia)->value}}</span> <br>
 <label>Chora quando sai do campo de visão:</label> <span class="badge  {{setStatus($challenge->formulario->angustia_campo_visao)->color}}">{{setStatus($challenge->formulario->angustia_campo_visao)->value}}</span> <br>
 <label>Chora quando pai atende:</label> <span class="badge  {{setStatus($challenge->formulario->angustia_pai_atende)->color}}">{{setStatus($challenge->formulario->angustia_pai_atende)->value}}</span> <br>
  <label> Ajustes Angustia: </label>
-<textarea class="form-control">{{$challenge->formulario->ajustes_angustia}}</textarea>    
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_angustia}}</textarea>    
 <h5>PASSO 2 - Telas:</h5>
 
 <label>Telas ?:</label> <span class="badge  {{setStatus($challenge->formulario->telas)->color}}">{{setStatus($challenge->formulario->telas)->value}}</span> <br>
 
 <label> Ajustes Telas: </label>
-<textarea class="form-control">{{$challenge->formulario->ajustes_telas}}</textarea>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_telas}}</textarea>
+<h5>PASSO 3 :</h5>
 
-    </div>
+<label>Ritual do Bom Dia ?:</label> <span class="badge  {{setStatus($challenge->formulario->ritual_bom_dia)->color}}">{{setStatus($challenge->formulario->ritual_bom_dia)->value}}</span> <br>
+
+<label> Ajustes Ritual do Bom dia: </label>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_ritual_bom_dia}}</textarea>
+<label> Ajustes Despertar: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_despertar}}</textarea>
+<label> Ajustes Duração de Sonecas: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajuste_duracao_sonecas}}</textarea>
+<label> Ajustes Rotina de Sonecas: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajuste_rotina_sonecas}}</textarea>
+<label> Ajustes Ritual do Sono: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ritual_sono_ajuste}}</textarea>
+<label>Ambiente - Luminosidade: </label><span >{{$challenge->formulario->ambiente_luz}}</span> <br>
+<label>Ambiente - Sons: </label><span >{{$challenge->formulario->ambiente_barulho}}</span> <br>
+<label>Ambiente - Temperatura: </label><span >{{$challenge->formulario->ambiente_temperatura}}</span> <br>
+<label>Choro no Ritual: </label><span class="badge  {{setStatus($challenge->formulario->ritual_choro)->color}}">{{setStatus($challenge->formulario->ritual_choro)->value}}</span> <br>
+<label>Desacelera: </label><span class="badge  {{setStatus($challenge->formulario->desacelera)->color}}">{{setStatus($challenge->formulario->desacelera)->value}}</span> <br>
+
+<h5>PASSO 4 - Associações -  Soneca: </h5>
+Colo
+<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_colo)->color}}">{{setStatus($challenge->formulario->associacao_soneca_colo)->value}}</span>
+   
+Mamar
+<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_mamar)->color}}">{{setStatus($challenge->formulario->associacao_soneca_mamar)->value}}</span>
+   
+Cama Compartilhada
+<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_cc)->color}}">{{setStatus($challenge->formulario->associacao_soneca_cc)->value}}</span>
+ 
+Rede
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_rede)->color}}">{{setStatus($challenge->formulario->associacao_soneca_rede)->value}}</span>
+   
+    Chupar Dedo
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_chupar_dedo)->color}}">{{setStatus($challenge->formulario->associacao_soneca_chupar_dedo)->value}}</span>
+   
+    Naninha
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_naninha)->color}}">{{setStatus($challenge->formulario->associacao_soneca_naninha)->value}}</span>
+   
+    Ruído Branco
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_ruido)->color}}">{{setStatus($challenge->formulario->associacao_soneca_ruido)->value}}</span>
+<br><br>
+
+<h5>PASSO 4 - Associações -  Sono Noturno: </h5>
+Colo
+<span class="badge  {{setStatus($challenge->formulario->associacao_sono_colo)->color}}">{{setStatus($challenge->formulario->associacao_sono_colo)->value}}</span>
+   
+Mamar
+<span class="badge  {{setStatus($challenge->formulario->associacao_sono_mamar)->color}}">{{setStatus($challenge->formulario->associacao_sono_mamar)->value}}</span>
+   
+Cama Compartilhada
+<span class="badge  {{setStatus($challenge->formulario->associacao_sono_cc)->color}}">{{setStatus($challenge->formulario->associacao_sono_cc)->value}}</span>
+ 
+Rede
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_rede)->color}}">{{setStatus($challenge->formulario->associacao_sono_rede)->value}}</span>
+   
+    Chupar Do
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_chupar_dedo)->color}}">{{setStatus($challenge->formulario->associacao_sono_chupar_dedo)->value}}</span>
+   
+    Naninha
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_naninha)->color}}">{{setStatus($challenge->formulario->associacao_sono_naninha)->value}}</span>
+   
+    Ruído Branco
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_ruido)->color}}">{{setStatus($challenge->formulario->associacao_sono_ruido)->value}}</span>
+
+<br><br>
+<label>Associações Incomodam ?:</label> <span class="badge  {{setStatus($challenge->formulario->associacao_incomoda)->color}}">{{setStatus($challenge->formulario->associacao_incomoda)->value}}</span> <br>
+
 </div>
+@if(!$challenge->chat()->first())
+ <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aprovarGepex">
+                           Responder
+                        </button>
+                        @endif
+ <div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="{{route('challenge.meus.iniciarchat',$challenge->id)}}" method="post">
+                                    {!! csrf_field() !!}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Iniciar CHAT</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            
+                                            <label>Observações</label>
+                                            <textarea name="message" required class="form-control" style="height:auto"  rows="10">
+
+
+
+
+
+
+
+
+
+
+                                            </textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button  class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button name="status" value="APROVADO" class="btn btn-primary">ENVIAR</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
     </div>
+    @section('js')
+<script>
+    $(document).ready(function() {
+        $(".form-control").overlayScrollbars({
+
+            textarea: {
+                dynHeight: true,
+                
+            }
+
+        });
+    });
+</script>
+@endsection
 @stop

@@ -1696,7 +1696,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $janelas = [];
 
         foreach ($challenge->naps as $nap) {
-            if (($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim && ($nap->window - $nap->windowSignalSlept) >= getSinalSono(getIdade($client->birthBaby))->janelaIdealInicio) {
+            if ((($nap->window - $nap->windowSignalSlept) < getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) && (($nap->window - $nap->windowSignalSlept) >= getSinalSono(getIdade($client->birthBaby))->janelaIdealInicio)) {
                 array_push($janelas, $nap->window - $nap->windowSignalSlept);
             }
         }

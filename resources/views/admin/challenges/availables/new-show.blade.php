@@ -427,6 +427,9 @@ Rede
 <br><br>
 <label>Associações Incomodam ?:</label> <span class="badge  {{setStatus($challenge->formulario->associacao_incomoda)->color}}">{{setStatus($challenge->formulario->associacao_incomoda)->value}}</span> <br>
 
+<label> Comentários Finais: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->comentarios}}</textarea>
+
 </div>
 @if(!$challenge->chat()->first())
  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aprovarGepex">

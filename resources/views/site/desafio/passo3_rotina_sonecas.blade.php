@@ -126,7 +126,7 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
                                                         Média de Janela de Sono Adequado do seu Bebê
                                                     </td>
                                                     <td>
-                                                        {{$media_janelas}} Minutos
+                                                        {{round($media_janelas, 0)}} Minutos
                                                     </td>
                                                 <tr>
                                                    
@@ -174,10 +174,10 @@ Lembrando que após o preenchimento do seu desafio, você poderá tirar todas as
                         <textarea id="conclusao_rotina_sonecas" class="materialize-textarea" name="ajuste_rotina_sonecas" >Para que a sua compreensão fique mais clara, entenda que janela de sono é o equivalente à soma entre o intervalo que o bebê sentiu sono e o intervalo do ritual da soneca, ok?
 
 Com isso, vi que o seu bebê possui pelo menos uma janela de sono acima do esperado para a idade dele e para as necessidades de sono registradas.
-Primeiro precisamos observar que a média de tempo que o seu bebê levou para sentir sono foi de  {{$media_janelas}} minutos. E se não estiver claro, essa média foi de acordo com as suas anotações.
+Primeiro precisamos observar que a média de tempo que o seu bebê levou para sentir sono foi de   {{round($media_janelas, 0)}} minutos. E se não estiver claro, essa média foi de acordo com as suas anotações.
 Além disso, é preciso entender que após o sentir sono, o bebê deve dormir em até 30 minutos, nor-malmente, já que se passar mais tempo acordado, as chances dele estar cansado demais para dormir bem, são muito grandes.
-Por isso, podemos concluir que a MÉDIA de janela de sono do seu bebê, é de {{$media_janelas + 30}} minutos.
-Com isso, sugiro que, CASO NÃO PERCEBA sinais de sono antes, comece o desacelerar em até {{$media_janelas}} minutos, para que ele durma em até 30 minutos e permaneça dentro da janela de sono espera-da.
+Por isso, podemos concluir que a MÉDIA de janela de sono do seu bebê, é de {{ round($media_janelas, 0) + 30}} minutos.
+Com isso, sugiro que, CASO NÃO PERCEBA sinais de sono antes, comece o desacelerar em até  {{round($media_janelas, 0)}} minutos, para que ele durma em até 30 minutos e permaneça dentro da janela de sono espera-da.
 </textarea>
                         @endif
                       @if(count($janelas)==0)
@@ -187,7 +187,7 @@ Para que a sua compreensão fique mais clara, entenda que janela de sono é o eq
 
 Com isso, vi que o seu bebê possui pelo menos uma janela de sono acima do esperado para a idade, que é de até JANELA DE SONO MÁXIMA, logo, precisaremos avaliar com calma cada um dos 5 pilares das sonecas.
 
-Mas sugiro, nesse primeiro momento, que busque janelas de sono de ATÉ JANELA DE SONO MÁ-XIMA, mas caso perceba sinais de sono antes disso, comece o desacelerar e o ritual.
+Mas sugiro, nesse primeiro momento, que busque janelas de sono de ATÉ JANELA DE SONO MÁXIMA, mas caso perceba sinais de sono antes disso, comece o desacelerar e o ritual.
 Saberemos com mais precisão quando conseguir observar bem os sinais de sono do bebê
 
 JANELA DE SONO MÁXIMA:
@@ -211,7 +211,7 @@ JANELA DE SONO MÁXIMA:
                       
                         <textarea id="conclusao_rotina_sonecas" class="materialize-textarea" name="ajuste_duracao_sonecas" >Vi que pelo menos uma soneca do seu bebê apresenta duração inferior a 40 minutos, o que indica que essa soneca não foi suficientemente reparadora.
 	A duração mínima de um ciclo de sono do bebê é de 40 minutos, logo, o esperado é a soneca tenha no mínimo essa duração e que ele acorde ativo e alegre. Enquanto se tiver menos de 40 minutos, ou se o bebê acordar com sono ou cansado, isso nos indicará que ela precisa ser prolongada e que precisamos avaliar cada um dos 5 pilares das sonecas.
-	Enquanto isso, para prolongar uma soneca, o ideal é que você consiga se antecipar ao desper-tar e já ninar ou amamentar o bebê, fazendo com que ele permaneça dormindo, porém isso não é tão simples de acontecer e nem todas conseguem se antecipar. Nesse caso, faça o bebê dormir novamente o mais rápido que puder, não importa como (ninando, amamentando etc).
+	Enquanto isso, para prolongar uma soneca, o ideal é que você consiga se antecipar ao despertar e já ninar ou amamentar o bebê, fazendo com que ele permaneça dormindo, porém isso não é tão simples de acontecer e nem todas conseguem se antecipar. Nesse caso, faça o bebê dormir novamente o mais rápido que puder, não importa como (ninando, amamentando etc).
 	E caso não consiga que o bebê volte a dormir, pelo menos permaneça no ambiente do sono o suficiente para completar os 40 minutos da soneca. Essa soneca não será tão reparadora, mas seria pior se saísse do quarto.
 
 </textarea>

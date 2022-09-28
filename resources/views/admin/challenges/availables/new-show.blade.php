@@ -495,7 +495,7 @@ Rede
                 </div>
             </div>
                                             
-                                            <label>Observações</label>
+                                            <label>Mensagem</label>
                                             <textarea name="message" required class="form-control" style="height:auto"  rows="10"></textarea>
                                         </div>
                                         <div class="modal-footer">

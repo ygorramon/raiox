@@ -437,7 +437,7 @@ Rede
                         </button>
                         @endif
  <div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <form action="{{route('challenge.meus.iniciarchat',$challenge->id)}}" method="post">
                                     {!! csrf_field() !!}
@@ -448,21 +448,55 @@ Rede
                                             </button>
                                         </div>
                                         <div class="modal-body">
+ <div class="row">
+                <div class="col-md-4 ">
+                    <label for="nomeMae">Nome da Mãe/Pai:</label>
 
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeMae" value="{{$challenge->client->name}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="nomeBebe">Nome do(a) Bebê:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeBebe" value="{{$challenge->client->nameBaby}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                 <div class="col-md-4">
+                    <label for="nomeBebe">Email:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeBebe" value="{{$challenge->client->email}}" placeholder="nomeMae">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 ">
+                    <label for="nascimentoBebe">Data de Nascimento do Bebê:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nascimentoBebe" value="{{\Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y')}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="idadeBebe">Idade do Bebê: (DIAS / MESES)</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="idadeBebe" value="{{now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby))}} / {{now()->diffInMonths(\Carbon\Carbon::parse($challenge->client->birthBaby))}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="sexoBebe">Sexo do Bebê:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="sexoBebe" value="{{$challenge->client->sexBaby == 'M' ? "MASCULINO" : "FEMININO"}}" placeholder="nomeMae">
+                    </div>
+                </div>
+            </div>
                                             
                                             <label>Observações</label>
-                                            <textarea name="message" required class="form-control" style="height:auto"  rows="10">
-
-
-
-
-
-
-
-
-
-
-                                            </textarea>
+                                            <textarea name="message" required class="form-control" style="height:auto"  rows="10"></textarea>
                                         </div>
                                         <div class="modal-footer">
                                             <button  class="btn btn-secondary" data-dismiss="modal">Fechar</button>

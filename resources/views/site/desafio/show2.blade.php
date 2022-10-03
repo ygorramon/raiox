@@ -179,10 +179,10 @@
                                                     <a href="{{ route('analyze.passo3_rotina_sonecas.analise', $challenge->id) }}"
                                                         class="btn waves-effect waves-light red ">
                                                         Análise Passo 3 - Rotina </a><br><br>
-                                                    <a href="{{ route('analyze.passo3_pilares', $challenge->id) }}"
+                                                    <a href="{{ route('analyze.passo3_pilares.analise', $challenge->id) }}"
                                                         class="btn waves-effect waves-light red "> Passo 3 - PILARES </a><br><br>
-                                                    <a href="{{ route('analyze.passo4', $challenge->id) }}"
-                                                        class="btn waves-effect waves-light red "> Passo 4 </a><br><br>
+                                                    <a href="{{ route('analyze.passo4.analise', $challenge->id) }}"
+                                                        class="btn waves-effect waves-light red "> Análise do Passo 4 </a><br><br>
                                                     <a href="{{ route('analyze.conclusao', $challenge->id) }}"
                                                         class="btn waves-effect waves-light red "> Conclusão </a><br>
                                                 </div>

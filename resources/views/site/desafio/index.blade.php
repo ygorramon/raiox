@@ -16,8 +16,8 @@
                         <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Informação</h4>
-      <p>O número do Suporte Técnico do Desafio de 7 Dias mudou </p>
-      <p> Novo número: 5588996620215</p>
+      <p>O número do Suporte Técnico do Desafio de 7 Dias mudou: </p>
+      <p> 5588996620215</p>
       <a href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank " class="btn"> Suporte Técnico </a>    </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>

@@ -29,7 +29,7 @@
                 </div>
 
                 @endif
-                <h5>Desafio de 7 Dias</h5>
+                <h5>RAIO X</h5>
               </div>
 
             </div>

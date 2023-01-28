@@ -45,18 +45,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach($terapeuta as $desafio)
+                      @foreach($terapeuta as $Desafio)
                     <tr>
                       <td>1.</td>
-                      <td>{{$desafio->name}}</td>
+                      <td>{{$Desafio->name}}</td>
                       <td>
-                      {{$desafio->nameBaby}}
+                      {{$Desafio->nameBaby}}
                       </td>
-                      <td> @if($desafio->bonus=='1')
+                      <td> @if($Desafio->bonus=='1')
                     <span class="badge bg-green">   SIM </span>
                     @else <span class="badge bg-red">   NÃO </span> @endif
                     </td>
-                      <td><a target="__blank" href="{{route('challenge.meus.show', $desafio->desafio_id)}}"><span class="badge bg-warning">Desafio</span></a><a target="__blank" href="{{route('challenge.meus.respostas', $desafio->desafio_id)}}"><span class="badge bg-warning">Respostas</span></a></td>
+                      <td><a target="__blank" href="{{route('challenge.meus.show', $Desafio->Desafio_id)}}"><span class="badge bg-warning">Desafio</span></a><a target="__blank" href="{{route('challenge.meus.respostas', $Desafio->Desafio_id)}}"><span class="badge bg-warning">Respostas</span></a></td>
                     </tr>
                     @endforeach
                   </tbody>

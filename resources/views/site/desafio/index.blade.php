@@ -1,4 +1,4 @@
-@extends('site.desafio.layouts.app')
+@extends('site.Desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 @stop
@@ -13,6 +13,7 @@
                 <div id="card-widgets">
                     <div class="row">
                         <div class="col s12">
+                            <!--
                         <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Informação</h4>
@@ -27,11 +28,11 @@
 
                             <ul id="task-card" class="collection with-header animate fadeLeft">
                                 <li class="collection-header red">
-                                    <h5 class="task-card-title mb-3">Meus Desafios</h5>
+                                    <h5 class="task-card-title mb-3">Meus Raios X do Sono</h5>
 
                                 </li>
                                 <table class="bordered">
-                                    <thead><th>Desafio</th><th>Status</th><td>Ações</td></thead>
+                                    <thead><th>Raio X</th><th>Status</th><td>Ações</td></thead>
                                 @forelse ($challenges as $key => $challenge)
                                 <tr>
                                 <td>{{$key+1}}</td><td>{{$challenge->status}}
@@ -40,25 +41,25 @@
                              ( Restam <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat ) 
                              @endif
                                 </td>
-                                <td><a href="{{route('desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>
+                                <td><a href="{{route('Desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>
                           
                             </td>
                                 </tr>
                                 @empty
                                 </table>
-                                <form action="{{route('desafio.store')}}" method="POST">
+                                <form action="{{route('Desafio.store')}}" method="POST">
                                     @csrf
                                     <li class="collection-item dismissable">
-                                        <button class="btn waves-effect waves-light " type="submit"> Inicie um novo desafio </submit>
+                                        <button class="btn waves-effect waves-light " type="submit"> Inicie um novo Raio X </submit>
                                 </form>
                                 </li>
                                 @endforelse
 
                                 @if(isset($latest_challenge) && $latest_challenge->status=='FINALIZADO')
-                                <form action="{{route('desafio.store')}}" method="POST">
+                                <form action="{{route('Desafio.store')}}" method="POST">
                                     @csrf
                                     <li class="collection-item dismissable">
-                                        <button class="btn waves-effect waves-light " type="submit"> Inicie um novo desafio </submit>
+                                        <button class="btn waves-effect waves-light " type="submit"> Inicie um novo Raio X </submit>
                                     </li>
                                 </form>
                                 @endif

@@ -17,7 +17,7 @@
             <thead>
                
                 <tr>
-                    <th> Nº do desafio</th>
+                    <th> Nº do Desafio</th>
                     <th>Nome da Mãe</th>
                      <th>Email</th>
                     <th>Status</th>

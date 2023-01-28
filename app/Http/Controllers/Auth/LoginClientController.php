@@ -40,7 +40,7 @@ if(Client::where('email',$request->email)->first()->expireAt>=date_format(now(),
                 $request->get('remember'))) {
 
 
-            return redirect()->intended('/desafios');
+            return redirect()->intended('/Desafios');
         }
         return back()
         ->withInput($request->only('email', 'remember'))

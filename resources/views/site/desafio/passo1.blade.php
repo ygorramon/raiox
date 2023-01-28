@@ -1,4 +1,4 @@
-@extends('site.desafio.layouts.app')
+@extends('site.Desafio.layouts.app')
 @section('css')
     <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 @stop
@@ -6,10 +6,11 @@
 
 
 @section('content')
+<!--
 <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>PRÉ-ANÁLISE</h4>
-      <textarea class="materialize-textarea">Olá, essa é uma pré-análise do seu desafio e a cada dia você terá uma diferente para agilizar ainda mais a sua análise definitiva e os seus resultados.
+      <textarea class="materialize-textarea">Olá, essa é uma pré-análise do seu Desafio e a cada dia você terá uma diferente para agilizar ainda mais a sua análise definitiva e os seus resultados.
 
 Nessa pré-análise, nós avaliaremos o critérios do Passo 1, do método dos 4 Passos do sono do bebê, que consta em avaliar se o sono do bebê está sendo reparador.
 
@@ -28,7 +29,7 @@ Saberemos ao avaliar as suas anotações sobre a duração das sonecas;</textare
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
   </div>
-
+-->
     <div class="row">
 
 

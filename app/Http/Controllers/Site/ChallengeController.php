@@ -32,14 +32,14 @@ class ChallengeController extends Controller
 
         $latest_challenge = Auth::guard('clients')->user()->challenges()->latest()->first();
 
-        return view('site.desafio.index', compact('challenges', 'latest_challenge'));
+        return view('site.Desafio.index', compact('challenges', 'latest_challenge'));
     }
 
     public function chat()
     {
 
 
-        return view('site.desafio.chat');
+        return view('site.Desafio.chat');
     }
 
     public function store(Request $request)
@@ -49,7 +49,7 @@ class ChallengeController extends Controller
             'status' => 'INICIADO',
             'tipo' => '1'
         ]);
-        return redirect()->route('desafio.show', $challenge->id);
+        return redirect()->route('Desafio.show', $challenge->id);
     }
 
     public function show($id)
@@ -68,9 +68,9 @@ class ChallengeController extends Controller
 
         if($challenge->tipo==1){
 
-        return view('site.desafio.show2', compact('analyzes', 'challenge'));
+        return view('site.Desafio.show2', compact('analyzes', 'challenge'));
         }else{
-            return view('site.desafio.show', compact('analyzes', 'challenge'));
+            return view('site.Desafio.show', compact('analyzes', 'challenge'));
 
         }
 
@@ -121,7 +121,7 @@ class ChallengeController extends Controller
 
 
         $challenge = $this->repository->find($id);
-        return view('site.desafio.create', compact('challenge', 'day'));
+        return view('site.Desafio.create', compact('challenge', 'day'));
     }
     public function analyzeCreateForm($id)
     {
@@ -157,7 +157,7 @@ class ChallengeController extends Controller
 
 
 
-        return view('site.desafio.form', compact('challenge'));
+        return view('site.Desafio.form', compact('challenge'));
     }
 
     public function analyzeEditForm($id)
@@ -175,10 +175,10 @@ class ChallengeController extends Controller
             return redirect()->back();
         }
         //dd($form);
-        return view('site.desafio.form-edit', compact('challenge', 'form'));
+        return view('site.Desafio.form-edit', compact('challenge', 'form'));
     }
 
-    public function desafioUpdate($id)
+    public function DesafioUpdate($id)
     {
         if (!$challenge = $this->repository->find($id)
             || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
@@ -191,7 +191,7 @@ class ChallengeController extends Controller
         ]);
         //   $challenge->notify(new ChallengeTelegramNotification());
 
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
+        return redirect()->route('Desafio.show', $challenge->id)->with('sucesso', 'Desafio Enviado!');
     }
 
     public $message = [
@@ -604,7 +604,7 @@ class ChallengeController extends Controller
             'comments' => $request->observacoes,
 
         ]);
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
+        return redirect()->route('Desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
     }
 
     public function analyzeUpdateForm(Request $request, $id)
@@ -815,7 +815,7 @@ class ChallengeController extends Controller
             'comments' => $request->observacoes,
 
         ]);
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
+        return redirect()->route('Desafio.show', $challenge->id)->with('sucesso', 'Formulário Final Concluído');
     }
 
 
@@ -1105,7 +1105,7 @@ class ChallengeController extends Controller
                 'sleepingMode' => $request->despertar6_fd
             ]);
         }
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Análise realizada');
+        return redirect()->route('Desafio.show', $challenge->id)->with('sucesso', 'Análise realizada');
     }
 
     public function analyzeEdit($id, $day)
@@ -1115,7 +1115,7 @@ class ChallengeController extends Controller
         $ritual = $analyze->rituals()->first();
         $naps = $analyze->naps()->get();
         $wakes = $analyze->wakes()->get();
-        return view('site.desafio.edit', compact('analyze', 'day', 'challenge', 'ritual', 'naps', 'wakes'));
+        return view('site.Desafio.edit', compact('analyze', 'day', 'challenge', 'ritual', 'naps', 'wakes'));
     }
 
     public function analyzeUpdate($id, $day, Request $request)
@@ -1401,7 +1401,7 @@ class ChallengeController extends Controller
                 'sleepingMode' => $request->despertar6_fd
             ]);
         }
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Análise atualizada');
+        return redirect()->route('Desafio.show', $challenge->id)->with('sucesso', 'Análise atualizada');
     }
 
     public function chatStore(Request $request, $id)
@@ -1420,19 +1420,19 @@ class ChallengeController extends Controller
 
         //  $chat->notify(new ChatTelegramNotification());
 
-        return redirect()->route('desafio.show', $challenge->id);
+        return redirect()->route('Desafio.show', $challenge->id);
     }
 
     public function clientEdit()
     {
         $client = Auth::guard('clients')->user();
-        return view('site.desafio.profile-edit', compact('client'));
+        return view('site.Desafio.profile-edit', compact('client'));
     }
 
     public function messageEdit($id)
     {
         $message = Message::find($id);
-        return view('site.desafio.edit-message', compact('message'));
+        return view('site.Desafio.edit-message', compact('message'));
     }
 
     public function messageUpdate(Request $request, $id)
@@ -1443,7 +1443,7 @@ class ChallengeController extends Controller
         $challenge = $message->chat->challenge()->first();
 
 
-        return redirect()->route('desafio.show', $challenge->id);
+        return redirect()->route('Desafio.show', $challenge->id);
     }
 
     public  $messageClient = [
@@ -1483,13 +1483,13 @@ class ChallengeController extends Controller
         ]);
 
         $challenge = $client->challenges->last();
-        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Dados atualizados');
+        return redirect()->route('Desafio.show', $challenge->id)->with('sucesso', 'Dados atualizados');
     }
 
     public function doubtCenter()
     {
         $modules = Module::all();
-        return view('site.desafio.doubt-center', compact('modules'));
+        return view('site.Desafio.doubt-center', compact('modules'));
     }
 
     public function doubtCenterModule($id)
@@ -1499,7 +1499,7 @@ class ChallengeController extends Controller
             return redirect()->back();
         }
 
-        return view('site.desafio.doubt-center-show', compact('module'));
+        return view('site.Desafio.doubt-center-show', compact('module'));
     }
 
     public function doubtCenterSubmodule($id)
@@ -1509,12 +1509,12 @@ class ChallengeController extends Controller
             return redirect()->back();
         }
 
-        return view('site.desafio.queries', compact('submodule'));
+        return view('site.Desafio.queries', compact('submodule'));
     }
 
     public function queryShow()
     {
-        return view('site.desafio.query');
+        return view('site.Desafio.query');
     }
 
     public function query(Request $request)
@@ -1535,7 +1535,7 @@ class ChallengeController extends Controller
         $client = Auth::guard('clients')->user();
 
         $doubts = $client->doubts()->get();
-        return view('site.desafio.my-queries', compact('doubts'));
+        return view('site.Desafio.my-queries', compact('doubts'));
     }
 
 
@@ -1545,7 +1545,7 @@ class ChallengeController extends Controller
 
         $doubt = Doubt::find($id);
 
-        return view('site.desafio.myquery-show', compact('doubt'));
+        return view('site.Desafio.myquery-show', compact('doubt'));
     }
 
     public function passo1($id, $day)
@@ -1658,7 +1658,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
 ";
         }
 
-        return view('site.desafio.passo1', compact('client', 'analyze', 'challenge', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));
+        return view('site.Desafio.passo1', compact('client', 'analyze', 'challenge', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));
     }
 
     public function passo2($id)
@@ -1666,7 +1666,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo2', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo2', compact('client', 'babyAge', 'challenge'));
     }
 
     public function passo3_despertar_analise($id)
@@ -1674,7 +1674,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo3_despertar_analise', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo3_despertar_analise', compact('client', 'babyAge', 'challenge'));
     }
 
     public function passo4_analise($id)
@@ -1682,7 +1682,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo4_analise', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo4_analise', compact('client', 'babyAge', 'challenge'));
     }
     public function conclusao($id)
     {
@@ -1716,21 +1716,21 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
 
 
 
-        return view('site.desafio.conclusao', compact('client', 'babyAge', 'challenge', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas', 'qtd_dias_acordou_cedo', 'qtd_dias_acordou_tarde', 'qtd_sonecas_inadequadas'));
+        return view('site.Desafio.conclusao', compact('client', 'babyAge', 'challenge', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas', 'qtd_dias_acordou_cedo', 'qtd_dias_acordou_tarde', 'qtd_sonecas_inadequadas'));
     }
     public function passo3_rotina_sonecas_analise($id)
     {
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo3_rotina_sonecas_analise', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo3_rotina_sonecas_analise', compact('client', 'babyAge', 'challenge'));
     }
     public function passo3_pilares_analise($id)
     {
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo3_pilares_analise', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo3_pilares_analise', compact('client', 'babyAge', 'challenge'));
     }
 
     public function passo2_analise($id)
@@ -1738,7 +1738,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo2_analise', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo2_analise', compact('client', 'babyAge', 'challenge'));
     }
 
     public function passo3_despertar($id)
@@ -1769,7 +1769,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
 ";
         }
 
-        return view('site.desafio.passo3_despertar', compact('client', 'challenge', 'orientação_acordou_cedo', 'orientação_acordou_tarde', 'orientação_acordou_bem'));
+        return view('site.Desafio.passo3_despertar', compact('client', 'challenge', 'orientação_acordou_cedo', 'orientação_acordou_tarde', 'orientação_acordou_bem'));
     }
 
     public function passo3_rotina_sonecas($id)
@@ -1798,7 +1798,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         }
 
 
-        return view('site.desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas'));
+        return view('site.Desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas'));
     }
     public function passo3_rotina_sonecas2($id)
     {
@@ -1827,7 +1827,7 @@ Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos co
         }
 dd($janelas);
 
-      //  return view('site.desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas'));
+      //  return view('site.Desafio.passo3_rotina_sonecas', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_sonecas_inadequadas'));
     }
     public function passo3_pilares($id)
     {
@@ -1862,14 +1862,14 @@ dd($janelas);
 
 
 
-        return view('site.desafio.passo3_pilares', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_despertares_inadequadas', 'qtd_rituais_inadequadas'));
+        return view('site.Desafio.passo3_pilares', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_despertares_inadequadas', 'qtd_rituais_inadequadas'));
     }
     public function passo4($id)
     {
         $challenge = Challenge::find($id);
         $client = Auth::guard('clients')->user();
         $babyAge = getIdade($client->birthBaby);
-        return view('site.desafio.passo4', compact('client', 'babyAge', 'challenge'));
+        return view('site.Desafio.passo4', compact('client', 'babyAge', 'challenge'));
     }
 
 
@@ -1905,7 +1905,7 @@ dd($janelas);
 
             ]
         );
-        return redirect()->route('desafio.show', $challenge->id);
+        return redirect()->route('Desafio.show', $challenge->id);
     }
     public function formulario_update($id, Request $request)
     {
@@ -1999,6 +1999,6 @@ dd($janelas);
         }
 
 
-        return redirect()->route('desafio.show', $challenge->id);
+        return redirect()->route('Desafio.show', $challenge->id);
     }
 }

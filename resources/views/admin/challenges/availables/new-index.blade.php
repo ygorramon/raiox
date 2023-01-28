@@ -28,7 +28,7 @@
                      <th>Turma</th>
                     <th>Bônus</th>
                     <th>Data de Envio</th>
-                    <th> Outros desafios </th>
+                    <th> Outros Desafios </th>
                     <th>Ações</th>
                 </tr>
             </thead>

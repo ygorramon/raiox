@@ -35,27 +35,27 @@ class EventServiceProvider extends ServiceProvider
 
         Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
             // Add some items to the menu...
-            $event->menu->addIn('desafios', [
-                'key' =>'desafios-disponiveis',
+            $event->menu->addIn('Desafios', [
+                'key' =>'Desafios-disponiveis',
                 'text' => 'Disponíveis',
-                'url' => '/admin/desafios/disponiveis',
+                'url' => '/admin/Desafios/disponiveis',
                 'label' => Challenge::where('status','ENVIADO')->where('tipo', '=', null)->count(),
             ]);
-            $event->menu->addIn('desafios', [
-                'key' =>'desafios-novos-disponiveis',
+            $event->menu->addIn('Desafios', [
+                'key' =>'Desafios-novos-disponiveis',
                 'text' => 'Novos Disponíveis',
-                'url' => '/admin/desafios/novo_disponiveis',
+                'url' => '/admin/Desafios/novo_disponiveis',
                 'label' => Challenge::where('status','ENVIADO')->where('tipo', '=', '1')->count(),
             ]);
-            $event->menu->addIn('desafios', [
-                'key' =>'meus-desafios',
+            $event->menu->addIn('Desafios', [
+                'key' =>'meus-Desafios',
                 'text'    => 'Meus Desafios',
-                'url'     => '/admin/desafios/meus',
+                'url'     => '/admin/Desafios/meus',
                 'label' =>Auth::user()->challenges()->where('status','ANALISE')->orWhere('status','RESPONDIDO')->count(),
         
             ]);
-            $event->menu->addIn('desafios', [
-                'key' =>'desafios-finalizados',
+            $event->menu->addIn('Desafios', [
+                'key' =>'Desafios-finalizados',
                 'text' => 'Finalizados',
                 'url'  => '#',
                 'label' =>Auth::user()->challenges()->where('status','FINALIZADO')->count(),
@@ -79,7 +79,7 @@ class EventServiceProvider extends ServiceProvider
             $event->menu->addIn('chats', [
                 'key' =>'chats-abertos',
                 'text' => 'Em aberto',
-                'url'  => '/admin/desafios/meus/chats/abertos',
+                'url'  => '/admin/Desafios/meus/chats/abertos',
                 'label' =>  Auth::user()->chats()->where('chats.status','mae')->with('challenge')->where('challenges.status','RESPONDIDO')->count(),
                
             ]);
@@ -87,7 +87,7 @@ class EventServiceProvider extends ServiceProvider
             $event->menu->addIn('chats', [
                 'key' =>'chats-todos',
                 'text' => 'Meus Chats',
-                'url'  => '/admin/desafios/meus/chats/todos',
+                'url'  => '/admin/Desafios/meus/chats/todos',
                 'label' =>  Auth::user()->chats()->with('challenge')->count(),
                
             ]);

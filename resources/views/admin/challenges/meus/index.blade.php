@@ -27,7 +27,7 @@
                       <th>Turma</th>
                     <th>Bonus</th>
                     <th>Status</th>
-                    <th> Outros desafios </th>
+                    <th> Outros Desafios </th>
                     <th>Ações</th> 
                 </tr>
             </thead>

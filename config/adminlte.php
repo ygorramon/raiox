@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'DESAFIO 7 DIAS',
+    'title' => 'Desafio 7 DIAS',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>DESAFIO</b>7 DIAS',
+    'logo' => '<b>Desafio</b>7 DIAS',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image  elevation-3',
     'logo_img_xl' => null,
@@ -256,7 +256,7 @@ return [
         [
             'text'    => 'Desafios',
             'icon'    => 'fas fa-fw fa-share',
-            'key'  => 'desafios',
+            'key'  => 'Desafios',
 
             'submenu' => [
                 
@@ -316,7 +316,7 @@ return [
                 ],
                 [
                     'text'    => 'Desafios Atrasados',
-                    'url'     => '/admin/relatorios/desafios-atrasados',
+                    'url'     => '/admin/relatorios/Desafios-atrasados',
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
                 [

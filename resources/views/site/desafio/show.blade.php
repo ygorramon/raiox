@@ -1,4 +1,4 @@
-@extends('site.desafio.layouts.app')
+@extends('site.Desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 @stop
@@ -220,11 +220,11 @@
                        
                       
       
-      <p> O CHAT abaixo ficará disponível por 30 Dias após a resposta do seu desafio!</p>
+      <p> O CHAT abaixo ficará disponível por 30 Dias após a resposta do seu Desafio!</p>
       <p> Você só pode colocar uma mensagem até o dr Odilo responder.</p>
       <p> Esse CHAT finalizará no dia {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->format('d/m/y')}} </p>
       <p> Restam {{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat </p>
-      <p> Após esse prazo, você poderá realizar um novo desafio </p>
+      <p> Após esse prazo, você poderá realizar um novo Desafio </p>
       </div>
     </div>
 @endif
@@ -234,7 +234,7 @@
                         <div class="collapsible-header"><i class="material-icons">message</i>Chat  </div>
                         <div class="collapsible-body">
                           @if($challenge->chat()->first()==null)
-                          Envie uma mensagem ao Dr. Odilo Queiroz sobre seu desafio!
+                          Envie uma mensagem ao Dr. Odilo Queiroz sobre seu Desafio!
                           <form action="{{route('challenge.chat.store', $challenge->id)}}" method="POST">
                             @csrf
                             <label >Responder:</label>
@@ -503,7 +503,7 @@
 @if(isset($challenge->form()->first()->id))
 <tr>
   <td>
-    <form action="{{route('desafio.update',$challenge->id)}}" method="POST">
+    <form action="{{route('Desafio.update',$challenge->id)}}" method="POST">
       @csrf
       {{ method_field('PUT') }}
       <button class="btn">Enviar Desafio</button>
@@ -756,7 +756,7 @@
 @if(isset($challenge->form()->first()->id))
 <tr>
   <td>
-    <form action="{{route('desafio.update',$challenge->id)}}" method="POST">
+    <form action="{{route('Desafio.update',$challenge->id)}}" method="POST">
       @csrf
       {{ method_field('PUT') }}
       <button class="btn">Enviar Desafio</button>

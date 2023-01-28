@@ -1,4 +1,4 @@
-@extends('site.desafio.layouts.app')
+@extends('site.Desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 @stop
@@ -23,7 +23,7 @@ Vamos juntos chegar à noite inteira de sono do seu bebê!
     </div>
    
 <div class="card-content row">
-<a href="{{route('desafio.show',$challenge->id)}}" class="btn"> Voltar </a>
+<a href="{{route('Desafio.show',$challenge->id)}}" class="btn"> Voltar </a>
 </div>
     </div>
     

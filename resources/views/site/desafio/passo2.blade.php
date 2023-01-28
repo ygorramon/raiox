@@ -1,4 +1,4 @@
-@extends('site.desafio.layouts.app')
+@extends('site.Desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 @stop
@@ -12,7 +12,7 @@
 
         <textarea class="materialize-textarea">Agora vamos analisar o Passo 2, que é entender por que o seu bebê está acordando e aqui vamos fazer uma revisão detalhada de cada uma das principais causas:
 
-E após o preenchimento do seu desafio, você poderá tirar todas as suas dúvidas, dificuldades, particularidades e resultados no seu chat exclusivo. Não se preocupe, que o seu desafio não se resume a uma pré-análise automática!
+E após o preenchimento do seu Desafio, você poderá tirar todas as suas dúvidas, dificuldades, particularidades e resultados no seu chat exclusivo. Não se preocupe, que o seu Desafio não se resume a uma pré-análise automática!
 </textarea>
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Z7hVH-ElzdE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>      </div>
@@ -479,7 +479,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
             if (opt == 'S') {
 
                 $('#conclusao_fome').val(
-                    'Ótimo! Nessa idade é bem improvável que o seu filho ainda acorde por fome.Seus principais desafios agora são outros, principalmente gasto de energia, birras, falta de bons hábitos e associações. Mas caso suspeite de que a alimentação do seu filho não está sendo o suficiente, me comunique por aqui e passe por uma consulta com seu pediatra ou nutricionista. Trabalharemos em conjunto para te ajudar.'
+                    'Ótimo! Nessa idade é bem improvável que o seu filho ainda acorde por fome.Seus principais Desafios agora são outros, principalmente gasto de energia, birras, falta de bons hábitos e associações. Mas caso suspeite de que a alimentação do seu filho não está sendo o suficiente, me comunique por aqui e passe por uma consulta com seu pediatra ou nutricionista. Trabalharemos em conjunto para te ajudar.'
                 );
 
                 M.textareaAutoResize($('#conclusao_fome'));
@@ -815,7 +815,7 @@ Como você referiu não identificar facilmente o padrão de evacuações do seu 
             if (opt == 'S') {
 
 
-                $('#conclusao_salto').val('Os saltos são mesmo importantes causas de despertares porque o bebê pode ficar mais alerta ou assus-tado devido a tantas novidades. Pode ser que fique inevitável desenvolver associações nesse período, mas se esse for o caso, nós iremos desfaze-la assim que o salto acabar. Além disso, é importante verificarmos quais necessidades de sono do seu bebê estão mudan-do. E o desafio é fundamental para isso! Conte conosco.');
+                $('#conclusao_salto').val('Os saltos são mesmo importantes causas de despertares porque o bebê pode ficar mais alerta ou assus-tado devido a tantas novidades. Pode ser que fique inevitável desenvolver associações nesse período, mas se esse for o caso, nós iremos desfaze-la assim que o salto acabar. Além disso, é importante verificarmos quais necessidades de sono do seu bebê estão mudan-do. E o Desafio é fundamental para isso! Conte conosco.');
                 M.textareaAutoResize($('#conclusao_salto'));
                 $('#salto_sim').show();
                 $('#salto_marcos_sim').show();

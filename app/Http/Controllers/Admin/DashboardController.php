@@ -38,7 +38,7 @@ class DashboardController extends Controller
         $challenges= DB::table('challenges')
                     ->join('users','users.id','=','challenges.user_id')
                     ->join('clients','clients.id','=','challenges.client_id')
-           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
+           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as Desafio_id')
                     //->whereBetween('answered_at', ['2021-08-01',now()])
                     ->get()->groupBy('users_name');
                     
@@ -59,7 +59,7 @@ class DashboardController extends Controller
         $challenges= DB::table('challenges')
            ->join('users','users.id','=','challenges.user_id')
            ->join('clients','clients.id','=','challenges.client_id')
-           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
+           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as Desafio_id')
            ->whereBetween('answered_at', [$request->date_start,$request->date_end])
            ->get()->groupBy('users_name');
            
@@ -102,7 +102,7 @@ class DashboardController extends Controller
 
       public function relatorioClientsDesafios($id){
          $challenges = $this->client->find($id)->challenges()->get();
-         return view ('admin.relatorios.clients.desafios', compact('challenges'));
+         return view ('admin.relatorios.clients.Desafios', compact('challenges'));
       }
       
       public function usersIndex(){

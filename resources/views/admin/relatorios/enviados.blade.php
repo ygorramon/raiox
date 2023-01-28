@@ -5,7 +5,7 @@
 @section('content_header')
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-    <li class="breadcrumb-item active">Todos os desafios</li>
+    <li class="breadcrumb-item active">Todos os Desafios</li>
 </ol>
 
 @stop

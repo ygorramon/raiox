@@ -43,7 +43,7 @@
                     
 
                     <td style="width=10px;">
-                        <a href="{{ route('relatorios.clients.desafios', $client->id) }}" class="btn btn-info">Desafios</a>
+                        <a href="{{ route('relatorios.clients.Desafios', $client->id) }}" class="btn btn-info">Desafios</a>
                       
                     </td>
                 </tr>

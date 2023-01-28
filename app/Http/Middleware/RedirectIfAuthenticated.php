@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
        
         
         if ($guard == "clients" && Auth::guard($guard)->check()) {
-            return redirect('/desafios');
+            return redirect('/Desafios');
         }
         if (Auth::guard($guard)->check()) {
             return redirect('/admin');

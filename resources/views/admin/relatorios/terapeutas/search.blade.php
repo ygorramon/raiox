@@ -58,7 +58,7 @@ DB::table('chats')
                     <td>{{count(DB::table('challenges')
            ->join('users','users.id','=','challenges.user_id')
            ->join('clients','clients.id','=','challenges.client_id')
-           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as desafio_id')
+           ->select('users.*','clients.*','challenges.*', 'users.name AS users_name', 'challenges.id as Desafio_id')
            ->where('users.id',$user->id)
 ->whereDate('answered_at', '=', $date)           ->get())}}</td>
 

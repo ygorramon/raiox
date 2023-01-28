@@ -38,19 +38,19 @@ class EventServiceProvider extends ServiceProvider
             $event->menu->addIn('Desafios', [
                 'key' =>'Desafios-disponiveis',
                 'text' => 'Disponíveis',
-                'url' => '/admin/Desafios/disponiveis',
+                'url' => '/admin/desafios/disponiveis',
                 'label' => Challenge::where('status','ENVIADO')->where('tipo', '=', null)->count(),
             ]);
             $event->menu->addIn('Desafios', [
                 'key' =>'Desafios-novos-disponiveis',
                 'text' => 'Novos Disponíveis',
-                'url' => '/admin/Desafios/novo_disponiveis',
+                'url' => '/admin/desafios/novo_disponiveis',
                 'label' => Challenge::where('status','ENVIADO')->where('tipo', '=', '1')->count(),
             ]);
             $event->menu->addIn('Desafios', [
                 'key' =>'meus-Desafios',
                 'text'    => 'Meus Desafios',
-                'url'     => '/admin/Desafios/meus',
+                'url'     => '/admin/desafios/meus',
                 'label' =>Auth::user()->challenges()->where('status','ANALISE')->orWhere('status','RESPONDIDO')->count(),
         
             ]);
@@ -79,7 +79,7 @@ class EventServiceProvider extends ServiceProvider
             $event->menu->addIn('chats', [
                 'key' =>'chats-abertos',
                 'text' => 'Em aberto',
-                'url'  => '/admin/Desafios/meus/chats/abertos',
+                'url'  => '/admin/desafios/meus/chats/abertos',
                 'label' =>  Auth::user()->chats()->where('chats.status','mae')->with('challenge')->where('challenges.status','RESPONDIDO')->count(),
                
             ]);
@@ -87,7 +87,7 @@ class EventServiceProvider extends ServiceProvider
             $event->menu->addIn('chats', [
                 'key' =>'chats-todos',
                 'text' => 'Meus Chats',
-                'url'  => '/admin/Desafios/meus/chats/todos',
+                'url'  => '/admin/desafios/meus/chats/todos',
                 'label' =>  Auth::user()->chats()->with('challenge')->count(),
                
             ]);

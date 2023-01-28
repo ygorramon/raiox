@@ -316,7 +316,7 @@ return [
                 ],
                 [
                     'text'    => 'Desafios Atrasados',
-                    'url'     => '/admin/relatorios/Desafios-atrasados',
+                    'url'     => '/admin/relatorios/desafios-atrasados',
                     'icon'    => 'fas fa-fw fa-eye',
                 ],
                 [

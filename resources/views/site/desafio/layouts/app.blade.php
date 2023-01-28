@@ -28,7 +28,7 @@
           <span class="logo-text hide-on-med-and-down">RAIO X do Sono</span></a><a class="navbar-toggler" href="#"></a></h1>
     </div>
     <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
-      <li class="bold"><a class="waves-effect waves-cyan " href="{{route('Desafio.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Raios X</span></a>
+      <li class="bold"><a class="waves-effect waves-cyan " href="{{route('desafio.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Raios X</span></a>
       </li>
 <!--
        <li class="bold"><a class="waves-effect waves-cyan " href="{{route('doubtCenter.index')}}"><i class="material-icons">help</i><span class="menu-title" data-i18n="Mail">Perguntas Frequentes</span></a>

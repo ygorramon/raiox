@@ -503,7 +503,7 @@
 @if(isset($challenge->form()->first()->id))
 <tr>
   <td>
-    <form action="{{route('Desafio.update',$challenge->id)}}" method="POST">
+    <form action="{{route('desafio.update',$challenge->id)}}" method="POST">
       @csrf
       {{ method_field('PUT') }}
       <button class="btn">Enviar Desafio</button>
@@ -756,7 +756,7 @@
 @if(isset($challenge->form()->first()->id))
 <tr>
   <td>
-    <form action="{{route('Desafio.update',$challenge->id)}}" method="POST">
+    <form action="{{route('desafio.update',$challenge->id)}}" method="POST">
       @csrf
       {{ method_field('PUT') }}
       <button class="btn">Enviar Desafio</button>

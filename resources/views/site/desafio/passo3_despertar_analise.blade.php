@@ -26,7 +26,7 @@
 </div>
     </div>
 <div class="card-content row">
-<a href="{{route('Desafio.show',$challenge->id)}}" class="btn"> Voltar </a>
+<a href="{{route('desafio.show',$challenge->id)}}" class="btn"> Voltar </a>
 </div>
     </div>
     

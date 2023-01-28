@@ -1,4 +1,4 @@
-@extends('site.Desafio.layouts.app')
+@extends('site.desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 <link type="text/css" rel="stylesheet" href="{{ asset('css/chat.css') }}" media="screen,projection" />

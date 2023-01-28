@@ -1,4 +1,4 @@
-@extends('site.Desafio.layouts.app')
+@extends('site.desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
 @stop
@@ -17,7 +17,7 @@
                         <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Informação</h4>
-      <p>O número do Suporte Técnico do Desafio de 7 Dias mudou: </p>
+      <p>O número do Suporte Técnico do desafio de 7 Dias mudou: </p>
       <p> 5588996620215</p>
       <a href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank " class="btn"> Suporte Técnico </a>    </div>
     <div class="modal-footer">
@@ -41,13 +41,13 @@
                              ( Restam <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat ) 
                              @endif
                                 </td>
-                                <td><a href="{{route('Desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>
+                                <td><a href="{{route('desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>
                           
                             </td>
                                 </tr>
                                 @empty
                                 </table>
-                                <form action="{{route('Desafio.store')}}" method="POST">
+                                <form action="{{route('desafio.store')}}" method="POST">
                                     @csrf
                                     <li class="collection-item dismissable">
                                         <button class="btn waves-effect waves-light " type="submit"> Inicie um novo Raio X </submit>
@@ -56,7 +56,7 @@
                                 @endforelse
 
                                 @if(isset($latest_challenge) && $latest_challenge->status=='FINALIZADO')
-                                <form action="{{route('Desafio.store')}}" method="POST">
+                                <form action="{{route('desafio.store')}}" method="POST">
                                     @csrf
                                     <li class="collection-item dismissable">
                                         <button class="btn waves-effect waves-light " type="submit"> Inicie um novo Raio X </submit>

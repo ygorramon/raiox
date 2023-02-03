@@ -14,6 +14,8 @@ use App\Models\Message;
 use App\Models\Module;
 use App\Models\Submodule;
 use App\Models\Doubt;
+use App\Models\Client;
+use App\Models\Raiox;
 
 
 class ChallengeController extends Controller
@@ -33,6 +35,14 @@ class ChallengeController extends Controller
         $latest_challenge = Auth::guard('clients')->user()->challenges()->latest()->first();
 
         return view('site.desafio.index', compact('challenges', 'latest_challenge'));
+    }
+    public function index_raiox()
+    {
+        $raioxs = Auth::guard('clients')->user()->raioxs()->get();
+
+       
+
+        return view('site.desafio.index-raiox', compact('raioxs'));
     }
 
     public function chat()
@@ -75,6 +85,416 @@ class ChallengeController extends Controller
         }
 
     }
+ public function create_raiox(){
+            return view ('site.desafio.create_raiox');
+        }
+ public function raioxAnalise($id){
+   
+        $client = Auth::guard('clients')->user();
+
+       
+        $analyze = Raiox::find($id);
+        
+        $ritual = $analyze->rituals()->first();
+       
+        $naps = $analyze->naps()->get();
+        
+        $wakes = $analyze->wakes()->get();
+        $janela = getJanela(getIdade($client->birthBaby));
+        $babyAge = getIdade($client->birthBaby);
+        $qtd_ritual_sonecas_longo = count($analyze->naps->where('windowSignalSlept', '>', 30));
+        $qtd_ritual_inadequado = count($analyze->rituals->where('duration', '>', 30));
+        $qtd_rituais_inadequados = $qtd_ritual_sonecas_longo + $qtd_ritual_inadequado;
+        $qtd_sonecas_inadequadas = count($analyze->naps->where('duration', '<', 40));
+        $qtd_sinais_sono_tardio = 0;
+        $sinais_sono_resposta = "";
+        foreach ($analyze->naps as $item) {
+            if ($item->window - $item->windowSignalSlept > $janela->janelaIdealFim - 30) {
+                $qtd_sinais_sono_tardio++;
+            }
+        }
+        foreach ($analyze->rituals as $item) {
+            if ($item->window - $item->windowSignalSlept > $janela->janelaIdealFim - 30) {
+                $qtd_sinais_sono_tardio++;
+            }
+        }
+        if ($qtd_sinais_sono_tardio == 0) {
+            $sinais_sono_resposta = "Ótimo! Você consegue perceber os sinais de sono do seu bebê muito bem.
+Vamos conferir os próximos pontos.
+";
+        }
+
+        if ($qtd_sinais_sono_tardio > 0) {
+            if ($babyAge < 60) {
+                $sinal_sono_esperado = "30 a 50 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 60 && $babyAge < 120) {
+                $sinal_sono_esperado = "45 a 50 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 120 && $babyAge < 180) {
+                $sinal_sono_esperado = "70 a 90 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 180 && $babyAge < 210) {
+                $sinal_sono_esperado = "90 a 120 minutos, até que sinta sono.";
+            }
+            if ($babyAge >= 210 && $babyAge < 365) {
+                $sinal_sono_esperado = "2 a 3 horas, até que sinta sono.";
+            }
+            if ($babyAge >= 365 && $babyAge < 540) {
+                $sinal_sono_esperado = "3 a 3 horas e meia, até que sinta sono.";
+            }
+            if ($babyAge > 540) {
+                $sinal_sono_esperado = "5 a 6 horas até que sinta sono.";
+            }
+            $sinais_sono_resposta = "Como você pode ver, nessa pré-análise foi observado que o intervalo entre o despertar do bebê e ele sentir sono novamente foi muito longo para a idade.
+Nessa idade, o esperado é:\n"
+            . $sinal_sono_esperado .
+                "\nOu seja, provavelmente seu bebê está emitindo sinais de sono que estão passando despercebidos. A sugestão inicial é que observe com um pouco mais de cuidado e veja se ele emitirá algum sinal de sono dentro desse horário esperado.
+
+Para facilitar, vou deixar aqui uma lista de sinais de sono:
+
+Sinais precoces: (bebê começou a sentir sono)
+- Bocejar 
+- Escondendo o rosto no peito de quem o segura no colo 
+- Fazendo movimentos involuntários com braços e pernas 
+- Esfregando os olhos 
+- Puxando as orelhas/cabelos 
+- Arranhando o próprio rosto/Batendo nas pessoas 
+ 
+Intermediários: (bebê já está sentindo sono há alguns minutos)
+- Olhar parado/fixo em algo 
+- Ficando com os movimentos menos coordenados 
+- Perdendo o interesse nos brinquedos 
+ 
+Tardios: (bebê está sentindo sono há muito tempo)
+-Irritabilidade 
+-Virando/Arqueando o corpo para trás 
+-Caindo muito ou esbarrando em coisas ou pessoas ";
+        }
+
+        if ($qtd_rituais_inadequados == 0) {
+            $rituais_sono_resposta = "Que bom! Todos os rituais tiveram duração inferior a 30 minutos.
+Isso é essencial para um sono reparador.";
+        }
+
+        if ($qtd_rituais_inadequados > 0) {
+            $rituais_sono_resposta = "Estou vendo que houve alguns rituais com mais de 30 minutos.
+Nesse primeiro passo, devo apenas te lembrar que o ideal de um ritual é que ele dure menos de 30 minutos e que seja sem choro.
+Faça o seu melhor, mas caso tenha dificuldades com o ritual, conversaremos com mais detalhes no Passo 3. O principal, nesse primeiro momento, é mesmo conseguir perceber os sinais de sono do seu bebê.
+";
+        }
+
+        if ($qtd_sonecas_inadequadas == 0) {
+            $duracao_sonecas_resposta = "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
+E estou vendo que todas as sonecas tiveram duração superior a 40 minutos.
+Isso é essencial para um sono reparador e para dormir a noite inteira.
+Parabéns!
+";
+        }
+
+        if ($qtd_sonecas_inadequadas > 0) {
+            $duracao_sonecas_resposta = "Vamos então para o 3º ponto a ser avaliado, a duração das sonecas.
+E estou vendo que houve algumas sonecas com duração menor que 40 minutos.
+Nesse primeiro passo, devo apenas te lembrar que o ideal de uma soneca é que ela dure mais de 40 minutos e que seja sem choro.
+Faça o seu melhor, mas caso tenha dificuldades com as sonecas, conversaremos com mais detalhes no Passo 3. O principal, nesse primeiro momento, é mesmo conseguir perceber os sinais de sono do seu bebê.
+";
+        }
+
+
+        if ($qtd_sinais_sono_tardio == 0) {
+            $sinais_sono_resposta = "Ótimo! Você consegue perceber os sinais de sono do seu bebê muito bem.
+Vamos conferir os próximos pontos.
+";
+        
+
+        }
+        return view('site.desafio.analise_raiox', compact('client', 'analyze', 'qtd_sinais_sono_tardio', 'sinais_sono_resposta', 'rituais_sono_resposta', 'duracao_sonecas_resposta'));
+
+    }
+    public function raioxStore(Request $request)
+    {
+        //dd(\Carbon\Carbon::parse('00:25')->diffInMinutes(\Carbon\Carbon::parse('23:50'),true));
+        $ritual_window = $request->timeWokeUp;
+        $id= Auth::guard('clients')->user()->id;
+
+
+        $this->validator($request->all())->validate();
+        $client = Client::find($id);
+
+        if ($request->volcanicEffect == null) {
+            $request->volcanicEffect = 'N';
+        }
+
+        if ($request->comments == null) {
+            $request->comments = '';
+        }
+
+        $analyze = $client->raioxs()->create([
+            'day' => '1',
+            'date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
+
+            'timeWokeUp' => $request->timeWokeUp,
+            'volcanicEffect' => $request->volcanicEffect,
+            'comments' => $request->comments
+        ]);
+
+        if ($request->soneca1_ss != null) {
+            $request->timeWokeUp = \Carbon\Carbon::parse($request->timeWokeUp);
+            $request->soneca1_ss = \Carbon\Carbon::parse($request->soneca1_ss);
+            $request->soneca1_hd = \Carbon\Carbon::parse($request->soneca1_hd);
+            $request->soneca1_ha = \Carbon\Carbon::parse($request->soneca1_ha);
+            $ritual_window = $request->soneca1_ha;
+            $analyze->naps()->create([
+                'number' => '1',
+                'timeSlept' => $request->soneca1_hd,
+                'timeWokeUp' => $request->soneca1_ha,
+                'signalSlept' => $request->soneca1_ss,
+                'window' => $request->soneca1_hd->diffInMinutes($request->timeWokeUp),
+                'windowSignalSlept' => $request->soneca1_hd->diffInMinutes($request->soneca1_ss),
+                'duration' => $request->soneca1_ha->diffInMinutes($request->soneca1_hd),
+            ]);
+        }
+
+        if ($request->soneca2_ss != null) {
+            $request->soneca2_ss = \Carbon\Carbon::parse($request->soneca2_ss);
+            $request->soneca2_hd = \Carbon\Carbon::parse($request->soneca2_hd);
+            $request->soneca2_ha = \Carbon\Carbon::parse($request->soneca2_ha);
+            $ritual_window = $request->soneca2_ha;
+
+            $analyze->naps()->create([
+                'number' => '2',
+                'timeSlept' => $request->soneca2_hd,
+                'timeWokeUp' => $request->soneca2_ha,
+                'signalSlept' => $request->soneca2_ss,
+                'window' => $request->soneca2_hd->diffInMinutes($request->soneca1_ha),
+                'windowSignalSlept' => $request->soneca2_hd->diffInMinutes($request->soneca2_ss),
+                'duration' => $request->soneca2_ha->diffInMinutes($request->soneca2_hd),
+            ]);
+        }
+
+        if ($request->soneca3_ss != null) {
+            $request->soneca3_ss = \Carbon\Carbon::parse($request->soneca3_ss);
+            $request->soneca3_hd = \Carbon\Carbon::parse($request->soneca3_hd);
+            $request->soneca3_ha = \Carbon\Carbon::parse($request->soneca3_ha);
+            $ritual_window = $request->soneca3_ha;
+
+            $analyze->naps()->create([
+                'number' => '3',
+                'timeSlept' => $request->soneca3_hd,
+                'timeWokeUp' => $request->soneca3_ha,
+                'signalSlept' => $request->soneca3_ss,
+                'window' => $request->soneca3_hd->diffInMinutes($request->soneca2_ha),
+                'windowSignalSlept' => $request->soneca3_hd->diffInMinutes($request->soneca3_ss),
+                'duration' => $request->soneca3_ha->diffInMinutes($request->soneca3_hd),
+            ]);
+        }
+
+        if ($request->soneca4_ss != null) {
+            $request->soneca3_ss = \Carbon\Carbon::parse($request->soneca4_ss);
+            $request->soneca4_hd = \Carbon\Carbon::parse($request->soneca4_hd);
+            $request->soneca4_ha = \Carbon\Carbon::parse($request->soneca4_ha);
+            $ritual_window = $request->soneca4_ha;
+
+            $analyze->naps()->create([
+                'number' => '4',
+                'timeSlept' => $request->soneca4_hd,
+                'timeWokeUp' => $request->soneca4_ha,
+                'signalSlept' => $request->soneca4_ss,
+                'window' => $request->soneca4_hd->diffInMinutes($request->soneca3_ha),
+                'windowSignalSlept' => $request->soneca4_hd->diffInMinutes($request->soneca4_ss),
+                'duration' => $request->soneca4_ha->diffInMinutes($request->soneca4_hd),
+            ]);
+        }
+
+        if ($request->soneca5_ss != null) {
+            $request->soneca5_ss = \Carbon\Carbon::parse($request->soneca5_ss);
+            $request->soneca5_hd = \Carbon\Carbon::parse($request->soneca5_hd);
+            $request->soneca5_ha = \Carbon\Carbon::parse($request->soneca5_ha);
+            $ritual_window = $request->soneca5_ha;
+
+            $analyze->naps()->create([
+                'number' => '5',
+                'timeSlept' => $request->soneca5_hd,
+                'timeWokeUp' => $request->soneca5_ha,
+                'signalSlept' => $request->soneca5_ss,
+                'window' => $request->soneca5_hd->diffInMinutes($request->soneca4_ha),
+                'windowSignalSlept' => $request->soneca5_hd->diffInMinutes($request->soneca5_ss),
+                'duration' => $request->soneca5_ha->diffInMinutes($request->soneca5_hd),
+            ]);
+        }
+
+        if ($request->soneca6_ss != null) {
+            $request->soneca5_ss = \Carbon\Carbon::parse($request->soneca6_ss);
+            $request->soneca6_hd = \Carbon\Carbon::parse($request->soneca6_hd);
+            $request->soneca6_ha = \Carbon\Carbon::parse($request->soneca6_ha);
+            $ritual_window = $request->soneca6_ha;
+
+            $analyze->naps()->create([
+                'number' => '6',
+                'timeSlept' => $request->soneca6_hd,
+                'timeWokeUp' => $request->soneca6_ha,
+                'signalSlept' => $request->soneca6_ss,
+                'window' => $request->soneca6_hd->diffInMinutes($request->soneca5_ha),
+                'windowSignalSlept' => $request->soneca6_hd->diffInMinutes($request->soneca6_ss),
+                'duration' => $request->soneca6_ha->diffInMinutes($request->soneca6_hd),
+            ]);
+        }
+
+        if ($request->ritual_ss != null) {
+            $request->ritual_ss = \Carbon\Carbon::parse($request->ritual_ss);
+            $request->ritual_in = \Carbon\Carbon::parse($request->ritual_in);
+            $request->ritual_d = \Carbon\Carbon::parse($request->ritual_d);
+            $analyze->rituals()->create([
+                'signalSlept' => $request->ritual_ss,
+                'start' => $request->ritual_in,
+                'end' => $request->ritual_d,
+                'duration' => $request->ritual_d->diffInMinutes($request->ritual_in),
+                'window' => $request->ritual_in->diffInMinutes($ritual_window),
+                'windowSignalSlept' => $request->ritual_in->diffInMinutes($request->ritual_ss)
+            ]);
+        }
+
+
+
+        if ($request->despertar1_a != null) {
+            $request->despertar1_a = \Carbon\Carbon::parse($request->despertar1_a);
+            $request->despertar1_d = \Carbon\Carbon::parse($request->despertar1_d);
+
+            if ($request->despertar1_a->format('H') >= 0 && $request->despertar1_a->format('H') < 7) {
+                $request->despertar1_a->addDays(1);
+            }
+
+            if ($request->despertar1_d->format('H') >= 0 && $request->despertar1_d->format('H') < 7) {
+                $request->despertar1_d->addDays(1);
+            }
+            if ($request->despertar1_fd == 4) {
+                $request->despertar1_fd = $request->despertar1_fd_outro;
+            }
+            $analyze->wakes()->create([
+                'number' => '1',
+                'timeWokeUp' => $request->despertar1_a,
+                'timeSlept' => $request->despertar1_d,
+                'duration' => $request->despertar1_d->diffInMinutes($request->despertar1_a),
+                'sleepingMode' => $request->despertar1_fd
+            ]);
+        }
+        if ($request->despertar2_a != null) {
+            $request->despertar2_a = \Carbon\Carbon::parse($request->despertar2_a);
+            $request->despertar2_d = \Carbon\Carbon::parse($request->despertar2_d);
+
+            if ($request->despertar2_a->format('H') >= 0 && $request->despertar2_a->format('H') < 7) {
+                $request->despertar2_a->addDays(1);
+            }
+
+            if ($request->despertar2_d->format('H') >= 0 && $request->despertar2_d->format('H') < 7) {
+                $request->despertar2_d->addDays(1);
+            }
+            if ($request->despertar2_fd == 4) {
+                $request->despertar2_fd = $request->despertar2_fd_outro;
+            }
+            $analyze->wakes()->create([
+                'number' => '2',
+                'timeWokeUp' => $request->despertar2_a,
+                'timeSlept' => $request->despertar2_d,
+                'duration' => $request->despertar2_d->diffInMinutes($request->despertar2_a),
+                'sleepingMode' => $request->despertar2_fd
+            ]);
+        }
+
+        if ($request->despertar3_a != null) {
+            $request->despertar3_a = \Carbon\Carbon::parse($request->despertar3_a);
+            $request->despertar3_d = \Carbon\Carbon::parse($request->despertar3_d);
+
+            if ($request->despertar3_a->format('H') >= 0 && $request->despertar3_a->format('H') < 7) {
+                $request->despertar3_a->addDays(1);
+            }
+
+            if ($request->despertar3_d->format('H') >= 0 && $request->despertar3_d->format('H') < 7) {
+                $request->despertar3_d->addDays(1);
+            }
+            if ($request->despertar3_fd == 4) {
+                $request->despertar3_fd = $request->despertar3_fd_outro;
+            }
+            $analyze->wakes()->create([
+                'number' => '3',
+                'timeWokeUp' => $request->despertar3_a,
+                'timeSlept' => $request->despertar3_d,
+                'duration' => $request->despertar3_d->diffInMinutes($request->despertar3_a),
+                'sleepingMode' => $request->despertar3_fd
+            ]);
+        }
+
+        if ($request->despertar4_a != null) {
+            $request->despertar4_a = \Carbon\Carbon::parse($request->despertar4_a);
+            $request->despertar4_d = \Carbon\Carbon::parse($request->despertar4_d);
+
+            if ($request->despertar4_a->format('H') >= 0 && $request->despertar4_a->format('H') < 7) {
+                $request->despertar4_a->addDays(1);
+            }
+
+            if ($request->despertar4_d->format('H') >= 0 && $request->despertar4_d->format('H') < 7) {
+                $request->despertar4_d->addDays(1);
+            }
+            if ($request->despertar4_fd == 4) {
+                $request->despertar4_fd = $request->despertar4_fd_outro;
+            }
+            $analyze->wakes()->create([
+                'number' => '4',
+                'timeWokeUp' => $request->despertar4_a,
+                'timeSlept' => $request->despertar4_d,
+                'duration' => $request->despertar4_d->diffInMinutes($request->despertar4_a),
+                'sleepingMode' => $request->despertar4_fd
+            ]);
+        }
+
+        if ($request->despertar5_a != null) {
+            $request->despertar5_a = \Carbon\Carbon::parse($request->despertar5_a);
+            $request->despertar5_d = \Carbon\Carbon::parse($request->despertar5_d);
+
+            if ($request->despertar5_a->format('H') >= 0 && $request->despertar5_a->format('H') < 7) {
+                $request->despertar5_a->addDays(1);
+            }
+
+            if ($request->despertar5_d->format('H') >= 0 && $request->despertar5_d->format('H') < 7) {
+                $request->despertar5_d->addDays(1);
+            }
+            if ($request->despertar5_fd == 4) {
+                $request->despertar5_fd = $request->despertar5_fd_outro;
+            }
+            $analyze->wakes()->create([
+                'number' => '5',
+                'timeWokeUp' => $request->despertar5_a,
+                'timeSlept' => $request->despertar5_d,
+                'duration' => $request->despertar5_d->diffInMinutes($request->despertar5_a),
+                'sleepingMode' => $request->despertar5_fd
+            ]);
+        }
+
+        if ($request->despertar6_a != null) {
+            $request->despertar6_a = \Carbon\Carbon::parse($request->despertar6_a);
+            $request->despertar6_d = \Carbon\Carbon::parse($request->despertar6_d);
+
+            if ($request->despertar6_a->format('H') >= 0 && $request->despertar6_a->format('H') < 7) {
+                $request->despertar6_a->addDays(1);
+            }
+
+            if ($request->despertar6_d->format('H') >= 0 && $request->despertar6_d->format('H') < 7) {
+                $request->despertar6_d->addDays(1);
+            }
+            if ($request->despertar6_fd == 4) {
+                $request->despertar6_fd = $request->despertar6_fd_outro;
+            }
+            $analyze->wakes()->create([
+                'number' => '6',
+                'timeWokeUp' => $request->despertar6_a,
+                'timeSlept' => $request->despertar6_d,
+                'duration' => $request->despertar6_d->diffInMinutes($request->despertar6_a),
+                'sleepingMode' => $request->despertar6_fd
+            ]);
+        }
+        return redirect()->route('raiox.index')->with('sucesso', 'Análise realizada');
+    }
+
 
     public function analyzeCreate($id, $day)
     {
@@ -115,6 +535,7 @@ class ChallengeController extends Controller
             }
         }
 
+       
 
 
 
@@ -192,6 +613,23 @@ class ChallengeController extends Controller
         //   $challenge->notify(new ChallengeTelegramNotification());
 
         return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'desafio Enviado!');
+    }
+
+    public function desafioFinalizar($id)
+    {
+       
+        if (!$challenge = $this->repository->find($id)
+            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+
+            return redirect()->back();
+        }
+        $challenge = $this->repository->find($id);
+        $challenge->update([
+            'status' => 'FINALIZADO', 'sended_at' => now(),
+        ]);
+        //   $challenge->notify(new ChallengeTelegramNotification());
+
+        return redirect()->route('desafio.index', $challenge->id)->with('sucesso', 'Desafio Finalizado!');
     }
 
     public $message = [

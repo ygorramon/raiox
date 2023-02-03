@@ -28,41 +28,24 @@
 
                             <ul id="task-card" class="collection with-header animate fadeLeft">
                                 <li class="collection-header red">
-                                    <h5 class="task-card-title mb-3">Meus Desafios de 7 Dias</h5>
+                                    <h5 class="task-card-title mb-3">Meus Raios X do Sono</h5>
 
                                 </li>
                                 <table class="bordered">
-                                    <thead><th>Desafio</th><th>Status</th><td>Ações</td></thead>
-                                @forelse ($challenges as $key => $challenge)
+                                    <thead><th>Data do Raio X</th><th>Análise</th></thead>
+                                @forelse ($raioxs as $key => $raiox)
                                 <tr>
-                                <td>{{$key+1}}</td><td>{{$challenge->status}}
-                                      @if($challenge->status=='RESPONDIDO') <br> ( Chat até <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->format('d/m/y')}} </b> )
-                            <br><br>
-                             ( Restam <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat ) 
-                             @endif
-                                </td>
-                                <td><a href="{{route('desafio.show',$challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>
-                          
-                            </td>
+                               <td>{{formatDateAndTime($raiox->date)}}</td><td><a class="btn" href="{{route('raiox.analise',$raiox->id)}}">Acessar</a></td>
                                 </tr>
                                 @empty
                                 </table>
-                                <form action="{{route('desafio.store')}}" method="POST">
-                                    @csrf
-                                    <li class="collection-item dismissable">
-                                        <button class="btn waves-effect waves-light " type="submit"> Inicie um novo Desafio </submit>
-                                </form>
+                               
+                                       
+                               
                                 </li>
                                 @endforelse
-
-                                @if(isset($latest_challenge) && $latest_challenge->status=='FINALIZADO')
-                                <form action="{{route('desafio.store')}}" method="POST">
-                                    @csrf
-                                    <li class="collection-item dismissable">
-                                        <button class="btn waves-effect waves-light " type="submit"> Inicie um novo Desafio </submit>
-                                    </li>
-                                </form>
-                                @endif
+ <a class="btn" href="{{route('raiox.create')}}"> Inicie um novo Raio X </a>
+                             
 
 
                             </ul>

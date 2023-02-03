@@ -24,6 +24,9 @@ class Client extends Authenticatable
     public function challenges(){
         return $this->hasMany(Challenge::class);
     }
+    public function raioxs(){
+        return $this->hasMany(Raiox::class);
+    }
 
     public function sendPasswordResetNotification($token)
   {

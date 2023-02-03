@@ -130,24 +130,7 @@ Como esse é um tópico muito individual, as suas orientações virão em breve,
 
 
 
-@if($challenge->status=='INICIADO')
 
-                        <h6>Em breve entraremos em contato com você, mas vou deixar mais um espaço para você escrever
-                            algu-ma
-                            informação adicional que considere relevante, dúvida ou individualidade do seu bebê.
-                            Vamos juntos chegar à noite inteira de sono do seu bebê!
-                        </h6>
-   
-                        <label>Comentários:</label>
-                        <form action="{{route('analyze.formulario.update', $challenge->id)}}" method="post">
-                @csrf
-              {{ method_field('PUT') }}
-                            <input type="hidden" name="conclusao" value="FEITO">
-
-                        <textarea class="materialize-textarea" name="comentarios"></textarea>
-                        <button type="submit" class="btn">Enviar</button>
-                        </form>
-                        @ENDIF
                     </div>
                 </div>
             </div>

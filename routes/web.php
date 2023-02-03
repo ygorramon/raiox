@@ -88,6 +88,10 @@ Route::middleware('auth.client:clients')
 
         Route::post('/logout', 'Auth\LoginClientController@logout')->name('clients.logout');
         Route::get('/desafios', 'Site\ChallengeController@index')->name('desafio.index');
+        Route::get('/raioxs', 'Site\ChallengeController@index_raiox')->name('raiox.index');
+        Route::get('/raiox/create', 'Site\ChallengeController@create_raiox')->name('raiox.create');
+        Route::post('/raiox/create', 'Site\ChallengeController@raioxStore')->name('raiox.store');
+        Route::get('/raiox/analise/{id}', 'Site\ChallengeController@raioxAnalise')->name('raiox.analise');
         Route::get('/chat', 'Site\ChallengeController@chat')->name('chat.index');
         Route::get('/faq', 'Site\ChallengeController@doubtCenter')->name('doubtCenter.index');
         Route::get('/faq/{id}/modulo', 'Site\ChallengeController@doubtCenterModule')->name('doubtCenterModule.index');
@@ -128,6 +132,7 @@ Route::middleware('auth.client:clients')
 
 
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioUpdate')->name('desafio.update');
+        Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioFinalizar')->name('desafio.finalizado');
         Route::get('/profile', 'Site\ChallengeController@clientEdit')->name('client.profile.edit');
         Route::put('/profile', 'Site\ChallengeController@clientUpdate')->name('client.profile.update');
 

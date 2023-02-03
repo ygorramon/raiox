@@ -32,9 +32,10 @@
       </li>
       <li class="bold"><a class="waves-effect waves-cyan " href="{{route('raiox.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Raio x</span></a>
       </li>
-<!--
+
        <li class="bold"><a class="waves-effect waves-cyan " href="{{route('doubtCenter.index')}}"><i class="material-icons">help</i><span class="menu-title" data-i18n="Mail">Perguntas Frequentes</span></a>
       </li>
+      <!--
  <li class="bold"><a class="waves-effect waves-cyan " href="{{route('my.queries')}}"><i class="material-icons">help_outline</i><span class="menu-title" data-i18n="Mail">Minhas Perguntas</span></a>
       </li>
 -->

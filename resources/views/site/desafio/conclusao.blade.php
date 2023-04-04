@@ -115,8 +115,11 @@ Reveja as orientações dadas, busque por gatilhos de choro e busque um ritual r
                             <li>
                                 <div class="collapsible-header"><i class="material-icons">place</i>PASSO 4</div>
                                 <div class="collapsible-body">
-                                    <textarea class="materialize-textarea">Agora é hora de falarmos sobre o Passo 4- O sono noturno e as associações.
-Como esse é um tópico muito individual, as suas orientações virão em breve, de forma pessoal.
+                                    <textarea class="materialize-textarea">
+                                        Agora é hora de falarmos sobre o Passo 4- O sono noturno e as associações.
+Como esse é um tópico muito individual, recomendo que assista a aula referente à associação que mais te incomoda primeiro.
+Não tente desfazer todas as associações de uma vez porque poderá ser muita mudança para o/a bebê, ou seja, poderá ter choro e o nosso objetivo é que não haja choro em nenhum momento.
+E caso ainda tenha dúvidas, participe dos encontros ao vivo para expôr seu caso e suas individualidades e para que possamos entender e te ajudar ainda mais.
 </textarea>
 
                                 </div>

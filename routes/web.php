@@ -88,6 +88,10 @@ Route::middleware('auth.client:clients')
 
         Route::post('/logout', 'Auth\LoginClientController@logout')->name('clients.logout');
         Route::get('/desafios', 'Site\ChallengeController@index')->name('desafio.index');
+
+        Route::get('/desafio/{id}/introducao','Site\ChallengeController@introducao')->name('desafio.introducao');
+    Route::get('/desafio/{id}/passo1', 'Site\ChallengeController@novo_passo1')->name('desafio.novo-passo1');
+
         Route::get('/raioxs', 'Site\ChallengeController@index_raiox')->name('raiox.index');
         Route::get('/raiox/create', 'Site\ChallengeController@create_raiox')->name('raiox.create');
         Route::post('/raiox/create', 'Site\ChallengeController@raioxStore')->name('raiox.store');
@@ -104,6 +108,7 @@ Route::middleware('auth.client:clients')
         Route::get('/desafio/{id}/', 'Site\ChallengeController@show')->name('desafio.show');
         Route::get('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeCreate')->name('analyze.create');
         Route::post('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeStore')->name('analyze.store');
+        Route::post('/desafio/{id}/createJson/{day}', 'Site\ChallengeController@analyzeUpdateJson')->name('analyze.store.json');
         Route::get('/desafio/{id}/edit/{day}', 'Site\ChallengeController@analyzeEdit')->name('analyze.edit');
         Route::put('/desafio/{id}/edit/{day}', 'Site\ChallengeController@analyzeUpdate')->name('analyze.update');
 

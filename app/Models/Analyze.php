@@ -8,11 +8,17 @@ class Analyze extends Model
 {
     protected $fillable = [
         'day',
-        'date', 
+        'date',
+        'started_at', 
         'timeWokeUp', 
         'volcanicEffect', 
            ];
-        
+
+    protected $casts = [
+        'started_at' => 'date',
+    ];
+    
+
         public function naps()
         {
             return $this->hasMany('App\Models\Nap');

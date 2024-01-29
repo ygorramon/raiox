@@ -45,7 +45,7 @@
 
                     <h4 class="card-title">Dia {{$day}}</h4>
                 </div>
-                <form action="{{route('analyze.store',[$challenge->id, $day])}}" method="POST">
+                <form action="{{route('analyze.store',[$challenge->id, $day])}}" method="POST" id="form">
                     @csrf
                     <ul class="stepper horizontal" id="horizStepper">
                         <li class="step active">
@@ -577,9 +577,17 @@
                         </li>
                 </form>
                 </ul>
-
+    <!-- div class="fixed-action-btn direction-top" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large red" id="salvar">
+            <i class="material-icons">save</i>
+          </a>
+          
+        <div>
+            <-->
             </div>
+        
         </div>
+        
     </div>
 
 
@@ -670,7 +678,30 @@ $(document).ready(function(){
     });
     $('#modal1').modal('open');
   });
-  </script>
 
+   $(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
+  </script>
+<script>
+$(document).on("click", "#salvar" , function() {
+    const form = document.getElementById("form");
+   $.ajax({
+               type:'POST',
+               url:'{{route('analyze.store.json',[$challenge->id, $day])}}',
+              data: new FormData(form),
+              dataType: 'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+               success:function(response) {
+               
+               }, error: function(response) {
+            }
+
+            }); 
+});
+
+</script>
 
     @endsection

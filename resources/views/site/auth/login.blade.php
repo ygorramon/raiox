@@ -76,7 +76,7 @@
           </form>
           <div class="card-alert card purple lighten-5">
             <div class="card-content purple-text">
-              <a href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank " class="btn"> Dúvidas : Fale Conosco pelo Whatsapp Aqui </a>
+              <a href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank " class="btn"> Dúvidas: Fale Conosco Aqui </a>
             </div>
           </div>
         </div>
@@ -94,5 +94,19 @@
 </div>
 
 </div>
+@section('js')
+    <script>
+        @if (session('sucesso'))
+            M.toast({
+                html: '{{ session('sucesso') }}'
+            })
+        @endif
+        $(document).ready(function() {
+            $('.collapsible').collapsible({
+                accordion: true
+            });
+        });
 
+        
+    </script>
 @endsection

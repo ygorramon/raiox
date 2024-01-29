@@ -81,7 +81,7 @@ public $message=[
             
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('/login');
+        return redirect()->intended('/login')->with('sucesso', 'Usuário Criado com Sucesso! ');;
     }else{
         return redirect()->intended('/cadastro')->
         withInput($request->only('email', 'nameBaby', 'birthBaby', 'sexBaby'

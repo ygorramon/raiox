@@ -166,7 +166,7 @@
                                                             <tr>
                                                                 @if (
                                                                     !isset(
-                                                                        $challenge->analyzes()->where('day', '1')->first()->day))
+                                                                        $challenge->analyzes()->where('day', '1')->first()->date))
                                                                     <td><a href="{{ route('analyze.create', [$challenge->id, 1]) }}"
                                                                             class="btn waves-effect waves-light red "> Dia
                                                                             1 </a>
@@ -178,7 +178,7 @@
                                         @endif
 
                                         @if (isset(
-                                                $challenge->analyzes()->where('day', '1')->first()->day))
+                                                $challenge->analyzes()->where('day', '1')->first()->date))
                                             <td>
                                                 <a href="{{ route('analyze.passo1', [$challenge->id, 1]) }}"> <span
                                                         class="task-cat red">Ver Pre-Análise</span></a>
@@ -189,11 +189,11 @@
                                         </tr>
 
                                         @if (isset(
-                                                $challenge->analyzes()->where('day', '1')->first()->day))
+                                                $challenge->analyzes()->where('day', '1')->first()->date))
                                             <tr>
                                                 @if (
                                                     !isset(
-                                                        $challenge->analyzes()->where('day', '2')->first()->day))
+                                                        $challenge->analyzes()->where('day', '2')->first()->date))
                                                     <td><a href="{{ route('analyze.create', [$challenge->id, 2]) }}"
                                                             class="btn waves-effect waves-light red "> Dia 2 </a>
                                 </div>
@@ -205,7 +205,7 @@
 
 
                             @if (isset(
-                                    $challenge->analyzes()->where('day', '2')->first()->day))
+                                    $challenge->analyzes()->where('day', '2')->first()->date))
                                 <td>
                                     <a href="{{ route('analyze.passo1', [$challenge->id, 2]) }}"> <span
                                             class="task-cat red">Ver Pre-Análise</span></a>
@@ -220,11 +220,11 @@
 
 
                             @if (isset(
-                                    $challenge->analyzes()->where('day', '2')->first()->day))
+                                    $challenge->analyzes()->where('day', '2')->first()->date))
                                 <tr>
                                     @if (
                                         !isset(
-                                            $challenge->analyzes()->where('day', '3')->first()->day))
+                                            $challenge->analyzes()->where('day', '3')->first()->date))
                                         <td><a href="{{ route('analyze.create', [$challenge->id, 3]) }}"
                                                 class="btn waves-effect waves-light red "> Dia 3 </a>
                         </div>
@@ -236,7 +236,7 @@
 
 
                     @if (isset(
-                            $challenge->analyzes()->where('day', '3')->first()->day))
+                            $challenge->analyzes()->where('day', '3')->first()->date))
                         <td>
                             <a href="{{ route('analyze.passo1', [$challenge->id, 3]) }}"> <span class="task-cat red">Ver
                                     Pre-Análise</span></a>
@@ -250,11 +250,11 @@
 
 
                     @if (isset(
-                            $challenge->analyzes()->where('day', '3')->first()->day))
+                            $challenge->analyzes()->where('day', '3')->first()->date))
                         <tr>
                             @if (
                                 !isset(
-                                    $challenge->analyzes()->where('day', '4')->first()->day))
+                                    $challenge->analyzes()->where('day', '4')->first()->date))
                                 <td><a href="{{ route('analyze.create', [$challenge->id, 4]) }}"
                                         class="btn waves-effect waves-light red "> Dia 4 </a>
                 </div>
@@ -265,7 +265,7 @@
             @endif
 
             @if (isset(
-                    $challenge->analyzes()->where('day', '4')->first()->day))
+                    $challenge->analyzes()->where('day', '4')->first()->date))
                 <td>
                     <a href="{{ route('analyze.passo1', [$challenge->id, 4]) }}"> <span class="task-cat red">Ver
                             Pre-Análise</span></a>
@@ -279,13 +279,13 @@
 
 
             @if (isset(
-                    $challenge->analyzes()->where('day', '4')->first()->day))
+                    $challenge->analyzes()->where('day', '4')->first()->date))
                 <tr>
 
 
                     @if (
                         !isset(
-                            $challenge->analyzes()->where('day', '5')->first()->day))
+                            $challenge->analyzes()->where('day', '5')->first()->date))
                         <td><a href="{{ route('analyze.create', [$challenge->id, 5]) }}"
                                 class="btn waves-effect waves-light red "> Dia 5 </a>
         </div>
@@ -297,7 +297,7 @@
 
 
     @if (isset(
-            $challenge->analyzes()->where('day', '5')->first()->day))
+            $challenge->analyzes()->where('day', '5')->first()->date))
         <td>
             <a href="{{ route('analyze.passo1', [$challenge->id, 5]) }}"> <span class="task-cat red">Ver
                     Pre-Análise</span></a>
@@ -312,11 +312,11 @@
 
 
     @if (isset(
-            $challenge->analyzes()->where('day', '5')->first()->day))
+            $challenge->analyzes()->where('day', '5')->first()->date))
         <tr>
             @if (
                 !isset(
-                    $challenge->analyzes()->where('day', '6')->first()->day))
+                    $challenge->analyzes()->where('day', '6')->first()->date))
                 <td><a href="{{ route('analyze.create', [$challenge->id, 6]) }}" class="btn waves-effect waves-light red ">
                         Dia 6 </a>
                     </div>
@@ -325,7 +325,7 @@
                         Dia 6 </a> </div>
             @endif
             @if (isset(
-                    $challenge->analyzes()->where('day', '6')->first()->day))
+                    $challenge->analyzes()->where('day', '6')->first()->date))
                 <td>
                     <a href="{{ route('analyze.passo1', [$challenge->id, 6]) }}"> <span class="task-cat red">Ver
                             Pre-Análise</span></a>
@@ -339,12 +339,12 @@
 
 
     @if (isset(
-            $challenge->analyzes()->where('day', '6')->first()->day))
+            $challenge->analyzes()->where('day', '6')->first()->date))
         <tr>
 
             @if (
                 !isset(
-                    $challenge->analyzes()->where('day', '7')->first()->day))
+                    $challenge->analyzes()->where('day', '7')->first()->date))
                 <td><a href="{{ route('analyze.create', [$challenge->id, 7]) }}"
                         class="btn waves-effect waves-light red ">
                         Dia 7 </a>
@@ -354,7 +354,7 @@
                         Dia 7 </a> </div>
             @endif
             @if (isset(
-                    $challenge->analyzes()->where('day', '7')->first()->day))
+                    $challenge->analyzes()->where('day', '7')->first()->date))
                 <td>
                     <a href="{{ route('analyze.passo1', [$challenge->id, 7]) }}"> <span class="task-cat red">Ver
                             Pre-Análise</span></a>
@@ -368,7 +368,7 @@
 
 
     @if (isset(
-            $challenge->analyzes()->where('day', '7')->first()->day))
+            $challenge->analyzes()->where('day', '7')->first()->date))
         <tr>
 
 

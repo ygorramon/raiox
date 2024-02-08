@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\Support\Facades\Hash;
 
 class ClientsController extends Controller
 {
@@ -86,7 +87,12 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!$client = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
@@ -98,7 +104,35 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+
+        if (!$client = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        $active = 0;
+        $liberado = 0;
+
+        if (isset($request->liberado)) {
+            $liberado = 1;
+        }
+        if (isset($request->active)) {
+            $active = 1;
+        }
+
+
+        $client->update([
+            'email' => $request->email,
+            'active' => $active,
+            'liberado' =>  $liberado,
+            'expireAt' => $request->expireAt,
+            'babyName' => $request->babyName,
+            'birthBaby' => $request->birthBaby,
+            'class' => $request->class,
+        ]);
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -141,7 +175,7 @@ class ClientsController extends Controller
             'email' => $request->email,
             'class' => $request->prod_name,
             'active' => 1,
-            'expireAt' => now()->addDays(180),
+            'expireAt' => now()->addDays(365),
         ]);
     
     }
@@ -153,5 +187,19 @@ class ClientsController extends Controller
         
         $client->update(['active'=>0]);
 
+    }
+
+    public function resetSenha($id)
+    {
+
+        if (!$client = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+        $client->update([
+            'password' => Hash::make('123456'),
+
+        ]);
+
+        return redirect()->route('clients.index');
     }
 }

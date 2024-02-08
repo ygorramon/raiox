@@ -37,6 +37,7 @@
                 </li>
             </ul>
 
+            <a class='btn btn-warning' href='{{route('clients.reset', $client->id)}}'>Resetar Senha</a>
 
             <form action="{{ route('clients.destroy', $client->id) }}" method="POST">
                 @csrf

@@ -14,7 +14,7 @@ class Client extends Authenticatable
 
     protected $fillable = [
         'name', 'email', 'password','nameBaby','ageBaby','class',
-        'sexBaby','active','expireAt','birthBaby','bonus'
+        'sexBaby','active','expireAt','birthBaby','bonus', 'liberado'
     ];
 
     protected $hidden = [

@@ -23,6 +23,8 @@ Route::prefix('admin')->group(function () {
 
             Route::resource('/clients', 'Admin\ClientsController');
             Route::get('/clients-ativos', 'Admin\ClientsController@ativos');
+        Route::get('/client{id}/reset', 'Admin\ClientsController@resetSenha')->name('clients.reset');
+
             Route::any('clients/search', 'Admin\ClientsController@search')->name('clients.search');
 
             Route::get('/situacoes', 'Admin\AnswerController@categories')->name('situacoes.index');

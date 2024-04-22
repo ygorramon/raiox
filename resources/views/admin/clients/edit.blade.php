@@ -23,6 +23,11 @@
                         value="{{ $client->email ?? old('email') }}">
                 </div>
                 <div class="form-group">
+                 
+                   
+                    <strong>Data da Compra: </strong> {{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y') }}
+                </div>
+                <div class="form-group">
                     <label>* Tempo de Expiração:</label>
                     <input type="date" name="expireAt" class="form-control"
                         value="{{ $client->expireAt ?? old('expireAt') }}">

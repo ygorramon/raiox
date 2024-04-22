@@ -16,6 +16,9 @@
                  <li>
                     <strong>Turma: </strong>  {{ $client->class }}
                 </li>
+                 <li>
+                    <strong>Data da Compra: </strong> {{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y') }}
+                </li>
                 
                 <li>
                     <strong>Expira em : </strong> {{ \Carbon\Carbon::parse($client->expireAt)->format('d/m/Y') }}

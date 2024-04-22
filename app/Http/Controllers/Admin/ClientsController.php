@@ -24,7 +24,9 @@ class ClientsController extends Controller
     public function index()
     {
 
-        $clients = $this->repository->latest()->paginate();
+        $clients = $this->repository
+        ->whereRaw('DATEDIFF(expireAt,created_at) > 365')
+        ->latest()->paginate();
 
         return view('admin.clients.index', compact('clients'));
     }

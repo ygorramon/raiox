@@ -2044,10 +2044,10 @@ Vamos conferir os próximos pontos.
             if ($babyAge >= 120 && $babyAge < 180) {
                 $sinal_sono_esperado = "70 a 90 minutos, até que sinta sono.";
             }
-            if ($babyAge >= 180 && $babyAge < 210) {
+            if ($babyAge >= 180 && $babyAge < 270) {
                 $sinal_sono_esperado = "90 a 120 minutos, até que sinta sono.";
             }
-            if ($babyAge >= 210 && $babyAge < 365) {
+            if ($babyAge >= 270 && $babyAge < 365) {
                 $sinal_sono_esperado = "2 a 3 horas, até que sinta sono.";
             }
             if ($babyAge >= 365 && $babyAge < 540) {
@@ -2457,6 +2457,7 @@ dd($janelas);
 
     public function analyzeUpdateJson($id, $day, Request $request)
     {
+        dd($request);
 
         $ritual_window = $request->timeWokeUp;
         if (!$challenge = $this->repository->find($id)
@@ -2475,6 +2476,7 @@ dd($janelas);
      //   $this->validator($request->all())->validate();
         $challenge = $this->repository->find($id);
 
+    
         $challenge->analyzes()->where('day', $day)->update([
             'day' => $day,
             'date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
@@ -2483,6 +2485,9 @@ dd($janelas);
             'volcanicEffect' => $request->volcanicEffect,
 
         ]);
+
+     
+
 /*        $analyze = $challenge->analyzes()->where('day', $day)->first();
         $analyze->naps()->delete();
         $analyze->wakes()->delete();

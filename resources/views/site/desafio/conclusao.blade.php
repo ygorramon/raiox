@@ -15,7 +15,7 @@
                 <div class="card-content row">
                     <div class="col s12 ">
                         <h3>Conclusão</h3>
-                        <textarea class="materialize-textarea">Finalmente chegamos ao fim da sua pré-análise e eu vou listar aqui os pontos que precisam de ajustes, dentro do Método dos 4 Passos. Lembrando que essa foi uma pré-análise automática, mas que nosso algoritmo consegue analisar o máximo de possibilidades de respostas e sempre trabalhamos para te dar as orientações mais precisas desde o primeiro momento.
+                        <textarea class="materialize-textarea">Finalmente chegamos ao fim da sua análise e eu vou listar aqui os pontos que precisam de ajustes, dentro do Método dos 4 Passos. Lembrando que essa foi uma análise automática, mas que nosso algoritmo consegue analisar o máximo de possibilidades de respostas e sempre trabalhamos para te dar as orientações mais precisas desde o primeiro momento.
             Sugiro fazer os ajustes na ordem de cada passo, assim como está listado abaixo: (Clique nos passos para Visualizar)</textarea>
 
                         <ul class="collapsible">

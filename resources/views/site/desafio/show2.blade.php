@@ -159,7 +159,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th data-field="dia">Dia / Formulário</th>
-                                                                <th data-field="dia">Pre-Análise</th>
+                                                                <th data-field="dia">Análise</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -181,7 +181,7 @@
                                                 $challenge->analyzes()->where('day', '1')->first()->date))
                                             <td>
                                                 <a href="{{ route('analyze.passo1', [$challenge->id, 1]) }}"> <span
-                                                        class="task-cat red">Ver Pre-Análise</span></a>
+                                                        class="task-cat red">Ver Análise</span></a>
                                             </td>
                                         @else
                                             <td>NÃO</td>
@@ -208,7 +208,7 @@
                                     $challenge->analyzes()->where('day', '2')->first()->date))
                                 <td>
                                     <a href="{{ route('analyze.passo1', [$challenge->id, 2]) }}"> <span
-                                            class="task-cat red">Ver Pre-Análise</span></a>
+                                            class="task-cat red">Ver Análise</span></a>
                                 </td>
                             @else
                                 <td>NÃO</td>
@@ -239,7 +239,7 @@
                             $challenge->analyzes()->where('day', '3')->first()->date))
                         <td>
                             <a href="{{ route('analyze.passo1', [$challenge->id, 3]) }}"> <span class="task-cat red">Ver
-                                    Pre-Análise</span></a>
+                                    Análise</span></a>
                         </td>
                     @else
                         <td>NÃO</td>
@@ -268,7 +268,7 @@
                     $challenge->analyzes()->where('day', '4')->first()->date))
                 <td>
                     <a href="{{ route('analyze.passo1', [$challenge->id, 4]) }}"> <span class="task-cat red">Ver
-                            Pre-Análise</span></a>
+                            Análise</span></a>
                 </td>
             @else
                 <td>NÃO</td>
@@ -300,7 +300,7 @@
             $challenge->analyzes()->where('day', '5')->first()->date))
         <td>
             <a href="{{ route('analyze.passo1', [$challenge->id, 5]) }}"> <span class="task-cat red">Ver
-                    Pre-Análise</span></a>
+                    Análise</span></a>
         </td>
         </td>
     @else
@@ -328,7 +328,7 @@
                     $challenge->analyzes()->where('day', '6')->first()->date))
                 <td>
                     <a href="{{ route('analyze.passo1', [$challenge->id, 6]) }}"> <span class="task-cat red">Ver
-                            Pre-Análise</span></a>
+                            Análise</span></a>
                 </td>
             @else
                 <td>NÃO</td>
@@ -357,7 +357,7 @@
                     $challenge->analyzes()->where('day', '7')->first()->date))
                 <td>
                     <a href="{{ route('analyze.passo1', [$challenge->id, 7]) }}"> <span class="task-cat red">Ver
-                            Pre-Análise</span></a>
+                            Análise</span></a>
                 </td>
             @else
                 <td>NÃO</td>
@@ -521,7 +521,7 @@
                     <thead>
                         <tr>
                             <th data-field="dia">Dia / Formulário</th>
-                            <th data-field="dia">Pre-Análise</th>
+                            <th data-field="dia">Análise</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -547,7 +547,7 @@
     @if (isset(
             $challenge->analyzes()->where('day', '1')->first()->date))
         <td> <a href="{{ route('analyze.passo1', [$challenge->id, 1]) }}"> <span class="task-cat red">Ver
-                    Pre-Análise</span></a>
+                    Análise</span></a>
 
         </td>
     @else
@@ -583,7 +583,7 @@
                 @if  (isset(
             $challenge->analyzes()->where('day', '2')->first()->date))
                     <td> <a href="{{ route('analyze.passo1', [$challenge->id, 2]) }}"> <span class="task-cat red">Ver
-                                Pre-Análise</span></a>
+                                Análise</span></a>
                     </td>
                 @else
                     <td>NÃO</td>
@@ -629,7 +629,7 @@
                 @if  (isset(
             $challenge->analyzes()->where('day', '3')->first()->date))
                     <td> <a href="{{ route('analyze.passo1', [$challenge->id, 3]) }}"> <span class="task-cat red">Ver
-                                Pre-Análise</span></a> </td>
+                                Análise</span></a> </td>
                 @else
                     <td>NÃO</td>
                 @endif
@@ -672,7 +672,7 @@
                 @if  (isset(
             $challenge->analyzes()->where('day', '4')->first()->date))
                     <td> <a href="{{ route('analyze.passo1', [$challenge->id, 4]) }}"> <span class="task-cat red">Ver
-                                Pre-Análise</span></a>
+                                Análise</span></a>
                     </td>
                 @else
                     <td>NÃO</td>
@@ -718,7 +718,7 @@
                 @if  (isset(
             $challenge->analyzes()->where('day', '5')->first()->date))
                     <td> <a href="{{ route('analyze.passo1', [$challenge->id, 5]) }}"> <span class="task-cat red">Ver
-                                Pre-Análise</span></a>
+                                Análise</span></a>
                     </td>
                 @else
                     <td>NÃO</td>
@@ -761,7 +761,7 @@
                 @if  (isset(
             $challenge->analyzes()->where('day', '6')->first()->date))
                     <td> <a href="{{ route('analyze.passo1', [$challenge->id, 6]) }}"> <span class="task-cat red">Ver
-                                Pre-Análise</span></a> </td>
+                                Análise</span></a> </td>
                 @else
                     <td>NÃO</td>
                 @endif
@@ -804,7 +804,7 @@
                 @if  (isset(
             $challenge->analyzes()->where('day', '7')->first()->date))
                     <td> <a href="{{ route('analyze.passo1', [$challenge->id, 7]) }}"> <span class="task-cat red">Ver
-                                Pre-Análise</span></a>
+                                Análise</span></a>
                     </td>
                 @else
                     <td>NÃO</td>

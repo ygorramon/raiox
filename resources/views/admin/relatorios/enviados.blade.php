@@ -36,10 +36,10 @@
             </thead>
             <tbody>
                 @foreach ($challenges as $challenge)
-                                    <td>
+                                    
                                         <td>{{ $challenge->client->name }}</td>
                                         <td>{{ $challenge->client->nameBaby }}</td>
-                                        <td></td>@if(!$challenge->client->birthBaby == Null) {{ 
+                                        <td>@if(!$challenge->client->birthBaby == Null) {{ 
                                              \Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y')
                                              }}
                                         @endif

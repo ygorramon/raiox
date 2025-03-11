@@ -243,9 +243,9 @@
                                     <option value="S">SIM</option>
                                     <option value="N">NÃO</option>
                                 </select>
-                                <div id="associacoes_incomodam_sim">
-                                    <label> Descreva abaixo qual associação mais te incomoda e o porquê.
-                                    <textarea class="materialize-textarea" name="associacao_descricao"></textarea>
+                                <div>
+                                    <label> Descreva abaixo alguma observaçao sobre o sono do seu bebê .
+                                    <textarea class="materialize-textarea" id="associacao_descricao" name="associacao_descricao" data-length="300"></textarea>
                                 </div>
 
 
@@ -277,31 +277,34 @@
 
 
 
-    <script>
-         $(document).ready(function() {
+        <script>
+             $(document).ready(function() {
 
-            $('.modal').modal({
+                $('.modal').modal({
 
-});
-$('#modal1').modal('open');
+    });
+    $('#modal1').modal('open');
 
-        $('#associacoes_incomodam_sim').hide();
+            $('#associacoes_incomodam_sim').hide();
 
-        $('#associacoes_incomodam').on('change', function() {
+            $('#associacoes_incomodam').on('change', function() {
 
-            var opt = $(this).children("option:selected").val();
-            if (opt == 'S') {
-                $('#associacoes_incomodam_sim').show();
+                var opt = $(this).children("option:selected").val();
+                if (opt == 'S') {
+                    $('#associacoes_incomodam_sim').show();
 
-            }
-            if (opt == 'N') {
+                }
+                if (opt == 'N') {
 
 
-            }
+                }
+
+            });
+
+                     $('textarea#associacao_descricao').characterCounter();
 
         });
-    });
-    </script>
+        </script>
 
 
 @endsection

@@ -82,21 +82,21 @@
 
                     <div class="card-body">
                         <h5>Horário que acordou:
-                            @if($analyze->timeWokeUp>='06:00:00' && $analyze->timeWokeUp<='08:00:00' ) <span class="badge bg-green">{{$analyze->timeWokeUp}}</span>
+                            @if($analyze->timeWokeUp >= '06:00:00' && $analyze->timeWokeUp <= '08:00:00') <span class="badge bg-green">{{$analyze->timeWokeUp}}</span>
                                 @else
                                 <span class="badge bg-red">{{$analyze->timeWokeUp}}</span>
                                 @endif
 
                         </h5>
                         <h5>Efeito Vulcânico:
-                            @if($analyze->volcanicEffect=='N' )
+                            @if($analyze->volcanicEffect == 'N')
                             <span class="badge bg-green">NÃO</span>
                             @else
                             <span class="badge bg-red">SIM</span>
                             @endif
                             Janela para a Idade <span class="badge bg-green">({{getIdade($challenge->client->birthBaby)}}) DIAS</span>
                             MIN: <span class="badge bg-green">{{getJanela(getIdade($challenge->client->birthBaby))->janelaIdealInicio}}</span> - MAX: <span class="badge bg-green">{{getJanela(now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby)))->janelaIdealFim}}</span>
-                            MAX Sinal de Sono: <span class="badge bg-green">{{getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim-30}}</span>
+                            MAX Sinal de Sono: <span class="badge bg-green">{{getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim - 30}}</span>
 
                         </h5>
 
@@ -131,7 +131,7 @@
 
                                                     @if ($nap->duration > 40)
                                                   
-                                                        @if ($nap->duration > 120 &&  now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby))  > 180)
+                                                        @if ($nap->duration > 120 && now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby)) > 180)
                                                             <span class="badge bg-orange">{{ $nap->duration }}</span>
                                                         @else
                                                             <span class="badge bg-green">{{ $nap->duration }}</span>
@@ -158,8 +158,8 @@
 
                                                 </td>
                                                 @php
-                                                    
-                                                    $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+
+        $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
                                                     
                                                 @endphp
                                                 <td>
@@ -172,11 +172,11 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if($nap->windowSignalSlept >=35)
+                                                    @if($nap->windowSignalSlept >= 35)
                                                     <span class="badge bg-red"> {{ $nap->windowSignalSlept }} </span>
                                                     @endif
 
-                                                     @if($nap->windowSignalSlept < 35 &&  $nap->windowSignalSlept >= 30)
+                                                     @if($nap->windowSignalSlept < 35 && $nap->windowSignalSlept >= 30)
                                                     <span class="badge bg-yellow"> {{ $nap->windowSignalSlept }} </span>
                                                     @endif
 
@@ -225,8 +225,8 @@
                                                 </td>
                                                 <td>
                                                     @php
-                                                        
-                                                        $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+
+        $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
                                                         
                                                     @endphp
                                                    
@@ -239,11 +239,11 @@
                                                     @endif
                                                         </td>
                                                        <td>
-                                                   @if($ritual->windowSignalSlept >=35)
+                                                   @if($ritual->windowSignalSlept >= 35)
                                                     <span class="badge bg-red"> {{ $ritual->windowSignalSlept }} </span>
                                                     @endif
 
-                                                     @if($ritual->windowSignalSlept < 35 &&  $ritual->windowSignalSlept >= 30)
+                                                     @if($ritual->windowSignalSlept < 35 && $ritual->windowSignalSlept >= 30)
                                                     <span class="badge bg-yellow"> {{ $ritual->windowSignalSlept}} </span>
                                                     @endif
 
@@ -428,7 +428,7 @@ Rede
 <label>Associações Incomodam ?:</label> <span class="badge  {{setStatus($challenge->formulario->associacao_incomoda)->color}}">{{setStatus($challenge->formulario->associacao_incomoda)->value}}</span> <br>
 
 <label> Comentários Finais: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->comentarios}}</textarea>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->associacao_descricao}}</textarea>
 
 </div>
 @if(!$challenge->chat()->first())
@@ -439,7 +439,7 @@ Rede
  <div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form action="{{route('challenge.meus.iniciarchat',$challenge->id)}}" method="post">
+                                    <form action="{{route('challenge.meus.iniciarchat', $challenge->id)}}" method="post">
                                     {!! csrf_field() !!}
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLongTitle">Iniciar CHAT</h5>

@@ -48,7 +48,7 @@
                                             
                                         <td>{{ $challenge->client->email }}</td>
                                         <td>{{ $challenge->client->class }}</td>
-                                      <td> {{formatDateAndTimeHours($challenge->sended_at)}}</td>
+                                      <td> {{$challenge->sended_at}}</td>
                                         <td>{{ $challenge->user->name ?? ''}}</td>
 
                                         <td> @if($challenge->status == 'ANALISE')

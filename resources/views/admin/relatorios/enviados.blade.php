@@ -36,13 +36,16 @@
             </thead>
             <tbody>
                 @foreach ($challenges as $challenge)
-                                    <tr>
+                                    <td>
                                         <td>{{ $challenge->client->name }}</td>
                                         <td>{{ $challenge->client->nameBaby }}</td>
-                                        @if(!$challenge->client->birthBaby == Null) {{ 
+                                        <td></td>@if(!$challenge->client->birthBaby == Null) {{ 
                                              \Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y')
                                              }}
                                         @endif
+                                            </td>
+
+                                            
                                         <td>{{ $challenge->client->email }}</td>
                                         <td>{{ $challenge->client->class }}</td>
                                       <td> {{formatDateAndTimeHours($challenge->sended_at)}}</td>

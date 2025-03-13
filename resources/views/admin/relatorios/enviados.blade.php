@@ -36,8 +36,8 @@
             </thead>
             <tbody>
                 @foreach ($challenges as $challenge)
-                                    
-                                        <td>{{ $challenge->client->name }}</td>
+
+                                        <td>{{ $challenge->client->name }} </td>
                                         <td>{{ $challenge->client->nameBaby }}</td>
                                         <td>@if(!$challenge->client->birthBaby == Null) {{ 
                                              \Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y')
@@ -45,7 +45,7 @@
                                         @endif
                                             </td>
 
-                                            
+
                                         <td>{{ $challenge->client->email }}</td>
                                         <td>{{ $challenge->client->class }}</td>
                                       <td> {{$challenge->sended_at}}</td>
@@ -73,14 +73,20 @@
                                                 @endif
                                         </td>
                                        @if($challenge->status != 'INICIADO')
-                                        <td><a class="btn btn-primary" href="{{route('challenge.meus.show', $challenge->id)}}"> Ver Desafio</a>
-                                        <a class="btn btn-warning" href="{{route('challenge.meus.respostas', $challenge->id)}}"> Ver Respostas</a>
-                                        @if(isset($challenge->chat))
-                                         <a class="btn btn-success" href="{{route('challenge.meus.chat', $challenge->id)}}"> Ver Chat</a>
-                                            @endif
-                                        </td>
-                                        @endif
+                                                        <td><a class="btn btn-primary" href="{{route('challenge.meus.show', $challenge->id)}}"> Ver Desafio</a>
+                                                        <a class="btn btn-warning" href="{{route('challenge.meus.respostas', $challenge->id)}}"> Ver Respostas</a>
+                                                        @if(isset($challenge->chat))
+                                                         <a class="btn btn-success" href="{{route('challenge.meus.chat', $challenge->id)}}"> Ver Chat</a>
+                                                            @endif
+                                                       
 
+                                                         
+                                    @endif
+<form action="{{route('challenge.getanalise',$challenge->id )}} "  method="POST">
+                                            @csrf
+                                            {{ method_field('PUT') }}
+                                            <button class="btn btn-primary">Pegar</button>
+                                        </form>
                                        </td>
                                     </tr>
                 @endforeach

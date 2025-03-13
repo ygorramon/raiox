@@ -60,6 +60,19 @@ class ChallengeController extends Controller
       $this->repository->find($id)->update(['user_id' => $user->id, 'status' => 'ANALISE']);
       return redirect()->route('challenge.availables');
    }
+   public function getAnalise($id)
+   {
+     
+      if (!$challenge = $this->repository->find($id)) {
+         return redirect()->back();
+      }
+     
+      $user = Auth::user();
+     
+      $this->repository->find($id)->update(['user_id' => $user->id]);
+               return redirect()->back();
+
+   }
 
    public function showAvailables($id)
    {

@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/relatorios/search', 'Admin\DashboardController@search')->name('relatorios.search');
             Route::get('/relatorios/desafios-atrasados', 'Admin\DashboardController@atrasados')->name('relatorios.atrasados');
              Route::get('/relatorios/enviados', 'Admin\DashboardController@enviados')->name('relatorios.enviados');
+            Route::put('/relatorios/enviados/{id}', 'Admin\ChallengeController@getAnalise')->name('challenge.getanalise');
 
             Route::get('/relatorios/chats-atrasados', 'Admin\DashboardController@chats')->name('relatorios.chats-atrasados');
             Route::get('/relatorios/clients', 'Admin\DashboardController@relatorioClientsIndex')->name('relatorios.clients.index');
@@ -93,6 +94,7 @@ Route::middleware('auth.client:clients')
 
         Route::get('/desafio/{id}/introducao','Site\ChallengeController@introducao')->name('desafio.introducao');
     Route::get('/desafio/{id}/passo1', 'Site\ChallengeController@novo_passo1')->name('desafio.novo-passo1');
+    Route::get('/desafio/{id}/passo2_novo/', 'Site\ChallengeController@novo_passo2')->name('desafio.novo-passo2');
 
         Route::get('/raioxs', 'Site\ChallengeController@index_raiox')->name('raiox.index');
         Route::get('/raiox/create', 'Site\ChallengeController@create_raiox')->name('raiox.create');
@@ -110,7 +112,8 @@ Route::middleware('auth.client:clients')
         Route::get('/desafio/{id}/', 'Site\ChallengeController@show')->name('desafio.show');
         Route::get('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeCreate')->name('analyze.create');
         Route::post('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeStore')->name('analyze.store');
-        Route::post('/desafio/{id}/createJson/{day}', 'Site\ChallengeController@analyzeUpdateJson')->name('analyze.store.json');
+        Route::post('/desafio/{id}/createJson/{day}', 'Site\DadoController@saveUpdate')->name('analyze.store.json');
+        
         Route::get('/desafio/{id}/edit/{day}', 'Site\ChallengeController@analyzeEdit')->name('analyze.edit');
         Route::put('/desafio/{id}/edit/{day}', 'Site\ChallengeController@analyzeUpdate')->name('analyze.update');
 

@@ -69,7 +69,8 @@ class ChallengeController extends Controller
      
       $user = Auth::user();
      
-      $this->repository->find($id)->update(['user_id' => $user->id]);
+      $this->repository->find($id)->update(['user_id' => $user->id,
+   'answered_at' => now()]);
                return redirect()->back();
 
    }

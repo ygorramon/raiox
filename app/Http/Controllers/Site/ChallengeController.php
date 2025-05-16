@@ -2327,14 +2327,20 @@ dd($janelas);
 
     public function formulario_create($id, Request $request)
     {
+       
         $challenge = Challenge::find($id);
 
         $challenge->formulario()->create(
             [
                 'ajustes_fome' => $request->conclusao_fome,
                 'ajustes_dor' => $request->conclusao_dor,
-                'ajustes_dor_colica' => $request->conclusao_dor_colica,
-                'ajustes_dor_refluxo' => $request->conclusao_dor_refluxo,
+                'ajustes_dor_colica' => ($request->has('colica_opcao')
+                    ? 'Opções selecionadas: ' . implode(', ', $request->colica_opcao) . '. '
+                    : '') . $request->conclusao_dor_colica,
+
+                'ajustes_dor_refluxo' => ($request->has('refluxo_opcao')
+                    ? 'Opções selecionadas: ' . implode(', ', $request->refluxo_opcao) . '. '
+                    : '') . $request->conclusao_dor_refluxo,
                 'ajustes_dor_dentes' => $request->conclusao_dor_dente,
                 'ajustes_salto' => $request->conclusao_salto,
                 'ajustes_angustia' => $request->conclusao_angustia,
@@ -2758,5 +2764,12 @@ dd($janelas);
         
 
         return view('site.desafio.novo.passo1', compact('client'));
+    }
+    public function novo_passo2($id)
+    {
+        $client = Auth::guard('clients')->user();
+        
+
+        return view('site.desafio.novo.passo2', compact('client'));
     }
 }

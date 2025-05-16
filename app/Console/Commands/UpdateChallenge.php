@@ -45,7 +45,7 @@ class UpdateChallenge extends Command
        Challenge::where('answered_at','<',now()->subDays(59))->update(['status' => 'FINALIZADO']);
      //  Client::where('created_at', '<', now()->subDays(6))->update(['liberado' => '1']);
        
-
+//
        $this->info('Atualizado');
 
     }

@@ -967,7 +967,7 @@ class ChallengeController extends Controller
       } else {
          $chat = $challenge->chat()->first();
       }
-      $challenge->update(['status' =>'RESPONDIDO' , 'answered_at' => now() ]);
+      $challenge->update(['status' =>'FINALIZADO' , 'answered_at' => now() ]);
       $chat->update(['status' => 'odilo']);
       $chat->messages()->create(['content' => $request->message, 'type' => '2']);
 

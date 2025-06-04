@@ -81,7 +81,7 @@
 @if(count($challenge->client->challenges->where('status', 'FINALIZADO')) > 1)
     <textarea class="form-control" style="height:auto">
                         @foreach($challenge->client->challenges->where('status', 'FINALIZADO') as $challenge2)
-                        @if(isset($challenge2->chat->first()->messages->first()->content))
+                        @if(isset($challenge2->chat->first()))
                             {{ $challenge2->chat->first()->messages->first()->content or '' }}
                             @endif
                         @endforeach

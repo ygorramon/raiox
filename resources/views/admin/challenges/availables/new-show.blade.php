@@ -68,6 +68,34 @@
     </div>
 </div>
 
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Informações Anteriores</h3>
+    </div>
+    <div class="card-body">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <label for="nomeMae">Informações:</label>
+@if(count($challenge->client->challenges->where('status', 'FINALIZADO')) > 1)
+    <textarea class="form-control" style="height:auto">
+                        @foreach($challenge->client->challenges->where('status', 'FINALIZADO') as $challenge2)
+                            {{ $challenge2->chat->first()->messages->first()->content }}
+                        @endforeach
+                    </textarea>
+@endif
+               
+
+                </div>
+            
+             
+            </div>
+           
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-body">
         <div class="row">

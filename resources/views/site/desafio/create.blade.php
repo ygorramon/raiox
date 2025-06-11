@@ -110,7 +110,7 @@
                                             <div class="card-content">
                                                 <h5>Soneca 1</h5>
                                                 <div class="row">
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca1_ss" value="{{ old('soneca1_ss') }}" class="timepicker">
                                                         <label for="soneca1_ss">Horário que sentiu sono</label>
 
@@ -139,7 +139,7 @@
 
                                                     </div>
 
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
@@ -161,7 +161,7 @@
                                             <div class="card-content">
                                                 <h5>Soneca 2</h5>
                                                 <div class="row">
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca2_ss" value="{{ old('soneca2_ss') }}" class="timepicker">
                                                         <label for="soneca2_ss">Horário que sentiu sono</label>
 
@@ -189,7 +189,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
@@ -212,7 +212,7 @@
                                             <div class="card-content">
                                                 <h5>Soneca 3</h5>
                                                 <div class="row">
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca3_ss" value="{{ old('soneca3_ss') }}" class="timepicker">
                                                         <label for="soneca3_ss">Horário que sentiu sono</label>
 
@@ -240,7 +240,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
@@ -263,7 +263,7 @@
                                             <div class="card-content">
                                                 <h5>Soneca 4</h5>
                                                 <div class="row">
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca4_ss" value="{{ old('soneca4_ss') }}" class="timepicker">
                                                         <label for="soneca4_ss">Horário que sentiu sono</label>
 
@@ -291,7 +291,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
@@ -314,7 +314,7 @@
                                             <div class="card-content">
                                                 <h5>Soneca 5</h5>
                                                 <div class="row">
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca5_ss" value="{{ old('soneca5_ss') }}" class="timepicker">
                                                         <label for="soneca5_ss">Horário que sentiu sono</label>
 
@@ -342,7 +342,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
@@ -365,7 +365,7 @@
                                             <div class="card-content">
                                                 <h5>Soneca 6</h5>
                                                 <div class="row">
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca6_ss" value="{{ old('soneca6_ss') }}" class="timepicker">
                                                         <label for="soneca6_ss">Horário que sentiu sono</label>
 
@@ -393,7 +393,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?

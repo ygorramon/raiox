@@ -557,6 +557,67 @@ Vamos conferir os próximos pontos.
         }
         return view('site.desafio.create', compact('challenge', 'day'));
     }
+    public function analyzeCreate2($id, $day)
+    {
+        if ($day < 1 || $day > 7) {
+            return redirect()->back();
+        }
+        if (!$challenge = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        if (!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+            return redirect()->back();
+        }
+
+
+
+        $challenge = $this->repository->find($id);
+
+        
+ //       if (isset($this->repository->find($id)->analyzes()->where('day', $day)->first()->day)) {
+  //          return redirect()->back();
+  //      }
+       
+        if ($day > 1) {
+            if ($this->repository->find($id)->client->liberado == 1) {
+                if (
+                    !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
+
+
+                ) {
+                    return redirect()->back();
+                }
+            } else
+            if (
+                !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
+                || !(date_format(now(), 'Y-m-d') >= date_format($challenge->analyzes()->where('day', $day - 1)->first()->started_at->addDays(1), 'Y-m-d'))
+
+            ) {
+                return redirect()->back();
+            }
+        }
+
+       
+
+
+
+
+
+        $challenge = $this->repository->find($id);
+
+        if(!$this->repository->find($id)->analyzes()->where('day',$day)->first()){
+
+    
+        $challenge->analyzes()->create(
+            [
+                'day' => $day,
+                'started_at' => now()
+            ]
+        );
+        }
+        return view('site.desafio.create2', compact('challenge', 'day'));
+    }
     public function analyzeCreateForm($id)
     {
         if (!$challenge = $this->repository->find($id)) {
@@ -1615,6 +1676,8 @@ Vamos conferir os próximos pontos.
                 'window' => $request->soneca1_hd->diffInMinutes($request->timeWokeUp),
                 'windowSignalSlept' => $request->soneca1_hd->diffInMinutes($request->soneca1_ss),
                 'duration' => $request->soneca1_ha->diffInMinutes($request->soneca1_hd),
+                'onde_dormiu' => $request->soneca1_onde_dormiu,
+                'prolongada' => $request->soneca1_prolongada or 0,
             ]);
         }
 
@@ -1632,6 +1695,8 @@ Vamos conferir os próximos pontos.
                 'window' => $request->soneca2_hd->diffInMinutes($request->soneca1_ha),
                 'windowSignalSlept' => $request->soneca2_hd->diffInMinutes($request->soneca2_ss),
                 'duration' => $request->soneca2_ha->diffInMinutes($request->soneca2_hd),
+                'onde_dormiu' => $request->soneca2_onde_dormiu,
+                'prolongada' => $request->soneca2_prolongada or 0,
             ]);
         }
 
@@ -1649,6 +1714,8 @@ Vamos conferir os próximos pontos.
                 'window' => $request->soneca3_hd->diffInMinutes($request->soneca2_ha),
                 'windowSignalSlept' => $request->soneca3_hd->diffInMinutes($request->soneca3_ss),
                 'duration' => $request->soneca3_ha->diffInMinutes($request->soneca3_hd),
+                'onde_dormiu' => $request->soneca3_onde_dormiu,
+                'prolongada' => $request->soneca3_prolongada or 0,
             ]);
         }
 
@@ -1666,6 +1733,8 @@ Vamos conferir os próximos pontos.
                 'window' => $request->soneca4_hd->diffInMinutes($request->soneca3_ha),
                 'windowSignalSlept' => $request->soneca4_hd->diffInMinutes($request->soneca4_ss),
                 'duration' => $request->soneca4_ha->diffInMinutes($request->soneca4_hd),
+                'onde_dormiu' => $request->soneca4_onde_dormiu,
+                'prolongada' => $request->soneca4_prolongada or 0,
             ]);
         }
 
@@ -1683,6 +1752,8 @@ Vamos conferir os próximos pontos.
                 'window' => $request->soneca5_hd->diffInMinutes($request->soneca4_ha),
                 'windowSignalSlept' => $request->soneca5_hd->diffInMinutes($request->soneca5_ss),
                 'duration' => $request->soneca5_ha->diffInMinutes($request->soneca5_hd),
+                'onde_dormiu' => $request->soneca5_onde_dormiu,
+                'prolongada' => $request->soneca5_prolongada or 0,
             ]);
         }
 
@@ -1700,6 +1771,8 @@ Vamos conferir os próximos pontos.
                 'window' => $request->soneca6_hd->diffInMinutes($request->soneca5_ha),
                 'windowSignalSlept' => $request->soneca6_hd->diffInMinutes($request->soneca6_ss),
                 'duration' => $request->soneca6_ha->diffInMinutes($request->soneca6_hd),
+                'onde_dormiu' => $request->soneca6_onde_dormiu,
+                'prolongada' => $request->soneca6_prolongada or 0,
             ]);
         }
 
@@ -2772,4 +2845,147 @@ dd($janelas);
 
         return view('site.desafio.novo.passo2', compact('client'));
     }
+
+    public function analyzeStore2(Request $request, $id, $day)
+    {
+        $clientId = Auth::guard('clients')->user()->id;
+        $challenge = $this->repository->find($id);
+
+        if (!$challenge || $challenge->client_id != $clientId) {
+            return redirect()->back();
+        }
+
+        $this->validator2($request->all())->validate();
+
+        $analyze = $challenge->analyzes()->firstOrCreate(['day' => $day]);
+        $ritualWindow = $request->timeWokeUp;
+
+        $analyze->update([
+            'day' => $day,
+            'date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
+            'timeWokeUp' => $request->timeWokeUp,
+            'volcanicEffect' => $request->volcanicEffect ?? 'N',
+            'comments' => $request->comments ?? ''
+        ]);
+
+        // Função para criar sonecas
+        $createNap = function ($number, $prevWakeUp) use ($request, $analyze, &$ritualWindow) {
+            $ss = "soneca{$number}_ss";
+            $hd = "soneca{$number}_hd";
+            $ha = "soneca{$number}_ha";
+
+            if ($request->$ss) {
+                $ssTime = \Carbon\Carbon::parse($request->$ss);
+                $hdTime = \Carbon\Carbon::parse($request->$hd);
+                $haTime = \Carbon\Carbon::parse($request->$ha);
+                $ritualWindow = $haTime;
+
+                $analyze->naps()->create([
+                    'number' => $number,
+                    'signalSlept' => $ssTime,
+                    'timeSlept' => $hdTime,
+                    'timeWokeUp' => $haTime,
+                    'window' => $hdTime->diffInMinutes($prevWakeUp),
+                    'windowSignalSlept' => $hdTime->diffInMinutes($ssTime),
+                    'duration' => $haTime->diffInMinutes($hdTime),
+                    'onde_dormiu' => $request->input("soneca{$number}_onde_dormiu"),
+                    'prolongada' => $request->has("soneca{$number}_prolongada"),
+                ]);
+                return $haTime;
+            }
+
+            return $prevWakeUp;
+        };
+
+        // Criando sonecas
+        $wakeRef = \Carbon\Carbon::parse($request->timeWokeUp);
+        for ($i = 1; $i <= 6; $i++) {
+            $wakeRef = $createNap($i, $wakeRef);
+        }
+
+        // Criando ritual
+        if ($request->ritual_ss) {
+            $ss = \Carbon\Carbon::parse($request->ritual_ss);
+            $start = \Carbon\Carbon::parse($request->ritual_in);
+            $end = \Carbon\Carbon::parse($request->ritual_d);
+
+            $analyze->rituals()->create([
+                'signalSlept' => $ss,
+                'start' => $start,
+                'end' => $end,
+                'duration' => $end->diffInMinutes($start),
+                'window' => $start->diffInMinutes($ritualWindow),
+                'windowSignalSlept' => $start->diffInMinutes($ss),
+            ]);
+        }
+
+        // Função para criar despertares
+        $createWake = function ($number) use ($request, $analyze) {
+            $a = "despertar{$number}_a";
+            $d = "despertar{$number}_d";
+            $fd = "despertar{$number}_fd";
+            $fdOutro = "despertar{$number}_fd_outro";
+
+            if ($request->$a && $request->$d) {
+                $aTime = \Carbon\Carbon::parse($request->$a);
+                $dTime = \Carbon\Carbon::parse($request->$d);
+
+                if ($aTime->hour < 7)
+                    $aTime->addDay();
+                if ($dTime->hour < 7)
+                    $dTime->addDay();
+
+                $mode = $request->$fd == 4 ? $request->$fdOutro : $request->$fd;
+
+                $analyze->wakes()->create([
+                    'number' => $number,
+                    'timeWokeUp' => $aTime,
+                    'timeSlept' => $dTime,
+                    'duration' => $dTime->diffInMinutes($aTime),
+                    'sleepingMode' => $mode
+                ]);
+            }
+        };
+
+        // Criando despertares
+        for ($i = 1; $i <= 5; $i++) {
+            $createWake($i);
+        }
+
+        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Análise realizada');
+    }
+
+    protected function validator2(array $data)
+    {
+        $rules = [
+            'date' => 'required|date_format:d/m/Y',
+            'timeWokeUp' => 'required|date_format:H:i',
+            'volcanicEffect' => 'nullable|string',
+            'comments' => 'nullable|string|max:200',
+            'ritual_ss' => 'required|date_format:H:i',
+            'ritual_in' => 'required|after_or_equal:ritual_ss|date_format:H:i',
+            'ritual_d' => 'required|after_or_equal:ritual_in|date_format:H:i',
+        ];
+
+        // Regras para sonecas
+        for ($i = 1; $i <= 6; $i++) {
+            $prev_ha = $i == 1 ? 'timeWokeUp' : "soneca" . ($i - 1) . "_ha";
+
+            $rules["soneca{$i}_ss"] = "nullable|after_or_equal:{$prev_ha}|date_format:H:i";
+            $rules["soneca{$i}_hd"] = "nullable|after_or_equal:soneca{$i}_ss|date_format:H:i|required_unless:soneca{$i}_ss,null";
+            $rules["soneca{$i}_ha"] = "nullable|after_or_equal:soneca{$i}_hd|date_format:H:i|required_unless:soneca{$i}_ha,null";
+            $rules["soneca{$i}_onde_dormiu"] = 'nullable|in:colo,berco,cama_compartilhada,carrinho';
+            $rules["soneca{$i}_prolongada"] = 'nullable|boolean';
+        }
+
+        // Regras para despertares
+        for ($i = 1; $i <= 6; $i++) {
+            $rules["despertar{$i}_a"] = 'nullable|date_format:H:i';
+            $rules["despertar{$i}_d"] = "nullable|date_format:H:i|required_unless:despertar{$i}_a,null";
+            $rules["despertar{$i}_fd"] = "nullable|required_unless:despertar{$i}_a,null";
+        }
+
+        return Validator::make($data, $rules, $this->message);
+    }
+
 }

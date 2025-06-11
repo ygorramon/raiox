@@ -13,6 +13,8 @@ class Nap extends Model
         'window',
         'duration',
         'signalSlept',
-        'windowSignalSlept'
+        'windowSignalSlept',
+        'onde_dormiu',
+        'prolongada'
     ];
 }

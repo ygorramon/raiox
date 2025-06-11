@@ -115,17 +115,17 @@
                                                         <label for="soneca1_ss">Horário que sentiu sono</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="soneca1_hd" name="soneca1_hd" value="{{ old('soneca1_hd') }}" class="timepicker">
                                                         <label for="soneca1_hd">Horário que dormiu</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca1_ha" value="{{ old('soneca1_ha') }}" class="timepicker">
                                                         <label for="soneca1_ha">Horário que acordou</label>
 
                                                     </div>
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <label>Onde dormiu?</label>
                                                        <br>
                                                         <select class="browser-default" name="soneca1_onde_dormiu">
@@ -139,13 +139,13 @@
 
                                                     </div>
 
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca1_prolongada" value="1" {{ old('soneca1_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                Sim
+                                                               
                                                             </label>
                                                         </div>
                                                     </div>
@@ -166,17 +166,17 @@
                                                         <label for="soneca2_ss">Horário que sentiu sono</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="soneca1_hd" name="soneca2_hd" value="{{ old('soneca2_hd') }}" class="timepicker">
                                                         <label for="soneca2_hd">Horário que dormiu</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca2_ha" value="{{ old('soneca2_ha') }}" class="timepicker">
                                                         <label for="soneca2_ha">Horário que acordou</label>
 
                                                     </div>
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <label>Onde dormiu?</label>
                                                         <br>
                                                         <select class="browser-default" name="soneca2_onde_dormiu">
@@ -189,13 +189,13 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca2_prolongada" value="1" {{ old('soneca2_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                Sim
+                                                                
                                                             </label>
                                                         </div>
                                                     </div>
@@ -217,17 +217,17 @@
                                                         <label for="soneca3_ss">Horário que sentiu sono</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="soneca1_hd" name="soneca3_hd" value="{{ old('soneca3_hd') }}" class="timepicker">
                                                         <label for="soneca3_hd">Horário que dormiu</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca3_ha" value="{{ old('soneca3_ha') }}" class="timepicker">
                                                         <label for="soneca3_ha">Horário que acordou</label>
 
                                                     </div>
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <label>Onde dormiu?</label>
                                                         <br>
                                                         <select class="browser-default" name="soneca3_onde_dormiu">
@@ -240,13 +240,13 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca3_prolongada" value="1" {{ old('soneca3_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                Sim
+                                                                
                                                             </label>
                                                         </div>
                                                     </div>
@@ -268,17 +268,17 @@
                                                         <label for="soneca4_ss">Horário que sentiu sono</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="soneca1_hd" name="soneca4_hd" value="{{ old('soneca4_hd') }}" class="timepicker">
                                                         <label for="soneca4_hd">Horário que dormiu</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca4_ha" value="{{ old('soneca4_ha') }}" class="timepicker">
                                                         <label for="soneca4_ha">Horário que acordou</label>
 
                                                     </div>
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <label>Onde dormiu?</label>
                                                         <br>
                                                         <select class="browser-default" name="soneca4_onde_dormiu">
@@ -291,13 +291,13 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca4_prolongada" value="1" {{ old('soneca4_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                Sim
+                                                                
                                                             </label>
                                                         </div>
                                                     </div>
@@ -319,17 +319,17 @@
                                                         <label for="soneca5_ss">Horário que sentiu sono</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="soneca1_hd" name="soneca5_hd" value="{{ old('soneca5_hd') }}" class="timepicker">
                                                         <label for="soneca5_hd">Horário que dormiu</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca5_ha" value="{{ old('soneca5_ha') }}" class="timepicker">
                                                         <label for="soneca5_ha">Horário que acordou</label>
 
                                                     </div>
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <label>Onde dormiu?</label>
                                                         <br>
                                                         <select class="browser-default" name="soneca5_onde_dormiu">
@@ -342,13 +342,13 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca5_prolongada" value="1" {{ old('soneca5_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                Sim
+                                                                
                                                             </label>
                                                         </div>
                                                     </div>
@@ -370,17 +370,17 @@
                                                         <label for="soneca6_ss">Horário que sentiu sono</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="soneca1_hd" name="soneca6_hd" value="{{ old('soneca6_hd') }}"  class="timepicker">
                                                         <label for="soneca6_hd">Horário que dormiu</label>
 
                                                     </div>
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m3 s12">
                                                         <input type="text" id="time" name="soneca6_ha" value="{{ old('soneca6_ha') }}" class="timepicker">
                                                         <label for="soneca6_ha">Horário que acordou</label>
 
                                                     </div>
-                                                    <div class="input-field col m3 s12">
+                                                    <div class="input-field col m2 s12">
                                                         <label>Onde dormiu?</label>
                                                         <br>
                                                         <select class="browser-default" name="soneca6_onde_dormiu">
@@ -393,13 +393,13 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="input-field col m2 s12">
+                                                    <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca6_prolongada" value="1" {{ old('soneca6_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                Sim
+                                                                
                                                             </label>
                                                         </div>
                                                     </div>

@@ -1335,6 +1335,7 @@ Vamos conferir os próximos pontos.
 
     public function analyzeStore(Request $request, $id, $day)
     {
+        //dd($request);
         //dd(\Carbon\Carbon::parse('00:25')->diffInMinutes(\Carbon\Carbon::parse('23:50'),true));
         $ritual_window = $request->timeWokeUp;
         if (!$challenge = $this->repository->find($id)
@@ -1358,7 +1359,7 @@ Vamos conferir os próximos pontos.
          $analyze->update([
             'day' => $day,
             'date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
-
+            'observacoes' =>$request->observacao,
             'timeWokeUp' => $request->timeWokeUp,
             'volcanicEffect' => $request->volcanicEffect,
            
@@ -2848,6 +2849,7 @@ dd($janelas);
 
     public function analyzeStore2(Request $request, $id, $day)
     {
+       // dd($request);
         $clientId = Auth::guard('clients')->user()->id;
         $challenge = $this->repository->find($id);
 
@@ -2865,7 +2867,8 @@ dd($janelas);
             'date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d'),
             'timeWokeUp' => $request->timeWokeUp,
             'volcanicEffect' => $request->volcanicEffect ?? 'N',
-            'comments' => $request->comments ?? ''
+            'observacoes' => $request->observacao ?? ''
+
         ]);
 
         // Função para criar sonecas

@@ -1,4 +1,6 @@
 <?php
+
+
 function formatDateAndTime($value, $format = 'd/m/Y')
 {
     
@@ -15,33 +17,37 @@ function formatDateAndTimeHours($value, $format = 'd/m/Y H:i')
   {
     if ($bebe_idade < 59) {
       $data['janelaIdealInicio'] = 40;
-      $data['janelaIdealFim'] = 80;
+      $data['janelaIdealFim'] = 70;
     }
 
     if ($bebe_idade >= 59 && $bebe_idade < 120) {
       $data['janelaIdealInicio'] = 60;
-      $data['janelaIdealFim'] = 90;
+      $data['janelaIdealFim'] = 100;
     }
 
     if ($bebe_idade >= 120 && $bebe_idade < 180) {
       $data['janelaIdealInicio'] = 75;
       $data['janelaIdealFim'] = 120;
     }
-    if ($bebe_idade >= 180 && $bebe_idade < 270) {
+    if ($bebe_idade >= 180 && $bebe_idade < 240) {
       $data['janelaIdealInicio'] = 100;
       $data['janelaIdealFim'] = 150;
     }
-    if ($bebe_idade >= 270 && $bebe_idade < 360) {
+    if ($bebe_idade >= 240 && $bebe_idade < 300) {
+      $data['janelaIdealInicio'] = 100;
+      $data['janelaIdealFim'] = 180;
+    }
+    if ($bebe_idade >= 300 && $bebe_idade < 360) {
       $data['janelaIdealInicio'] = 120;
       $data['janelaIdealFim'] = 210;
     }
     if ($bebe_idade >= 360 && $bebe_idade < 540) {
       $data['janelaIdealInicio'] = 120;
-      $data['janelaIdealFim'] = 240;
+      $data['janelaIdealFim'] = 270;
     }
     if ($bebe_idade >= 540) {
       $data['janelaIdealInicio'] = 120;
-      $data['janelaIdealFim'] = 360;
+      $data['janelaIdealFim'] = 390;
     }
 
     return (object) $data;
@@ -124,29 +130,33 @@ function getSinalSono($bebe_idade)
 {
   if ($bebe_idade < 59) {
     $data['janelaIdealInicio'] = 30;
-    $data['janelaIdealFim'] = 50;
+    $data['janelaIdealFim'] = 40;
   }
 
   if ($bebe_idade >= 59 && $bebe_idade < 120) {
     $data['janelaIdealInicio'] = 45;
-    $data['janelaIdealFim'] = 60;
+    $data['janelaIdealFim'] = 70;
   }
 
   if ($bebe_idade >= 120 && $bebe_idade < 180) {
     $data['janelaIdealInicio'] = 70;
     $data['janelaIdealFim'] = 90;
   }
-  if ($bebe_idade >= 180 && $bebe_idade < 270) {
+  if ($bebe_idade >= 180 && $bebe_idade < 240) {
     $data['janelaIdealInicio'] = 90;
     $data['janelaIdealFim'] = 120;
   }
-  if ($bebe_idade >= 270 && $bebe_idade < 360) {
+  if ($bebe_idade >= 240 && $bebe_idade < 300) {
+    $data['janelaIdealInicio'] = 90;
+    $data['janelaIdealFim'] = 150;
+  }
+  if ($bebe_idade >= 300 && $bebe_idade < 360) {
     $data['janelaIdealInicio'] = 120;
     $data['janelaIdealFim'] = 180;
   }
   if ($bebe_idade >= 360 && $bebe_idade < 540) {
     $data['janelaIdealInicio'] = 120;
-    $data['janelaIdealFim'] = 210;
+    $data['janelaIdealFim'] = 240;
   }
   if ($bebe_idade >= 540) {
     $data['janelaIdealInicio'] = 120;
@@ -169,3 +179,20 @@ if($text == 'S')
 
 return (object) $data;
 }
+
+ function getAnalyzedTime($challenge, $day, $field = 'timeWokeUp')
+{
+    $value = optional(optional($challenge->analyzes()->where('day', $day)->first())->dados()->first())->$field;
+
+    if (!$value) {
+        return '';
+    }
+
+    try {
+        return Carbon\Carbon::parse($value)->format('H:i');
+    } catch (\Exception $e) {
+        return '';
+    }
+}
+
+

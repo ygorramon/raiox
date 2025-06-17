@@ -145,7 +145,7 @@
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca1_prolongada" value="1" {{ old('soneca1_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                               
+
                                                             </label>
                                                         </div>
                                                     </div>
@@ -195,7 +195,7 @@
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca2_prolongada" value="1" {{ old('soneca2_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                
+
                                                             </label>
                                                         </div>
                                                     </div>
@@ -246,7 +246,7 @@
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca3_prolongada" value="1" {{ old('soneca3_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                
+
                                                             </label>
                                                         </div>
                                                     </div>
@@ -297,7 +297,7 @@
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca4_prolongada" value="1" {{ old('soneca4_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                
+
                                                             </label>
                                                         </div>
                                                     </div>
@@ -348,7 +348,7 @@
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca5_prolongada" value="1" {{ old('soneca5_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                
+
                                                             </label>
                                                         </div>
                                                     </div>
@@ -399,7 +399,7 @@
                                                                 Prolongada?
                                                                 <input type="checkbox" name="soneca6_prolongada" value="1" {{ old('soneca6_prolongada') ? 'checked' : '' }}>
                                                                 <span class="lever"></span>
-                                                                
+
                                                             </label>
                                                         </div>
                                                     </div>
@@ -443,7 +443,7 @@
                                         <div class="card card card-default scrollspy">
 
                                             <div class="card-content">
-                                                <h5>Ritual</h5>
+                                                <h5>Ritual / Observações</h5>
                                                 <div class="row">
                                                     <div class="input-field col m4 s12">
                                                         <input type="text" id="ritual_ss" name="ritual_ss" value="{{ old('ritual_ss') }}" class="timepicker">
@@ -461,6 +461,16 @@
 
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <label> Observação sobre o dia.</label>
+                                                        <br>
+                                                            <textarea class="materialize-textarea" id="observacao" name="observacao"
+                                                                data-length="200"></textarea>                         
+                                                        </div>
+                                                        </div>
+
+
                                             </div>
                                         </div>
 
@@ -738,114 +748,116 @@
 @endsection
 
     @section('js')
-    <script>
-        $(document).ready(function() {
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy'
-            });
-            $('.timepicker').timepicker({
-                twelveHour: false
-            });
+            <script>
+                $(document).ready(function() {
+                    $('.datepicker').datepicker({
+                        format: 'dd/mm/yyyy'
+                    });
+                    $('.timepicker').timepicker({
+                        twelveHour: false
+                    });
 
-            $("select").formSelect();
-        });
+                    $("select").formSelect();
+                });
 
-        $('#despertar1_fd_outro').hide();
-
-        $('#despertar1_fd').change(function() {
-            if ($(this).val() === '4') {
-                $('#despertar1_fd_outro').show();
-            }
-            if ($(this).val() != '4') {
                 $('#despertar1_fd_outro').hide();
-            }
-        });
-        $('#despertar2_fd_outro').hide();
 
-        $('#despertar2_fd').change(function() {
-            if ($(this).val() === '4') {
-                $('#despertar2_fd_outro').show();
-            }
-            if ($(this).val() != '4') {
+                $('#despertar1_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar1_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar1_fd_outro').hide();
+                    }
+                });
                 $('#despertar2_fd_outro').hide();
-            }
-        });
-        $('#despertar3_fd_outro').hide();
 
-        $('#despertar3_fd').change(function() {
-            if ($(this).val() === '4') {
-                $('#despertar3_fd_outro').show();
-            }
-            if ($(this).val() != '4') {
+                $('#despertar2_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar2_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar2_fd_outro').hide();
+                    }
+                });
                 $('#despertar3_fd_outro').hide();
-            }
-        });
-        $('#despertar4_fd_outro').hide();
 
-        $('#despertar4_fd').change(function() {
-            if ($(this).val() === '4') {
-                $('#despertar4_fd_outro').show();
-            }
-            if ($(this).val() != '4') {
+                $('#despertar3_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar3_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar3_fd_outro').hide();
+                    }
+                });
                 $('#despertar4_fd_outro').hide();
-            }
-        });
-        $('#despertar5_fd_outro').hide();
 
-        $('#despertar5_fd').change(function() {
-            if ($(this).val() === '4') {
-                $('#despertar5_fd_outro').show();
-            }
-            if ($(this).val() != '4') {
+                $('#despertar4_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar4_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar4_fd_outro').hide();
+                    }
+                });
                 $('#despertar5_fd_outro').hide();
-            }
-        });
 
-        $('#despertar6_fd_outro').hide();
+                $('#despertar5_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar5_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar5_fd_outro').hide();
+                    }
+                });
 
-        $('#despertar6_fd').change(function() {
-            if ($(this).val() === '4') {
-                $('#despertar6_fd_outro').show();
-            }
-            if ($(this).val() != '4') {
                 $('#despertar6_fd_outro').hide();
-            }
+
+                $('#despertar6_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar6_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar6_fd_outro').hide();
+                    }
+                });
+                                     $('textarea#observacao').characterCounter();
+
+            </script>
+
+
+
+        <script>
+        $(document).ready(function(){
+            $('.modal').modal({
+
+            });
+            $('#modal1').modal('open');
+          });
+
+           $(document).ready(function(){
+            $('.fixed-action-btn').floatingActionButton();
+          });
+          </script>
+        <script>
+        $(document).on("click", "#salvar" , function() {
+            const form = document.getElementById("form");
+           $.ajax({
+                       type:'POST',
+                       url:'{{route('analyze.store.json', [$challenge->id, $day])}}',
+                      data: new FormData(form),
+                      dataType: 'JSON',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                       success:function(response) {
+
+                       }, error: function(response) {
+                    }
+
+                    }); 
         });
-    </script>
 
-
-
-<script>
-$(document).ready(function(){
-    $('.modal').modal({
-       
-    });
-    $('#modal1').modal('open');
-  });
-
-   $(document).ready(function(){
-    $('.fixed-action-btn').floatingActionButton();
-  });
-  </script>
-<script>
-$(document).on("click", "#salvar" , function() {
-    const form = document.getElementById("form");
-   $.ajax({
-               type:'POST',
-               url:'{{route('analyze.store.json', [$challenge->id, $day])}}',
-              data: new FormData(form),
-              dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
-               success:function(response) {
-               
-               }, error: function(response) {
-            }
-
-            }); 
-});
-
-</script>
+        </script>
 
     @endsection

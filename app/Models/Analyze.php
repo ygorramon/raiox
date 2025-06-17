@@ -11,13 +11,18 @@ class Analyze extends Model
         'date',
         'started_at', 
         'timeWokeUp', 
-        'volcanicEffect', 
+        'volcanicEffect',
+        'observacoes'
            ];
 
     protected $casts = [
         'started_at' => 'date',
     ];
-    
+
+     public function dados()
+    {
+        return $this->hasOne('App\Models\Dado');
+    }
 
         public function naps()
         {
@@ -32,5 +37,7 @@ class Analyze extends Model
         {
             return $this->hasMany('App\Models\Ritual');
         }
+
+        
     
 }

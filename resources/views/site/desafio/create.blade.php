@@ -465,7 +465,7 @@
                                                     <div class="input-field col s12">
                                                         <label> Observação sobre o dia.</label>
                                                         <br>
-                                                            <textarea class="materialize-textarea" id="observacao" name="observacao"
+                                                            <textarea class="materialize-textarea" id="observacao" name="observacao" maxlength="200"
                                                                 data-length="200"></textarea>                         
                                                         </div>
                                                         </div>

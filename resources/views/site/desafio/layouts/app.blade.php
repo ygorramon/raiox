@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
- <title>Raio X do Sono</title>
+ <title>Desafio de 7 Dias</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.css') }}" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}" media="screen,projection" />
@@ -25,16 +25,18 @@
       <h1 class="logo-wrapper">
         <a class="brand-logo darken-1" href="index.html">
           
-          <span class="logo-text hide-on-med-and-down">RAIO X do Sono</span></a><a class="navbar-toggler" href="#"></a></h1>
+          <span class="logo-text hide-on-med-and-down">Desafio de 7 Dias</span></a><a class="navbar-toggler" href="#"></a></h1>
     </div>
     <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
       <li class="bold"><a class="waves-effect waves-cyan " href="{{route('desafio.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Desafio de 7 Dias</span></a>
       </li>
-      <li class="bold"><a class="waves-effect waves-cyan " href="{{route('raiox.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Raio x</span></a>
+      <!-- li class="bold"><a class="waves-effect waves-cyan " href="{{route('raiox.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Raio x</span></a>
+      </li>
+-->
+       <!-- li class="bold"><a class="waves-effect waves-cyan " href="{{route('doubtCenter.index')}}"><i class="material-icons">help</i><span class="menu-title" data-i18n="Mail">Perguntas Frequentes</span></a>
       </li>
 
-       <li class="bold"><a class="waves-effect waves-cyan " href="{{route('doubtCenter.index')}}"><i class="material-icons">help</i><span class="menu-title" data-i18n="Mail">Perguntas Frequentes</span></a>
-      </li>
+-->
       <!--
  <li class="bold"><a class="waves-effect waves-cyan " href="{{route('my.queries')}}"><i class="material-icons">help_outline</i><span class="menu-title" data-i18n="Mail">Minhas Perguntas</span></a>
       </li>

@@ -78,7 +78,7 @@ class ChallengeController extends Controller
 
         if($challenge->tipo==1){
 
-        return view('site.desafio.show2', compact('analyzes', 'challenge'));
+        return view('site.desafio.show3', compact('analyzes', 'challenge'));
         }else{
             return view('site.desafio.show', compact('analyzes', 'challenge'));
 
@@ -703,7 +703,7 @@ Vamos conferir os próximos pontos.
         ]);
         //   $challenge->notify(new ChallengeTelegramNotification());
 
-        return redirect()->route('desafio.index', $challenge->id)->with('sucesso', 'Desafio Finalizado!');
+        return redirect()->route('desafio.show', $challenge->id)->with('sucesso', 'Desafio Finalizado!');
     }
 
     public $message = [
@@ -2951,7 +2951,7 @@ dd($janelas);
         };
 
         // Criando despertares
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 11; $i++) {
             $createWake($i);
         }
 
@@ -2982,7 +2982,7 @@ dd($janelas);
         }
 
         // Regras para despertares
-        for ($i = 1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 11; $i++) {
             $rules["despertar{$i}_a"] = 'nullable|date_format:H:i';
             $rules["despertar{$i}_d"] = "nullable|date_format:H:i|required_unless:despertar{$i}_a,null";
             $rules["despertar{$i}_fd"] = "nullable|required_unless:despertar{$i}_a,null";

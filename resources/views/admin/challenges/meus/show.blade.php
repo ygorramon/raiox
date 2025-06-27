@@ -14,14 +14,14 @@
 @section('content')
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Dados Pessoais</h3>
+            <h3 class="card-title">Dados Pessoais </h3>
         </div>
         <div class="card-body">
 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4 ">
-                        <label for="nomeMae">Nome da Mãe/Pai:</label>
+                        <label for="nomeMae">Nome da Mãe/Pai :</label>
 
                         <div>
                             <input type="text" readonly class="form-control" id="nomeMae"

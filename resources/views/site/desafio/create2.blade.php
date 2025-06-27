@@ -1608,6 +1608,362 @@
 
 
                                 </div>
+                                 <div class="row">
+                                    <div class="card card card-default ">
+
+                                        <div class="card-content">
+                                            <h5>Despertar 7</h5>
+                                            <div class="row">
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar7_a" name="despertar7_a"
+                                                      @if (
+                                                                    isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeWokeUp7)) 
+                                                    value="{{ old('despertar7_a', getAnalyzedTime($challenge, $day, 'wake_timeWokeUp7')) }}"
+                                                    @else
+                                                    value="{{ old('despertar7_a') }}"
+                                                    @endif class="timepicker">
+                                                    <label for="despertar7_a">Horário que acordou</label>
+
+                                                </div>
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar7_d" name="despertar7_d"
+                                                      @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeSlept7)) 
+                                                    value="{{ old('despertar7_d', getAnalyzedTime($challenge, $day, 'wake_timeSlept7')) }}"
+                                                    @else
+                                                    value="{{ old('despertar7_d') }}" 
+                                                    @endif
+                                                    class="timepicker">
+                                                    <label for="despertar7_d">Horário que dormiu</label>
+
+                                                </div>
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                <br>
+                                                    <select class="browser-default" name="despertar7_fd" id="despertar7_fd">
+                                                        <option  value="" disabled selected>Selecione uma opção</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7==1 ) 
+                                                                        selected
+                                                                        @else
+                                                                        {{ old('despertar7_fd')==2 ? "selected" : "" }}
+                                                                        @endif
+                                                         value="1">Sozinho</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7==2 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar7_fd')==2 ? "selected" : "" }} @endif  value="2">Ninando no berço/cama</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7==3 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar7_fd')==3 ? "selected" : "" }} @endif value="3">Mamando</option>
+
+
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7)==false ) 
+                                                                        selected
+                                                                        @else {{  is_numeric(old('despertar7_fd')==false) ? "selected" : "" }}@endif value="4">Outro</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="input-field col m3 s12" id="despertar7_fd_outro">
+                                                    <input  type="text" id="despertar7_fd_outro" name=" despertar7_fd_outro"
+                                                    @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode7)==false )
+
+                                                    value="{{ old('wake_sleepingMode7', getAnalyzedTime($challenge, $day, 'wake_sleepingMode7')) }}"
+                                                    @else
+                                                    {{old('despertar7_fd_outro')}}
+                                                    @endif
+                                                    >
+                                                    <label for="despertar7_fd_outro">Como Dormiu</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                 <div class="row">
+                                    <div class="card card card-default ">
+
+                                        <div class="card-content">
+                                            <h5>Despertar 8</h5>
+                                            <div class="row">
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar8_a" name="despertar8_a"
+                                                      @if (
+                                                                    isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeWokeUp8)) 
+                                                    value="{{ old('despertar8_a', getAnalyzedTime($challenge, $day, 'wake_timeWokeUp8')) }}"
+                                                    @else
+                                                    value="{{ old('despertar8_a') }}"
+                                                    @endif class="timepicker">
+                                                    <label for="despertar8_a">Horário que acordou</label>
+
+                                                </div>
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar8_d" name="despertar8_d"
+                                                      @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeSlept8)) 
+                                                    value="{{ old('despertar8_d', getAnalyzedTime($challenge, $day, 'wake_timeSlept8')) }}"
+                                                    @else
+                                                    value="{{ old('despertar8_d') }}" 
+                                                    @endif
+                                                    class="timepicker">
+                                                    <label for="despertar8_d">Horário que dormiu</label>
+
+                                                </div>
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                <br>
+                                                    <select class="browser-default" name="despertar8_fd" id="despertar8_fd">
+                                                        <option  value="" disabled selected>Selecione uma opção</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8==1 ) 
+                                                                        selected
+                                                                        @else
+                                                                        {{ old('despertar8_fd')==2 ? "selected" : "" }}
+                                                                        @endif
+                                                         value="1">Sozinho</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8==2 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar8_fd')==2 ? "selected" : "" }} @endif  value="2">Ninando no berço/cama</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8==3 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar8_fd')==3 ? "selected" : "" }} @endif value="3">Mamando</option>
+
+
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8)==false ) 
+                                                                        selected
+                                                                        @else {{  is_numeric(old('despertar8_fd')==false) ? "selected" : "" }}@endif value="4">Outro</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="input-field col m3 s12" id="despertar8_fd_outro">
+                                                    <input  type="text" id="despertar8_fd_outro" name=" despertar8_fd_outro"
+                                                    @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode8)==false )
+
+                                                    value="{{ old('wake_sleepingMode8', getAnalyzedTime($challenge, $day, 'wake_sleepingMode8')) }}"
+                                                    @else
+                                                    {{old('despertar8_fd_outro')}}
+                                                    @endif
+                                                    >
+                                                    <label for="despertar8_fd_outro">Como Dormiu</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                 <div class="row">
+                                    <div class="card card card-default ">
+
+                                        <div class="card-content">
+                                            <h5>Despertar 9</h5>
+                                            <div class="row">
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar9_a" name="despertar9_a"
+                                                      @if (
+                                                                    isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeWokeUp9)) 
+                                                    value="{{ old('despertar9_a', getAnalyzedTime($challenge, $day, 'wake_timeWokeUp9')) }}"
+                                                    @else
+                                                    value="{{ old('despertar9_a') }}"
+                                                    @endif class="timepicker">
+                                                    <label for="despertar9_a">Horário que acordou</label>
+
+                                                </div>
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar9_d" name="despertar9_d"
+                                                      @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeSlept9)) 
+                                                    value="{{ old('despertar9_d', getAnalyzedTime($challenge, $day, 'wake_timeSlept9')) }}"
+                                                    @else
+                                                    value="{{ old('despertar9_d') }}" 
+                                                    @endif
+                                                    class="timepicker">
+                                                    <label for="despertar9_d">Horário que dormiu</label>
+
+                                                </div>
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                <br>
+                                                    <select class="browser-default" name="despertar9_fd" id="despertar9_fd">
+                                                        <option  value="" disabled selected>Selecione uma opção</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9==1 ) 
+                                                                        selected
+                                                                        @else
+                                                                        {{ old('despertar9_fd')==2 ? "selected" : "" }}
+                                                                        @endif
+                                                         value="1">Sozinho</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9==2 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar9_fd')==2 ? "selected" : "" }} @endif  value="2">Ninando no berço/cama</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9==3 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar9_fd')==3 ? "selected" : "" }} @endif value="3">Mamando</option>
+
+
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9)==false ) 
+                                                                        selected
+                                                                        @else {{  is_numeric(old('despertar9_fd')==false) ? "selected" : "" }}@endif value="4">Outro</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="input-field col m3 s12" id="despertar9_fd_outro">
+                                                    <input  type="text" id="despertar9_fd_outro" name=" despertar9_fd_outro"
+                                                    @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode9)==false )
+
+                                                    value="{{ old('wake_sleepingMode9', getAnalyzedTime($challenge, $day, 'wake_sleepingMode9')) }}"
+                                                    @else
+                                                    {{old('despertar9_fd_outro')}}
+                                                    @endif
+                                                    >
+                                                    <label for="despertar9_fd_outro">Como Dormiu</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                 <div class="row">
+                                    <div class="card card card-default ">
+
+                                        <div class="card-content">
+                                            <h5>Despertar 10</h5>
+                                            <div class="row">
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar10_a" name="despertar10_a"
+                                                      @if (
+                                                                    isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeWokeUp10)) 
+                                                    value="{{ old('despertar10_a', getAnalyzedTime($challenge, $day, 'wake_timeWokeUp10')) }}"
+                                                    @else
+                                                    value="{{ old('despertar10_a') }}"
+                                                    @endif class="timepicker">
+                                                    <label for="despertar10_a">Horário que acordou</label>
+
+                                                </div>
+                                                <div class="input-field col m3 s12">
+                                                    <input type="text" id="despertar10_d" name="despertar10_d"
+                                                      @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_timeSlept10)) 
+                                                    value="{{ old('despertar10_d', getAnalyzedTime($challenge, $day, 'wake_timeSlept10')) }}"
+                                                    @else
+                                                    value="{{ old('despertar10_d') }}" 
+                                                    @endif
+                                                    class="timepicker">
+                                                    <label for="despertar10_d">Horário que dormiu</label>
+
+                                                </div>
+                                                <div class="col m3 s12">
+                                                <label>Como dormiu</label>
+                                                <br>
+                                                    <select class="browser-default" name="despertar10_fd" id="despertar10_fd">
+                                                        <option  value="" disabled selected>Selecione uma opção</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10==1 ) 
+                                                                        selected
+                                                                        @else
+                                                                        {{ old('despertar10_fd')==2 ? "selected" : "" }}
+                                                                        @endif
+                                                         value="1">Sozinho</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10==2 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar10_fd')==2 ? "selected" : "" }} @endif  value="2">Ninando no berço/cama</option>
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10) &&
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10==3 ) 
+                                                                        selected
+                                                                        @else {{ old('despertar10_fd')==3 ? "selected" : "" }} @endif value="3">Mamando</option>
+
+
+                                                        <option  @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10)==false ) 
+                                                                        selected
+                                                                        @else {{  is_numeric(old('despertar10_fd')==false) ? "selected" : "" }}@endif value="4">Outro</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="input-field col m3 s12" id="despertar10_fd_outro">
+                                                    <input  type="text" id="despertar10_fd_outro" name=" despertar10_fd_outro"
+                                                    @if(
+                                                      isset(
+                                                                        $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10) &&
+                                                                        is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode10)==false )
+
+                                                    value="{{ old('wake_sleepingMode10', getAnalyzedTime($challenge, $day, 'wake_sleepingMode10')) }}"
+                                                    @else
+                                                    {{old('despertar10_fd_outro')}}
+                                                    @endif
+                                                    >
+                                                    <label for="despertar10_fd_outro">Como Dormiu</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                                 <!--
                                 <div class="row">
                                     <div class="card card card-default ">
@@ -1961,6 +2317,46 @@
                 $('#despertar6_fd_outro').hide();
             }
         });
+                       $('#despertar7_fd_outro').hide();
+
+                $('#despertar7_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar7_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar7_fd_outro').hide();
+                    }
+                });
+                $('#despertar8_fd_outro').hide();
+
+                $('#despertar8_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar8_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar8_fd_outro').hide();
+                    }
+                });
+                $('#despertar9_fd_outro').hide();
+
+                $('#despertar9_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar9_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar9_fd_outro').hide();
+                    }
+                });
+                $('#despertar10_fd_outro').hide();
+
+                $('#despertar10_fd').change(function() {
+                    if ($(this).val() === '4') {
+                        $('#despertar10_fd_outro').show();
+                    }
+                    if ($(this).val() != '4') {
+                        $('#despertar10_fd_outro').hide();
+                    }
+                });
     </script>
 
 

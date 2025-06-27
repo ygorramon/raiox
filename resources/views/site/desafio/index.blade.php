@@ -98,13 +98,30 @@
 
 @section('js')
 
-<script>
-$(document).ready(function(){
-    $('.modal').modal({
-       
-    });
-    $('#modal1').modal('open');
-  });
-  </script>
+    <script>
+    $(document).ready(function(){
+        $('.modal').modal({
 
+        });
+        $('#modal1').modal('open');
+      });
+      </script>
+      
+    <script>
+        @if (session('sucesso'))
+            M.toast({
+                html: '{{ session('sucesso') }}'
+            })
+        @endif
+        $(document).ready(function () {
+            $('.collapsible').collapsible({
+                accordion: true
+            });
+        });
+
+
+    </script>
 @endsection
+
+   
+

@@ -1063,7 +1063,7 @@
                                                     <div class="input-field col s12">
                                                         <label> Observação sobre o dia.</label>
                                                         <br>
-                                                            <textarea class="materialize-textarea" id="observacao" name="observacao"
+                                                            <textarea class="materialize-textarea" id="observacao" name="observacao" maxlength="200"
                                                                 data-length="200">@if (
                                                                     isset(
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->observacoes)) {{ $challenge->analyzes()->where('day', $day)->first()->dados()->first()->observacoes}} @endif </textarea>                         
@@ -2357,6 +2357,7 @@
                         $('#despertar10_fd_outro').hide();
                     }
                 });
+                 $('textarea#observacao').characterCounter();
     </script>
 
 

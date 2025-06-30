@@ -119,11 +119,11 @@
                                                             <br>
                                                             <select class="browser-default" name="soneca1_onde_dormiu">
                                                                 <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca1_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca1_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca1_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="colo" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'colo' ? 'selected' : '' }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca1_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
 
                                                         </div>
@@ -132,7 +132,7 @@
                                                             <div class="switch">
                                                                 <label>
                                                                     Prolongada?
-                                                                    <input type="checkbox" name="soneca1_prolongada" value="1" {{ old('soneca1_prolongada') ? 'checked' : '' }}>
+                                                                    <input type="checkbox" name="soneca1_prolongada" value="1" {{ old('soneca1_prolongada', $naps[0]->prolongada) ? 'checked' : '' }}>
                                                                     <span class="lever"></span>
                                                                     Sim
                                                                 </label>
@@ -158,12 +158,12 @@
                                                             <label>Onde dormiu?</label>
                                                             <br>
                                                             <select class="browser-default" name="soneca1_onde_dormiu">
-                                                                <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca1_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca1_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca1_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="" disabled selected>Escolha onde dormiu </option>
+                                                                <option value="colo" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'colo' ? "selected" : "" }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca1_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca1_onde_dormiu', $naps[0]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
 
                                                         </div>
@@ -212,11 +212,11 @@
                                                             <br>
                                                             <select class="browser-default" name="soneca2_onde_dormiu">
                                                                 <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca2_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca2_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca2_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="colo" {{ old('soneca2_onde_dormiu', $naps[1]->onde_dormiu) == 'colo' ? "selected" : "" }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca2_onde_dormiu', $naps[1]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca2_onde_dormiu', $naps[1]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca2_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca2_onde_dormiu', $naps[1]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
                                                         </div>
 
@@ -224,7 +224,7 @@
                                                             <div class="switch">
                                                                 <label>
                                                                     Prolongada?
-                                                                    <input type="checkbox" name="soneca2_prolongada" value="1" {{ old('soneca2_prolongada') ? 'checked' : '' }}>
+                                                                    <input type="checkbox" name="soneca2_prolongada" value="1" {{ old('soneca2_prolongada', $naps[1]->prolongada) ? 'checked' : '' }}>
                                                                     <span class="lever"></span>
                                                                     Sim
                                                                 </label>
@@ -305,11 +305,11 @@
                                                             <br>
                                                             <select class="browser-default" name="soneca3_onde_dormiu">
                                                                 <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca3_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca3_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca3_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="colo" {{ old('soneca3_onde_dormiu', $naps[2]->onde_dormiu) == 'colo' ? 'selected' : '' }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca3_onde_dormiu', $naps[2]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca3_onde_dormiu', $naps[2]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca3_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca3_onde_dormiu', $naps[2]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
                                                         </div>
 
@@ -317,7 +317,7 @@
                                                             <div class="switch">
                                                                 <label>
                                                                     Prolongada?
-                                                                    <input type="checkbox" name="soneca3_prolongada" value="1" {{ old('soneca3_prolongada') ? 'checked' : '' }}>
+                                                                    <input type="checkbox" name="soneca3_prolongada" value="1" {{ old('soneca3_prolongada', $naps[2]->prolongada) ? 'checked' : '' }}>
                                                                     <span class="lever"></span>
                                                                     Sim
                                                                 </label>
@@ -396,11 +396,11 @@
                                                             <br>
                                                             <select class="browser-default" name="soneca4_onde_dormiu">
                                                                 <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca4_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca4_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca4_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="colo" {{ old('soneca4_onde_dormiu', $naps[3]->onde_dormiu) == 'colo' ? 'selected' : '' }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca4_onde_dormiu', $naps[3]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca4_onde_dormiu', $naps[3]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca4_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca4_onde_dormiu', $naps[3]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
                                                         </div>
 
@@ -408,7 +408,7 @@
                                                             <div class="switch">
                                                                 <label>
                                                                     Prolongada?
-                                                                    <input type="checkbox" name="soneca4_prolongada" value="1" {{ old('soneca4_prolongada') ? 'checked' : '' }}>
+                                                                    <input type="checkbox" name="soneca4_prolongada" value="1" {{ old('soneca4_prolongada',$naps[3]->prolongada) ? 'checked' : '' }}>
                                                                     <span class="lever"></span>
                                                                     Sim
                                                                 </label>
@@ -490,11 +490,11 @@
                                                             <br>
                                                             <select class="browser-default" name="soneca5_onde_dormiu">
                                                                 <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca5_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca5_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca5_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="colo" {{ old('soneca5_onde_dormiu',  $naps[4]->onde_dormiu) == 'colo' ? 'selected' : '' }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca5_onde_dormiu', $naps[4]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca5_onde_dormiu', $naps[4]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca5_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca5_onde_dormiu', $naps[4]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
                                                         </div>
 
@@ -502,7 +502,7 @@
                                                             <div class="switch">
                                                                 <label>
                                                                     Prolongada?
-                                                                    <input type="checkbox" name="soneca5_prolongada" value="1" {{ old('soneca5_prolongada') ? 'checked' : '' }}>
+                                                                    <input type="checkbox" name="soneca5_prolongada" value="1" {{ old('soneca5_prolongada', $naps[4]->prolongada) ? 'checked' : '' }}>
                                                                     <span class="lever"></span>
                                                                     Sim
                                                                 </label>
@@ -581,11 +581,11 @@
                                                             <br>
                                                             <select class="browser-default" name="soneca6_onde_dormiu">
                                                                 <option value="" disabled selected>Escolha onde dormiu</option>
-                                                                <option value="colo" {{ old('soneca6_onde_dormiu') == 'colo' ? 'selected' : '' }}>Colo</option>
-                                                                <option value="berco" {{ old('soneca6_onde_dormiu') == 'berco' ? 'selected' : '' }}>Berço</option>
-                                                                <option value="cama_compartilhada" {{ old('soneca6_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}>Cama
+                                                                <option value="colo" {{ old('soneca6_onde_dormiu', $naps[5]->onde_dormiu) == 'colo' ? 'selected' : '' }}>Colo</option>
+                                                                <option value="berco" {{ old('soneca6_onde_dormiu', $naps[5]->onde_dormiu) == 'berco' ? 'selected' : '' }}>Berço</option>
+                                                                <option value="cama_compartilhada" {{ old('soneca6_onde_dormiu', $naps[5]->onde_dormiu) == 'cama_compartilhada' ? 'selected' : '' }}>Cama
                                                                     Compartilhada</option>
-                                                                <option value="carrinho" {{ old('soneca6_onde_dormiu') == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
+                                                                <option value="carrinho" {{ old('soneca6_onde_dormiu', $naps[5]->onde_dormiu) == 'carrinho' ? 'selected' : '' }}>Carrinho</option>
                                                             </select>
                                                         </div>
 
@@ -593,7 +593,7 @@
                                                             <div class="switch">
                                                                 <label>
                                                                     Prolongada?
-                                                                    <input type="checkbox" name="soneca6_prolongada" value="1" {{ old('soneca6_prolongada') ? 'checked' : '' }}>
+                                                                    <input type="checkbox" name="soneca6_prolongada" value="1" {{ old('soneca6_prolongada', $naps[5]->prolongada) ? 'checked' : '' }}>
                                                                     <span class="lever"></span>
                                                                     Sim
                                                                 </label>

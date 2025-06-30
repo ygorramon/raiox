@@ -2849,7 +2849,7 @@ dd($janelas);
 
     public function analyzeStore2(Request $request, $id, $day)
     {
-       // dd($request);
+      //  dd($request);
         $clientId = Auth::guard('clients')->user()->id;
         $challenge = $this->repository->find($id);
 

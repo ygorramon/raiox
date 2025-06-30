@@ -176,7 +176,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1=="colo")
-                                                    selected
+                                                    selected value="colo"
                                                     @else
                                                             value="colo" {{ old('soneca1_onde_dormiu') == 'colo' ? 'selected' : '' }}
                                                             @endif
@@ -187,7 +187,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1=="berco")
-                                                    selected
+                                                    selected value="berco"
                                                     @else
                                                             value="berco" {{ old('soneca1_onde_dormiu') == 'berco' ? 'selected' : '' }}
                                                             @endif >Berço</option>
@@ -197,7 +197,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1=="cama_compartilhada")
-                                                    selected
+                                                    selected value="cama_compartilhada"
                                                     @else
                                                             value="cama_compartilhada" {{ old('soneca1_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}
                                                             @endif >Cama Compartilhada</option>
@@ -206,7 +206,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1=="carrinho")
-                                                    selected
+                                                    selected value="carrinho"
                                                     @else
                                                             value="carrinho" {{ old('soneca1_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                             @endif>Carrinho</option>
@@ -298,7 +298,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2=="colo")
-                                                    selected
+                                                    selected value="colo"
                                                     @else
                                                             value="colo" {{ old('soneca2_onde_dormiu') == 'colo' ? 'selected' : '' }}
                                                             @endif
@@ -309,7 +309,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2=="berco")
-                                                    selected
+                                                    selected value="berco"
                                                     @else
                                                             value="berco" {{ old('soneca2_onde_dormiu') == 'berco' ? 'selected' : '' }}
                                                             @endif >Berço</option>
@@ -319,7 +319,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2=="cama_compartilhada")
-                                                    selected
+                                                    selected value="cama_compartilhada"
                                                     @else
                                                             value="cama_compartilhada" {{ old('soneca2_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}
                                                             @endif >Cama Compartilhada</option>
@@ -328,7 +328,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2=="carrinho")
-                                                    selected
+                                                    selected value="carrinho"
                                                     @else
                                                             value="carrinho" {{ old('soneca2_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                             @endif>Carrinho</option>
@@ -419,7 +419,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3=="colo")
-                                                    selected
+                                                    selected  value="colo"
                                                     @else
                                                             value="colo" {{ old('soneca3_onde_dormiu') == 'colo' ? 'selected' : '' }}
                                                             @endif
@@ -430,7 +430,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3=="berco")
-                                                    selected
+                                                    selected value="berco"
                                                     @else
                                                             value="berco" {{ old('soneca3_onde_dormiu') == 'berco' ? 'selected' : '' }}
                                                             @endif >Berço</option>
@@ -440,7 +440,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3=="cama_compartilhada")
-                                                    selected
+                                                    selected  value="cama_compartilhada"
                                                     @else
                                                             value="cama_compartilhada" {{ old('soneca3_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}
                                                             @endif >Cama Compartilhada</option>
@@ -449,7 +449,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3=="carrinho")
-                                                    selected
+                                                    selected  value="carrinho"
                                                     @else
                                                             value="carrinho" {{ old('soneca3_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                             @endif>Carrinho</option>
@@ -540,7 +540,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4=="colo")
-                                                    selected
+                                                    selected value="colo"
                                                     @else
                                                             value="colo" {{ old('soneca4_onde_dormiu') == 'colo' ? 'selected' : '' }}
                                                             @endif
@@ -551,7 +551,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4=="berco")
-                                                    selected
+                                                    selected value="berco"
                                                     @else
                                                             value="berco" {{ old('soneca4_onde_dormiu') == 'berco' ? 'selected' : '' }}
                                                             @endif >Berço</option>
@@ -561,7 +561,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4=="cama_compartilhada")
-                                                    selected
+                                                    selected value="cama_compartilhada" 
                                                     @else
                                                             value="cama_compartilhada" {{ old('soneca4_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}
                                                             @endif >Cama Compartilhada</option>
@@ -570,7 +570,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4=="carrinho")
-                                                    selected
+                                                    selected  value="carrinho"
                                                     @else
                                                             value="carrinho" {{ old('soneca4_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                             @endif>Carrinho</option>
@@ -661,7 +661,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5=="colo")
-                                                    selected
+                                                    selected value="colo"
                                                     @else
                                                             value="colo" {{ old('soneca5_onde_dormiu') == 'colo' ? 'selected' : '' }}
                                                             @endif
@@ -672,7 +672,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5=="berco")
-                                                    selected
+                                                    selected  value="berco"
                                                     @else
                                                             value="berco" {{ old('soneca5_onde_dormiu') == 'berco' ? 'selected' : '' }}
                                                             @endif >Berço</option>
@@ -682,7 +682,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5=="cama_compartilhada")
-                                                    selected
+                                                    selected value="cama_compartilhada"
                                                     @else
                                                             value="cama_compartilhada" {{ old('soneca5_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}
                                                             @endif >Cama Compartilhada</option>
@@ -691,7 +691,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5=="carrinho")
-                                                    selected
+                                                    selected  value="carrinho"
                                                     @else
                                                             value="carrinho" {{ old('soneca5_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                             @endif>Carrinho</option>
@@ -782,7 +782,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6=="colo")
-                                                    selected
+                                                    selected value="colo"
                                                     @else
                                                             value="colo" {{ old('soneca6_onde_dormiu') == 'colo' ? 'selected' : '' }}
                                                             @endif
@@ -793,7 +793,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6=="berco")
-                                                    selected
+                                                    selected value="berco"
                                                     @else
                                                             value="berco" {{ old('soneca6_onde_dormiu') == 'berco' ? 'selected' : '' }}
                                                             @endif >Berço</option>
@@ -803,7 +803,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6=="cama_compartilhada")
-                                                    selected
+                                                    selected value="cama_compartilhada"
                                                     @else
                                                             value="cama_compartilhada" {{ old('soneca6_onde_dormiu') == 'cama_compartilhada' ? 'selected' : '' }}
                                                             @endif >Cama Compartilhada</option>
@@ -812,7 +812,7 @@
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6) 
                                                                         &&
                                                                         $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6=="carrinho")
-                                                    selected
+                                                    selected  value="carrinho"
                                                     @else
                                                             value="carrinho" {{ old('soneca6_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                             @endif>Carrinho</option>

@@ -217,7 +217,7 @@
                                                     <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
-                                                                Prolongada?
+                                                                Precisou intervir para prolongar a soneca?
 
 
                                                                 <input type="checkbox" name="soneca1_prolongada" value="1" 
@@ -339,7 +339,7 @@
                                                     <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
-                                                                Prolongada?
+                                                                Precisou intervir para prolongar a soneca?
 
 
                                                                 <input type="checkbox" name="soneca2_prolongada" value="1" 
@@ -460,7 +460,7 @@
                                                     <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
-                                                                Prolongada?
+                                                                Precisou intervir para prolongar a soneca?
 
 
                                                                 <input type="checkbox" name="soneca3_prolongada" value="1" 
@@ -581,7 +581,7 @@
                                                     <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
-                                                                Prolongada?
+                                                                Precisou intervir para prolongar a soneca?
 
 
                                                                 <input type="checkbox" name="soneca4_prolongada" value="1" 
@@ -702,7 +702,7 @@
                                                     <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
-                                                                Prolongada?
+                                                                Precisou intervir para prolongar a soneca?
 
 
                                                                 <input type="checkbox" name="soneca5_prolongada" value="1" 
@@ -823,7 +823,7 @@
                                                     <div class="input-field col m1 s12">
                                                         <div class="switch">
                                                             <label>
-                                                                Prolongada?
+                                                                Precisou intervir para prolongar a soneca?
 
 
                                                                 <input type="checkbox" name="soneca6_prolongada" value="1" 

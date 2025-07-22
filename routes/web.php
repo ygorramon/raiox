@@ -67,14 +67,15 @@ Route::prefix('admin')->group(function () {
             Route::get('/relatorios/desafios-atrasados', 'Admin\DashboardController@atrasados')->name('relatorios.atrasados');
              Route::get('/relatorios/enviados', 'Admin\DashboardController@enviados')->name('relatorios.enviados');
             Route::put('/relatorios/enviados/{id}', 'Admin\ChallengeController@getAnalise')->name('challenge.getanalise');
-
             Route::get('/relatorios/chats-atrasados', 'Admin\DashboardController@chats')->name('relatorios.chats-atrasados');
+            Route::post('/challenges/upload-analise',  'Admin\ChallengeController@uploadAnalise')->name('challenge.upload.analise');
+
             Route::get('/relatorios/clients', 'Admin\DashboardController@relatorioClientsIndex')->name('relatorios.clients.index');
             Route::any('/relatorios/clients/search', 'Admin\DashboardController@relatorioClientsSearch')->name('relatorios.clients.search');
             Route::get('/relatorios/clients/{id}/desafios', 'Admin\DashboardController@relatorioClientsdesafios')->name('relatorios.clients.desafios');
             Route::get('/relatorios/terapeutas', 'Admin\DashboardController@usersIndex')->name('relatorios.users.index');
             Route::post('/relatorios/terapeutas/search', 'Admin\DashboardController@usersSearch')->name('relatorios.users.search');
-
+            
             Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
             Route::get('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallenge')->name('relatorios.challenge.transferir');
             Route::put('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallengeUpdate')->name('relatorios.challenge.transferir.update');

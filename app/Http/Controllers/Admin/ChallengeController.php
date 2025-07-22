@@ -976,5 +976,25 @@ class ChallengeController extends Controller
       return redirect()->route('challenge.my');
    }
 
-   
+   public function uploadAnalise(Request $request)
+   {
+      $request->validate([
+         'challenge_id' => 'required|exists:challenges,id',
+         'analise_video' => 'required|mimes:mp4|max:204800' // 200MB, ajuste se quiser
+      ]);
+
+      $challenge = Challenge::findOrFail($request->challenge_id);
+
+      if ($request->hasFile('analise_video')) {
+         $path = $request->file('analise_video')->store('public/analises');
+         $filename = basename($path);
+
+         // Exemplo: salva no campo 'analise_video' (adicione na sua tabela)
+         $challenge->analise_video = 'analises/' . $filename;
+         $challenge->save();
+      }
+
+      return redirect()->back()->with('success', 'Análise enviada com sucesso!');
+   }
+
 }

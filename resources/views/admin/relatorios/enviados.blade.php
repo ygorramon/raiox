@@ -147,7 +147,7 @@ $(document).ready(function() {
     $('#table').DataTable({
         paging: true,
         language: { search: "Filtrar: " },
-        order: [[6, "desc"]]
+        order: [[6, "asc"]]
     });
 
     $('#uploadModal').on('show.bs.modal', function (event) {

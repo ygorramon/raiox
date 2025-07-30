@@ -27,10 +27,12 @@
         <button type="submit" class="btn btn-success">Salvar</button>
     </form>
 
-    <!-- Splash de carregamento -->
-    <div id="loadingSplash" class="d-none text-center mt-4">
-        <div class="spinner-border text-primary" role="status"></div>
-        <p>Enviando vídeo, aguarde...</p>
+    <!-- Barra de Progresso -->
+    <div id="progressWrapper" class="mt-4 d-none">
+        <label>Enviando vídeo...</label>
+        <div class="progress">
+            <div id="uploadProgress" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+        </div>
     </div>
 @stop
 
@@ -41,7 +43,8 @@
         e.preventDefault();
 
         $('#alert-success, #alert-error').addClass('d-none');
-        $('#loadingSplash').removeClass('d-none');
+        $('#progressWrapper').removeClass('d-none');
+        $('#uploadProgress').css('width', '0%').text('0%');
 
         var formData = new FormData(this);
 
@@ -51,14 +54,29 @@
             data: formData,
             contentType: false,
             processData: false,
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+
+                // Acompanhamento do progresso do upload
+                xhr.upload.addEventListener("progress", function(evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = Math.round((evt.loaded / evt.total) * 100);
+                        $('#uploadProgress')
+                            .css('width', percentComplete + '%')
+                            .text(percentComplete + '%');
+                    }
+                }, false);
+
+                return xhr;
+            },
             success: function(response) {
-                $('#loadingSplash').addClass('d-none');
-                $('#alert-success').removeClass('d-none');
+                $('#progressWrapper').addClass('d-none');
+                $('#alert-success').removeClass('d-none').text(response.message);
                 $('#videoForm')[0].reset();
             },
             error: function(xhr) {
-                $('#loadingSplash').addClass('d-none');
-                $('#alert-error').removeClass('d-none').text("Erro ao enviar: " + xhr.responseJSON?.message || 'Erro desconhecido');
+                $('#progressWrapper').addClass('d-none');
+                $('#alert-error').removeClass('d-none').text("Erro ao enviar: " + (xhr.responseJSON?.message || 'Erro desconhecido'));
             }
         });
     });

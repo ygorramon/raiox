@@ -50,7 +50,7 @@ class VideoController extends Controller
         $video = new Video();
         $video->title = $request->title;
         $video->description = $request->description;
-        $video->path = $path;
+        $video->file_path = $path;
         $video->save();
 
         return response()->json(['message' => 'Vídeo salvo com sucesso']);

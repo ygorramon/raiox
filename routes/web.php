@@ -12,7 +12,7 @@ Route::prefix('admin')
 Route::prefix('admin')->group(function () {
     Route::middleware('auth')
         ->group(function () {
-            Route::get('/modulos', 'Admin\ModuleController@index')->name('modules.index');
+          /*  Route::get('/modulos', 'Admin\ModuleController@index')->name('modules.index');
             Route::get('/modulo/{id}/submodules', 'Admin\ModuleController@submodules')->name('submodules.index');
             Route::get('/submodule/{id}/queries', 'Admin\ModuleController@queries')->name('queries.index');
             Route::get('/duvidas/atrasadas', 'Admin\ModuleController@doubtsArasadosView')->name('duvidas.atrasadas');
@@ -20,7 +20,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/duvida/{id}', 'Admin\ModuleController@doubtsShow')->name('duvidas.show');
             Route::put('/duvida/{id}', 'Admin\ModuleController@doubtsResponder')->name('duvidas.responder');
             Route::get('/situacoes/respostas', 'Admin\AnswerController@respostas');
-
+*/
             Route::resource('/clients', 'Admin\ClientsController');
             Route::get('/clients-ativos', 'Admin\ClientsController@ativos');
         Route::get('/client{id}/reset', 'Admin\ClientsController@resetSenha')->name('clients.reset');
@@ -79,7 +79,9 @@ Route::prefix('admin')->group(function () {
             Route::get('/relatorios/terapeuta/{id}', 'Admin\DashboardController@usersShow')->name('relatorios.users.show');
             Route::get('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallenge')->name('relatorios.challenge.transferir');
             Route::put('/relatorio/challenge/tranferir/{id}', 'Admin\DashboardController@transferirChallengeUpdate')->name('relatorios.challenge.transferir.update');
-            //teste
+            Route::resource('videos', 'Admin\VideoController');
+            Route::resource('modulos', 'Admin\ModuleCourseController');
+
         });
     Auth::routes();
 

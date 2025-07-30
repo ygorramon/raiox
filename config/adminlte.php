@@ -237,7 +237,7 @@ return [
         ],
 
         // Sidebar items:
-        ['header' => 'Respostas'],
+      /*  ['header' => 'Respostas'],
         [
             'text' => 'Respostas',
             'url'  => 'admin/situacoes',
@@ -250,7 +250,7 @@ return [
 
             'submenu' => [],
         ],
-        
+        */
         ['header' => 'Desafios'],
         
         [
@@ -263,7 +263,7 @@ return [
                
             ],
         ],
-        [
+      /*  [
             'text'    => 'Chats',
             'icon'    => 'fas fa-fw fa-share',
             'key' => 'chats',
@@ -272,6 +272,7 @@ return [
                 
             ],
         ],
+        */
         [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-user',

@@ -39,7 +39,10 @@ class EventServiceProvider extends ServiceProvider
                 'key' =>'Desafios-disponiveis',
                 'text' => 'Disponíveis',
                 'url' => '/admin/desafios/disponiveis',
-                'label' => Challenge::where('status','ENVIADO')->where('tipo', '=', null)->count(),
+                'label' => Challenge::where('status', 'FINALIZADO')
+         ->whereNull('user_id')
+         ->whereDate('sended_at', '>=', '2025-01-01')
+         ->count()
             ]);
             $event->menu->addIn('Desafios', [
                 'key' =>'Desafios-novos-disponiveis',

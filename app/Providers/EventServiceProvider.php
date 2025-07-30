@@ -44,24 +44,40 @@ class EventServiceProvider extends ServiceProvider
          ->whereDate('sended_at', '>=', '2025-01-01')
          ->count()
             ]);
-            $event->menu->addIn('Desafios', [
+        /*  $event->menu->addIn('Desafios', [
                 'key' =>'Desafios-novos-disponiveis',
                 'text' => 'Novos Disponíveis',
                 'url' => '/admin/desafios/novo_disponiveis',
                 'label' => Challenge::where('status','ENVIADO')->where('tipo', '=', '1')->count(),
             ]);
+            */
             $event->menu->addIn('Desafios', [
-                'key' =>'meus-Desafios',
-                'text'    => 'Meus Desafios',
-                'url'     => '/admin/desafios/meus',
-                'label' =>Auth::user()->challenges()->where('status','ANALISE')->orWhere('status','RESPONDIDO')->count(),
+                'key' =>'desafios-analisados',
+                'text'    => 'Desafios Analisados',
+             
+             
         
             ]);
-            $event->menu->addIn('Desafios', [
+            $event->menu->addIn('desafios-analisados', [
                 'key' =>'Desafios-finalizados',
-                'text' => 'Finalizados',
-                'url'  => '#',
-                'label' =>Auth::user()->challenges()->where('status','FINALIZADO')->count(),
+                'text' => 'Com Vídeo',
+                'url'  => '/admin/desafios/analisados_video',
+                'label' =>  Challenge::where('status', 'FINALIZADO')
+         ->whereNotNull('user_id')
+    ->whereNotNull('analise_video')
+        
+         ->count(),
+
+            ]);
+            $event->menu->addIn('desafios-analisados', [
+                'key' =>'Desafios-finalizados',
+            'text' => 'Sem Vídeo',
+                'url'  => '/admin/desafios/analisados_sem_video',
+                'label' =>Challenge::where('status', 'FINALIZADO')
+         ->whereNotNull('user_id')
+    ->whereNull('analise_video')
+        
+         ->count(),
 
             ]);
 

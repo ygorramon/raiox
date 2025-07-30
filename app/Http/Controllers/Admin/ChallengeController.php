@@ -36,6 +36,43 @@ class ChallengeController extends Controller
 
       return view('admin.relatorios.enviados', compact('challenges'));
    }
+public function desafiosAnalisadosVideo()
+   {
+    /*$challenges = $this->repository->where('status', 'ENVIADO')
+      ->where('tipo','=',null)
+      ->where('user_id', null)
+      ->orderBy('sended_at')->paginate();
+      
+      return view('admin.challenges.availables.index', compact('challenges'));
+
+*/
+      $challenges = Challenge::where('status', 'FINALIZADO')
+         ->whereNotNull('user_id')
+    ->whereNotNull('analise_video')
+         ->orderBy('sended_at', 'desc')
+         ->get();
+
+      return view('admin.relatorios.enviados', compact('challenges'));
+   }
+
+public function desafiosAnalisadosSemVideo(){
+   
+    /*$challenges = $this->repository->where('status', 'ENVIADO')
+      ->where('tipo','=',null)
+      ->where('user_id', null)
+      ->orderBy('sended_at')->paginate();
+      
+      return view('admin.challenges.availables.index', compact('challenges'));
+
+*/
+      $challenges = Challenge::where('status', 'FINALIZADO')
+         ->whereNotNull('user_id')
+    ->whereNull('analise_video')
+         ->orderBy('sended_at', 'desc')
+         ->get();
+
+      return view('admin.relatorios.enviados', compact('challenges'));
+   }
 
    public function new_availables()
    {

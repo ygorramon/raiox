@@ -17,4 +17,9 @@ class Video extends Model
     {
         return $this->belongsToMany(CourseModule::class, 'module_video', 'video_id', 'module_id');
     }
+
+    public function challenges()
+    {
+        return $this->belongsToMany(Challenge::class);
+    }
 }

@@ -13,7 +13,7 @@
 @section('content')
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title">Dados Pessoais </h3>
+        <h3 class="card-title">Dados Pessoais  </h3>
     </div>
     <div class="card-body">
 
@@ -199,7 +199,7 @@
                                                                                                                                                                                                                                         </td>
                                                                                                                                                                                                                                         @php
 
-                $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+        $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
 
                                                                                                                                                                                                                                         @endphp
                                                                                                                                                                                                                                         <td>
@@ -266,7 +266,7 @@
                                                                                                         <td>
                                                                                                             @php
 
-                $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
+        $var = getJanela(getIdade($challenge->client->birthBaby))->janelaIdealFim;
 
                                                                                                             @endphp
 
@@ -548,6 +548,18 @@ Rede
                                             
                                             <label>Mensagem</label>
                                             <textarea name="message" required class="form-control" style="height:auto"  rows="10"></textarea>
+                                            <div class="form-group">
+                                                <label>Selecionar Vídeos</label>
+                                                <div class="row">
+                                                    @foreach($videos as $video)
+                                                        <div class="col-md-4">
+                                                            <label>
+                                                                <input type="checkbox" name="videos[]" value="{{ $video->id }}"> {{ $video->title }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button  class="btn btn-secondary" data-dismiss="modal">Fechar</button>

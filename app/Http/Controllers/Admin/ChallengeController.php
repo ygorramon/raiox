@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Challenge;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Schema\Builder;
@@ -129,11 +130,13 @@ public function desafiosAnalisadosSemVideo(){
 
       $challenge = $this->repository->with('client')->find($id);
 
+      $videos = Video::orderBy('title')->get(); // ou outra lógica
+
       if($challenge->tipo=='1'){
-         return view('admin.challenges.availables.new-show', compact('challenge'));
+         return view('admin.challenges.availables.new-show', compact('challenge', 'videos'));
 
       }else{
-         return view('admin.challenges.availables.show', compact('challenge'));
+         return view('admin.challenges.availables.show', compact('challenge', 'videos'));
 
       }
 
@@ -148,12 +151,12 @@ public function desafiosAnalisadosSemVideo(){
       }
 
       $challenge = $this->repository->with('client')->find($id);
-
+      $videos = Video::orderBy('title')->get(); // ou outra lógica
 
       if ($challenge->tipo == '1') {
-         return view('admin.challenges.availables.new-show', compact('challenge'));
+         return view('admin.challenges.availables.new-show', compact('challenge', 'videos'));
       } else {
-         return view('admin.challenges.availables.show', compact('challenge'));
+         return view('admin.challenges.availables.show', compact('challenge', 'videos'));
       }
    }
 
@@ -1017,6 +1020,14 @@ public function desafiosAnalisadosSemVideo(){
       $chat->update(['status' => 'odilo']);
       $chat->messages()->create(['content' => $request->message, 'type' => '2']);
 
+
+      $challenge->anotacoes = $request->message;
+
+      $challenge->save();
+
+      if ($request->has('videos')) {
+         $challenge->videos()->sync($request->videos); // vincula os vídeos
+      }
       //  $chat->notify(new ChatTelegramNotification());
 
       return redirect()->route('challenge.my');

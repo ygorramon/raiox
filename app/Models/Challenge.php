@@ -82,4 +82,9 @@ class Challenge extends Model
         return $this->belongsTo('App\User');
 
     }
+
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class);
+    }
 }

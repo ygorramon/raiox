@@ -20,12 +20,21 @@ class ChallengeController extends Controller
 
    public function availables()
    {
-      $challenges = $this->repository->where('status', 'ENVIADO')
+    /*$challenges = $this->repository->where('status', 'ENVIADO')
       ->where('tipo','=',null)
       ->where('user_id', null)
       ->orderBy('sended_at')->paginate();
       
       return view('admin.challenges.availables.index', compact('challenges'));
+
+*/
+      $challenges = Challenge::where('status', 'FINALIZADO')
+         ->whereNull('user_id')
+         ->whereDate('sended_at', '>=', '2025-01-01')
+         ->orderBy('sended_at', 'desc')
+         ->get();
+
+      return view('admin.relatorios.enviados', compact('challenges'));
    }
 
    public function new_availables()

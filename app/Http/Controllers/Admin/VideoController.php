@@ -40,20 +40,20 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'nullable',
-            'video' => 'required|mimes:mp4|max:51200', // 50MB
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'video' => 'required|mimes:mp4|max:102400', // 100MB
         ]);
 
-        $path = $request->file('video')->store('public/videos');
+        $path = $request->file('video')->store('videos', 'public');
 
-        Video::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'file_path' => str_replace('public/', '', $path),
-        ]);
+        $video = new Video();
+        $video->title = $request->title;
+        $video->description = $request->description;
+        $video->path = $path;
+        $video->save();
 
-        return redirect()->route('videos.index')->with('success', 'Vídeo cadastrado!');
+        return response()->json(['message' => 'Vídeo salvo com sucesso']);
     }
 
     /**

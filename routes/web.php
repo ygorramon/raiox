@@ -36,6 +36,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/situacoes/{id}/answer/{answerId}/edit', 'Admin\AnswerController@edit')->name('situacoes.respostas.edit');
 
             Route::get('/desafios/disponiveis', 'Admin\ChallengeController@availables')->name('challenge.availables');
+            Route::get('/desafios/analisados_video', 'Admin\ChallengeController@desafiosAnalisadosVideo')->name('challenge.AnalisadosVideo');
+            Route::get('/desafios/analisados_sem_video', 'Admin\ChallengeController@desafiosAnalisadosSemVideo')->name('challenge.AnalisadosSemVideo');
             Route::get('/desafios/novo_disponiveis', 'Admin\ChallengeController@new_availables')->name('challenge.new_availables');
             Route::get('/desafios/meus', 'Admin\ChallengeController@myChallenges')->name('challenge.my');
             Route::post('/desafios/meus/{id}/chatIniciar', 'Admin\ChallengeController@chatIniciar')->name('challenge.meus.iniciarchat');

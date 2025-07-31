@@ -41,10 +41,15 @@
                                          ( Restam <b>{{\Carbon\Carbon::parse($challenge->answered_at)->addDays(59)->diffInDays(now())}}</b> Dias de Chat ) 
                                          @endif
 
-                                        @if($challenge->status == 'FINALIZADO' && isset($challenge->answered_at)) <br> ( Desafio analisado em vídeo em
-                                            <b>{{\Carbon\Carbon::parse($challenge->answered_at)->format('d/m/y')}} </b> )
-                                            <br><br>
-                                            Você encontrará essa gravação no módulo  ANÁLISE DE ROTINA do seu curso! 
+                                        @if($challenge->status == 'FINALIZADO' && isset($challenge->answered_at))
+                                            @if(isset($challenge->analise_video))
+                                                Desafio analisado em vídeo - > Clique em Acessar para verificar
+                                            @else
+                                            <br> ( Desafio analisado em vídeo em
+                                                <b>{{\Carbon\Carbon::parse($challenge->answered_at)->format('d/m/y')}} </b> )
+                                                <br><br>
+                                                Você encontrará essa gravação no módulo  ANÁLISE DE ROTINA do seu curso! 
+                                                @endif
                                         @endif
                                             </td>
                                             <td><a href="{{route('desafio.show', $challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>

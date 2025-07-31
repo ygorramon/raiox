@@ -49,6 +49,7 @@ public function desafiosAnalisadosVideo()
 */
       $challenges = Challenge::where('status', 'FINALIZADO')
          ->whereNotNull('user_id')
+         ->whereDate('sended_at', operator: '>=', '2025-07-23')
     ->whereNotNull('analise_video')
          ->orderBy('sended_at', 'desc')
          ->get();
@@ -68,9 +69,8 @@ public function desafiosAnalisadosSemVideo(){
 */
       $challenges = Challenge::where('status', 'FINALIZADO')
          ->whereNotNull('user_id')
-    ->whereNull('analise_video')
          ->whereDate('sended_at', operator: '>=', '2025-07-23')
-
+    ->whereNull('analise_video')
          ->orderBy('sended_at', 'desc')
          ->get();
 

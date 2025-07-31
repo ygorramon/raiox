@@ -1229,7 +1229,7 @@
             <div class="modal-content">
                 <h4>Vídeo da Análise</h4>
                 <video width="100%" controls>
-                    <source src="{{ asset('storage/analises/' . $challenge->analise_video) }}" type="video/mp4">
+                    <source src="{{ asset('storage/' . $challenge->analise_video) }}" type="video/mp4">
                     Seu navegador não suporta vídeos.
                 </video>
             </div>
@@ -1246,7 +1246,7 @@
                 <div class="modal-content">
                     <h4>{{ $video->title }}</h4>
                     <video width="100%" controls>
-                        <source src="{{ asset('storage/videos/' . $video->filename) }}" type="video/mp4">
+                        <source src="{{ asset('storage/' . $video->filename) }}" type="video/mp4">
                         Seu navegador não suporta vídeos.
                     </video>
                 </div>

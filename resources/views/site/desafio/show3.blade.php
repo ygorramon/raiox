@@ -1246,7 +1246,7 @@
                 <div class="modal-content">
                     <h4>{{ $video->title }}</h4>
                     <video width="100%" controls>
-                        <source src="{{ asset('storage/' . $video->filename) }}" type="video/mp4">
+                        <source src="{{ asset('storage/' . $video->file_path) }}" type="video/mp4">
                         Seu navegador não suporta vídeos.
                     </video>
                 </div>

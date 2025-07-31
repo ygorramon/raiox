@@ -64,7 +64,6 @@ class EventServiceProvider extends ServiceProvider
                 'url'  => '/admin/desafios/analisados_video',
                 'label' =>  Challenge::where('status', 'FINALIZADO')
          ->whereNotNull('user_id')
-        ->whereDate('sended_at', '>=', '2025-07-23')
     ->whereNotNull('analise_video')
         
          ->count(),
@@ -76,7 +75,8 @@ class EventServiceProvider extends ServiceProvider
                 'url'  => '/admin/desafios/analisados_sem_video',
                 'label' =>Challenge::where('status', 'FINALIZADO')
          ->whereNotNull('user_id')
-    ->whereNull('analise_video')
+                    ->whereDate('sended_at', '>=', '2025-07-23')
+                    ->whereNull('analise_video')
         
          ->count(),
 

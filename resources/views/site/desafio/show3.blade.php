@@ -14,7 +14,7 @@
             <h6>3 - Preencha os 7 dias de rotina, após isso preencha os dados dos passos 2, 3 e 4</h6>
             <h6>4 - Após Finalizar o Desafio de 7 dias, GERALMENTE, em até 7 dias o dr Odilo analisará em vídeo seu desafio.</h6>
             <h6>5 - Sua análise em vídeo, bem como vídeos adicionais, ficarão disponíveis nessa plataforma.</h6>
-            
+
 
         </div>
         <div class="modal-footer">
@@ -29,8 +29,31 @@
                                     <div class="card-content  purple-text">
                                         <a href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank  " class="btn">
                                             Suporte Técnico</a>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="modal-confirm" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Confirmação</h4>
+                                        <p>Você está prestes a desistir do desafio.
+                                            Esta operação <b>não pode ser revertida</b>.
+                                            Tem certeza que deseja continuar?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form id="form-desistir" action="{{ route('desafio.abortado', $challenge->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            {{ method_field('PUT') }}
+                                            <button type="submit" class="btn red">Sim, desistir</button>
+                                        </form>
+                                        <a href="#!" class="modal-close btn grey">Cancelar</a>
                                     </div>
                                 </div>
+                                <a class="btn red modal-trigger" href="#modal-confirm">Desistir do Desafio</a>
+
+                                
                                 <div id="card-widgets">
                                     <div class="row">
                                         <div class="col  s12">
@@ -183,10 +206,10 @@
                                                                                                     <tbody>
                                                                                                         <tr>
                                                                                                             @if  (
-                !isset(
-                $challenge->analyzes()->where('day', '1')->first()->date
-            )
-            )
+            !isset(
+            $challenge->analyzes()->where('day', '1')->first()->date
+        )
+        )
                                                                                                                                 <td><a href="{{  route('analyze.create', [$challenge->id, 1])  }}"
                                                                                                                                         class="btn  waves-effect  waves-light  red  "> Dia
                                                                                                                                         1 </a>
@@ -198,10 +221,10 @@
                                                                                             @endif
 
                                                                                         @if  (
-                isset(
-                $challenge->analyzes()->where('day', '1')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '1')->first()->date
+        )
+        )
 
                                                                                         @else
 
@@ -209,16 +232,16 @@
                                                                                         </tr>
 
                                                                                         @if  (
-                isset(
-                $challenge->analyzes()->where('day', '1')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '1')->first()->date
+        )
+        )
                                                                                                     <tr>
                                                                                                         @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '2')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '2')->first()->date
+            )
+            )
                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 2])  }}"
                                                                                                                             class="btn  waves-effect  waves-light  red  "> Dia 2 </a>
                                                                                                             </div>
@@ -230,10 +253,10 @@
 
 
                                                                                             @if  (
-                    isset(
-                    $challenge->analyzes()->where('day', '2')->first()->date
-                )
-                )
+                isset(
+                $challenge->analyzes()->where('day', '2')->first()->date
+            )
+            )
 
                                                                                             @else
                                                                                             @endif
@@ -244,16 +267,16 @@
 
 
                                                                                 @if  (
-                isset(
-                $challenge->analyzes()->where('day', '2')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '2')->first()->date
+        )
+        )
                                                                                             <tr>
                                                                                                 @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '3')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '3')->first()->date
+            )
+            )
                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 3])  }}"
                                                                                                                     class="btn  waves-effect  waves-light  red  "> Dia 3 </a>
                                                                                                     </div>
@@ -265,10 +288,10 @@
 
 
                                                                                     @if  (
-                    isset(
-                    $challenge->analyzes()->where('day', '3')->first()->date
-                )
-                )
+                isset(
+                $challenge->analyzes()->where('day', '3')->first()->date
+            )
+            )
 
                                                                                     @else
                                                                                     @endif
@@ -278,16 +301,16 @@
 
 
                                                                         @if  (
-                isset(
-                $challenge->analyzes()->where('day', '3')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '3')->first()->date
+        )
+        )
                                                                                     <tr>
                                                                                         @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '4')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '4')->first()->date
+            )
+            )
                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 4])  }}"
                                                                                                             class="btn  waves-effect  waves-light  red  "> Dia 4 </a>
                                                                                             </div>
@@ -299,10 +322,10 @@
                                                                                 @endif
 
                                                                             @if  (
-                    isset(
-                    $challenge->analyzes()->where('day', '4')->first()->date
-                )
-                )
+                isset(
+                $challenge->analyzes()->where('day', '4')->first()->date
+            )
+            )
 
                                                                             @else
                                                                             @endif
@@ -312,18 +335,18 @@
 
 
                                                                 @if  (
-                isset(
-                $challenge->analyzes()->where('day', '4')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '4')->first()->date
+        )
+        )
                                                                             <tr>
 
 
                                                                                 @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '5')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '5')->first()->date
+            )
+            )
                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 5])  }}"
                                                                                                     class="btn  waves-effect  waves-light  red  ">
                                                                                                     Dia 5 </a>
@@ -337,10 +360,10 @@
 
 
                                                                     @if  (
-                    isset(
-                    $challenge->analyzes()->where('day', '5')->first()->date
-                )
-                )
+                isset(
+                $challenge->analyzes()->where('day', '5')->first()->date
+            )
+            )
 
                                                                     @else
                                                                     @endif
@@ -350,16 +373,16 @@
 
 
                                                         @if  (
-                isset(
-                $challenge->analyzes()->where('day', '5')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '5')->first()->date
+        )
+        )
                                                             <tr>
                                                                 @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '6')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '6')->first()->date
+            )
+            )
                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 6])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                             Dia 6 </a>
                                                                         </div>
@@ -368,10 +391,10 @@
                                                                                 Dia 6 </a> </div>
                                                                     @endif
                                                                     @if  (
-                    isset(
-                    $challenge->analyzes()->where('day', '6')->first()->date
-                )
-                )
+                isset(
+                $challenge->analyzes()->where('day', '6')->first()->date
+            )
+            )
 
                                                                     @else
                                                                     @endif
@@ -381,17 +404,17 @@
 
 
                                                         @if  (
-                isset(
-                $challenge->analyzes()->where('day', '6')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '6')->first()->date
+        )
+        )
                                                             <tr>
 
                                                                 @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '7')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '7')->first()->date
+            )
+            )
                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 7])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                             Dia 7 </a>
                                                                         </div>
@@ -400,10 +423,10 @@
                                                                                 Dia 7 </a> </div>
                                                                     @endif
                                                                     @if  (
-                    isset(
-                    $challenge->analyzes()->where('day', '7')->first()->date
-                )
-                )
+                isset(
+                $challenge->analyzes()->where('day', '7')->first()->date
+            )
+            )
 
                                                                     @else
                                                                     @endif
@@ -413,10 +436,10 @@
 
 
                                                         @if  (
-                isset(
-                $challenge->analyzes()->where('day', '7')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '7')->first()->date
+        )
+        )
                                                             <tr>
 
 
@@ -581,10 +604,10 @@
                                                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                                                 @else
                                                                                                                                                                                                                                                     @if  (
-                    !isset(
-                    $challenge->analyzes()->where('day', '1')->first()->date
-                )
-                )
+                !isset(
+                $challenge->analyzes()->where('day', '1')->first()->date
+            )
+            )
                                                                                                                                                                                                                                                         <td><a href="{{  route('analyze.create', [$challenge->id, 1])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                 Dia 1
                                                                                                                                                                                                                                                             </a>
@@ -597,10 +620,10 @@
                                                                                                                                                                                                                                                 @endif
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '1')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '1')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                             @else
@@ -609,18 +632,18 @@
                                                                                                                                                                                                                                             </tr>
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '1')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '1')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                     @if  (
-                    date_format(now(), 'Y-m-d') >=
-                    date_format(
-                        $challenge->analyzes()->where('day', '1')->first()->started_at->addDays(1),
-                        'Y-m-d'
-                    )
+                date_format(now(), 'Y-m-d') >=
+                date_format(
+                    $challenge->analyzes()->where('day', '1')->first()->started_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
                                                                                                                                                                                                                                                         @if  (!isset($challenge->analyzes()->where('day', '2')->first()->day))
                                                                                                                                                                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 2])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                     Dia 2
@@ -628,10 +651,10 @@
                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                         @else
                                                                                                                                                                                                                                                                 @if  (
-                            !isset(
-                            $challenge->analyzes()->where('day', '2')->first()->date
-                        )
-                        )
+                        !isset(
+                        $challenge->analyzes()->where('day', '2')->first()->date
+                    )
+                    )
                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 2])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                             Dia 2
                                                                                                                                                                                                                                                                         </a>
@@ -644,10 +667,10 @@
 
 
                                                                                                                                                                                                                                                             @if    (
-                        isset(
-                        $challenge->analyzes()->where('day', '2')->first()->date
-                    )
-                    )
+                    isset(
+                    $challenge->analyzes()->where('day', '2')->first()->date
+                )
+                )
                                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                             @else
@@ -666,33 +689,33 @@
 
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '2')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '2')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                     @if  (
-                    date_format(now(), 'Y-m-d') >=
-                    date_format(
-                        $challenge->analyzes()->where('day', '2')->first()->started_at->addDays(1),
-                        'Y-m-d'
-                    )
+                date_format(now(), 'Y-m-d') >=
+                date_format(
+                    $challenge->analyzes()->where('day', '2')->first()->started_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
                                                                                                                                                                                                                                                         @if  (
-                        !isset(
-                        $challenge->analyzes()->where('day', '3')->first()->day
-                    )
-                    )
+                    !isset(
+                    $challenge->analyzes()->where('day', '3')->first()->day
+                )
+                )
                                                                                                                                                                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 3])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                     Dia 3
                                                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                         @else
                                                                                                                                                                                                                                                                 @if  (
-                            !isset(
-                            $challenge->analyzes()->where('day', '3')->first()->date
-                        )
-                        )
+                        !isset(
+                        $challenge->analyzes()->where('day', '3')->first()->date
+                    )
+                    )
                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 3])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                             Dia 3
                                                                                                                                                                                                                                                                         </a>
@@ -705,10 +728,10 @@
 
 
                                                                                                                                                                                                                                                             @if    (
-                        isset(
-                        $challenge->analyzes()->where('day', '3')->first()->date
-                    )
-                    )
+                    isset(
+                    $challenge->analyzes()->where('day', '3')->first()->date
+                )
+                )
                                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                             @else
@@ -726,33 +749,33 @@
                                                                                                                                                                                                                                             @endif
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '3')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '3')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                     @if  (
-                    date_format(now(), 'Y-m-d') >=
-                    date_format(
-                        $challenge->analyzes()->where('day', '3')->first()->started_at->addDays(1),
-                        'Y-m-d'
-                    )
+                date_format(now(), 'Y-m-d') >=
+                date_format(
+                    $challenge->analyzes()->where('day', '3')->first()->started_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
                                                                                                                                                                                                                                                         @if  (
-                        !isset(
-                        $challenge->analyzes()->where('day', '4')->first()->day
-                    )
-                    )
+                    !isset(
+                    $challenge->analyzes()->where('day', '4')->first()->day
+                )
+                )
                                                                                                                                                                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 4])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                     Dia 4
                                                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                         @else
                                                                                                                                                                                                                                                                 @if  (
-                            !isset(
-                            $challenge->analyzes()->where('day', '4')->first()->date
-                        )
-                        )
+                        !isset(
+                        $challenge->analyzes()->where('day', '4')->first()->date
+                    )
+                    )
                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 4])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                             Dia 4
                                                                                                                                                                                                                                                                         </a>
@@ -764,10 +787,10 @@
                                                                                                                                                                                                                                                             @endif
 
                                                                                                                                                                                                                                                             @if    (
-                        isset(
-                        $challenge->analyzes()->where('day', '4')->first()->date
-                    )
-                    )
+                    isset(
+                    $challenge->analyzes()->where('day', '4')->first()->date
+                )
+                )
                                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                             @else
@@ -785,34 +808,34 @@
                                                                                                                                                                                                                                             @endif
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '4')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '4')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                     @if  (
-                    date_format(now(), 'Y-m-d') >=
-                    date_format(
-                        $challenge->analyzes()->where('day', '4')->first()->started_at->addDays(1),
-                        'Y-m-d'
-                    )
+                date_format(now(), 'Y-m-d') >=
+                date_format(
+                    $challenge->analyzes()->where('day', '4')->first()->started_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
 
                                                                                                                                                                                                                                                         @if  (
-                        !isset(
-                        $challenge->analyzes()->where('day', '5')->first()->day
-                    )
-                    )
+                    !isset(
+                    $challenge->analyzes()->where('day', '5')->first()->day
+                )
+                )
                                                                                                                                                                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 5])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                     Dia 5
                                                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                         @else
                                                                                                                                                                                                                                                                 @if  (
-                            !isset(
-                            $challenge->analyzes()->where('day', '5')->first()->date
-                        )
-                        )
+                        !isset(
+                        $challenge->analyzes()->where('day', '5')->first()->date
+                    )
+                    )
                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 5])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                             Dia 5
                                                                                                                                                                                                                                                                         </a>
@@ -825,10 +848,10 @@
 
 
                                                                                                                                                                                                                                                             @if    (
-                        isset(
-                        $challenge->analyzes()->where('day', '5')->first()->date
-                    )
-                    )
+                    isset(
+                    $challenge->analyzes()->where('day', '5')->first()->date
+                )
+                )
                                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                             @else
@@ -846,33 +869,33 @@
                                                                                                                                                                                                                                             @endif
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '5')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '5')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                     @if  (
-                    date_format(now(), 'Y-m-d') >=
-                    date_format(
-                        $challenge->analyzes()->where('day', '5')->first()->started_at->addDays(1),
-                        'Y-m-d'
-                    )
+                date_format(now(), 'Y-m-d') >=
+                date_format(
+                    $challenge->analyzes()->where('day', '5')->first()->started_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
                                                                                                                                                                                                                                                         @if  (
-                        !isset(
-                        $challenge->analyzes()->where('day', '6')->first()->day
-                    )
-                    )
+                    !isset(
+                    $challenge->analyzes()->where('day', '6')->first()->day
+                )
+                )
                                                                                                                                                                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 6])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                     Dia 6
                                                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                         @else
                                                                                                                                                                                                                                                                 @if  (
-                            !isset(
-                            $challenge->analyzes()->where('day', '6')->first()->date
-                        )
-                        )
+                        !isset(
+                        $challenge->analyzes()->where('day', '6')->first()->date
+                    )
+                    )
                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 6])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                             Dia 6
                                                                                                                                                                                                                                                                         </a>
@@ -883,10 +906,10 @@
                                                                                                                                                                                                                                                                 @endif
                                                                                                                                                                                                                                                             @endif
                                                                                                                                                                                                                                                             @if    (
-                        isset(
-                        $challenge->analyzes()->where('day', '6')->first()->date
-                    )
-                    )
+                    isset(
+                    $challenge->analyzes()->where('day', '6')->first()->date
+                )
+                )
                                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                             @else
@@ -904,34 +927,34 @@
                                                                                                                                                                                                                                             @endif
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '6')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '6')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                     @if  (
-                    date_format(now(), 'Y-m-d') >=
-                    date_format(
-                        $challenge->analyzes()->where('day', '6')->first()->started_at->addDays(1),
-                        'Y-m-d'
-                    )
+                date_format(now(), 'Y-m-d') >=
+                date_format(
+                    $challenge->analyzes()->where('day', '6')->first()->started_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
 
                                                                                                                                                                                                                                                         @if  (
-                        !isset(
-                        $challenge->analyzes()->where('day', '7')->first()->day
-                    )
-                    )
+                    !isset(
+                    $challenge->analyzes()->where('day', '7')->first()->day
+                )
+                )
                                                                                                                                                                                                                                                             <td><a href="{{  route('analyze.create', [$challenge->id, 7])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                     Dia 7
                                                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                                                                         @else
                                                                                                                                                                                                                                                                 @if  (
-                            !isset(
-                            $challenge->analyzes()->where('day', '7')->first()->date
-                        )
-                        )
+                        !isset(
+                        $challenge->analyzes()->where('day', '7')->first()->date
+                    )
+                    )
                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.create', [$challenge->id, 7])  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                             Dia 7
                                                                                                                                                                                                                                                                         </a>
@@ -942,10 +965,10 @@
                                                                                                                                                                                                                                                                 @endif
                                                                                                                                                                                                                                                             @endif
                                                                                                                                                                                                                                                             @if    (
-                        isset(
-                        $challenge->analyzes()->where('day', '7')->first()->date
-                    )
-                    )
+                    isset(
+                    $challenge->analyzes()->where('day', '7')->first()->date
+                )
+                )
                                                                                                                                                                                                                                                                 <td> Preenchido
                                                                                                                                                                                                                                                                 </td>
                                                                                                                                                                                                                                                             @else
@@ -963,10 +986,10 @@
                                                                                                                                                                                                                                             @endif
 
                                                                                                                                                                                                                                             @if  (
-                isset(
-                $challenge->analyzes()->where('day', '7')->first()->date
-            )
-            )
+            isset(
+            $challenge->analyzes()->where('day', '7')->first()->date
+        )
+        )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <tr>
 
 
@@ -981,13 +1004,13 @@
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <td> PASSO 2 </td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @if(
-                        $challenge->formulario()->first()->passo4 == 'FEITO' &&
-                        date_format(now(), 'Y-m-d') >=
-                        date_format(
-                            $challenge->formulario()->first()->updated_at->addDays(1),
-                            'Y-m-d'
-                        )
+                    $challenge->formulario()->first()->passo4 == 'FEITO' &&
+                    date_format(now(), 'Y-m-d') >=
+                    date_format(
+                        $challenge->formulario()->first()->updated_at->addDays(1),
+                        'Y-m-d'
                     )
+                )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <td> <a href="{{  route('analyze.passo2_analise', $challenge->id)  }}" class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Análise Passo 2 </a> </td>
 
@@ -1002,13 +1025,13 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <td> PASSO 3 Despertar </td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @if(
-                            $challenge->formulario()->first()->passo4 == 'FEITO' &&
-                            date_format(now(), 'Y-m-d') >=
-                            date_format(
-                                $challenge->formulario()->first()->updated_at->addDays(1),
-                                'Y-m-d'
-                            )
+                        $challenge->formulario()->first()->passo4 == 'FEITO' &&
+                        date_format(now(), 'Y-m-d') >=
+                        date_format(
+                            $challenge->formulario()->first()->updated_at->addDays(1),
+                            'Y-m-d'
                         )
+                    )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <td> <a href="{{  route('analyze.passo3_despertar.analise', $challenge->id)  }}"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         class="btn  waves-effect  waves-light  red  "> Análise Passo 3 - Despertar </a></td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @else
@@ -1032,13 +1055,13 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <td> PASSO 3 Rotina </td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @if(
-                                $challenge->formulario()->first()->passo4 == 'FEITO' &&
-                                date_format(now(), 'Y-m-d') >=
-                                date_format(
-                                    $challenge->formulario()->first()->updated_at->addDays(1),
-                                    'Y-m-d'
-                                )
+                            $challenge->formulario()->first()->passo4 == 'FEITO' &&
+                            date_format(now(), 'Y-m-d') >=
+                            date_format(
+                                $challenge->formulario()->first()->updated_at->addDays(1),
+                                'Y-m-d'
                             )
+                        )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.passo3_rotina_sonecas.analise', $challenge->id)  }}"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Análise Passo 3 - Rotina </a> </td>
@@ -1063,13 +1086,13 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <td> PASSO 3 Pilares </td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @if(
-                                $challenge->formulario()->first()->passo4 == 'FEITO' &&
-                                date_format(now(), 'Y-m-d') >=
-                                date_format(
-                                    $challenge->formulario()->first()->updated_at->addDays(1),
-                                    'Y-m-d'
-                                )
+                            $challenge->formulario()->first()->passo4 == 'FEITO' &&
+                            date_format(now(), 'Y-m-d') >=
+                            date_format(
+                                $challenge->formulario()->first()->updated_at->addDays(1),
+                                'Y-m-d'
                             )
+                        )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <td> <a href="{{  route('analyze.passo3_pilares.analise', $challenge->id)  }}"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             class="btn  waves-effect  waves-light  red  ">Análise Passo 3 - Pilares </a></td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @else
@@ -1098,13 +1121,13 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <td> PASSO 4 </td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @if(
-                                $challenge->formulario()->first()->passo4 == 'FEITO' &&
-                                date_format(now(), 'Y-m-d') >=
-                                date_format(
-                                    $challenge->formulario()->first()->updated_at->addDays(1),
-                                    'Y-m-d'
-                                )
+                            $challenge->formulario()->first()->passo4 == 'FEITO' &&
+                            date_format(now(), 'Y-m-d') >=
+                            date_format(
+                                $challenge->formulario()->first()->updated_at->addDays(1),
+                                'Y-m-d'
                             )
+                        )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <td> <a href="{{  route('analyze.passo4.analise', $challenge->id)  }}"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             class="btn  waves-effect  waves-light  red  ">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Análise Passo 4</a></td>
@@ -1128,14 +1151,14 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @endif
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @if  (
-                    isset($challenge->formulario()->first()->id) && $challenge->formulario()->first()->passo4 == 'FEITO'
-                    &&
-                    date_format(now(), 'Y-m-d') <
-                    date_format(
-                        $challenge->formulario()->first()->updated_at->addDays(1),
-                        'Y-m-d'
-                    )
+                isset($challenge->formulario()->first()->id) && $challenge->formulario()->first()->passo4 == 'FEITO'
+                &&
+                date_format(now(), 'Y-m-d') <
+                date_format(
+                    $challenge->formulario()->first()->updated_at->addDays(1),
+                    'Y-m-d'
                 )
+            )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <td>Conclusão disponível em
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             {{  date_format($challenge->formulario()->first()->updated_at->addDays(1), 'd/m/Y')  }}
@@ -1148,14 +1171,14 @@
 
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @if  (
-                        isset($challenge->formulario()->first()->id) && $challenge->formulario()->first()->passo4 == 'FEITO'
-                        &&
-                        date_format(now(), 'Y-m-d') >=
-                        date_format(
-                            $challenge->formulario()->first()->updated_at->addDays(1),
-                            'Y-m-d'
-                        )
+                    isset($challenge->formulario()->first()->id) && $challenge->formulario()->first()->passo4 == 'FEITO'
+                    &&
+                    date_format(now(), 'Y-m-d') >=
+                    date_format(
+                        $challenge->formulario()->first()->updated_at->addDays(1),
+                        'Y-m-d'
                     )
+                )
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <td><a href="{{  route('analyze.conclusao', $challenge->id)  }}" class="btn  waves-effect  waves-light  red  ">

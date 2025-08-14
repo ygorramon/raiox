@@ -2993,4 +2993,23 @@ dd($janelas);
         return Validator::make($data, $rules, $this->message);
     }
 
+    public function desafioAbortar($id)
+    {
+
+        if (
+            !$challenge = $this->repository->find($id)
+            || !$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id
+        ) {
+
+            return redirect()->back();
+        }
+        $challenge = $this->repository->find($id);
+        $challenge->update([
+            'status' => 'FINALIZADO',
+                   ]);
+        //   $challenge->notify(new ChallengeTelegramNotification());
+
+        return redirect()->route('desafio.index')->with('sucesso', 'Desafio Finalizado!');
+    }
+
 }

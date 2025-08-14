@@ -59,7 +59,7 @@ class ChallengeController extends Controller
             'status' => 'INICIADO',
             'tipo' => '1'
         ]);
-        return redirect()->route('desafio.show', $challenge->id);
+        return redirect()->route('desafio.introducao', $challenge->id);
     }
 
     public function show($id)
@@ -2829,8 +2829,10 @@ dd($janelas);
     }
 
     public function introducao($id)
+
     {
-        return view ('site.desafio.novo.introducao');
+        $challenge = $this->repository->find($id);
+        return view ('site.desafio.novo.introducao', compact('challenge'));
     }
     public function novo_passo1($id)
     {

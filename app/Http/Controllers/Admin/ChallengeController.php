@@ -1055,5 +1055,18 @@ public function desafiosAnalisadosSemVideo(){
 
       return redirect()->back()->with('success', 'Análise enviada com sucesso!');
    }
+   public function updateSono(Request $request, $id)
+   {
+      $request->validate([
+         'percebe_sono' => 'required|boolean',
+         'tempo_sono' => 'required|string|max:255',
+      ]);
 
+      $challenge = Challenge::findOrFail($id);
+      $challenge->percebe_sono = $request->percebe_sono;
+      $challenge->tempo_sono = $request->tempo_sono;
+      $challenge->save();
+
+      return response()->json(['success' => true]);
+   }
 }

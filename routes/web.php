@@ -71,7 +71,7 @@ Route::prefix('admin')->group(function () {
             Route::put('/relatorios/enviados/{id}', 'Admin\ChallengeController@getAnalise')->name('challenge.getanalise');
             Route::get('/relatorios/chats-atrasados', 'Admin\DashboardController@chats')->name('relatorios.chats-atrasados');
             Route::post('/challenges/upload-analise',  'Admin\ChallengeController@uploadAnalise')->name('challenge.upload.analise');
-
+           
             Route::get('/relatorios/clients', 'Admin\DashboardController@relatorioClientsIndex')->name('relatorios.clients.index');
             Route::any('/relatorios/clients/search', 'Admin\DashboardController@relatorioClientsSearch')->name('relatorios.clients.search');
             Route::get('/relatorios/clients/{id}/desafios', 'Admin\DashboardController@relatorioClientsdesafios')->name('relatorios.clients.desafios');
@@ -114,6 +114,7 @@ Route::middleware('auth.client:clients')
         Route::get('/perguntas', 'Site\ChallengeController@myQueries')->name('my.queries');
         Route::get('/pergunta/{id}', 'Site\ChallengeController@doubtShow')->name('my.query.show');
         Route::post('/desafios', 'Site\ChallengeController@store')->name('desafio.store');
+        Route::post('/desafio/{id}/sono', 'Admin\ChallengeController@updateSono')->name('desafio.sono');
         Route::get('/desafio/{id}/', 'Site\ChallengeController@show')->name('desafio.show');
         Route::get('/desafio/{id}/create/{day}/new', 'Site\ChallengeController@analyzeCreate')->name('analyze.create2');
         Route::get('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeCreate2')->name('analyze.create');;

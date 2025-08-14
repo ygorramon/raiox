@@ -150,6 +150,7 @@ Route::middleware('auth.client:clients')
 
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioUpdate')->name('desafio.update');
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioFinalizar')->name('desafio.finalizado');
+        Route::put('/desafio/{id}/abortar', 'Site\ChallengeController@desafioAbortar')->name('desafio.abortado');
         Route::get('/profile', 'Site\ChallengeController@clientEdit')->name('client.profile.edit');
         Route::put('/profile', 'Site\ChallengeController@clientUpdate')->name('client.profile.update');
 

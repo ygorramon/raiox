@@ -1198,7 +1198,7 @@
         @endforeach
 @endif
 @if($challenge->analise_video=='antigo')
-            Seu desafio não foi analisado por ter mais de 30 dias de envio. Recomendamos que realize outro desafio.                                                                
+            Seu desafio não foi analisado por ter mais de 30 dias de rotina. Recomendamos que realize outro desafio.                                                                
 @else
         <a class="waves-effect waves-light btn modal-trigger" href="#modalAnalise">
             Análise Individualizada

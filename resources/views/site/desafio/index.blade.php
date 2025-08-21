@@ -43,7 +43,11 @@
 
                                         @if($challenge->status == 'FINALIZADO' && isset($challenge->answered_at))
                                             @if(isset($challenge->analise_video))
+                                            @if($challenge->analise_video=='antigo')
+                                            Seu desafio não foi analisado por ter mais de 30 dias da rotina
+                                            @else
                                                 Desafio analisado em vídeo - > Clique em Acessar para verificar
+                                                @endif
                                             @else
                                            
 @endif

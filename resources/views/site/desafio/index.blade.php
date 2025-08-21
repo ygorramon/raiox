@@ -45,11 +45,9 @@
                                             @if(isset($challenge->analise_video))
                                                 Desafio analisado em vídeo - > Clique em Acessar para verificar
                                             @else
-                                            <br> ( Desafio analisado em vídeo em
-                                                <b>{{\Carbon\Carbon::parse($challenge->answered_at)->format('d/m/y')}} </b> )
-                                                <br><br>
-                                                Você encontrará essa gravação no módulo  ANÁLISE DE ROTINA do seu curso! 
-                                                @endif
+                                           
+@endif
+                                                
                                         @endif
                                             </td>
                                             <td><a href="{{route('desafio.show', $challenge->id)}}" > <span class="task-cat red">Acessar</span></a><br><br>

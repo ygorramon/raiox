@@ -1197,10 +1197,13 @@
             </a><br><br>
         @endforeach
 @endif
+@if($challenge->analise_video=='antigo')
+            Seu desafio não foi analisado por ter mais de 30 dias de envio. Recomendamos que realize outro desafio.                                                                
+@else
         <a class="waves-effect waves-light btn modal-trigger" href="#modalAnalise">
             Análise Individualizada
         </a>
-   
+   @endif
     @else
         {{-- Nenhum vídeo ou análise ainda --}}
         Seu desafio foi finalizado. Em breve o Dr. Odilo irá avaliá-lo em vídeo e ficará disponível.

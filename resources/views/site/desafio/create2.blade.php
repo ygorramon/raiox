@@ -2874,7 +2874,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         minDate: minDate,
         maxDate: hoje,
-        defaultDate: hoje,
         setDefaultDate: true
     });
 });

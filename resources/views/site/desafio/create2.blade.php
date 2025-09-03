@@ -2496,387 +2496,403 @@
 @endsection
 
     @section('js')
-                                    <script>
-                                        $(document).ready(function() {
-                                            
-                                            $('.timepicker').timepicker({
-                                                twelveHour: false
-                                            });
+                                            <script>
+                                                $(document).ready(function() {
 
-                                            $("select").formSelect();
-                                        });
+                                                    $('.timepicker').timepicker({
+                                                        twelveHour: false
+                                                    });
 
-                                        $('#despertar1_fd_outro').hide();
+                                                    $("select").formSelect();
+                                                });
 
-                                         @if(
+                                                $('#despertar1_fd_outro').hide();
+
+                                                 @if(
             isset(
             $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode1
         )
             &&
             is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode1) == false
         )
-                                 $('#despertar1_fd_outro').show();
-                                @endif
+                                         $('#despertar1_fd_outro').show();
+                                        @endif
 
 
 
-                                        $('#despertar1_fd').change(function() {
-                                            if ($(this).val() === '4') {
-                                                $('#despertar1_fd_outro').show();
-                                            }
-                                            if ($(this).val() != '4') {
-                                                $('#despertar1_fd_outro').hide();
-                                            }
-                                        });
-                                        $('#despertar2_fd_outro').hide();
-                                 @if(
+                                                $('#despertar1_fd').change(function() {
+                                                    if ($(this).val() === '4') {
+                                                        $('#despertar1_fd_outro').show();
+                                                    }
+                                                    if ($(this).val() != '4') {
+                                                        $('#despertar1_fd_outro').hide();
+                                                    }
+                                                });
+                                                $('#despertar2_fd_outro').hide();
+                                         @if(
             isset(
             $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode2
         )
             &&
             is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode2) == false
         )
-                                 $('#despertar2_fd_outro').show();
-                                @endif
+                                         $('#despertar2_fd_outro').show();
+                                        @endif
 
-                                        $('#despertar2_fd').change(function() {
-                                            if ($(this).val() === '4') {
-                                                $('#despertar2_fd_outro').show();
-                                            }
-                                            if ($(this).val() != '4') {
-                                                $('#despertar2_fd_outro').hide();
-                                            }
-                                        });
+                                                $('#despertar2_fd').change(function() {
+                                                    if ($(this).val() === '4') {
+                                                        $('#despertar2_fd_outro').show();
+                                                    }
+                                                    if ($(this).val() != '4') {
+                                                        $('#despertar2_fd_outro').hide();
+                                                    }
+                                                });
 
-                                        $('#despertar3_fd_outro').hide();
-                                  $('#despertar2_fd_outro').hide();
-                                 @if(
+                                                $('#despertar3_fd_outro').hide();
+                                          $('#despertar2_fd_outro').hide();
+                                         @if(
             isset(
             $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode3
         )
             &&
             is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode3) == false
         )
-                                 $('#despertar3_fd_outro').show();
-                                @endif
+                                         $('#despertar3_fd_outro').show();
+                                        @endif
 
-                                        $('#despertar3_fd').change(function() {
-                                            if ($(this).val() === '4') {
-                                                $('#despertar3_fd_outro').show();
-                                            }
-                                            if ($(this).val() != '4') {
-                                                $('#despertar3_fd_outro').hide();
-                                            }
-                                        });
+                                                $('#despertar3_fd').change(function() {
+                                                    if ($(this).val() === '4') {
+                                                        $('#despertar3_fd_outro').show();
+                                                    }
+                                                    if ($(this).val() != '4') {
+                                                        $('#despertar3_fd_outro').hide();
+                                                    }
+                                                });
 
-                                        $('#despertar4_fd_outro').hide();
+                                                $('#despertar4_fd_outro').hide();
 
-                                  $('#despertar4_fd_outro').hide();
-                                 @if(
+                                          $('#despertar4_fd_outro').hide();
+                                         @if(
             isset(
             $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode4
         )
             &&
             is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode4) == false
         )
-                                 $('#despertar4_fd_outro').show();
-                                @endif
+                                         $('#despertar4_fd_outro').show();
+                                        @endif
 
-                                        $('#despertar4_fd').change(function() {
-                                            if ($(this).val() === '4') {
-                                                $('#despertar4_fd_outro').show();
-                                            }
-                                            if ($(this).val() != '4') {
-                                                $('#despertar4_fd_outro').hide();
-                                            }
-                                        });
-                                        $('#despertar5_fd_outro').hide();
+                                                $('#despertar4_fd').change(function() {
+                                                    if ($(this).val() === '4') {
+                                                        $('#despertar4_fd_outro').show();
+                                                    }
+                                                    if ($(this).val() != '4') {
+                                                        $('#despertar4_fd_outro').hide();
+                                                    }
+                                                });
+                                                $('#despertar5_fd_outro').hide();
 
-                                @if(
+                                        @if(
             isset(
             $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode5
         )
             &&
             is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode5) == false
         )
-                                 $('#despertar5_fd_outro').show();
-                                @endif
+                                         $('#despertar5_fd_outro').show();
+                                        @endif
 
-                                        $('#despertar5_fd').change(function() {
-                                            if ($(this).val() === '4') {
-                                                $('#despertar5_fd_outro').show();
-                                            }
-                                            if ($(this).val() != '4') {
-                                                $('#despertar5_fd_outro').hide();
-                                            }
-                                        });
+                                                $('#despertar5_fd').change(function() {
+                                                    if ($(this).val() === '4') {
+                                                        $('#despertar5_fd_outro').show();
+                                                    }
+                                                    if ($(this).val() != '4') {
+                                                        $('#despertar5_fd_outro').hide();
+                                                    }
+                                                });
 
-                                        $('#despertar6_fd_outro').hide();
+                                                $('#despertar6_fd_outro').hide();
 
-                                @if(
+                                        @if(
             isset(
             $challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode6
         )
             &&
             is_numeric($challenge->analyzes()->where('day', $day)->first()->dados()->first()->wake_sleepingMode6) == false
         )
-                                 $('#despertar6_fd_outro').show();
-                                @endif
+                                         $('#despertar6_fd_outro').show();
+                                        @endif
 
-                                        $('#despertar6_fd').change(function() {
-                                            if ($(this).val() === '4') {
-                                                $('#despertar6_fd_outro').show();
-                                            }
-                                            if ($(this).val() != '4') {
-                                                $('#despertar6_fd_outro').hide();
-                                            }
-                                        });
-                                                       $('#despertar7_fd_outro').hide();
-
-                                                $('#despertar7_fd').change(function() {
+                                                $('#despertar6_fd').change(function() {
                                                     if ($(this).val() === '4') {
-                                                        $('#despertar7_fd_outro').show();
+                                                        $('#despertar6_fd_outro').show();
                                                     }
                                                     if ($(this).val() != '4') {
-                                                        $('#despertar7_fd_outro').hide();
+                                                        $('#despertar6_fd_outro').hide();
                                                     }
                                                 });
-                                                $('#despertar8_fd_outro').hide();
+                                                               $('#despertar7_fd_outro').hide();
 
-                                                $('#despertar8_fd').change(function() {
-                                                    if ($(this).val() === '4') {
-                                                        $('#despertar8_fd_outro').show();
-                                                    }
-                                                    if ($(this).val() != '4') {
+                                                        $('#despertar7_fd').change(function() {
+                                                            if ($(this).val() === '4') {
+                                                                $('#despertar7_fd_outro').show();
+                                                            }
+                                                            if ($(this).val() != '4') {
+                                                                $('#despertar7_fd_outro').hide();
+                                                            }
+                                                        });
                                                         $('#despertar8_fd_outro').hide();
-                                                    }
-                                                });
-                                                $('#despertar9_fd_outro').hide();
 
-                                                $('#despertar9_fd').change(function() {
-                                                    if ($(this).val() === '4') {
-                                                        $('#despertar9_fd_outro').show();
-                                                    }
-                                                    if ($(this).val() != '4') {
+                                                        $('#despertar8_fd').change(function() {
+                                                            if ($(this).val() === '4') {
+                                                                $('#despertar8_fd_outro').show();
+                                                            }
+                                                            if ($(this).val() != '4') {
+                                                                $('#despertar8_fd_outro').hide();
+                                                            }
+                                                        });
                                                         $('#despertar9_fd_outro').hide();
-                                                    }
-                                                });
-                                                $('#despertar10_fd_outro').hide();
 
-                                                $('#despertar10_fd').change(function() {
-                                                    if ($(this).val() === '4') {
-                                                        $('#despertar10_fd_outro').show();
-                                                    }
-                                                    if ($(this).val() != '4') {
+                                                        $('#despertar9_fd').change(function() {
+                                                            if ($(this).val() === '4') {
+                                                                $('#despertar9_fd_outro').show();
+                                                            }
+                                                            if ($(this).val() != '4') {
+                                                                $('#despertar9_fd_outro').hide();
+                                                            }
+                                                        });
                                                         $('#despertar10_fd_outro').hide();
+
+                                                        $('#despertar10_fd').change(function() {
+                                                            if ($(this).val() === '4') {
+                                                                $('#despertar10_fd_outro').show();
+                                                            }
+                                                            if ($(this).val() != '4') {
+                                                                $('#despertar10_fd_outro').hide();
+                                                            }
+                                                        });
+                                                         $('textarea#observacao').characterCounter();
+                                            </script>
+
+
+                                         <div id="confirmSalvo" class="modal">
+                                           <div class="modal-content">
+                                              <h5>Seu progresso foi salvo!</h5>
+                                              <p>Você pode continuar editanto... <br>Ao terminar clique em <b>Enviar</b></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+                                            </div>
+                                          </div>
+                                        <script>
+
+
+
+                                        $(document).ready(function(){
+                                            $('.modal').modal({
+
+                                            });
+                                         //   $('#modal1').modal('open');
+                                          });
+
+                                           $(document).ready(function(){
+                                            $('.fixed-action-btn').floatingActionButton();
+                                          });
+                                          </script>
+                                        <script>
+                                        $(document).on("click", "#salvar" , function() {
+
+                                            //
+                                            const form = document.getElementById("form");
+                                           $.ajax({
+                                                       type:'POST',
+                                                       url:'{{route('analyze.store.json', [$challenge->id, $day])}}',
+                                                      data: new FormData(form),
+                                                      dataType: 'JSON',
+                                                    contentType: false,
+                                                    cache: false,
+                                                    processData: false,
+                                                       success:function(response) {
+
+                                                      $('#confirmSalvo').modal('open');
+
+                                                       }, error: function(response) {
                                                     }
+
+                                                    }); 
+                                        });
+
+                                        </script>
+                                        <script>
+                                          document.addEventListener("DOMContentLoaded", function () {
+                                                document.getElementById("btn-clear-avaliacao").addEventListener("click", function () {
+                                                    let section = document.getElementById("step-avaliacao");
+
+                                                    // limpar inputs de texto dentro da seção
+                                                    section.querySelectorAll("input[type=text]").forEach(function (input) {
+                                                        input.value = "";
+                                                    });
+
+                                                    // limpar checkboxes dentro da seção
+                                                    section.querySelectorAll("input[type=checkbox]").forEach(function (checkbox) {
+                                                        checkbox.checked = false;
+                                                    });
+
+                                                    // atualizar labels
+                                                    M.updateTextFields();
                                                 });
-                                                 $('textarea#observacao').characterCounter();
-                                    </script>
-
-
-                                 <div id="confirmSalvo" class="modal">
-                                   <div class="modal-content">
-                                      <h5>Seu progresso foi salvo!</h5>
-                                      <p>Você pode continuar editanto... <br>Ao terminar clique em <b>Enviar</b></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
-                                    </div>
-                                  </div>
-                                <script>
-
-
-
-                                $(document).ready(function(){
-                                    $('.modal').modal({
-
-                                    });
-                                 //   $('#modal1').modal('open');
-                                  });
-
-                                   $(document).ready(function(){
-                                    $('.fixed-action-btn').floatingActionButton();
-                                  });
-                                  </script>
-                                <script>
-                                $(document).on("click", "#salvar" , function() {
-
-                                    //
-                                    const form = document.getElementById("form");
-                                   $.ajax({
-                                               type:'POST',
-                                               url:'{{route('analyze.store.json', [$challenge->id, $day])}}',
-                                              data: new FormData(form),
-                                              dataType: 'JSON',
-                                            contentType: false,
-                                            cache: false,
-                                            processData: false,
-                                               success:function(response) {
-
-                                              $('#confirmSalvo').modal('open');
-
-                                               }, error: function(response) {
-                                            }
-
-                                            }); 
-                                });
-
-                                </script>
-                                <script>
-                                  document.addEventListener("DOMContentLoaded", function () {
-                                        document.getElementById("btn-clear-avaliacao").addEventListener("click", function () {
-                                            let section = document.getElementById("step-avaliacao");
-
-                                            // limpar inputs de texto dentro da seção
-                                            section.querySelectorAll("input[type=text]").forEach(function (input) {
-                                                input.value = "";
                                             });
 
-                                            // limpar checkboxes dentro da seção
-                                            section.querySelectorAll("input[type=checkbox]").forEach(function (checkbox) {
-                                                checkbox.checked = false;
+                                        </script>
+                                        <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelector(".clear-soneca1").addEventListener("click", function() {
+                                let section = this.closest(".soneca1-section");
+
+                                // limpa inputs de texto
+                                section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+
+                                // desmarca checkbox
+                                section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+
+                                // reseta selects
+                                section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+                            });
+                        });
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelector(".clear-soneca2").addEventListener("click", function() {
+                                let section = this.closest(".soneca2-section");
+
+                                // limpa inputs de texto
+                                section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+
+                                // desmarca checkbox
+                                section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+
+                                // reseta selects
+                                section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+                            });
+                        });
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelector(".clear-soneca3").addEventListener("click", function() {
+                                let section = this.closest(".soneca3-section");
+
+                                // limpa inputs de texto
+                                section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+
+                                // desmarca checkbox
+                                section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+
+                                // reseta selects
+                                section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+                            });
+                        });
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelector(".clear-soneca4").addEventListener("click", function() {
+                                let section = this.closest(".soneca4-section");
+
+                                // limpa inputs de texto
+                                section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+
+                                // desmarca checkbox
+                                section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+
+                                // reseta selects
+                                section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+                            });
+                        });
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelector(".clear-soneca5").addEventListener("click", function() {
+                                let section = this.closest(".soneca5-section");
+
+                                // limpa inputs de texto
+                                section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+
+                                // desmarca checkbox
+                                section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+
+                                // reseta selects
+                                section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+                            });
+                        });
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.querySelector(".clear-soneca6").addEventListener("click", function() {
+                                let section = this.closest(".soneca6-section");
+
+                                // limpa inputs de texto
+                                section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+
+                                // desmarca checkbox
+                                section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+
+                                // reseta selects
+                                section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+                            });
+                        });
+
+                         document.addEventListener("DOMContentLoaded", function () {
+                                                document.querySelector(".clear-ritual").addEventListener("click", function () {
+                                                  let section = this.closest(".section-ritual");
+
+
+                                                    // limpar inputs de texto dentro da seção
+                                                    section.querySelectorAll("input[type=text]").forEach(function (input) {
+                                                        input.value = "";
+                                                    });
+
+                                                    // limpar checkboxes dentro da seção
+                                                    section.querySelectorAll("input[type=checkbox]").forEach(function (checkbox) {
+                                                        checkbox.checked = false;
+                                                    });
+
+                                                    // atualizar labels
+                                                    M.updateTextFields();
+                                                });
                                             });
 
-                                            // atualizar labels
-                                            M.updateTextFields();
-                                        });
-                                    });
 
-                                </script>
-                                <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".clear-soneca1").addEventListener("click", function() {
-                        let section = this.closest(".soneca1-section");
+                        </script>
 
-                        // limpa inputs de texto
-                        section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+                        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const elems = document.querySelectorAll('.datepicker');
 
-                        // desmarca checkbox
-                        section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+            // pega a data de hoje
+            let hoje = new Date();
 
-                        // reseta selects
-                        section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-                    });
-                });
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".clear-soneca2").addEventListener("click", function() {
-                        let section = this.closest(".soneca2-section");
+            // cria a data mínima = hoje - 30 dias
+            let minDate = new Date();
+            minDate.setDate(hoje.getDate() - 30);
 
-                        // limpa inputs de texto
-                        section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
-
-                        // desmarca checkbox
-                        section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
-
-                        // reseta selects
-                        section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-                    });
-                });
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".clear-soneca3").addEventListener("click", function() {
-                        let section = this.closest(".soneca3-section");
-
-                        // limpa inputs de texto
-                        section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
-
-                        // desmarca checkbox
-                        section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
-
-                        // reseta selects
-                        section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-                    });
-                });
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".clear-soneca4").addEventListener("click", function() {
-                        let section = this.closest(".soneca4-section");
-
-                        // limpa inputs de texto
-                        section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
-
-                        // desmarca checkbox
-                        section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
-
-                        // reseta selects
-                        section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-                    });
-                });
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".clear-soneca5").addEventListener("click", function() {
-                        let section = this.closest(".soneca5-section");
-
-                        // limpa inputs de texto
-                        section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
-
-                        // desmarca checkbox
-                        section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
-
-                        // reseta selects
-                        section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-                    });
-                });
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelector(".clear-soneca6").addEventListener("click", function() {
-                        let section = this.closest(".soneca6-section");
-
-                        // limpa inputs de texto
-                        section.querySelectorAll("input[type='text']").forEach(input => input.value = "");
-
-                        // desmarca checkbox
-                        section.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
-
-                        // reseta selects
-                        section.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-                    });
-                });
-
-                 document.addEventListener("DOMContentLoaded", function () {
-                                        document.querySelector(".clear-ritual").addEventListener("click", function () {
-                                          let section = this.closest(".section-ritual");
-
-
-                                            // limpar inputs de texto dentro da seção
-                                            section.querySelectorAll("input[type=text]").forEach(function (input) {
-                                                input.value = "";
-                                            });
-
-                                            // limpar checkboxes dentro da seção
-                                            section.querySelectorAll("input[type=checkbox]").forEach(function (checkbox) {
-                                                checkbox.checked = false;
-                                            });
-
-                                            // atualizar labels
-                                            M.updateTextFields();
-                                        });
-                                    });
-
-
-                </script>
-
-                <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const elems = document.querySelectorAll('.datepicker');
-
-    // pega a data de hoje
-    let hoje = new Date();
-
-    // cria a data mínima = hoje - 30 dias
-    let minDate = new Date();
-    minDate.setDate(hoje.getDate() - 30);
-
-    // inicializa o datepicker com restrição
-    M.Datepicker.init(elems, {
-        format: 'dd/mm/yyyy',
-        i18n: {
-            cancel: 'Cancelar',
-            clear: 'Limpar',
-            done: 'OK'
-        },
-        minDate: minDate,
-        maxDate: hoje,
-        setDefaultDate: true
-    });
-});
-</script>
+            // inicializa o datepicker com restrição
+            M.Datepicker.init(elems, {
+                format: 'dd/mm/yyyy',
+               i18n: {
+                    cancel: 'Cancelar',
+                    clear: 'Limpar',
+                    done: 'OK',
+                    months: [
+                        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                    ],
+                    monthsShort: [
+                        'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                        'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+                    ],
+                    weekdays: [
+                        'Domingo', 'Segunda-feira', 'Terça-feira',
+                        'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'
+                    ],
+                    weekdaysShort: [
+                        'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'
+                    ],
+                    weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
+                },
+                minDate: minDate,
+                maxDate: hoje,
+                setDefaultDate: true
+            });
+        });
+        </script>
 
     @endsection

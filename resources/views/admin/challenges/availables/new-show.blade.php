@@ -81,9 +81,10 @@
 @if(count($challenge->client->challenges->where('status', 'FINALIZADO')) > 1)
 
     @foreach($challenge->client->challenges->where('status', 'FINALIZADO') as $challenge2)
-        @if($challenge2->chat != null)
-            <textarea class="form-control" style="height:auto">{{ $challenge2->chat->first()->messages->first()->content ?? '' }}</textarea>
-        @endif
+        {{ $challenge2 }}
+            @if($challenge2->chat != null)
+                <textarea class="form-control" style="height:auto">{{ $challenge2->chat->first()->messages->first()->content ?? '' }}</textarea>
+            @endif
     @endforeach
 
 @endif

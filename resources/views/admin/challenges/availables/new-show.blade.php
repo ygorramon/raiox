@@ -83,7 +83,7 @@
     @foreach($challenge->client->challenges->where('status', 'FINALIZADO') as $challenge2)
 
         @if($challenge2->chat != null)
-            <textarea class="form-control" style="height:auto"> {{ $challenge2->anotacoes }} <br><br>{{ $challenge2->chat->first()->messages->first()->content ?? '' }}</textarea>
+            <textarea class="form-control" style="height:auto"> {{ $challenge2->anotacoes }} {{ $challenge2->chat ?? '' }}</textarea>
         @endif
     @endforeach
 

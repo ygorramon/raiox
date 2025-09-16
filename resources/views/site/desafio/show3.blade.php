@@ -22,7 +22,7 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
             </div>
         </div>
-        
+
     @if(\Carbon\Carbon::parse($challenge->client->created_at)->diffInDays(now()) > 8)
 
                         <div id="modal2" class="modal">
@@ -53,6 +53,8 @@
                             <div class="card-content  purple-text">
                                 <a href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank  " class="btn">
                                     Suporte Técnico</a>
+                                                          @if(\Carbon\Carbon::parse($challenge->client->created_at)->diffInDays(now()) > 8)     <a class="btn blue modal-trigger" href="#modal2">Consulta</a> @endif
+
 
 
                             </div>
@@ -76,6 +78,7 @@
                             </div>
                         </div>
                         <a class="btn red modal-trigger" href="#modal-confirm">Desistir do Desafio</a>
+
 
 
                         <div id="card-widgets">
@@ -1336,7 +1339,7 @@
 
             });
             $('#modal1').modal('open');
-            $('#modal2').modal('open');
+           
         });
 
         @if  (session('sucesso'))

@@ -43,6 +43,8 @@
 -->
       <li class="bold"><a class="waves-effect waves-cyan " href="https://api.whatsapp.com/send?phone=5588996620215" target="_blank "><i class="material-icons">headset_mic</i><span class="menu-title" data-i18n="Mail">Suporte Técnico</span></a>
       </li>
+      <li class="bold"><a class="waves-effect waves-cyan " href="https://api.whatsapp.com/send?phone=5586999996977" target="_blank "><i class="material-icons">local_hospital</i><span class="menu-title" data-i18n="Mail">Consulta</span></a>
+      </li>
       </li>
 
       <li class="bold"><a class="waves-effect waves-cyan " href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

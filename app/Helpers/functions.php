@@ -193,6 +193,39 @@ return (object) $data;
     } catch (\Exception $e) {
         return '';
     }
+
+    
+}
+
+function calcularTempoAcordado($birthBaby)
+{
+  $idade = \Carbon\Carbon::parse($birthBaby)->diffInMonths();
+
+  if ($idade <= 2)
+    return 50;         // Até 60 dias
+  if ($idade <= 3)
+    return 70;         // 60 a 90 dias
+  if ($idade <= 4)
+    return 80;         // 90 a 120 dias
+  if ($idade <= 5)
+    return 90;         // 4 a 5 meses
+  if ($idade <= 6)
+    return 100;        // 5 a 6 meses
+  if ($idade <= 7)
+    return 120;        // 6 a 7 meses
+  if ($idade <= 8)
+    return 140;        // 7 a 8 meses
+  if ($idade <= 9)
+    return 150;        // 8 a 9 meses
+  if ($idade <= 10)
+    return 160;       // 9 a 10 meses
+  if ($idade <= 11)
+    return 170;       // 10 a 11 meses
+  if ($idade <= 12)
+    return 180;       // 11 a 12 meses
+  if ($idade <= 18)
+    return 210;       // 12 a 18 meses
+  return 240;                         // Mais de 18 meses
 }
 
 

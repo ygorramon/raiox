@@ -616,7 +616,72 @@ Vamos conferir os próximos pontos.
             ]
         );
         }
-        return view('site.desafio.create2', compact('challenge', 'day'));
+
+        $client= $challenge->client;
+        return view('site.desafio.create2', compact('challenge', 'day','client'));
+    }
+    public function analyzeCreate3($id, $day)
+    {
+        if ($day < 1 || $day > 7) {
+            return redirect()->back();
+        }
+        if (!$challenge = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        if (!$this->repository->find($id)->client_id == Auth::guard('clients')->user()->id) {
+            return redirect()->back();
+        }
+
+
+
+        $challenge = $this->repository->find($id);
+
+        
+ //       if (isset($this->repository->find($id)->analyzes()->where('day', $day)->first()->day)) {
+  //          return redirect()->back();
+  //      }
+       
+        if ($day > 1) {
+            if ($this->repository->find($id)->client->liberado == 1) {
+                if (
+                    !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
+
+
+                ) {
+                    return redirect()->back();
+                }
+            } else
+            if (
+                !isset($this->repository->find($id)->analyzes()->where('day', $day - 1)->first()->day)
+                || !(date_format(now(), 'Y-m-d') >= date_format($challenge->analyzes()->where('day', $day - 1)->first()->started_at->addDays(1), 'Y-m-d'))
+
+            ) {
+                return redirect()->back();
+            }
+        }
+
+       
+
+
+
+
+
+        $challenge = $this->repository->find($id);
+
+        if(!$this->repository->find($id)->analyzes()->where('day',$day)->first()){
+
+    
+        $challenge->analyzes()->create(
+            [
+                'day' => $day,
+                'started_at' => now()
+            ]
+        );
+        }
+
+        $client= $challenge->client;
+        return view('site.desafio.create5', compact('challenge', 'day','client'));
     }
     public function analyzeCreateForm($id)
     {

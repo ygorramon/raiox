@@ -1343,27 +1343,33 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
     }
 }
 
-// Função para iniciar fluxo de perguntas (1.3)
 function iniciarFluxoPerguntas() {
     const container = $("#fluxo-perguntas");
-    container.empty(); // Limpar container antes de começar
+    container.empty();
     let etapa = 0;
     
     const perguntas = [
         {
             texto: "O bebê estava fora da rotina, nessa soneca?",
-            opcoes: ["Sim", "Não"],
+            opcoes: [
+                { texto: "Sim", classe: "green" },
+                { texto: "Não", classe: "red" }
+            ],
             handler: (resposta, perguntaEl) => {
                 if (resposta === "Sim") {
                     perguntaEl.append(`<p class="green-text" style="margin-top: 10px;"><i class="material-icons tiny">check_circle</i> Tudo bem! Sair da rotina faz parte e vamos tentar melhorar na próxima soneca.</p>`);
-                    return true; // Finaliza fluxo
+                    return true;
                 }
-                return false; // Continua fluxo
+                return false;
             }
         },
         {
             texto: "Acha que a dor pode ter atrapalhado essa soneca?",
-            opcoes: ["Sim", "Não", "Não sei"],
+            opcoes: [
+                { texto: "Sim", classe: "green" },
+                { texto: "Não", classe: "red" },
+                { texto: "Não sei", classe: "blue" }
+            ],
             handler: (resposta, perguntaEl) => {
                 if (resposta === "Sim") {
                     perguntaEl.append(`
@@ -1388,13 +1394,19 @@ function iniciarFluxoPerguntas() {
         },
         {
             texto: "Que horas começou a fazer o bebê dormir?",
-            opcoes: ["Imediatamente após sinais", "Após 15-20 minutos"],
+            opcoes: [
+                { texto: "Imediatamente após sinais", classe: "blue", quebra: true },
+                { texto: "Após 15-20 minutos", classe: "blue", quebra: true }
+            ],
             extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo explicativo</a></p>`,
             handler: (resposta, perguntaEl) => false
         },
         {
             texto: "Consegue identificar algum gatilho do choro?",
-            opcoes: ["Sim", "Não"],
+            opcoes: [
+                { texto: "Sim", classe: "green" },
+                { texto: "Não", classe: "red" }
+            ],
             handler: (resposta, perguntaEl) => {
                 if (resposta === "Sim") {
                     perguntaEl.append(`
@@ -1409,37 +1421,34 @@ function iniciarFluxoPerguntas() {
         },
         {
             texto: "Onde ele dormiu?",
-            opcoes: ["No quarto dos pais", "No próprio quarto", "Outro"],
+            opcoes: [
+                { texto: "No quarto dos pais", classe: "blue", quebra: true },
+                { texto: "No próprio quarto", classe: "blue", quebra: true },
+                { texto: "Outro", classe: "blue", quebra: true }
+            ],
             handler: (resposta, perguntaEl) => {
                 perguntaEl.append(`
                     <div style="margin-top: 15px;">
                         <p><strong>Como está o ambiente?</strong></p>
                         <div class="ambiente-options">
-                            <a class="waves-effect waves-light btn-small btn-ambiente">Claro</a>
-                            <a class="waves-effect waves-light btn-small btn-ambiente">Parcialmente escuro</a>
-                            <a class="waves-effect waves-light btn-small btn-ambiente">Escuro</a>
+                            <a class="waves-effect waves-light btn-small blue">Claro</a>
+                            <a class="waves-effect waves-light btn-small blue">Parcialmente escuro</a>
+                            <a class="waves-effect waves-light btn-small blue">Escuro</a>
                         </div>
                     </div>
                     <div style="margin-top: 15px;">
                         <p><strong>E quanto aos ruídos?</strong></p>
                         <div class="ruidos-options">
-                            <a class="waves-effect waves-light btn-small btn-ruido">Barulhento</a>
-                            <a class="waves-effect waves-light btn-small btn-ruido">Parcialmente silencioso</a>
-                            <a class="waves-effect waves-light btn-small btn-ruido">Silencioso</a>
+                            <a class="waves-effect waves-light btn-small blue">Barulhento</a>
+                            <a class="waves-effect waves-light btn-small blue">Parcialmente silencioso</a>
+                            <a class="waves-effect waves-light btn-small blue">Silencioso</a>
                         </div>
                     </div>
                 `);
                 
-                // Configurar eventos para os botões de ambiente e ruídos
                 setTimeout(() => {
-                    $('.btn-ambiente').on('click', function() {
-                        $('.btn-ambiente').removeClass('green');
-                        $(this).addClass('green');
-                    });
-                    
-                    $('.btn-ruido').on('click', function() {
-                        $('.btn-ruido').removeClass('green');
-                        $(this).addClass('green');
+                    $('.btn-ambiente, .btn-ruido').on('click', function() {
+                        $(this).addClass('green').siblings().removeClass('green');
                     });
                 }, 100);
                 
@@ -1448,17 +1457,23 @@ function iniciarFluxoPerguntas() {
         },
         {
             texto: "Houve briga para dormir ou muito choro?",
-            opcoes: ["Sim", "Não"],
+            opcoes: [
+                { texto: "Sim", classe: "green" },
+                { texto: "Não", classe: "red" }
+            ],
             extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo sobre brigas para dormir</a></p>`,
             handler: (resposta, perguntaEl) => false
         },
         {
             texto: "Você tentou fazê-lo dormir sem alguma associação?",
-            opcoes: ["Sim", "Não"],
+            opcoes: [
+                { texto: "Sim", classe: "green" },
+                { texto: "Não", classe: "red" }
+            ],
             extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo sobre associações de sono</a></p>`,
             handler: (resposta, perguntaEl) => {
                 perguntaEl.append(`<p class="green-text" style="margin-top: 15px;"><i class="material-icons tiny">check_circle</i> Fim das perguntas desta análise.</p>`);
-                return true; // Finaliza fluxo
+                return true;
             }
         }
     ];
@@ -1477,9 +1492,10 @@ function iniciarFluxoPerguntas() {
                 </div>
                 <div class="opcoes-container" style="margin-bottom: 10px;">
                     ${pergunta.opcoes.map(opcao => 
-                        `<a class="waves-effect waves-light btn opcao-btn" data-resposta="${opcao}" 
-                           style="margin: 5px; min-width: 120px; position: relative;">
-                            ${opcao}
+                        `<a class="waves-effect waves-light btn opcao-btn ${opcao.quebra ? 'quebra-linha' : ''}" 
+                           data-resposta="${opcao.texto}" 
+                           style="margin: 5px; ${opcao.quebra ? 'width: 100%; text-align: center; margin: 8px 0;' : 'min-width: 120px;'}">
+                            ${opcao.texto}
                         </a>`
                     ).join('')}
                 </div>
@@ -1489,15 +1505,25 @@ function iniciarFluxoPerguntas() {
         
         container.append(perguntaHtml);
         
+        // Aplicar classes de cor aos botões
+        perguntas[etapa].opcoes.forEach((opcao, index) => {
+            $(`#${perguntaId} .opcao-btn`).eq(index).addClass(opcao.classe);
+        });
+        
         // Configurar evento de clique para os botões
         $(`#${perguntaId} .opcao-btn`).on('click', function() {
             const resposta = $(this).data('resposta');
             const perguntaEl = $(this).closest('.pergunta-card');
             
-            // Marcar botão selecionado e desabilitar outros
-            $(this).addClass('green');
+            // Marcar botão selecionado (verde escuro) e desabilitar outros
+            $(this).addClass('darken-2').addClass('selected');
             $(this).html(`${resposta} <i class="material-icons right" style="font-size: 18px;">check</i>`);
-            $(this).siblings('.opcao-btn').addClass('disabled').off('click');
+            
+            // Desabilitar outros botões
+            $(this).siblings('.opcao-btn')
+                .addClass('disabled lighten-2')
+                .off('click')
+                .css('opacity', '0.7');
             
             // Adicionar check de confirmação na pergunta
             perguntaEl.find('.pergunta-header h6').append(' <i class="material-icons green-text" style="font-size: 20px; vertical-align: middle;">check_circle</i>');
@@ -1517,7 +1543,6 @@ function iniciarFluxoPerguntas() {
     
     // Iniciar primeira pergunta
     renderizarPergunta();
-
 }
 
 // Função auxiliar para calcular próxima janela
@@ -1577,6 +1602,59 @@ function calcularProximaJanela() {
     border-radius: 12px;
     font-size: 12px;
     font-weight: bold;
+}
+.opcao-btn {
+    transition: all 0.3s ease;
+    white-space: normal;
+    word-wrap: break-word;
+    height: auto;
+    min-height: 36px;
+    line-height: 1.4;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.opcao-btn.quebra-linha {
+    display: block;
+    width: 100%;
+    margin: 8px 0 !important;
+}
+.opcao-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.opcao-btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.opcao-btn.selected {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+.opcoes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+/* Responsividade para mobile */
+@media (max-width: 600px) {
+    .opcoes-container {
+        flex-direction: column;
+    }
+    .opcao-btn {
+        width: 100%;
+        margin: 5px 0 !important;
+    }
+    .pergunta-card {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    .pergunta-number {
+        top: 5px;
+        right: 10px;
+        font-size: 10px;
+        padding: 1px 6px;
+    }
 }
 .opcao-btn {
     transition: all 0.3s ease;

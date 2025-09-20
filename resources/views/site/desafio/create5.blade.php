@@ -1072,7 +1072,7 @@ function analisarJanelaSono(janela, janelaSinalSono,ritualSono) {
     } else if (janela <= parametrosJanelaSono.maxima && janelaSinalSono <= parametrosJanelaSinalSono.maxima && ritualSono > 40) {
         return {
             status: 'ideal',
-            mensagem: 'Começou a fazer dormir cedo demais, mas dormiu em tempo adequad',
+            mensagem: 'Começou a fazer dormir cedo demais, mas dormiu em tempo adequado',
             codigo: '1.2',
             recomendacao: 'Começou a fazer dormir cedo demais, mas dormiu em tempo adequado'
         };
@@ -1169,70 +1169,377 @@ function determinarSituacaoGeral(analiseJanela, analiseDuracao) {
     }
 }
 
-// Função para mostrar resultado detalhado da análise
+
 function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, sentiuSono, inicio, termino, duracao, janelaSono, janelaSinalSono, ultimoHorarioAcordou) {
+    
+    // Função auxiliar para verificar se está atrasado
     function isAtrasado(real, sugerido) {
         if (!real || !sugerido) return false;
-        return real > sugerido; // compara strings HH:MM (funciona pois formato é padronizado)
+        return real > sugerido;
     }
-    let classeSentiuSono = isAtrasado(sentiuSono, horarioSugeridoSono) ? "red" : "";
-    let classeDormiu = isAtrasado(inicio, horarioSugeridoSoneca) ? "red" : "";
-
+    
+    // Calcular horários sugeridos
     const formatarHora = (minutos) => {
-                const horas = Math.floor(minutos / 60) % 24;
-                const mins = minutos % 60;
-                return `${horas.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
-            };
+        const horas = Math.floor(minutos / 60) % 24;
+        const mins = minutos % 60;
+        return `${horas.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+    };
+    
     const [hora, minuto] = ultimoHorarioAcordou.split(':');
-            const minutosInicio = parseInt(hora) * 60 + parseInt(minuto);
-            const minutosSugestaoSono = minutosInicio + tempoAcordado;
-            const minutosSugestaoSoneca = minutosSugestaoSono + 40;
-            horarioSugeridoSono = formatarHora(minutosSugestaoSono);
-            horarioSugeridoSoneca = formatarHora(minutosSugestaoSoneca);
+    const minutosInicio = parseInt(hora) * 60 + parseInt(minuto);
+    const minutosSugestaoSono = minutosInicio + tempoAcordado;
+    const minutosSugestaoSoneca = minutosSugestaoSono + 40;
+    
+    const horarioSugeridoSono = formatarHora(minutosSugestaoSono);
+    const horarioSugeridoSoneca = formatarHora(minutosSugestaoSoneca);
+    
+    // Determinar classes de cor
+    let classeSentiuSono = isAtrasado(sentiuSono, horarioSugeridoSono) ? "red-text" : "green-text";
+    let classeDormiu = isAtrasado(inicio, horarioSugeridoSoneca) ? "red-text" : "green-text";
+    
+    // Preparar perguntas extras baseadas no código
+    let perguntasExtras = "";
+    
+    // Caso código 1.2
+    if (analiseJanela.codigo === "1.2") {
+        perguntasExtras = `
+            <div class="divider"></div>
+            <h6>Orientações Adicionais</h6>
+            <div class="video-container">
+                <p>Assista ao vídeo sobre sinais de sono:</p>
+                <div class="video-placeholder" style="background: #f5f5f5; padding: 20px; text-align: center; border-radius: 8px;">
+                    <i class="material-icons large">play_circle_filled</i>
+                    <p>Vídeo: Entendendo os Sinais de Sono</p>
+                    <small class="grey-text">janela1-2.mp4</small>
+                </div>
+            </div>
             
+            <div class="center-align" style="margin: 20px 0;">
+                <a class="waves-effect waves-light btn teal" id="btn-sinais-sono">
+                    <i class="material-icons left">visibility</i>Ver Sinais de Sono Comuns
+                </a>
+            </div>
+            
+            <div id="lista-sinais-sono" class="hidden" style="margin-top: 20px;">
+                <div class="card-panel blue lighten-5">
+                    <h6>Sinais de Sono Mais Comuns:</h6>
+                    <div class="row" style="columns: 2;">
+                        <div class="col s6"><i class="material-icons tiny">emoji_people</i> Bocejar</div>
+                        <div class="col s6"><i class="material-icons tiny">directions_run</i> Se agitar</div>
+                        <div class="col s6"><i class="material-icons tiny">remove_red_eye</i> Abrir bem os olhos</div>
+                        <div class="col s6"><i class="material-icons tiny">volume_up</i> Fazer barulhinhos</div>
+                        <div class="col s6"><i class="material-icons tiny">repeat</i> Virar o rosto</div>
+                        <div class="col s6"><i class="material-icons tiny">child_care</i> Esconder o rosto no peito</div>
+                        <div class="col s6"><i class="material-icons tiny">pan_tool</i> Movimentos involuntários</div>
+                        <div class="col s6"><i class="material-icons tiny">touch_app</i> Esfregar os olhos</div>
+                        <div class="col s6"><i class="material-icons tiny">visibility</i> Olhar parado/fixo</div>
+                        <div class="col s6"><i class="material-icons tiny">content_cut</i> Puxar orelhas/cabelos</div>
+                        <div class="col s6"><i class="material-icons tiny">gesture</i> Arranhar o rosto</div>
+                        <div class="col s6"><i class="material-icons tiny">accessibility</i> Movimentos descoordenados</div>
+                        <div class="col s6"><i class="material-icons tiny">airline_seat_flat</i> Arquear o corpo</div>
+                        <div class="col s6"><i class="material-icons tiny">toys</i> Perder interesse em brinquedos</div>
+                        <div class="col s6"><i class="material-icons tiny">warning</i> Esbarrar em coisas</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Caso código 1.3
+    if (analiseJanela.codigo === "1.3") {
+        perguntasExtras = `
+            <div class="divider"></div>
+            <h6>Investigação Adicional</h6>
+            <p class="grey-text">Vamos entender melhor o que aconteceu nesta soneca:</p>
+            <div id="fluxo-perguntas"></div>
+        `;
+    }
+    
+    // Gerar HTML do resultado
     $('#resultado-analise').html(`
         <div class="card-panel ${situacaoGeral.classe} lighten-4">
-            <h5>${situacaoGeral.mensagem}</h5>
+            <h5>${situacaoGeral.titulo || situacaoGeral.mensagem}</h5>
             <p><strong>Código:</strong> ${situacaoGeral.codigo}</p>
             
             <div class="divider"></div>
-
-            <p><strong>Horário que Acordou da última Soneca:</strong> ${ultimoHorarioAcordou}</p>
-         <p><strong>Horário que Sentiu Sono:</strong> 
-                <span class="${classeSentiuSono}">${sentiuSono}</span> 
-                (Sugerido: ${horarioSugeridoSono})
-            </p>
-            <p><strong>Horário que Dormiu:</strong> 
-                <span class="${classeDormiu}">${inicio}</span> 
-                (Sugerido: ${horarioSugeridoSoneca})
-            </p>
-            <p><strong>Horário que Acordou:</strong> ${termino}</p>
             
-           
-            <div class="divider"></div>
-
-            <h6>Análise da Janela de Sono</h6>
-            <p>⏱️ <strong>Duração:</strong> ${janelaSono} minutos</p>
-            <p>⏱️ <strong>Duração:</strong> ${janelaSinalSono} minutos</p>
-            <p>📊 <strong>Status:</strong> ${analiseJanela.mensagem}</p>
-            <p>💡 <strong>Recomendação:</strong> ${analiseJanela.recomendacao}</p>
+            <h6>Detalhes da Soneca</h6>
+            <div class="row">
+                <div class="col s12 m6">
+                    <p><strong>🕒 Acordou da última soneca:</strong><br>${ultimoHorarioAcordou}</p>
+                    <p><strong>😴 Sentiu sono:</strong><br>
+                        <span class="${classeSentiuSono}">${sentiuSono || 'Não registrado'}</span>
+                        ${horarioSugeridoSono ? `<br><small>Sugerido: ${horarioSugeridoSono}</small>` : ''}
+                    </p>
+                </div>
+                <div class="col s12 m6">
+                    <p><strong>🛌 Início da soneca:</strong><br>
+                        <span class="${classeDormiu}">${inicio}</span>
+                        ${horarioSugeridoSoneca ? `<br><small>Sugerido: ${horarioSugeridoSoneca}</small>` : ''}
+                    </p>
+                    <p><strong>⏰ Término da soneca:</strong><br>${termino}</p>
+                </div>
+            </div>
             
             <div class="divider"></div>
             
-            <h6>Análise da Duração da Soneca</h6>
-            <p>⏱️ <strong>Duração:</strong> ${duracao} minutos</p>
-            <p>📊 <strong>Status:</strong> ${analiseDuracao.mensagem}</p>
-            <p>💡 <strong>Recomendação:</strong> ${analiseDuracao.recomendacao}</p>
+            <div class="row">
+                <div class="col s12 m6">
+                    <h6>📊 Análise da Janela</h6>
+                    <p><strong>Duração sinal→sono:</strong> ${janelaSinalSono} min</p>
+                    <p><strong>Status:</strong> ${analiseJanela.mensagem}</p>
+                    <p><strong>Recomendação:</strong><br>${analiseJanela.recomendacao}</p>
+                </div>
+                <div class="col s12 m6">
+                    <h6>⏱️ Análise da Duração</h6>
+                    <p><strong>Duração total:</strong> ${duracao} min</p>
+                    <p><strong>Status:</strong> ${analiseDuracao.mensagem}</p>
+                    <p><strong>Recomendação:</strong><br>${analiseDuracao.recomendacao}</p>
+                </div>
+            </div>
+            
+            ${perguntasExtras}
             
             <div class="divider"></div>
             
-            <h6>Próximos Passos</h6>
-            <p>👶 <strong>Idade do bebê:</strong> ${idadeBebe} meses</p>
-            <p>⏰ <strong>Tempo acordado esperado:</strong> ${tempoAcordado} minutos</p>
-            <p>📋 <strong>Próxima janela sugerida:</strong> ${calcularProximaJanela()}</p>
+            <h6>👶 Próximos Passos</h6>
+            <div class="row">
+                <div class="col s12 m4">
+                    <p><strong>Idade:</strong> ${idadeBebe} meses</p>
+                </div>
+                <div class="col s12 m4">
+                    <p><strong>Tempo acordado:</strong> ${tempoAcordado} min</p>
+                </div>
+                <div class="col s12 m4">
+                    <p><strong>Próxima janela:</strong><br>${calcularProximaJanela()}</p>
+                </div>
+            </div>
+            
+            <div class="center-align" style="margin-top: 20px;">
+                <a class="waves-effect waves-light btn green" onclick="fecharAnalise()">
+                    <i class="material-icons left">check</i>Entendido
+                </a>
+            </div>
         </div>
     `);
+    
+    // Configurar interações
+    if (analiseJanela.codigo === "1.2") {
+        $('#btn-sinais-sono').on('click', function() {
+            $('#lista-sinais-sono').toggleClass('hidden');
+            $(this).find('i').text(
+                $('#lista-sinais-sono').hasClass('hidden') ? 'visibility' : 'visibility_off'
+            );
+            $(this).find('span').text(
+                $('#lista-sinais-sono').hasClass('hidden') ? 'Ver Sinais de Sono Comuns' : 'Ocultar Sinais de Sono'
+            );
+        });
+    }
+    
+    if (analiseJanela.codigo === "1.3") {
+        setTimeout(() => {
+            iniciarFluxoPerguntas();
+        }, 100);
+    }
 }
+
+// Função para iniciar fluxo de perguntas (1.3)
+function iniciarFluxoPerguntas() {
+    const container = $("#fluxo-perguntas");
+    container.empty(); // Limpar container antes de começar
+    let etapa = 0;
+    
+    const perguntas = [
+        {
+            texto: "O bebê estava fora da rotina, nessa soneca?",
+            opcoes: ["Sim", "Não"],
+            handler: (resposta, perguntaEl) => {
+                if (resposta === "Sim") {
+                    perguntaEl.append(`<p class="green-text" style="margin-top: 10px;"><i class="material-icons tiny">check_circle</i> Tudo bem! Sair da rotina faz parte e vamos tentar melhorar na próxima soneca.</p>`);
+                    return true; // Finaliza fluxo
+                }
+                return false; // Continua fluxo
+            }
+        },
+        {
+            texto: "Acha que a dor pode ter atrapalhado essa soneca?",
+            opcoes: ["Sim", "Não", "Não sei"],
+            handler: (resposta, perguntaEl) => {
+                if (resposta === "Sim") {
+                    perguntaEl.append(`
+                        <div class="input-field" style="margin-top: 15px;">
+                            <select id="tipo-dor">
+                                <option value="" disabled selected>Selecione o tipo de dor</option>
+                                <option value="colicas">Cólicas</option>
+                                <option value="gases">Gases</option>
+                                <option value="disquesia">Disquesia</option>
+                                <option value="dentes">Nascimento de dentes</option>
+                                <option value="refluxo">Doença do refluxo</option>
+                                <option value="outra">Outra</option>
+                            </select>
+                            <label>Tipo de dor</label>
+                        </div>
+                        <p class="blue-text"><i class="material-icons tiny">info</i> A dor pode mesmo estressar o bebê. Se possível, converse com seu pediatra.</p>
+                    `);
+                    $('select').formSelect();
+                }
+                return false;
+            }
+        },
+        {
+            texto: "Que horas começou a fazer o bebê dormir?",
+            opcoes: ["Imediatamente após sinais", "Após 15-20 minutos"],
+            extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo explicativo</a></p>`,
+            handler: (resposta, perguntaEl) => false
+        },
+        {
+            texto: "Consegue identificar algum gatilho do choro?",
+            opcoes: ["Sim", "Não"],
+            handler: (resposta, perguntaEl) => {
+                if (resposta === "Sim") {
+                    perguntaEl.append(`
+                        <div style="margin-top: 15px;">
+                            <input type="text" placeholder="Qual gatilho?" class="browser-default">
+                        </div>
+                        <p class="blue-text"><i class="material-icons tiny">lightbulb_outline</i> Eles percebem quando vão dormir. Tente alterar a forma.</p>
+                    `);
+                }
+                return false;
+            }
+        },
+        {
+            texto: "Onde ele dormiu?",
+            opcoes: ["No quarto dos pais", "No próprio quarto", "Outro"],
+            handler: (resposta, perguntaEl) => {
+                perguntaEl.append(`
+                    <div style="margin-top: 15px;">
+                        <p><strong>Como está o ambiente?</strong></p>
+                        <div class="ambiente-options">
+                            <a class="waves-effect waves-light btn-small btn-ambiente">Claro</a>
+                            <a class="waves-effect waves-light btn-small btn-ambiente">Parcialmente escuro</a>
+                            <a class="waves-effect waves-light btn-small btn-ambiente">Escuro</a>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <p><strong>E quanto aos ruídos?</strong></p>
+                        <div class="ruidos-options">
+                            <a class="waves-effect waves-light btn-small btn-ruido">Barulhento</a>
+                            <a class="waves-effect waves-light btn-small btn-ruido">Parcialmente silencioso</a>
+                            <a class="waves-effect waves-light btn-small btn-ruido">Silencioso</a>
+                        </div>
+                    </div>
+                `);
+                
+                // Configurar eventos para os botões de ambiente e ruídos
+                setTimeout(() => {
+                    $('.btn-ambiente').on('click', function() {
+                        $('.btn-ambiente').removeClass('green');
+                        $(this).addClass('green');
+                    });
+                    
+                    $('.btn-ruido').on('click', function() {
+                        $('.btn-ruido').removeClass('green');
+                        $(this).addClass('green');
+                    });
+                }, 100);
+                
+                return false;
+            }
+        },
+        {
+            texto: "Houve briga para dormir ou muito choro?",
+            opcoes: ["Sim", "Não"],
+            extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo sobre brigas para dormir</a></p>`,
+            handler: (resposta, perguntaEl) => false
+        },
+        {
+            texto: "Você tentou fazê-lo dormir sem alguma associação?",
+            opcoes: ["Sim", "Não"],
+            extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo sobre associações de sono</a></p>`,
+            handler: (resposta, perguntaEl) => {
+                perguntaEl.append(`<p class="green-text" style="margin-top: 15px;"><i class="material-icons tiny">check_circle</i> Fim das perguntas desta análise.</p>`);
+                return true; // Finaliza fluxo
+            }
+        }
+    ];
+    
+    function renderizarPergunta() {
+        if (etapa >= perguntas.length) return;
+        
+        const pergunta = perguntas[etapa];
+        const perguntaId = `pergunta-${etapa}`;
+        
+        const perguntaHtml = `
+            <div id="${perguntaId}" class="pergunta-card" style="margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #26a69a;">
+                <div class="pergunta-header">
+                    <span class="pergunta-number">${etapa + 1}/${perguntas.length}</span>
+                    <h6 style="margin: 0 0 15px 0; color: #26a69a;">${pergunta.texto}</h6>
+                </div>
+                <div class="opcoes-container" style="margin-bottom: 10px;">
+                    ${pergunta.opcoes.map(opcao => 
+                        `<a class="waves-effect waves-light btn opcao-btn" data-resposta="${opcao}" 
+                           style="margin: 5px; min-width: 120px; position: relative;">
+                            ${opcao}
+                        </a>`
+                    ).join('')}
+                </div>
+                ${pergunta.extra || ''}
+            </div>
+        `;
+        
+        container.append(perguntaHtml);
+        
+        // Configurar evento de clique para os botões
+        $(`#${perguntaId} .opcao-btn`).on('click', function() {
+            const resposta = $(this).data('resposta');
+            const perguntaEl = $(this).closest('.pergunta-card');
+            
+            // Marcar botão selecionado e desabilitar outros
+            $(this).addClass('green');
+            $(this).html(`${resposta} <i class="material-icons right" style="font-size: 18px;">check</i>`);
+            $(this).siblings('.opcao-btn').addClass('disabled').off('click');
+            
+            // Adicionar check de confirmação na pergunta
+            perguntaEl.find('.pergunta-header h6').append(' <i class="material-icons green-text" style="font-size: 20px; vertical-align: middle;">check_circle</i>');
+            
+            // Executar handler da pergunta
+            const finalizar = pergunta.handler(resposta, perguntaEl);
+            
+            // Avançar para próxima pergunta após breve delay
+            setTimeout(() => {
+                if (!finalizar) {
+                    etapa++;
+                    renderizarPergunta();
+                }
+            }, 800);
+        });
+    }
+    
+    // Iniciar primeira pergunta
+    renderizarPergunta();
+
+}
+
+// Função auxiliar para calcular próxima janela
+function calcularProximaJanela() {
+    if (!ultimoHorarioAcordou) return "Aguardando dados...";
+    
+    const [hora, minuto] = ultimoHorarioAcordou.split(':');
+    const minutos = parseInt(hora) * 60 + parseInt(minuto);
+    const proximaJanela = minutos + tempoAcordado;
+    
+    const horasProxima = Math.floor(proximaJanela / 60) % 24;
+    const minutosProxima = proximaJanela % 60;
+    
+    return `${horasProxima.toString().padStart(2, '0')}:${minutosProxima.toString().padStart(2, '0')}`;
+}
+
+// Função para fechar análise
+function fecharAnalise() {
+    $('#modal-analise-soneca').modal('close');
+}
+
+
 
 // Função para calcular próxima janela de sono
 function calcularProximaJanela() {
@@ -1246,5 +1553,49 @@ function calcularProximaJanela() {
     return `${horasProxima.toString().padStart(2, '0')}:${minutosProxima.toString().padStart(2, '0')}`;
 }
     </script>
+
+    <style>
+.hidden { display: none; }
+.green-text { color: #4caf50 !important; }
+.red-text { color: #f44336 !important; }
+.blue-text { color: #2196f3 !important; }
+
+.pergunta-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.pergunta-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.pergunta-number {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: #26a69a;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.opcao-btn {
+    transition: all 0.3s ease;
+}
+.opcao-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.opcao-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.opcao-btn.green {
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+}
+.pergunta-header {
+    position: relative;
+    padding-right: 60px;
+}
+</style>
 </body>
 </html>

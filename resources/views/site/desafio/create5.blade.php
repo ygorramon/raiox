@@ -1374,7 +1374,7 @@ function iniciarFluxoPerguntas() {
                 if (resposta === "Sim") {
                     perguntaEl.append(`
                         <div class="input-field" style="margin-top: 15px;">
-                            <select id="tipo-dor">
+                            <select id="tipo-dor" class="browser-default">
                                 <option value="" disabled selected>Selecione o tipo de dor</option>
                                 <option value="colicas">Cólicas</option>
                                 <option value="gases">Gases</option>
@@ -1392,15 +1392,33 @@ function iniciarFluxoPerguntas() {
                 return false;
             }
         },
-        {
-            texto: "Que horas começou a fazer o bebê dormir?",
-            opcoes: [
-                { texto: "Imediatamente após sinais", classe: "blue", quebra: true },
-                { texto: "Após 15-20 minutos", classe: "blue", quebra: true }
-            ],
-            extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo explicativo</a></p>`,
-            handler: (resposta, perguntaEl) => false
+       {
+    texto: "Que horas começou a fazer o bebê dormir?",
+    opcoes: [
+        { 
+            texto: "Imediatamente após sinais", 
+            classe: "green", 
+            compacto: "Imediatamente",
+            quebra: true 
         },
+        { 
+            texto: "Após 15-20 minutos", 
+            classe: "orange", // Mudei de yellow para orange para melhor contraste
+            compacto: "15-20 min depois",
+            quebra: true 
+        }
+    ],
+    extra: `<p style="margin-top: 10px;"><a href="#!" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo explicativo</a></p>`,
+    handler: (resposta, perguntaEl) => {
+        // Adicionar feedback baseado na resposta
+        if (resposta === "Imediatamente após sinais") {
+            perguntaEl.append('<p class="green-text"><i class="material-icons tiny">thumb_up</i> Ótimo! Isso é o ideal.</p>');
+        } else {
+            perguntaEl.append('<p class="orange-text"><i class="material-icons tiny">info</i> Tente iniciar mais rapidamente na próxima vez.</p>');
+        }
+        return false;
+    }
+},
         {
             texto: "Consegue identificar algum gatilho do choro?",
             opcoes: [
@@ -1420,41 +1438,50 @@ function iniciarFluxoPerguntas() {
             }
         },
         {
-            texto: "Onde ele dormiu?",
-            opcoes: [
-                { texto: "No quarto dos pais", classe: "blue", quebra: true },
-                { texto: "No próprio quarto", classe: "blue", quebra: true },
-                { texto: "Outro", classe: "blue", quebra: true }
-            ],
-            handler: (resposta, perguntaEl) => {
-                perguntaEl.append(`
-                    <div style="margin-top: 15px;">
-                        <p><strong>Como está o ambiente?</strong></p>
-                        <div class="ambiente-options">
-                            <a class="waves-effect waves-light btn-small blue">Claro</a>
-                            <a class="waves-effect waves-light btn-small blue">Parcialmente escuro</a>
-                            <a class="waves-effect waves-light btn-small blue">Escuro</a>
-                        </div>
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <p><strong>E quanto aos ruídos?</strong></p>
-                        <div class="ruidos-options">
-                            <a class="waves-effect waves-light btn-small blue">Barulhento</a>
-                            <a class="waves-effect waves-light btn-small blue">Parcialmente silencioso</a>
-                            <a class="waves-effect waves-light btn-small blue">Silencioso</a>
-                        </div>
-                    </div>
-                `);
-                
-                setTimeout(() => {
-                    $('.btn-ambiente, .btn-ruido').on('click', function() {
-                        $(this).addClass('green').siblings().removeClass('green');
-                    });
-                }, 100);
-                
-                return false;
-            }
-        },
+    texto: "Onde ele dormiu?",
+    opcoes: [
+        { texto: "Quarto dos pais", classe: "blue", compacto: "Quarto pais" },
+        { texto: "Próprio quarto", classe: "blue", compacto: "Seu quarto" },
+        { texto: "Outro local", classe: "blue", compacto: "Outro" }
+    ],
+    handler: (resposta, perguntaEl) => {
+        perguntaEl.append(`
+            <div style="margin-top: 15px;">
+                <p><strong>Como está o ambiente?</strong></p>
+                <div class="ambiente-options" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a class="waves-effect waves-light btn-small blue ambiente-btn" data-valor="claro">Claro</a>
+                    <a class="waves-effect waves-light btn-small blue ambiente-btn" data-valor="parcial-escuro">Parc. escuro</a>
+                    <a class="waves-effect waves-light btn-small blue ambiente-btn" data-valor="escuro">Escuro</a>
+                </div>
+            </div>
+            <div style="margin-top: 15px;">
+                <p><strong>E quanto aos ruídos?</strong></p>
+                <div class="ruidos-options" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a class="waves-effect waves-light btn-small blue ruido-btn" data-valor="barulhento">Barulhento</a>
+                    <a class="waves-effect waves-light btn-small blue ruido-btn" data-valor="parcial-silencioso">Parc. silêncio</a>
+                    <a class="waves-effect waves-light btn-small blue ruido-btn" data-valor="silencioso">Silencioso</a>
+                </div>
+            </div>
+        `);
+        
+        // Configurar seleção para ambiente e ruídos
+        setTimeout(() => {
+            $('.ambiente-btn').on('click', function() {
+                $(this).addClass('green').siblings().removeClass('green');
+                // Adicionar check visual
+                $(this).append(' <i class="material-icons tiny" style="font-size: 14px;">check</i>');
+            });
+            
+            $('.ruido-btn').on('click', function() {
+                $(this).addClass('green').siblings().removeClass('green');
+                // Adicionar check visual
+                $(this).append(' <i class="material-icons tiny" style="font-size: 14px;">check</i>');
+            });
+        }, 100);
+        
+        return false;
+    }
+},
         {
             texto: "Houve briga para dormir ou muito choro?",
             opcoes: [
@@ -1479,67 +1506,85 @@ function iniciarFluxoPerguntas() {
     ];
     
     function renderizarPergunta() {
-        if (etapa >= perguntas.length) return;
-        
-        const pergunta = perguntas[etapa];
-        const perguntaId = `pergunta-${etapa}`;
-        
-        const perguntaHtml = `
-            <div id="${perguntaId}" class="pergunta-card" style="margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #26a69a;">
-                <div class="pergunta-header">
-                    <span class="pergunta-number">${etapa + 1}/${perguntas.length}</span>
-                    <h6 style="margin: 0 0 15px 0; color: #26a69a;">${pergunta.texto}</h6>
-                </div>
-                <div class="opcoes-container" style="margin-bottom: 10px;">
-                    ${pergunta.opcoes.map(opcao => 
-                        `<a class="waves-effect waves-light btn opcao-btn ${opcao.quebra ? 'quebra-linha' : ''}" 
-                           data-resposta="${opcao.texto}" 
-                           style="margin: 5px; ${opcao.quebra ? 'width: 100%; text-align: center; margin: 8px 0;' : 'min-width: 120px;'}">
-                            ${opcao.texto}
-                        </a>`
-                    ).join('')}
-                </div>
-                ${pergunta.extra || ''}
+    if (etapa >= perguntas.length) return;
+    
+    const pergunta = perguntas[etapa];
+    const perguntaId = `pergunta-${etapa}`;
+    
+    const perguntaHtml = `
+        <div id="${perguntaId}" class="pergunta-card">
+            <div class="pergunta-header">
+                <span class="pergunta-number">${etapa + 1}/${perguntas.length}</span>
+                <h6>${pergunta.texto}</h6>
             </div>
-        `;
+            <div class="opcoes-container">
+                ${pergunta.opcoes.map(opcao => {
+                    const textoExibicao = window.innerWidth < 768 && opcao.compacto ? opcao.compacto : opcao.texto;
+                    return `
+                        <a class="waves-effect waves-light btn opcao-btn  
+                           data-resposta="${opcao.texto}" 
+                           data-texto-original="${opcao.texto}"
+                           data-texto-compacto="${opcao.compacto || opcao.texto}">
+                            ${textoExibicao}
+                        </a>`;
+                }).join('')}
+            </div>
+            ${pergunta.extra || ''}
+        </div>
+    `;
+    
+    container.append(perguntaHtml);
+    
+    // Aplicar classes de cor e configurar responsividade
+    perguntas[etapa].opcoes.forEach((opcao, index) => {
+        const $botao = $(`#${perguntaId} .opcao-btn`).eq(index);
+        $botao.addClass(opcao.classe);
         
-        container.append(perguntaHtml);
+        // Atualizar texto baseado no tamanho da tela
+        const atualizarTextoBotao = function() {
+            const texto = window.innerWidth < 768 && opcao.compacto ? opcao.compacto : opcao.texto;
+            $botao.text(texto);
+            
+            // Se já estiver selecionado, manter o ícone de check
+            if ($botao.hasClass('selected')) {
+                $botao.append(' <i class="material-icons right" style="font-size: 18px;">check</i>');
+            }
+        };
         
-        // Aplicar classes de cor aos botões
-        perguntas[etapa].opcoes.forEach((opcao, index) => {
-            $(`#${perguntaId} .opcao-btn`).eq(index).addClass(opcao.classe);
-        });
+        // Atualizar na inicialização e no redimensionamento
+        atualizarTextoBotao();
+        $(window).on('resize', atualizarTextoBotao);
+    });
+    
+    // Configurar evento de clique (mantém o mesmo)
+    $(`#${perguntaId} .opcao-btn`).on('click', function() {
+        const resposta = $(this).data('resposta');
+        const perguntaEl = $(this).closest('.pergunta-card');
         
-        // Configurar evento de clique para os botões
-        $(`#${perguntaId} .opcao-btn`).on('click', function() {
-            const resposta = $(this).data('resposta');
-            const perguntaEl = $(this).closest('.pergunta-card');
-            
-            // Marcar botão selecionado (verde escuro) e desabilitar outros
-            $(this).addClass('darken-2').addClass('selected');
-            $(this).html(`${resposta} <i class="material-icons right" style="font-size: 18px;">check</i>`);
-            
-            // Desabilitar outros botões
-            $(this).siblings('.opcao-btn')
-                .addClass('disabled lighten-2')
-                .off('click')
-                .css('opacity', '0.7');
-            
-            // Adicionar check de confirmação na pergunta
-            perguntaEl.find('.pergunta-header h6').append(' <i class="material-icons green-text" style="font-size: 20px; vertical-align: middle;">check_circle</i>');
-            
-            // Executar handler da pergunta
-            const finalizar = pergunta.handler(resposta, perguntaEl);
-            
-            // Avançar para próxima pergunta após breve delay
-            setTimeout(() => {
-                if (!finalizar) {
-                    etapa++;
-                    renderizarPergunta();
-                }
-            }, 800);
-        });
-    }
+        // Marcar como selecionado
+        $(this).addClass('darken-2 selected')
+               .html(`${$(this).text()} <i class="material-icons right" style="font-size: 18px;">check</i>`);
+        
+        // Desabilitar outros botões
+        $(this).siblings('.opcao-btn')
+            .addClass('disabled lighten-2')
+            .off('click')
+            .css('opacity', '0.7');
+        
+        // Adicionar check na pergunta
+        perguntaEl.find('.pergunta-header h6').append(' <i class="material-icons green-text" style="font-size: 20px; vertical-align: middle;">check_circle</i>');
+        
+        // Executar handler
+        const finalizar = pergunta.handler(resposta, perguntaEl);
+        
+        setTimeout(() => {
+            if (!finalizar) {
+                etapa++;
+                renderizarPergunta();
+            }
+        }, 800);
+    });
+}
     
     // Iniciar primeira pergunta
     renderizarPergunta();
@@ -1585,13 +1630,120 @@ function calcularProximaJanela() {
 .red-text { color: #f44336 !important; }
 .blue-text { color: #2196f3 !important; }
 
+
+
 .pergunta-card {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #26a69a;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-.pergunta-card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+
+.opcoes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
+
+.opcao-btn {
+    transition: all 0.3s ease;
+    white-space: normal;
+    word-wrap: break-word;
+    height: auto;
+    min-height: 36px;
+    line-height: 1.4;
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    max-width: 200px;
+}
+
+.opcao-btn.quebra-linha {
+    flex-basis: 100%;
+    max-width: none;
+}
+
+.opcao-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.opcao-btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.opcao-btn.selected {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+.ambiente-btn, .ruido-btn {
+    margin: 4px;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .pergunta-card {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .opcoes-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .opcao-btn {
+        width: 100%;
+        max-width: none;
+        margin: 4px 0 !important;
+    }
+    
+    .ambiente-options, .ruidos-options {
+        flex-direction: column;
+    }
+    
+    .ambiente-btn, .ruido-btn {
+        width: 100%;
+        margin: 4px 0 !important;
+    }
+    
+    .pergunta-number {
+        top: 5px;
+        right: 10px;
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+    .opcao-btn.longa {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 992px) {
+     .opcao-btn.longa {
+        font-size: 13.5px;
+        padding: 9px 11px;
+    }
+    .opcao-btn {
+        min-width: 140px;
+        max-width: 180px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
 .pergunta-number {
     position: absolute;
     top: 10px;
@@ -1603,76 +1755,22 @@ function calcularProximaJanela() {
     font-size: 12px;
     font-weight: bold;
 }
-.opcao-btn {
-    transition: all 0.3s ease;
-    white-space: normal;
-    word-wrap: break-word;
-    height: auto;
-    min-height: 36px;
-    line-height: 1.4;
-    padding: 8px 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.opcao-btn.quebra-linha {
-    display: block;
-    width: 100%;
-    margin: 8px 0 !important;
-}
-.opcao-btn:hover:not(.disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-.opcao-btn.disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-.opcao-btn.selected {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-}
-.opcoes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-/* Responsividade para mobile */
-@media (max-width: 600px) {
-    .opcoes-container {
-        flex-direction: column;
-    }
-    .opcao-btn {
-        width: 100%;
-        margin: 5px 0 !important;
-    }
-    .pergunta-card {
-        padding: 15px;
-        margin: 15px 0;
-    }
-    .pergunta-number {
-        top: 5px;
-        right: 10px;
-        font-size: 10px;
-        padding: 1px 6px;
-    }
-}
-.opcao-btn {
-    transition: all 0.3s ease;
-}
-.opcao-btn:hover:not(.disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-.opcao-btn.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-.opcao-btn.green {
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
-}
+
 .pergunta-header {
     position: relative;
     padding-right: 60px;
+    margin-bottom: 15px;
+}
+
+.pergunta-header h6 {
+    margin: 0;
+    color: #26a69a;
+    font-weight: 500;
+}
+.opcao-btn.longa {
+    font-size: 14px;
+    padding: 10px 12px;
+    line-height: 1.3;
 }
 </style>
 </body>

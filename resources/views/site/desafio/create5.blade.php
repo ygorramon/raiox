@@ -2,623 +2,645 @@
 
 @section('css')
 
-    <!-- Materialize CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- <style>
-        .sub-opcoes {
-    border-left: 3px solid #26a69a;
-    padding-left: 15px;
-    margin: 10px 0;
-}
-
-.associacoes-info p {
-    margin: 5px 0;
-    padding: 5px;
-    background: rgba(255,255,255,0.7);
-    border-radius: 4px;
-}
-
-.outra-detalhe {
-    margin-top: 5px;
-    margin-left: 25px;
-    width: calc(100% - 25px);
-}
-
-.hidden {
-    display: none;
-}
-        .accordion.despertar .accordion-header {
-    background-color: #f3e5f5;
-    border-left: 5px solid #7e57c2;
-}
-
-.detalhes-despertar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-@media (max-width: 600px) {
-    .detalhes-despertar {
-        grid-template-columns: 1fr;
+        <!-- Materialize CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <style>
+        #container-finalizar-dia {
+        border-radius: 10px;
+        padding: 20px;
     }
-}
-.hidden { display: none; }
-.green-text { color: #4caf50 !important; }
-.red-text { color: #f44336 !important; }
-.blue-text { color: #2196f3 !important; }
+
+    #container-finalizar-dia .card-panel {
+        border-left: 5px solid #ff9800;
+    }
+
+    #container-finalizar-dia h5 {
+        color: #ff9800;
+        margin-top: 0;
+    }
+
+    #container-finalizar-dia .btn-large {
+        margin-top: 15px;
+        background-color: #ff9800;
+    }
+
+    #container-finalizar-dia .btn-large:hover {
+        background-color: #f57c00;
+    }
+            .sub-opcoes {
+        border-left: 3px solid #26a69a;
+        padding-left: 15px;
+        margin: 10px 0;
+    }
+
+    .associacoes-info p {
+        margin: 5px 0;
+        padding: 5px;
+        background: rgba(255,255,255,0.7);
+        border-radius: 4px;
+    }
+
+    .outra-detalhe {
+        margin-top: 5px;
+        margin-left: 25px;
+        width: calc(100% - 25px);
+    }
+
+    .hidden {
+        display: none;
+    }
+            .accordion.despertar .accordion-header {
+        background-color: #f3e5f5;
+        border-left: 5px solid #7e57c2;
+    }
+
+    .detalhes-despertar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .detalhes-despertar {
+            grid-template-columns: 1fr;
+        }
+    }
+    .hidden { display: none; }
+    .green-text { color: #4caf50 !important; }
+    .red-text { color: #f44336 !important; }
+    .blue-text { color: #2196f3 !important; }
 
 
 
-.pergunta-card {
-    margin: 20px 0;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #26a69a;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.opcoes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.opcao-btn {
-    transition: all 0.3s ease;
-    white-space: normal;
-    word-wrap: break-word;
-    height: auto;
-    min-height: 36px;
-    line-height: 1.4;
-    padding: 8px 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex: 1;
-    min-width: 120px;
-    max-width: 200px;
-}
-
-.opcao-btn.quebra-linha {
-    flex-basis: 100%;
-    max-width: none;
-}
-
-.opcao-btn:hover:not(.disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.opcao-btn.disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-.opcao-btn.selected {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-}
-
-.ambiente-btn, .ruido-btn {
-    margin: 4px;
-    flex: 1;
-    min-width: 100px;
-    text-align: center;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
     .pergunta-card {
-        padding: 15px;
-        margin: 15px 0;
+        margin: 20px 0;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #26a69a;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    
+
     .opcoes-container {
-        flex-direction: column;
-        gap: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
     }
-    
+
     .opcao-btn {
-        width: 100%;
+        transition: all 0.3s ease;
+        white-space: normal;
+        word-wrap: break-word;
+        height: auto;
+        min-height: 36px;
+        line-height: 1.4;
+        padding: 8px 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex: 1;
+        min-width: 120px;
+        max-width: 200px;
+    }
+
+    .opcao-btn.quebra-linha {
+        flex-basis: 100%;
         max-width: none;
-        margin: 4px 0 !important;
     }
-    
-    .ambiente-options, .ruidos-options {
-        flex-direction: column;
+
+    .opcao-btn:hover:not(.disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    
+
+    .opcao-btn.disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .opcao-btn.selected {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+    }
+
     .ambiente-btn, .ruido-btn {
-        width: 100%;
-        margin: 4px 0 !important;
+        margin: 4px;
+        flex: 1;
+        min-width: 100px;
+        text-align: center;
     }
-    
-    .pergunta-number {
-        top: 5px;
-        right: 10px;
-        font-size: 10px;
-        padding: 1px 6px;
-    }
-    .opcao-btn.longa {
-        font-size: 13px;
-        padding: 8px 10px;
-    }
-}
 
-@media (min-width: 601px) and (max-width: 992px) {
-     .opcao-btn.longa {
-        font-size: 13.5px;
-        padding: 9px 11px;
-    }
-    .opcao-btn {
-        min-width: 140px;
-        max-width: 180px;
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-}
-
-.pergunta-number {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: #26a69a;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.pergunta-header {
-    position: relative;
-    padding-right: 60px;
-    margin-bottom: 15px;
-}
-
-.pergunta-header h6 {
-    margin: 0;
-    color: #26a69a;
-    font-weight: 500;
-}
-.opcao-btn.longa {
-    font-size: 14px;
-    padding: 10px 12px;
-    line-height: 1.3;
-}
-
-/* Estilos para o accordion */
-.accordion {
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 10px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-
-.accordion-header {
-    padding: 15px 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-}
-
-.accordion-header:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    background: white;
-}
-
-.accordion-content-inner {
-    padding: 20px;
-    border-top: 1px solid #eee;
-}
-
-.accordion.open .accordion-content {
-    max-height: 700px;
-}
-
-.accordion.open .accordion-header {
-    border-bottom: 1px solid #eee;
-}
-
-.accordion-icon {
-    transition: transform 0.3s ease;
-}
-
-.accordion.open .accordion-icon {
-    transform: rotate(180deg);
-}
-
-/* Estilos específicos para os tipos de status */
-.accordion.adequado .accordion-header {
-    background-color: #e8f5e9;
-    border-left: 5px solid #4caf50;
-}
-
-.accordion.atencao .accordion-header {
-    background-color: #fffde7;
-    border-left: 5px solid #ffc107;
-}
-
-.accordion.vazio .accordion-header {
-    background-color: #f5f5f5;
-    border-left: 5px solid #9e9e9e;
-}
-
-/* Detalhes da soneca */
-.detalhes-soneca {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.detalhe-item {
-    padding: 10px;
-    background: #f9f9f9;
-    border-radius: 4px;
-}
-
-.detalhe-item strong {
-    display: block;
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 5px;
-}
-
-.recomendacao {
-    background: #e3f2fd;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
-    border-left: 4px solid #2196f3;
-}
-
-.respostas-questionario {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-
-.resposta-item {
-    padding: 10px;
-    margin: 5px 0;
-    background: #f5f5f5;
-    border-radius: 4px;
-    border-left: 3px solid #26a69a;
-}
-
-@media (max-width: 768px) {
-    
-    
-    .accordion-header {
-        padding: 12px 15px;
-    }
-    
-    .accordion-content-inner {
-        padding: 15px;
-    }
-}
-.resposta-item {
-    padding: 10px;
-    margin: 5px 0;
-    background: #f5f5f5;
-    border-radius: 4px;
-    border-left: 3px solid #26a69a;
-}
-
-.resposta-sim {
-    color: #4caf50;
-    font-weight: bold;
-}
-
-.resposta-nao {
-    color: #f44336;
-    font-weight: bold;
-}
-
-.detalhes-resposta {
-    font-size: 0.9em;
-    color: #666;
-}
-
-.resposta-timestamp {
-    margin-top: 5px;
-    font-size: 0.8em;
-    color: #999;
-}
-
-#modal-analise-soneca .modal-content {
-    max-height: 85vh;
-    overflow-y: auto;
-}
-
-.video-recomendacao {
-    border-left: 4px solid #2196F3;
-}
-
-.video-lista a {
-    display: block;
-    padding: 8px;
-    margin: 5px 0;
-    background: white;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.video-lista a:hover {
-    background: #bbdefb;
-    transform: translateX(5px);
-}
-
-.sinais-sono {
-    border-left: 4px solid #FF9800;
-}
-
-.sinais-sono .col {
-    padding: 5px;
-    font-size: 0.9em;
-}
-
-/* Ícones materiais */
-.material-icons.tiny {
-    font-size: 16px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-#registro-despertares .accordion .accordion-header {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#registro-despertares .accordion .accordion-header:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-#registro-despertares .accordion .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    background: white;
-}
-
-#registro-despertares .accordion .accordion-content-inner {
-    padding: 20px;
-    border-top: 1px solid #eee;
-}
-
-#registro-despertares .accordion.open .accordion-content {
-    max-height: 800px; /* Altura suficiente para o conteúdo */
-}
-
-#registro-despertares .accordion.open .accordion-header {
-    border-bottom: 1px solid #eee;
-}
-
-#registro-despertares .accordion-icon {
-    transition: transform 0.3s ease;
-}
-
-#registro-despertares .accordion.open .accordion-icon {
-    transform: rotate(180deg);
-}
-
-/* Estilos específicos para os tipos de status dos despertares */
-#registro-despertares .accordion.adequado .accordion-header {
-    background-color: #e8f5e9;
-    border-left: 5px solid #4caf50;
-}
-
-#registro-despertares .accordion.atencao .accordion-header {
-    background-color: #fffde7;
-    border-left: 5px solid #ffc107;
-}
-
-#registro-despertares .accordion.vazio .accordion-header {
-    background-color: #f5f5f5;
-    border-left: 5px solid #9e9e9e;
-}
-
-/* Detalhes do despertar */
-.detalhes-despertar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.detalhes-despertar .detalhe-item {
-    padding: 10px;
-    background: #f9f9f9;
-    border-radius: 4px;
-}
-
-.detalhes-despertar .detalhe-item strong {
-    display: block;
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 5px;
-}
-
-@media (max-width: 768px) {
-    .detalhes-despertar {
-        grid-template-columns: 1fr;
-    }
-    
-    #registro-despertares .accordion .accordion-header {
-        padding: 12px 15px;
-    }
-    
-    #registro-despertares .accordion .accordion-content-inner {
-        padding: 15px;
-    }
-}
-</style>
-    <style>
-        
-        body {
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-      
-
-        .card {
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .progress {
-            margin: 20px 0;
-        }
-
-        .btn-large {
-            margin: 10px;
-        }
-
-        .modal {
-            max-height: 80%;
-            overflow-y: auto;
-        }
-
-        .time-input {
-            max-width: 120px;
-            display: inline-block;
-        }
-
-        .sugestao-horario {
-            font-weight: bold;
-            color: #00796b;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        input[type="time"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        .time-input-container {
+    /* Responsividade */
+    @media (max-width: 600px) {
+        .pergunta-card {
+            padding: 15px;
             margin: 15px 0;
         }
 
-        .time-input-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        .opcoes-container {
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .item-rotina {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: relative;
+        .opcao-btn {
+            width: 100%;
+            max-width: none;
+            margin: 4px 0 !important;
         }
-        .rotina-icon {
-            margin-right: 15px;
-            font-size: 24px;
+
+        .ambiente-options, .ruidos-options {
+            flex-direction: column;
         }
-        .rotina-info {
-            flex-grow: 1;
+
+        .ambiente-btn, .ruido-btn {
+            width: 100%;
+            margin: 4px 0 !important;
         }
-        .rotina-status {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .item-vazio {
-            background-color: #f9f9f9;
-            border: 1px dashed #ccc;
-        }
-        .status-vazio {
-            background-color: #e0e0e0;
-            color: #757575;
-        }
-        .item-adequado {
-            background-color: #e8f5e9;
-            border-left: 4px solid #4caf50;
-        }
-        .status-adequado {
-            background-color: #4caf50;
-            color: white;
-        }
-        .item-atencao {
-            background-color: #fff8e1;
-            border-left: 4px solid #ffc107;
-        }
-        .status-atencao {
-            background-color: #ffc107;
-            color: #333;
-        }
-        .horario-sugerido {
-            background-color: #e3f2fd;
-            padding: 8px 12px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-        }
-        .horario-sugerido i {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-        .btn-continuar-rotina {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .btn-excluir {
-            position: absolute;
-            top: 10px;
+
+        .pergunta-number {
+            top: 5px;
             right: 10px;
-            padding: 5px;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 10px;
+            padding: 1px 6px;
         }
-        .btn-excluir i {
-            font-size: 16px;
-            margin: 0;
+        .opcao-btn.longa {
+            font-size: 13px;
+            padding: 8px 10px;
         }
-        .acoes-rotina {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
+    }
+
+    @media (min-width: 601px) and (max-width: 992px) {
+         .opcao-btn.longa {
+            font-size: 13.5px;
+            padding: 9px 11px;
         }
+        .opcao-btn {
+            min-width: 140px;
+            max-width: 180px;
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+    }
+
+    .pergunta-number {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: #26a69a;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .pergunta-header {
+        position: relative;
+        padding-right: 60px;
+        margin-bottom: 15px;
+    }
+
+    .pergunta-header h6 {
+        margin: 0;
+        color: #26a69a;
+        font-weight: 500;
+    }
+    .opcao-btn.longa {
+        font-size: 14px;
+        padding: 10px 12px;
+        line-height: 1.3;
+    }
+
+    /* Estilos para o accordion */
+    .accordion {
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 10px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .accordion-header {
+        padding: 15px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+    }
+
+    .accordion-header:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background: white;
+    }
+
+    .accordion-content-inner {
+        padding: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .accordion.open .accordion-content {
+        max-height: 700px;
+    }
+
+    .accordion.open .accordion-header {
+        border-bottom: 1px solid #eee;
+    }
+
+    .accordion-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .accordion.open .accordion-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Estilos específicos para os tipos de status */
+    .accordion.adequado .accordion-header {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+    }
+
+    .accordion.atencao .accordion-header {
+        background-color: #fffde7;
+        border-left: 5px solid #ffc107;
+    }
+
+    .accordion.vazio .accordion-header {
+        background-color: #f5f5f5;
+        border-left: 5px solid #9e9e9e;
+    }
+
+    /* Detalhes da soneca */
+    .detalhes-soneca {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .detalhe-item {
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 4px;
+    }
+
+    .detalhe-item strong {
+        display: block;
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+
+    .recomendacao {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border-left: 4px solid #2196f3;
+    }
+
+    .respostas-questionario {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+
+    .resposta-item {
+        padding: 10px;
+        margin: 5px 0;
+        background: #f5f5f5;
+        border-radius: 4px;
+        border-left: 3px solid #26a69a;
+    }
+
+    @media (max-width: 768px) {
+
+
+        .accordion-header {
+            padding: 12px 15px;
+        }
+
+        .accordion-content-inner {
+            padding: 15px;
+        }
+    }
+    .resposta-item {
+        padding: 10px;
+        margin: 5px 0;
+        background: #f5f5f5;
+        border-radius: 4px;
+        border-left: 3px solid #26a69a;
+    }
+
+    .resposta-sim {
+        color: #4caf50;
+        font-weight: bold;
+    }
+
+    .resposta-nao {
+        color: #f44336;
+        font-weight: bold;
+    }
+
+    .detalhes-resposta {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .resposta-timestamp {
+        margin-top: 5px;
+        font-size: 0.8em;
+        color: #999;
+    }
+
+    #modal-analise-soneca .modal-content {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .video-recomendacao {
+        border-left: 4px solid #2196F3;
+    }
+
+    .video-lista a {
+        display: block;
+        padding: 8px;
+        margin: 5px 0;
+        background: white;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .video-lista a:hover {
+        background: #bbdefb;
+        transform: translateX(5px);
+    }
+
+    .sinais-sono {
+        border-left: 4px solid #FF9800;
+    }
+
+    .sinais-sono .col {
+        padding: 5px;
+        font-size: 0.9em;
+    }
+
+    /* Ícones materiais */
+    .material-icons.tiny {
+        font-size: 16px;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+
+    #registro-despertares .accordion .accordion-header {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #registro-despertares .accordion .accordion-header:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    #registro-despertares .accordion .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background: white;
+    }
+
+    #registro-despertares .accordion .accordion-content-inner {
+        padding: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    #registro-despertares .accordion.open .accordion-content {
+        max-height: 800px; /* Altura suficiente para o conteúdo */
+    }
+
+    #registro-despertares .accordion.open .accordion-header {
+        border-bottom: 1px solid #eee;
+    }
+
+    #registro-despertares .accordion-icon {
+        transition: transform 0.3s ease;
+    }
+
+    #registro-despertares .accordion.open .accordion-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Estilos específicos para os tipos de status dos despertares */
+    #registro-despertares .accordion.adequado .accordion-header {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+    }
+
+    #registro-despertares .accordion.atencao .accordion-header {
+        background-color: #fffde7;
+        border-left: 5px solid #ffc107;
+    }
+
+    #registro-despertares .accordion.vazio .accordion-header {
+        background-color: #f5f5f5;
+        border-left: 5px solid #9e9e9e;
+    }
+
+    /* Detalhes do despertar */
+    .detalhes-despertar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .detalhes-despertar .detalhe-item {
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 4px;
+    }
+
+    .detalhes-despertar .detalhe-item strong {
+        display: block;
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .detalhes-despertar {
+            grid-template-columns: 1fr;
+        }
+
+        #registro-despertares .accordion .accordion-header {
+            padding: 12px 15px;
+        }
+
+        #registro-despertares .accordion .accordion-content-inner {
+            padding: 15px;
+        }
+    }
     </style>
-    @endsection
+        <style>
+
+            body {
+                background-color: #f5f5f5;
+                padding: 20px;
+            }
+
+
+
+            .card {
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .progress {
+                margin: 20px 0;
+            }
+
+            .btn-large {
+                margin: 10px;
+            }
+
+            .modal {
+                max-height: 80%;
+                overflow-y: auto;
+            }
+
+            .time-input {
+                max-width: 120px;
+                display: inline-block;
+            }
+
+            .sugestao-horario {
+                font-weight: bold;
+                color: #00796b;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            input[type="time"] {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+
+            .time-input-container {
+                margin: 15px 0;
+            }
+
+            .time-input-container label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .item-rotina {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 8px;
+                background-color: white;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            }
+            .rotina-icon {
+                margin-right: 15px;
+                font-size: 24px;
+            }
+            .rotina-info {
+                flex-grow: 1;
+            }
+            .rotina-status {
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            .item-vazio {
+                background-color: #f9f9f9;
+                border: 1px dashed #ccc;
+            }
+            .status-vazio {
+                background-color: #e0e0e0;
+                color: #757575;
+            }
+            .item-adequado {
+                background-color: #e8f5e9;
+                border-left: 4px solid #4caf50;
+            }
+            .status-adequado {
+                background-color: #4caf50;
+                color: white;
+            }
+            .item-atencao {
+                background-color: #fff8e1;
+                border-left: 4px solid #ffc107;
+            }
+            .status-atencao {
+                background-color: #ffc107;
+                color: #333;
+            }
+            .horario-sugerido {
+                background-color: #e3f2fd;
+                padding: 8px 12px;
+                border-radius: 4px;
+                margin-bottom: 8px;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+            }
+            .horario-sugerido i {
+                margin-right: 8px;
+                font-size: 16px;
+            }
+            .btn-continuar-rotina {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+            }
+            .btn-excluir {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                padding: 5px;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn-excluir i {
+                font-size: 16px;
+                margin: 0;
+            }
+            .acoes-rotina {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                gap: 10px;
+            }
+        </style>
+@endsection
 
 @section('content')
     <div class="container">
@@ -628,7 +650,7 @@
         <div class="progress">
             <div class="determinate" style="width: 0%" id="progress-bar"></div>
         </div>
-        
+        <!--
         <div class="card">
     <div class="card-content">
         <span class="card-title">Informações do Bebê</span>
@@ -640,7 +662,7 @@
             </a>
         </div>
 
-        <!-- BOTÕES DE AÇÃO - AGORA APARECEM DIRETAMENTE APÓS INICIAR O DIA -->
+        <!-- BOTÕES DE AÇÃO - AGORA APARECEM DIRETAMENTE APÓS INICIAR O DIA 
         <div class="acoes-rotina hidden" id="container-botoes-acao">
             <div class="row center-align">
                 <div class="col s12 m4">
@@ -650,7 +672,7 @@
                 </div>
                 <div class="col s12 m4">
                     <a class="waves-effect waves-light btn-large purple modal-trigger" href="#modal-ritual-noturno">
-                        <i class="material-icons left">nights_stay</i>Ritual Noturno
+                        <i class="material-icons left">check_circle</i>Ritual Noturno
                     </a>
                 </div>
                 <div class="col s12 m4">
@@ -662,6 +684,7 @@
         </div>
     </div>
 </div>
+-->
        <!-- Registro visual da rotina -->
     <div class="registro-rotina">
         <h5>Registro da Rotina</h5>
@@ -707,6 +730,12 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <p>Esta soneca ainda não foi registrada.</p>
+                        <div class="center-align" style="margin: 15px 0;">
+                            <a class="waves-effect waves-light btn blue modal-trigger" href="#modal-preenchimento-soneca"
+                                onclick="prepararNovaSoneca()">
+                                <i class="material-icons left">add</i>Adicionar Soneca
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -715,7 +744,7 @@
         <div class="accordion vazio" id="accordion-ritual">
     <div class="accordion-header">
         <div style="display: flex; align-items: center; flex-grow: 1;">
-            <i class="material-icons rotina-icon">nights_stay</i>
+            <i class="material-icons rotina-icon">check_circle</i>
             <div class="rotina-info" style="margin-left: 15px;">
                 <strong>Ritual noturno:</strong>
                 <span class="rotina-detalhe">Não registrado</span>
@@ -737,9 +766,22 @@
         </div>
     </div>
 </div>
+
         <div id="registro-despertares">
             <!-- Os despertares serão adicionados dinamicamente aqui -->
         </div>
+
+       <div id="container-finalizar-dia" class="hidden" style="margin: 30px 0; text-align: center;">
+    <div class="card-panel green lighten-4">
+        <h5>🎉 Dia Quase Concluído!</h5>
+        <p>Você registrou todas as informações do dia. Clique no botão abaixo para finalizar.</p>
+        <a class="waves-effect waves-light btn-large orange modal-trigger" href="#modal-observacoes-dia">
+            <i class="material-icons left">check_circle</i>Finalizar Dia Completo
+        </a>
+        <p style="margin-top: 10px;"><small>Esta ação salvará todos os dados e preparará um novo dia.</small></p>
+    </div>
+</div>
+
     </div>
         
         <!-- Seção para mostrar histórico detalhado -->
@@ -795,7 +837,6 @@
             <p class="grey-text">Estes horários são aproximados e refletem as necessidades de sono da maioria dos bebês com idade similar.</p>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Entendido</a>
             <a href="#!" class="waves-effect waves-green btn teal" onclick="abrirModalPreenchimentoSoneca()">Preencher Soneca</a>
         </div>
     </div>
@@ -1133,6 +1174,48 @@
     </div>
 </div>
 
+<!-- Modal 13: Observações Finais do Dia -->
+<div id="modal-observacoes-dia" class="modal">
+    <div class="modal-content">
+        <h4>📝 Observações do Dia</h4>
+        <p>Antes de finalizar, gostaria de adicionar alguma observação sobre o dia do seu bebê?</p>
+        
+        <form id="formFinalizarDia" action="{{ route('rotinas.store') }}" method="POST">
+            @csrf
+            <input type="hidden" name="data" id="data-dia">
+            <input type="hidden" name="inicioDia" id="inicio-dia">
+            <input type="hidden" name="historicoSonecas" id="historico-sonecas">
+            <input type="hidden" name="ritualNoturno" id="ritual-noturno">
+            <input type="hidden" name="historicoDespertares" id="historico-despertares">
+            <input type="hidden" name="resumo" id="resumo">
+            <input type="hidden" name="idadeBebe" id="idade-bebe">
+            <input type="hidden" name="tempoAcordadoEsperado" id="tempo-acordado">
+
+            {{-- Observações do modal --}}
+            <div class="input-field">
+                <textarea id="observacoes-dia" name="observacoes" class="materialize-textarea" maxlength="200"
+                    placeholder="Ex: Bebê estava mais agitado hoje, teve cólicas, dormiu melhor que ontem, etc..."></textarea>
+                <label for="observacoes-dia">Observações (opcional)</label>
+            </div>
+
+            <div class="contador-caracteres grey-text" style="text-align: right; margin-top: -10px;">
+                <span id="contador-observacoes">0</span>/200 caracteres
+            </div>
+        </form>
+
+        <div class="card-panel blue lighten-5">
+            <i class="material-icons tiny">info</i>
+            <span>Estas observações ajudarão a entender melhor os padrões do seu bebê ao longo do tempo.</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+        <button type="button" class="waves-effect waves-green btn teal" onclick="confirmarFinalizarDia()">
+            <i class="material-icons left">check</i>Finalizar Dia
+        </button>
+    </div>
+</div>
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1140,6 +1223,8 @@
     
     <script>
         // Variáveis globais
+        let ritualNoturnoRegistrado = false;
+
         let inicioDia = '';
         let tempoAcordado = {{ calcularTempoAcordado($client->birthBaby) }};
         let sonecasRealizadas = 0;
@@ -1173,6 +1258,10 @@ const parametrosDuracaoSoneca = {
         
         // Inicialização quando o documento estiver pronto
         $(document).ready(function(){
+             configurarContadorObservacoes();
+
+            // Inicializar modal de observações
+            $('#modal-observacoes-dia').modal();
             $('.modal').modal();
             $('select').formSelect();
             
@@ -1227,8 +1316,8 @@ const parametrosDuracaoSoneca = {
     $('#sugestao-inicio-soneca-horario').text(horarioSugeridoSoneca);
     
     // Preencher os campos com os horários sugeridos
-    $('#hora-sentiu-sono').val(horarioSugeridoSono);
-    $('#inicio-soneca').val(horarioSugeridoSoneca);
+  //  $('#hora-sentiu-sono').val(horarioSugeridoSono);
+ //   $('#inicio-soneca').val(horarioSugeridoSoneca);
     
     // Limpar campo de acordou e associações
     $('#hora-acordou').val('');
@@ -1239,58 +1328,54 @@ const parametrosDuracaoSoneca = {
     $('#card-incomoda').hide();
 }  
         // Verificar se há estado salvo
-   function verificarEstadoSalvo() {
+function verificarEstadoSalvo() {
     const estadoSalvo = localStorage.getItem('rotinaSono');
     if (estadoSalvo) {
-        const estado = JSON.parse(estadoSalvo);
-        inicioDia = estado.inicioDia;
-        sonecasRealizadas = estado.sonecasRealizadas;
-        historicoSonecas = estado.historicoSonecas;
-        ultimoHorarioAcordou = estado.ultimoHorarioAcordou;
-        sonecaAtual = estado.sonecaAtual;
-        rotinaIniciada = estado.rotinaIniciada;
-        
-        // Carregar despertares se existirem
-        if (estado.historicoDespertares) {
-            historicoDespertares = estado.historicoDespertares;
-            despertarAtual = estado.despertarAtual || historicoDespertares.length + 1;
-        }
-        
-        if (rotinaIniciada) {
-            // MOSTRAR BOTÕES DE AÇÃO DIRETAMENTE
-            $('#container-botao-iniciar').addClass('hidden');
-            $('#container-botoes-acao').removeClass('hidden');
+        try {
+            const estado = JSON.parse(estadoSalvo);
+            inicioDia = estado.inicioDia || '';
+            historicoSonecas = estado.historicoSonecas || [];
+            ultimoHorarioAcordou = estado.ultimoHorarioAcordou || '';
+            sonecaAtual = estado.sonecaAtual || 1;
+            rotinaIniciada = estado.rotinaIniciada || false;
+            ritualNoturnoRegistrado = estado.ritualNoturnoRegistrado || false;
+            respostasQuestionarioAtual = estado.respostasQuestionarioAtual || {};
             
-            // Verificar se já tem ritual noturno para mostrar botões corretos
-            const ritualSalvo = localStorage.getItem('ritualNoturno');
-            if (ritualSalvo) {
-                atualizarBotoesAposRitual();
+            if (rotinaIniciada) {
+                $('#btn-iniciar-rotina').html('<i class="material-icons left">play_arrow</i>Continuar Rotina');
+                $('#container-botoes-acao').removeClass('hidden');
+                
+                // FORÇAR ATUALIZAÇÃO VISUAL AO CARREGAR
+                forcarAtualizacaoCompleta();
+                
+                if (historicoSonecas.length > 0) {
+                    ultimoHorarioAcordou = historicoSonecas[historicoSonecas.length - 1].termino;
+                }
             }
-            
-            atualizarRegistroVisual();
-            atualizarProgresso(10 + (historicoSonecas.length * 20));
-            
-            if (historicoDespertares.length > 0) {
-                atualizarRegistroDespertares();
-            }
+        } catch (e) {
+            console.error('Erro ao carregar estado salvo:', e);
+            // Se der erro, limpar tudo
+            localStorage.removeItem('rotinaSono');
         }
     }
 }
         
-        // Salvar estado atual
         function salvarEstado() {
-            const estado = {
-                inicioDia,
-                sonecasRealizadas,
-                historicoSonecas,
-                ultimoHorarioAcordou,
-                sonecaAtual,
-                rotinaIniciada,
-                 historicoDespertares, // ← ADICIONAR despertares
-        despertarAtual 
-            };
-            localStorage.setItem('rotinaSono', JSON.stringify(estado));
-        }
+    console.log('SALVANDO ESTADO COMPLETO...');
+    const estado = {
+        inicioDia,
+        sonecasRealizadas: historicoSonecas.length,
+        historicoSonecas,
+        ultimoHorarioAcordou,
+        sonecaAtual,
+        rotinaIniciada,
+        ritualNoturnoRegistrado,
+        respostasQuestionarioAtual
+    };
+    console.log('Estado:', estado);
+    localStorage.setItem('rotinaSono', JSON.stringify(estado));
+    console.log('Estado salvo com sucesso');
+}
         
 function atualizarRegistroVisual() {
     // Atualizar início do dia
@@ -1322,6 +1407,13 @@ function atualizarRegistroVisual() {
                     ${new Date().toLocaleDateString('pt-BR')}
                 </div>
             </div>
+             <div class="row center-align" style="margin: 20px 0;">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn red" onclick="excluirInicioDia()">
+                <i class="material-icons left">delete</i>Excluir Início do Dia
+            </a>
+        </div>
+    </div>
         `);
     }
 
@@ -1425,6 +1517,11 @@ function atualizarRegistroVisual() {
                         <i class="material-icons left">assignment</i>Questionário
                     </a>
                 </div>
+                  <div class="col s12 m4">
+                <a class="waves-effect waves-light btn red" onclick="excluirSoneca(${index})">
+                    <i class="material-icons left">delete</i>Excluir
+                </a>
+            </div>
             </div>
             
             <div class="recomendacao">
@@ -1483,28 +1580,31 @@ function atualizarRegistroVisual() {
     });
 }
 
-        function finalizarDiaCompleto() {
-    // Verificar se tem ritual noturno
-    const ritualSalvo = localStorage.getItem('ritualNoturno');
-    if (!ritualSalvo) {
-        M.toast({html: 'Complete o ritual noturno primeiro'});
-        return;
-    }
-    
+function finalizarDiaCompleto(observacoes = '') {
     // Coletar todos os dados
     const diaCompleto = {
         data: new Date().toLocaleDateString('pt-BR'),
+        timestamp: new Date().toISOString(),
         inicioDia,
         historicoSonecas,
-        ritualNoturno: JSON.parse(ritualSalvo),
+        ritualNoturno: JSON.parse(localStorage.getItem('ritualNoturno')),
         historicoDespertares,
-        resumo: gerarResumoDia()
+        observacoes: observacoes,
+        resumo: gerarResumoDia(),
+        idadeBebe: idadeBebe,
+        tempoAcordadoEsperado: tempoAcordado
     };
     
-    // Salvar dia completo
+   
+    // Salvar histórico de dias
+    let historicoDias = JSON.parse(localStorage.getItem('historicoDias') || '[]');
+    historicoDias.push(diaCompleto);
+    localStorage.setItem('historicoDias', JSON.stringify(historicoDias));
+    
+    // Salvar dia completo individualmente também
     localStorage.setItem('diaCompleto', JSON.stringify(diaCompleto));
     
-    // Limpar dados temporários
+    // Limpar dados temporários do dia atual
     localStorage.removeItem('ritualNoturno');
     localStorage.removeItem('despertares');
     localStorage.removeItem('rotinaSono');
@@ -1513,19 +1613,14 @@ function atualizarRegistroVisual() {
     inicioDia = '';
     historicoSonecas = [];
     historicoDespertares = [];
-    despertarAtual = 1;
+    sonecaAtual = 1;
     rotinaIniciada = false;
     
-    M.toast({html: 'Dia completo salvo! Preparando para um novo dia...'});
+    M.toast({html: 'Dia finalizado com sucesso! 🎉'});
     
-    // Recarregar a página após 2 segundos
-    setTimeout(() => {
-        location.reload();
-    }, 2000);
-}
-
-// Função para gerar resumo do dia
-function gerarResumoDia() {
+    // Mostrar resumo do dia
+    
+    function gerarResumoDia() {
     const totalSonecas = historicoSonecas.length;
     const totalDespertares = historicoDespertares.length;
     const tempoTotalSonecas = historicoSonecas.reduce((total, soneca) => total + soneca.duracao, 0);
@@ -1537,6 +1632,28 @@ function gerarResumoDia() {
         avaliacao: totalDespertares <= 2 ? 'Boa noite' : 'Noite agitada'
     };
 }
+
+    diaCompleto.observacoes = document.getElementById("observacoes-dia").value;
+
+    // Preenche os inputs hidden
+    document.getElementById("data-dia").value = diaCompleto.data;
+    document.getElementById("inicio-dia").value = diaCompleto.inicioDia;
+    document.getElementById("historico-sonecas").value = JSON.stringify(diaCompleto.historicoSonecas);
+    document.getElementById("ritual-noturno").value = JSON.stringify(diaCompleto.ritualNoturno);
+    document.getElementById("historico-despertares").value = JSON.stringify(diaCompleto.historicoDespertares);
+    document.getElementById("resumo").value = JSON.stringify(diaCompleto.resumo);
+    document.getElementById("idade-bebe").value = diaCompleto.idadeBebe;
+    document.getElementById("tempo-acordado").value = diaCompleto.tempoAcordadoEsperado;
+
+    // Envia o form
+    document.getElementById("formFinalizarDia").submit();
+}
+
+
+
+
+
+
         
         // Função para salvar início do dia
        // Função para salvar início do dia - MODIFICADA
@@ -1681,38 +1798,7 @@ function adicionarRespostaQuestionario(pergunta, resposta, detalhes = null) {
         }
         
         // Função para excluir soneca específica
-        function excluirSoneca(index) {
-            if (confirm('Tem certeza que deseja excluir esta soneca?')) {
-                // Remover a soneca
-                historicoSonecas.splice(index, 1);
-                
-                // Renumerar as sonecas
-                historicoSonecas.forEach((soneca, i) => {
-                    soneca.numero = i + 1;
-                });
-                
-                // Atualizar o último horário que acordou
-                if (historicoSonecas.length > 0) {
-                    ultimoHorarioAcordou = historicoSonecas[historicoSonecas.length - 1].termino;
-                } else {
-                    ultimoHorarioAcordou = inicioDia;
-                }
-                
-                // Atualizar contador de sonecas
-                sonecaAtual = historicoSonecas.length + 1;
-                
-                // Atualizar interface
-                atualizarRegistroVisual();
-                
-                // Atualizar barra de progresso
-                atualizarProgresso(25 + (historicoSonecas.length * 15));
-                
-                // Salvar estado
-                salvarEstado();
-                
-                M.toast({html: 'Soneca excluída com sucesso'});
-            }
-        }
+       
         
         // Função para iniciar ritual noturno
        function iniciarRitualNoturno() {
@@ -1770,57 +1856,96 @@ function adicionarRespostaQuestionario(pergunta, resposta, detalhes = null) {
         
         // Função para finalizar ritual noturno
    function finalizarRitualNoturno() {
-        const inicioRitual = $('#inicio-ritual').val();
-        const sonoNoturno = $('#sono-noturno').val();
-        const localSono = $('#local-sono').val();
-
-        if (!inicioRitual || !sonoNoturno || !localSono) {
-            M.toast({ html: 'Por favor, preencha todos os campos do ritual noturno' });
-            return;
-        }
-
-        // Calcular duração do ritual
-        const duracaoRitual = calcularDuracao(inicioRitual, sonoNoturno);
-
-        // Salvar ritual noturno
-        const ritualNoturno = {
-            inicioRitual,
-            sonoNoturno,
-            duracaoRitual,
-            localSono,
-            data: new Date().toLocaleDateString('pt-BR'),
-            timestamp: new Date().toISOString()
-        };
-
-        localStorage.setItem('ritualNoturno', JSON.stringify(ritualNoturno));
-
-        // Atualizar interface do ritual
-        $('#accordion-ritual')
-            .removeClass('vazio')
-            .addClass('adequado')
-            .find('.rotina-detalhe').text(`${inicioRitual} - ${sonoNoturno} (${duracaoRitual} min)`);
-
-        $('#accordion-ritual .rotina-status')
-            .removeClass('status-vazio')
-            .addClass('status-adequado')
-            .text('Concluído');
-
-        // ATUALIZAR BOTÕES - agora mostrar botão de adicionar despertar
-        atualizarBotoesAposRitual();
-
-        M.toast({ html: 'Ritual noturno salvo! Agora você pode registrar os despertares.' });
-        $('#modal-ritual-noturno').modal('close');
-
-        // Atualizar barra de progresso
-        atualizarProgresso(80);
-
-        // Salvar estado
-        salvarEstado();
+    const inicioRitual = $('#inicio-ritual').val();
+    const sonoNoturno = $('#sono-noturno').val();
+    const localSono = $('#local-sono').val();
+    
+    if (!inicioRitual || !sonoNoturno || !localSono) {
+        M.toast({html: 'Por favor, preencha todos os campos do ritual noturno'});
+        return;
     }
-function atualizarBotoesAposRitual() {
-    $('#container-botoes-acao').html(`
+    
+    // Calcular duração do ritual
+    const duracaoRitual = calcularDuracao(inicioRitual, sonoNoturno);
+    
+    // Salvar ritual noturno
+    const ritualNoturno = {
+        inicioRitual,
+        sonoNoturno,
+        duracaoRitual,
+        localSono,
+        data: new Date().toLocaleDateString('pt-BR'),
+        timestamp: new Date().toISOString()
+    };
+    
+    localStorage.setItem('ritualNoturno', JSON.stringify(ritualNoturno));
+    
+    // ATUALIZAR O ACCORDION DO RITUAL NOTURNO
+    $('#accordion-ritual')
+        .removeClass('vazio')
+        .addClass('adequado')
+        .find('.rotina-detalhe').text(`${inicioRitual} - ${sonoNoturno} (${duracaoRitual} min) | ${localSono}`);
+    
+    $('#accordion-ritual .rotina-status')
+        .removeClass('status-vazio')
+        .addClass('status-adequado')
+        .text('Concluído');
+
+    // ATUALIZAR O CONTEÚDO DO ACCORDION
+    $('#accordion-ritual .accordion-content-inner').html(`
+        <div class="detalhes-ritual">
+            <div class="detalhe-item">
+                <strong>🕒 Início do ritual</strong>
+                ${inicioRitual}
+            </div>
+            <div class="detalhe-item">
+                <strong>😴 Adormeceu</strong>
+                ${sonoNoturno}
+            </div>
+            <div class="detalhe-item">
+                <strong>⏱️ Duração do ritual</strong>
+                ${duracaoRitual} minutos
+            </div>
+            <div class="detalhe-item">
+                <strong>🛏️ Local</strong>
+                ${localSono}
+            </div>
+            <div class="detalhe-item">
+                <strong>🌙 Despertares</strong>
+                ${historicoDespertares.length} registrado(s)
+            </div>
+        </div>
+        
+        <!-- Botão para adicionar despertar -->
+        <div class="center-align" style="margin: 20px 0;">
+            <a class="waves-effect waves-light btn purple modal-trigger" href="#modal-despertar" onclick="abrirModalDespertar()">
+                <i class="material-icons left">add</i>Adicionar Despertar
+            </a>
+        </div>
+    `);
+  $('#container-finalizar-dia').removeClass('hidden');
+    // ATUALIZAR BOTÕES PRINCIPAIS
+    atualizarBotoesAposRitual();
+    
+    M.toast({html: 'Ritual noturno salvo! Agora você pode registrar os despertares.'});
+    $('#modal-ritual-noturno').modal('close');
+    
+    // Atualizar barra de progresso
+    atualizarProgresso(80);
+    
+    // Salvar estado
+    salvarEstado();
+}
+
+    function atualizarBotoesAposRitual() {
+        $('#container-botoes-acao').html(`
         <div class="row center-align">
-            <div class="col s12">
+            <div class="col s12 m6">
+                <a class="waves-effect waves-light btn-large purple modal-trigger" href="#modal-despertar" onclick="abrirModalDespertar()">
+                    <i class="material-icons left">add</i>Adicionar Despertar
+                </a>
+            </div>
+            <div class="col s12 m6">
                 <a class="waves-effect waves-light btn-large orange" onclick="finalizarDiaCompleto()">
                     <i class="material-icons left">check_circle</i>Finalizar Dia
                 </a>
@@ -1832,7 +1957,7 @@ function atualizarBotoesAposRitual() {
             </div>
         </div>
     `);
-}
+    }
 
 function salvarDespertar() {
     const horaAcordou = $('#hora-acordou-despertar').val();
@@ -1865,37 +1990,42 @@ function salvarDespertar() {
     // Calcular duração
     const duracao = calcularDuracao(horaAcordou, horaDormiu);
     
-    // Salvar no histórico IMEDIATAMENTE
-    const novoDespertar = {
-        numero: despertarAtual,
+    // CORREÇÃO: Usar historicoDespertares.length + 1 em vez de despertarAtual
+    const numeroDespertar = historicoDespertares.length + 1;
+    
+    // Salvar no histórico - CORRIGIDO
+    historicoDespertares.push({
+        numero: numeroDespertar, // ← CORREÇÃO AQUI
         horaAcordou,
         horaDormiu,
         duracao,
         formasVolta,
-        timestamp: new Date().toISOString()
-    };
+        timestamp: new Date().toLocaleTimeString('pt-BR')
+    });
     
-    historicoDespertares.push(novoDespertar);
+    // ATUALIZAR O CONTADOR NO ACCORDION DO RITUAL
+    const ritualSalvo = localStorage.getItem('ritualNoturno');
+    if (ritualSalvo) {
+        $('#accordion-ritual .detalhe-item:contains("Despertares")').html(`
+            <strong>🌙 Despertares</strong>
+            ${historicoDespertares.length} registrado(s)
+        `);
+    }
     
-    // Salvar despertares no localStorage
-    localStorage.setItem('despertares', JSON.stringify(historicoDespertares));
+    // Atualizar registro visual dos despertares
+    atualizarRegistroDespertares();
     
-    // Atualizar registro visual
-  atualizarRegistroDespertares();
-    
-    // ATUALIZAR CONTADOR
+    // ATUALIZAR CONTADOR NOS BOTÕES
     $('#contador-despertares').text(historicoDespertares.length);
     
-    // Fechar modal e preparar próximo
+    // Fechar modal
     $('#modal-despertar').modal('close');
-    despertarAtual++;
     
-     M.toast({html: `Despertar ${historicoDespertares.length} salvo!`});
+    M.toast({html: `Despertar ${numeroDespertar} salvo!`});
     
     // Salvar estado
     salvarEstado();
 }
-        
         // Função para mostrar resumo final
         function mostrarResumoFinal() {
             let resumoHTML = `
@@ -2576,11 +2706,7 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
                 </div>
             </div>
             
-            <div class="center-align" style="margin-top: 20px;">
-                <a class="waves-effect waves-light btn green" onclick="fecharAnalise()">
-                    <i class="material-icons left">check</i>Entendido
-                </a>
-            </div>
+            
         </div>
     `);
     
@@ -3793,6 +3919,13 @@ function compararHorarios(sentiuSono, horarioSugeridoSono) {
                     ${new Date().toLocaleDateString('pt-BR')}
                 </div>
             </div>
+             <div class="row center-align" style="margin: 20px 0;">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn red" onclick="excluirInicioDia()">
+                <i class="material-icons left">delete</i>Excluir Início do Dia
+            </a>
+        </div>
+    </div>
         `);
         }
 
@@ -3883,6 +4016,11 @@ $accordion.find('.accordion-content-inner').html(`
                 <i class="material-icons left">lightbulb_outline</i>Recomendações
             </a>
         </div>
+          <div class="col s12 m6">
+                <a class="waves-effect waves-light btn red" onclick="excluirSoneca(${index})">
+                    <i class="material-icons left">delete</i>Excluir
+                </a>
+            </div>
        
     </div>
     
@@ -4399,7 +4537,7 @@ function carregarRespostasAccordion(indexSoneca) {
             return respostasHTML;
         }
 
-       function abrirModalDespertar() {
+      function abrirModalDespertar() {
     // Preencher com horário atual
     const agora = new Date();
     const horas = agora.getHours().toString().padStart(2, '0');
@@ -4411,10 +4549,12 @@ function carregarRespostasAccordion(indexSoneca) {
     
     // Limpar checkboxes
     $('.opcoes-volta-sono input[type="checkbox"]').prop('checked', false);
-    $('#outra-detalhe-despertar').addClass('hidden').val('');
+    $('.sub-opcoes input[type="radio"]').prop('checked', false);
+    $('.outra-detalhe').addClass('hidden').val('');
     
-    // Atualizar título
-    $('#titulo-despertar').text(`Registrar ${despertarAtual}º Despertar`);
+    // Atualizar título com o próximo número
+    const proximoNumero = historicoDespertares.length + 1;
+    $('#titulo-despertar').text(`Registrar ${proximoNumero}º Despertar`);
     
     $('#modal-despertar').modal('open');
 }
@@ -4474,77 +4614,120 @@ function salvarDespertar() {
     salvarEstado();
 }
 
-// Função para atualizar registro visual dos despertares
-    function atualizarRegistroDespertares() {
-        $('#registro-despertares').empty();
-
-        historicoDespertares.forEach((despertar, index) => {
-            const formasTexto = despertar.formasVolta.join(', ');
-            const statusClasse = despertar.duracao <= 30 ? 'adequado' : 'atencao';
-            const statusTexto = despertar.duracao <= 30 ? 'Rápido' : 'Demorado';
-            const statusLabel = despertar.duracao <= 30 ? 'status-adequado' : 'status-atencao';
-
-           $('#registro-despertares').append(`
-    <div class="accordion vazio" id="accordion-despertar-${despertarAtual}">
-        <div class="accordion-header">
-            <div style="display: flex; align-items: center; flex-grow: 1;">
-                <i class="material-icons rotina-icon">nights_stay</i>
-                <div class="rotina-info" style="margin-left: 15px;">
-                    <strong>${despertarAtual}º despertar:</strong>
-                    <span class="rotina-detalhe">Não registrado</span>
-                </div>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <span class="rotina-status status-vazio">Pendente</span>
-                <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
-            </div>
-        </div>
-        <div class="accordion-content">
-            <div class="accordion-content-inner">
-                <p>Este despertar ainda não foi registrado.</p>
-                <div class="center-align" style="margin: 15px 0;">
-                    <a class="waves-effect waves-light btn purple modal-trigger" href="#modal-despertar" onclick="abrirModalDespertar()">
-                        <i class="material-icons left">add</i>Registrar Despertar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-`);
-        });
-
-        // Adicionar próximo despertar vazio
+function atualizarRegistroDespertares() {
+    $('#registro-despertares').empty();
+    
+    // MOSTRAR APENAS DESPERTARES EXISTENTES
+    historicoDespertares.forEach((despertar, index) => {
+        const formasTexto = despertar.formasVolta.join(', ');
+        const statusClasse = despertar.duracao <= 30 ? 'adequado' : 'atencao';
+        const statusTexto = despertar.duracao <= 30 ? 'Rápido' : 'Demorado';
+        const statusLabel = despertar.duracao <= 30 ? 'status-adequado' : 'status-atencao';
+        
         $('#registro-despertares').append(`
-        <div class="accordion vazio" id="accordion-despertar-${despertarAtual}">
-            <div class="accordion-header">
-                <div style="display: flex; align-items: center; flex-grow: 1;">
-                    <i class="material-icons rotina-icon">nights_stay</i>
-                    <div class="rotina-info" style="margin-left: 15px;">
-                        <strong>${despertarAtual}º despertar:</strong>
-                        <span class="rotina-detalhe">Não registrado</span>
+            <div class="accordion ${statusClasse}" id="accordion-despertar-${despertar.numero}">
+                <div class="accordion-header">
+                    <div style="display: flex; align-items: center; flex-grow: 1;">
+                       🌙
+                        <div class="rotina-info" style="margin-left: 15px;">
+                            <strong>${despertar.numero}º despertar:</strong>
+                            <span class="rotina-detalhe">${despertar.horaAcordou} - ${despertar.horaDormiu} (${despertar.duracao} min)</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="rotina-status ${statusLabel}">${statusTexto}</span>
+                        <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
                     </div>
                 </div>
-                <div style="display: flex; align-items: center;">
-                    <span class="rotina-status status-vazio">Pendente</span>
-                    <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
-                </div>
-            </div>
-            <div class="accordion-content">
-                <div class="accordion-content-inner">
-                    <p>Este despertar ainda não foi registrado.</p>
-                    <div class="center-align" style="margin: 15px 0;">
-                        <a class="waves-effect waves-light btn purple modal-trigger" href="#modal-despertar" onclick="abrirModalDespertar()">
-                            <i class="material-icons left">add</i>Registrar Despertar
-                        </a>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <div class="detalhes-despertar">
+                            <div class="detalhe-item">
+                                <strong>🕒 Acordou</strong>
+                                ${despertar.horaAcordou}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>😴 Voltou a dormir</strong>
+                                ${despertar.horaDormiu}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>⏱️ Tempo acordado</strong>
+                                ${despertar.duracao} minutos
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>🔄 Como voltou</strong>
+                                ${formasTexto}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>🎯 Status</strong>
+                                ${statusTexto}
+                            </div>
+                        </div>
+                        
+                        <!-- Botões para ver detalhes -->
+                        <div class="row center-align" style="margin: 20px 0;">
+                            <div class="col s12 m6">
+                                <a class="waves-effect waves-light btn blue" onclick="verRecomendacoesDespertar(${index})">
+                                    <i class="material-icons left">lightbulb_outline</i>Recomendações
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="recomendacao">
+                            <h6><i class="material-icons tiny">lightbulb_outline</i> Recomendações</h6>
+                            ${gerarRecomendacaoDespertar(despertar)}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    `);
-
-        // CONFIGURAR EVENTOS DOS ACCORDIONS DOS DESPERTARES
-        configurarAccordionsDespertares();
+        `);
+    });
+    
+    // ADICIONAR APENAS UM ACCORDION VAZIO PARA O PRÓXIMO DESPERTAR
+    // O número do próximo despertar é sempre históricoDespertares.length + 1
+    const proximoDespertarNumero = historicoDespertares.length + 1;
+    
+    if (historicoDespertares.length < 10) { // limite de 10 despertares por noite
+        $('#registro-despertares').append(`
+            <div class="accordion vazio" id="accordion-despertar-${proximoDespertarNumero}">
+                <div class="accordion-header">
+                    <div style="display: flex; align-items: center; flex-grow: 1;">
+                        🌙
+                        <div class="rotina-info" style="margin-left: 15px;">
+                            <strong>${proximoDespertarNumero}º despertar:</strong>
+                            <span class="rotina-detalhe">Não registrado</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="rotina-status status-vazio">Pendente</span>
+                        <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p>Este despertar ainda não foi registrado.</p>
+                        <div class="center-align" style="margin: 15px 0;">
+                            <a class="waves-effect waves-light btn purple modal-trigger" href="#modal-despertar" onclick="abrirModalDespertar()">
+                                <i class="material-icons left">add</i>Registrar Despertar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    } else {
+        // Se atingiu o limite, mostrar mensagem
+        $('#registro-despertares').append(`
+            <div class="card-panel green lighten-4">
+                <p>✅ Todos os despertares registrados para esta noite.</p>
+                <p><small>Máximo de 10 despertares por noite atingido.</small></p>
+            </div>
+        `);
     }
+    
+    // CONFIGURAR EVENTOS DOS ACCORDIONS DOS DESPERTARES
+    configurarAccordionsDespertares();
+}
 
     // Função para configurar os eventos dos accordions dos despertares
     function configurarAccordionsDespertares() {
@@ -4762,6 +4945,267 @@ function verRecomendacoesDespertar(index) {
         ${respostasHTML}
     `;
 }
+    function excluirInicioDia() {
+        if (confirm('Tem certeza que deseja excluir o início do dia? Isso reiniciará toda a rotina.')) {
+            // Limpar todos os dados
+            inicioDia = '';
+            sonecasRealizadas = 0;
+            historicoSonecas = [];
+            ultimoHorarioAcordou = '';
+            sonecaAtual = 1;
+            rotinaIniciada = false;
+            respostasQuestionarioAtual = {};
+            ritualNoturnoRegistrado = false;
+
+            // Limpar localStorage
+            localStorage.removeItem('rotinaSono');
+
+            // Resetar interface
+            $('#btn-iniciar-rotina').html('<i class="material-icons left">access_time</i>Iniciar Rotina');
+            $('#container-botoes-acao').addClass('hidden');
+
+            // FORÇAR ATUALIZAÇÃO VISUAL
+            forcarAtualizacaoCompleta();
+
+            M.toast({ html: 'Início do dia excluído. Rotina reiniciada.' });
+        }
+    }
+
+    // Função para excluir soneca específica (ATUALIZADA)
+    function excluirSoneca(index) {
+        if (index >= 0 && index < historicoSonecas.length) {
+            if (confirm(`Tem certeza que deseja excluir a ${index + 1}ª soneca?`)) {
+                // 1. Remover a soneca
+                historicoSonecas.splice(index, 1);
+
+                // 2. Atualizar variáveis
+                if (historicoSonecas.length > 0) {
+                    ultimoHorarioAcordou = historicoSonecas[historicoSonecas.length - 1].termino;
+                } else {
+                    ultimoHorarioAcordou = inicioDia || '';
+                }
+                sonecaAtual = historicoSonecas.length + 1;
+
+                // 3. SALVAR ESTADO
+                salvarEstado();
+
+                // 4. FORÇAR ATUALIZAÇÃO VISUAL
+                forcarAtualizacaoSonecas();
+
+                M.toast({ html: `Soneca excluída com sucesso` });
+            }
+        }
+    }
+
+    // Função para excluir ritual noturno (ATUALIZADA)
+    function excluirRitualNoturno() {
+        if (confirm('Tem certeza que deseja excluir o ritual noturno?')) {
+            // Limpar variável do ritual
+            ritualNoturnoRegistrado = false;
+
+            // SALVAR ESTADO
+            salvarEstado();
+
+            // FORÇAR ATUALIZAÇÃO VISUAL
+            forcarAtualizacaoRitual();
+
+            M.toast({ html: 'Ritual noturno excluído com sucesso' });
+        }
+    }
+
+    // Função para excluir último despertar (ATUALIZADA)
+    function excluirUltimaSoneca() {
+        if (historicoSonecas.length === 0) {
+            M.toast({ html: 'Não há sonecas para excluir' });
+            return;
+        }
+
+        if (confirm('Tem certeza que deseja excluir a última soneca?')) {
+            // Remover a última soneca
+            historicoSonecas.pop();
+
+            // Atualizar variáveis
+            if (historicoSonecas.length > 0) {
+                ultimoHorarioAcordou = historicoSonecas[historicoSonecas.length - 1].termino;
+            } else {
+                ultimoHorarioAcordou = inicioDia || '';
+            }
+            sonecaAtual = historicoSonecas.length + 1;
+
+            // SALVAR ESTADO
+            salvarEstado();
+
+            // FORÇAR ATUALIZAÇÃO VISUAL
+            forcarAtualizacaoSonecas();
+
+            M.toast({ html: 'Última soneca excluída com sucesso' });
+        }
+    }
+
+    function forcarAtualizacaoCompleta() {
+            console.log('FORÇANDO ATUALIZAÇÃO COMPLETA');
+
+            // Limpar tudo
+            $('#registro-sonecas').empty();
+
+            // Recriar tudo baseado no estado atual
+            atualizarRegistroVisual();
+            atualizarProgresso(0);
+
+            // Resetar botões
+            $('#btn-iniciar-rotina').html('<i class="material-icons left">access_time</i>Iniciar Rotina');
+            $('#container-botoes-acao').addClass('hidden');
+
+            // Forçar redesenho
+            setTimeout(() => {
+                $('.accordion').removeClass('open');
+            }, 50);
+        }
+
+        // Função para forçar atualização das sonecas
+        function forcarAtualizacaoSonecas() {
+            console.log('FORÇANDO ATUALIZAÇÃO SONECAS');
+
+            // Limpar sonecas
+            $('#registro-sonecas').empty();
+
+            // Recriar sonecas baseado no estado atual
+            atualizarRegistroVisual();
+            atualizarProgresso(25 + (historicoSonecas.length * 15));
+
+            // Atualizar botões de ação se necessário
+            if (historicoSonecas.length === 0 && inicioDia) {
+                $('#container-botoes-acao').removeClass('hidden');
+            }
+
+            // Forçar redesenho
+            setTimeout(() => {
+                $('.accordion').removeClass('open');
+            }, 50);
+        }
+
+        // Função para forçar atualização do ritual noturno
+        function forcarAtualizacaoRitual() {
+            console.log('FORÇANDO ATUALIZAÇÃO RITUAL');
+
+            // Atualizar accordion do ritual
+            const $accordion = $('#accordion-ritual');
+            $accordion.removeClass('adequado atencao').addClass('vazio')
+                .find('.rotina-detalhe').text('Não registrado');
+            $accordion.find('.rotina-status')
+                .removeClass('status-adequado status-atencao')
+                .addClass('status-vazio')
+                .text('Pendente');
+
+            // Atualizar conteúdo do accordion
+            $accordion.find('.accordion-content-inner').html(`
+        <p>O ritual noturno será registrado ao final do dia.</p>
+    `);
+
+            // Atualizar progresso
+            if (historicoSonecas.length > 0) {
+                atualizarProgresso(25 + (historicoSonecas.length * 15));
+            } else if (inicioDia) {
+                atualizarProgresso(25);
+            } else {
+                atualizarProgresso(0);
+            }
+
+            // Forçar redesenho
+            setTimeout(() => {
+                $accordion.removeClass('open');
+            }, 50);
+        }
+
+        // Função para forçar atualização do início do dia
+        function forcarAtualizacaoInicioDia() {
+            console.log('FORÇANDO ATUALIZAÇÃO INÍCIO DIA');
+
+            // Atualizar accordion do início do dia
+            const $accordion = $('#accordion-inicio-dia');
+            $accordion.removeClass('adequado atencao').addClass('vazio')
+                .find('.rotina-detalhe').text('Não registrado');
+            $accordion.find('.rotina-status')
+                .removeClass('status-adequado status-atencao')
+                .addClass('status-vazio')
+                .text('Pendente');
+
+            // Atualizar conteúdo do accordion
+            $accordion.find('.accordion-content-inner').html(`
+        <p>Clique em "Iniciar Rotina" para começar o registro do dia.</p>
+    `);
+
+            // Atualizar progresso
+            atualizarProgresso(0);
+
+            // Resetar botões
+            $('#btn-iniciar-rotina').html('<i class="material-icons left">access_time</i>Iniciar Rotina');
+            $('#container-botoes-acao').addClass('hidden');
+
+            // Forçar redesenho
+            setTimeout(() => {
+                $accordion.removeClass('open');
+            }, 50);
+        }
+
+        function abrirModalObservacoes() {
+                // Limpar observações anteriores
+                $('#observacoes-dia').val('');
+                $('#contador-observacoes').text('0');
+
+                // Abrir modal
+                $('#modal-observacoes-dia').modal('open');
+            }
+
+            function configurarContadorObservacoes() {
+                    $('#observacoes-dia').on('input', function () {
+                        const texto = $(this).val();
+                        const caracteres = texto.length;
+                        $('#contador-observacoes').text(caracteres);
+
+                        // Mudar cor se estiver perto do limite
+                        if (caracteres > 180) {
+                            $('#contador-observacoes').addClass('red-text');
+                        } else {
+                            $('#contador-observacoes').removeClass('red-text');
+                        }
+                    });
+                }
+function confirmarFinalizarDia() {
+    const observacoes = $('#observacoes-dia').val().trim();
+    
+    // Verificar se tem ritual noturno
+    const ritualSalvo = localStorage.getItem('ritualNoturno');
+    if (!ritualSalvo) {
+        M.toast({html: 'Complete o ritual noturno primeiro'});
+        return;
+    }
+    
+    
+
+    // Fechar modal
+    $('#modal-observacoes-dia').modal('close');
+    
+    // Finalizar dia com observações
+    finalizarDiaCompleto(observacoes);
+}
+
+    document.getElementById("btnFinalizarDia").addEventListener("click", function () {
+        fetch("/rotinas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+            },
+            body: JSON.stringify( diaCompleto) // aqui vai o JSON do console.log
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(err => console.error(err));
+    });
+
     </script>
 
    

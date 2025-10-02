@@ -2597,22 +2597,22 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             <div id="lista-sinais-sono" class="hidden" style="margin-top: 20px;">
                 <div class="card-panel blue lighten-5">
                     <h6>Sinais de Sono Mais Comuns:</h6>
-                    <div class="row" style="columns: 2;">
-                        <div class="col s6"><i class="material-icons tiny">emoji_people</i> Bocejar</div>
-                        <div class="col s6"><i class="material-icons tiny">directions_run</i> Se agitar</div>
-                        <div class="col s6"><i class="material-icons tiny">remove_red_eye</i> Abrir bem os olhos</div>
-                        <div class="col s6"><i class="material-icons tiny">volume_up</i> Fazer barulhinhos</div>
-                        <div class="col s6"><i class="material-icons tiny">repeat</i> Virar o rosto</div>
-                        <div class="col s6"><i class="material-icons tiny">child_care</i> Esconder o rosto no peito</div>
-                        <div class="col s6"><i class="material-icons tiny">pan_tool</i> Movimentos involuntários</div>
-                        <div class="col s6"><i class="material-icons tiny">touch_app</i> Esfregar os olhos</div>
-                        <div class="col s6"><i class="material-icons tiny">visibility</i> Olhar parado/fixo</div>
-                        <div class="col s6"><i class="material-icons tiny">content_cut</i> Puxar orelhas/cabelos</div>
-                        <div class="col s6"><i class="material-icons tiny">gesture</i> Arranhar o rosto</div>
-                        <div class="col s6"><i class="material-icons tiny">accessibility</i> Movimentos descoordenados</div>
-                        <div class="col s6"><i class="material-icons tiny">airline_seat_flat</i> Arquear o corpo</div>
-                        <div class="col s6"><i class="material-icons tiny">toys</i> Perder interesse em brinquedos</div>
-                        <div class="col s6"><i class="material-icons tiny">warning</i> Esbarrar em coisas</div>
+                    <div class="row"">
+                        <div class="col s12"><i class="material-icons tiny">emoji_people</i> Bocejar</div>
+                        <div class="col s12"><i class="material-icons tiny">directions_run</i> Se agitar</div>
+                        <div class="col s12"><i class="material-icons tiny">remove_red_eye</i> Abrir bem os olhos</div>
+                        <div class="col s12"><i class="material-icons tiny">volume_up</i> Fazer barulhinhos</div>
+                        <div class="col s12"><i class="material-icons tiny">repeat</i> Virar o rosto</div>
+                        <div class="col s12"><i class="material-icons tiny">child_care</i> Esconder o rosto no peito</div>
+                        <div class="col s12"><i class="material-icons tiny">pan_tool</i> Movimentos involuntários</div>
+                        <div class="col s12"><i class="material-icons tiny">touch_app</i> Esfregar os olhos</div>
+                        <div class="col s12"><i class="material-icons tiny">visibility</i> Olhar parado/fixo</div>
+                        <div class="col s12"><i class="material-icons tiny">content_cut</i> Puxar orelhas/cabelos</div>
+                        <div class="col s12"><i class="material-icons tiny">gesture</i> Arranhar o rosto</div>
+                        <div class="col s12"><i class="material-icons tiny">accessibility</i> Movimentos descoordenados</div>
+                        <div class="col s12"><i class="material-icons tiny">airline_seat_flat</i> Arquear o corpo</div>
+                        <div class="col s12"><i class="material-icons tiny">toys</i> Perder interesse em brinquedos</div>
+                        <div class="col s12"><i class="material-icons tiny">warning</i> Esbarrar em coisas</div>
                     </div>
                 </div>
             </div>
@@ -2694,18 +2694,7 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             
             <div class="divider"></div>
             
-            <h6>👶 Próximos Passos</h6>
-            <div class="row">
-                <div class="col s12 m4">
-                    <p><strong>Idade:</strong> ${idadeBebe} meses</p>
-                </div>
-                <div class="col s12 m4">
-                    <p><strong>Tempo acordado:</strong> ${tempoAcordado} min</p>
-                </div>
-                <div class="col s12 m4">
-                    <p><strong>Próxima janela:</strong><br>${calcularProximaJanela()}</p>
-                </div>
-            </div>
+            
             
             
         </div>
@@ -4001,14 +3990,7 @@ $accordion.find('.accordion-content-inner').html(`
             <strong>⏱️ Duração</strong>
             ${soneca.duracao} minutos
         </div>
-        <div class="detalhe-item">
-            <strong>📊 Situação</strong>
-            ${soneca.situacao}
-        </div>
-        <div class="detalhe-item">
-            <strong>🎯 Status</strong>
-            ${statusTexto}
-        </div>
+       
     </div>
      <!-- Botões para ver detalhes -->
     <div class="row center-align" style="margin: 20px 0;">
@@ -4028,7 +4010,7 @@ $accordion.find('.accordion-content-inner').html(`
     <!-- SEÇÃO SEPARADA PARA ASSOCIAÇÕES -->
     ${soneca.associacoes && soneca.associacoes.comoAdormeceu && soneca.associacoes.comoAdormeceu.length > 0 ? `
     <div class="associacoes-soneca" style="margin: 15px 0; padding: 15px; background: #f3e5f5; border-radius: 8px; border-left: 4px solid #7e57c2;">
-        <h6 style="margin-top: 0; color: #7e57c2;"><i class="material-icons tiny" style="vertical-align: middle;">nights_stay</i> Associações de Sono</h6>
+        <h6 style="margin-top: 0; color: #7e57c2;">Associações de Sono</h6>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             ${soneca.associacoes.comoAdormeceu.length > 0 ? `
             <div>
@@ -4063,11 +4045,11 @@ $accordion.find('.accordion-content-inner').html(`
     
    
     
-    <div class="recomendacao">
+   <!-- <div class="recomendacao">
         <h6><i class="material-icons tiny">lightbulb_outline</i> Recomendações Resumidas</h6>
         ${recomendacao}
     </div>
-    
+    -->
     ${respostasHTML}
 `);
         });
@@ -4362,7 +4344,8 @@ function carregarRecomendacoesAccordion(codigoAnalise, duracao, sonecaIndex = nu
         (associacoes.depoisAdormecer && associacoes.depoisAdormecer.some(d => d.includes('Sucção não nutritiva')))) {
         aulasRecomendadas.push({
             titulo: "Associação de mamar nas sonecas",
-            descricao: "Para quem respondeu 'Dormiu mamando' ou 'Ficou fazendo sucção não nutritiva durante boa parte da soneca'"
+            descricao: "",
+            video: "videos/associacao_mamar_soneca.mp4"
         });
     }
     
@@ -4371,7 +4354,9 @@ function carregarRecomendacoesAccordion(codigoAnalise, duracao, sonecaIndex = nu
         (associacoes.depoisAdormecer && associacoes.depoisAdormecer.some(d => d.includes('colo') || d.includes('Carrinho') || d.includes('Rede')))) {
         aulasRecomendadas.push({
             titulo: "Associação de colo nas sonecas (Protocolo Bebê no berço)",
-            descricao: "Para quem respondeu 'Dormiu ninando', 'Ficou no colo durante boa parte da soneca', 'Dormiu no carrinho' ou 'Balançando na rede'"
+            descricao: "",
+            video: "videos/assciacao_colo.mp4"
+        
         });
     }
     
@@ -4379,19 +4364,23 @@ function carregarRecomendacoesAccordion(codigoAnalise, duracao, sonecaIndex = nu
     if (associacoes.comoAdormeceu.some(a => a.includes('Chupeta'))) {
         aulasRecomendadas.push({
             titulo: "Associação de Chupeta",
-            descricao: "Para quem respondeu 'Dormiu com chupeta'"
+            descricao: "",
+             video: "videos/assciacao_colo.mp4"
         });
     }
     
     // Aulas gerais para todos
     aulasRecomendadas.push({
         titulo: "A autonomia do sono",
-        descricao: "Aula fundamental para todos"
+        descricao: "",
+        video: "videos/"
+
     });
     
     aulasRecomendadas.push({
         titulo: "Autonomia nas sonecas", 
-        descricao: "Aula complementar sobre sonecas"
+        descricao: "",
+        video: "videos/"
     });
     
     if (aulasRecomendadas.length > 0) {
@@ -4405,9 +4394,20 @@ function carregarRecomendacoesAccordion(codigoAnalise, duracao, sonecaIndex = nu
         aulasRecomendadas.forEach((aula, index) => {
             recomendacoesHTML += `
                     <div class="aula-item" style="padding: 10px; margin: 8px 0; background: rgba(255,255,255,0.7); border-radius: 4px; border-left: 3px solid #2196F3;">
-                        <strong>${index + 1}. ${aula.titulo}</strong>
-                        <br><small class="grey-text">${aula.descricao}</small>
-                    </div>
+    <strong>${index + 1}. ${aula.titulo}</strong>
+    <br><small class="grey-text">${aula.descricao}</small>
+    <br>
+    <button onclick="toggleVideo(this)" 
+            style="margin-top: 8px; padding: 6px 12px; background: #2196F3; color: white; border: none; border-radius: 3px; cursor: pointer;">
+        ▶ Mostrar Vídeo
+    </button>
+    <div class="video-container" style="display: none; margin-top: 10px;">
+        <video width="100%" controls>
+            <source src="{{ asset('storage/') }}${aula.video}" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+    </div>
+</div>
             `;
         });
         
@@ -5206,7 +5206,20 @@ function confirmarFinalizarDia() {
             })
             .catch(err => console.error(err));
     });
-
+function toggleVideo(button) {
+    const videoContainer = button.nextElementSibling;
+    const isHidden = videoContainer.style.display === 'none';
+    
+    if (isHidden) {
+        videoContainer.style.display = 'block';
+        button.innerHTML = '▼ Ocultar Vídeo';
+        button.style.background = '#ff5722';
+    } else {
+        videoContainer.style.display = 'none';
+        button.innerHTML = '▶ Mostrar Vídeo';
+        button.style.background = '#2196F3';
+    }
+}
     </script>
 
    

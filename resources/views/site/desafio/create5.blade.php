@@ -800,8 +800,9 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
-            <a href="#!" class="waves-effect waves-green btn teal" onclick="salvarInicioDia()">Salvar e Continuar</a>
+           
+            <a href="#!" class="waves-effect waves-green btn" onclick="salvarInicioDia()">Salvar e Continuar</a>
+             <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
         </div>
     </div>
 <!-- Modal de confirmação para ritual noturno sem sonecas -->

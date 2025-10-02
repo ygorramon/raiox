@@ -4403,7 +4403,7 @@ function carregarRecomendacoesAccordion(codigoAnalise, duracao, sonecaIndex = nu
     </button>
     <div class="video-container" style="display: none; margin-top: 10px;">
         <video width="100%" controls>
-            <source src="{{ asset('storage/') }}${aula.video}" type="video/mp4">
+            <source src="{{ asset('storage') }}/${aula.video}" type="video/mp4">
             Seu navegador não suporta vídeos.
         </video>
     </div>

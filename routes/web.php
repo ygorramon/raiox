@@ -117,6 +117,8 @@ Route::middleware('auth.client:clients')
         Route::post('/desafio/{id}/sono', 'Admin\ChallengeController@updateSono')->name('desafio.sono');
         Route::get('/desafio/{id}/', 'Site\ChallengeController@show')->name('desafio.show');
         Route::get('/desafio/{id}/create/{day}/new', 'Site\ChallengeController@analyzeCreate3')->name('analyze.create2');
+        Route::post('/rotinas', 'Site\RotinaController@store')->name('rotinas.store');
+
         Route::get('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeCreate2')->name('analyze.create');;
         Route::post('/desafio/{id}/create/{day}', 'Site\ChallengeController@analyzeStore2')->name('analyze.store');
         Route::post('/desafio/{id}/createJson/{day}', 'Site\DadoController@saveUpdate')->name('analyze.store.json');

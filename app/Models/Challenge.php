@@ -24,6 +24,10 @@ class Challenge extends Model
     {
         return $this->hasMany('App\Models\Analyze');
     }
+    public function rotinas()
+    {
+        return $this->hasMany('App\Models\Rotina');
+    }
 
     public function form()
     {

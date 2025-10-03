@@ -1181,10 +1181,10 @@
         <h4>📝 Observações do Dia</h4>
         <p>Antes de finalizar, gostaria de adicionar alguma observação sobre o dia do seu bebê?</p>
         
-        <form id="formFinalizarDia" action="{{ route('rotinas.store') }}" method="POST">
+<form id="formFinalizarDia" method="POST" action="{{ route('rotinas.store', ['id' => $challenge->id, 'day' => $day]) }}">
             @csrf
             <input type="hidden" name="data" id="data-dia">
-            <input type="hidden" name="inicioDia" id="inicio-dia">
+            <input type="hidden" name="inicioDia" id="inicio-dia-form">
             <input type="hidden" name="historicoSonecas" id="historico-sonecas">
             <input type="hidden" name="ritualNoturno" id="ritual-noturno">
             <input type="hidden" name="historicoDespertares" id="historico-despertares">
@@ -1378,208 +1378,7 @@ function verificarEstadoSalvo() {
     console.log('Estado salvo com sucesso');
 }
         
-function atualizarRegistroVisual() {
-    // Atualizar início do dia
-    if (inicioDia) {
-        const $accordion = $('#accordion-inicio-dia');
-        $accordion.removeClass('vazio').addClass('adequado')
-            .find('.rotina-detalhe').text(inicioDia);
-        $accordion.find('.rotina-status')
-            .removeClass('status-vazio').addClass('status-adequado')
-            .text('Registrado');
 
-        // Atualizar conteúdo do accordion
-        $accordion.find('.accordion-content-inner').html(`
-            <div class="detalhes-soneca">
-                <div class="detalhe-item">
-                    <strong>🕒 Início do dia</strong>
-                    ${inicioDia}
-                </div>
-                <div class="detalhe-item">
-                    <strong>👶 Idade do bebê</strong>
-                    ${idadeBebe} meses
-                </div>
-                <div class="detalhe-item">
-                    <strong>⏰ Tempo acordado esperado</strong>
-                    ${tempoAcordado} minutos
-                </div>
-                <div class="detalhe-item">
-                    <strong>📅 Data</strong>
-                    ${new Date().toLocaleDateString('pt-BR')}
-                </div>
-            </div>
-             <div class="row center-align" style="margin: 20px 0;">
-        <div class="col s12">
-            <a class="waves-effect waves-light btn red" onclick="excluirInicioDia()">
-                <i class="material-icons left">delete</i>Excluir Início do Dia
-            </a>
-        </div>
-    </div>
-        `);
-    }
-
-    // Atualizar sonecas
-    $('#registro-sonecas').empty();
-    
-    // Adicionar sonecas do histórico
-    historicoSonecas.forEach((soneca, index) => {
-        const sonecaId = index + 1;
-        let $accordion = $(`#accordion-soneca-${sonecaId}`);
-
-        // Criar accordion se não existir
-        if ($accordion.length === 0) {
-            $('#registro-sonecas').append(`
-                <div class="accordion" id="accordion-soneca-${sonecaId}">
-                    <div class="accordion-header">
-                        <div style="display: flex; align-items: center; flex-grow: 1;">
-                            <i class="material-icons rotina-icon">hotel</i>
-                            <div class="rotina-info" style="margin-left: 15px;">
-                                <strong>${sonecaId}ª soneca:</strong>
-                                <span class="rotina-detalhe"></span>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="rotina-status"></span>
-                            <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
-                        </div>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner"></div>
-                    </div>
-                </div>
-            `);
-            $accordion = $(`#accordion-soneca-${sonecaId}`);
-        }
-
-        // Determinar status
-        const isAdequada = soneca.duracao >= 35;
-        const statusClasse = isAdequada ? 'adequado' : 'atencao';
-        const statusTexto = isAdequada ? 'Adequada' : 'Atenção';
-        const statusLabel = isAdequada ? 'status-adequado' : 'status-atencao';
-
-        // Formatar detalhes
-        const detalhes = soneca.sentiuSono ?
-            `Sono: ${soneca.sentiuSono} | Soneca: ${soneca.inicio} - ${soneca.termino} (${soneca.duracao} min)` :
-            `Soneca: ${soneca.inicio} - ${soneca.termino} (${soneca.duracao} min)`;
-
-        // Atualizar header
-        $accordion.removeClass('vazio adequado atencao').addClass(statusClasse)
-            .find('.rotina-detalhe').html(detalhes);
-
-        $accordion.find('.rotina-status')
-            .removeClass('status-vazio status-adequado status-atencao')
-            .addClass(statusLabel)
-            .text(statusTexto);
-
-        // Atualizar conteúdo do accordion
-        const recomendacao = gerarRecomendacaoSoneca(soneca);
-        const respostasHTML = gerarRespostasQuestionario(soneca);
-        const associacoesHTML = soneca.associacoes ? gerarHTMLAssociacoes(soneca.associacoes) : '';
-
-        $accordion.find('.accordion-content-inner').html(`
-            <div class="detalhes-soneca">
-                <div class="detalhe-item">
-                    <strong>😴 Sentiu sono</strong>
-                    ${soneca.sentiuSono || 'Não registrado'}
-                </div>
-                <div class="detalhe-item">
-                    <strong>🛌 Início da soneca</strong>
-                    ${soneca.inicio}
-                </div>
-                <div class="detalhe-item">
-                    <strong>⏰ Término</strong>
-                    ${soneca.termino}
-                </div>
-                <div class="detalhe-item">
-                    <strong>⏱️ Duração</strong>
-                    ${soneca.duracao} minutos
-                </div>
-                <div class="detalhe-item">
-                    <strong>📊 Situação</strong>
-                    ${soneca.situacao}
-                </div>
-                <div class="detalhe-item">
-                    <strong>🎯 Status</strong>
-                    ${statusTexto}
-                </div>
-            </div>
-            
-            ${associacoesHTML}
-            
-            <!-- Botões para ver detalhes -->
-            <div class="row center-align" style="margin: 20px 0;">
-                <div class="col s12 m6">
-                    <a class="waves-effect waves-light btn blue modal-trigger" href="#modal-recomendacoes" onclick="carregarRecomendacoesAccordion('${soneca.situacao}', ${soneca.duracao}, ${index})">
-                        <i class="material-icons left">lightbulb_outline</i>Recomendações
-                    </a>
-                </div>
-                <div class="col s12 m6">
-                    <a class="waves-effect waves-light btn green modal-trigger" href="#modal-respostas" onclick="carregarRespostasAccordion(${index})">
-                        <i class="material-icons left">assignment</i>Questionário
-                    </a>
-                </div>
-                  <div class="col s12 m4">
-                <a class="waves-effect waves-light btn red" onclick="excluirSoneca(${index})">
-                    <i class="material-icons left">delete</i>Excluir
-                </a>
-            </div>
-            </div>
-            
-            <div class="recomendacao">
-                <h6><i class="material-icons tiny">lightbulb_outline</i> Recomendações</h6>
-                ${recomendacao}
-            </div>
-            
-            ${respostasHTML}
-        `);
-    });
-
-    // Adicionar próxima soneca vazia COM BOTÃO
-    const proximaSonecaId = historicoSonecas.length + 1;
-    if (proximaSonecaId <= 4) {
-        $('#registro-sonecas').append(`
-            <div class="accordion vazio" id="accordion-soneca-${proximaSonecaId}">
-                <div class="accordion-header">
-                    <div style="display: flex; align-items: center; flex-grow: 1;">
-                        <i class="material-icons rotina-icon">hotel</i>
-                        <div class="rotina-info" style="margin-left: 15px;">
-                            <strong>${proximaSonecaId}ª soneca:</strong>
-                            <span class="rotina-detalhe">Não registrada</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                        <span class="rotina-status status-vazio">Pendente</span>
-                        <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        <p>Esta soneca ainda não foi registrada.</p>
-                        <div class="center-align" style="margin: 15px 0;">
-                            <a class="waves-effect waves-light btn blue modal-trigger" href="#modal-preenchimento-soneca" onclick="prepararNovaSoneca()">
-                                <i class="material-icons left">add</i>Adicionar Soneca
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `);
-    }
-
-    // Configurar eventos de clique para os accordions
-    $('.accordion .accordion-header').off('click').on('click', function () {
-        const $accordion = $(this).closest('.accordion');
-        const isOpen = $accordion.hasClass('open');
-
-        // Fechar todos os accordions
-        $('.accordion').removeClass('open');
-
-        // Abrir este accordion se não estava aberto
-        if (!isOpen) {
-            $accordion.addClass('open');
-        }
-    });
-}
 
 function finalizarDiaCompleto(observacoes = '') {
     // Coletar todos os dados
@@ -1634,11 +1433,12 @@ function finalizarDiaCompleto(observacoes = '') {
     };
 }
 
+console.log(diaCompleto);
     diaCompleto.observacoes = document.getElementById("observacoes-dia").value;
 
     // Preenche os inputs hidden
     document.getElementById("data-dia").value = diaCompleto.data;
-    document.getElementById("inicio-dia").value = diaCompleto.inicioDia;
+    document.getElementById("inicio-dia-form").value = diaCompleto.inicioDia;
     document.getElementById("historico-sonecas").value = JSON.stringify(diaCompleto.historicoSonecas);
     document.getElementById("ritual-noturno").value = JSON.stringify(diaCompleto.ritualNoturno);
     document.getElementById("historico-despertares").value = JSON.stringify(diaCompleto.historicoDespertares);
@@ -1936,6 +1736,7 @@ function adicionarRespostaQuestionario(pergunta, resposta, detalhes = null) {
     
     // Salvar estado
     salvarEstado();
+    console.log(estado);
 }
 
     function atualizarBotoesAposRitual() {
@@ -3879,18 +3680,17 @@ function compararHorarios(sentiuSono, horarioSugeridoSono) {
     return dataSono > dataSug; // true se sentiuSono ocorreu depois do sugerido
 }
 
-    function atualizarRegistroVisual() {
-        // Atualizar início do dia
-        if (inicioDia) {
-            const $accordion = $('#accordion-inicio-dia');
-            $accordion.removeClass('vazio').addClass('adequado')
-                .find('.rotina-detalhe').text(inicioDia);
-            $accordion.find('.rotina-status')
-                .removeClass('status-vazio').addClass('status-adequado')
-                .text('Registrado');
+function atualizarRegistroVisual() {
+    // Atualizar início do dia
+    if (inicioDia) {
+        const $accordion = $('#accordion-inicio-dia');
+        $accordion.removeClass('vazio').addClass('adequado')
+            .find('.rotina-detalhe').text(inicioDia);
+        $accordion.find('.rotina-status')
+            .removeClass('status-vazio').addClass('status-adequado')
+            .text('Registrado');
 
-            // Atualizar conteúdo do accordion
-            $accordion.find('.accordion-content-inner').html(`
+        $accordion.find('.accordion-content-inner').html(`
             <div class="detalhes-soneca">
                 <div class="detalhe-item">
                     <strong>🕒 Início do dia</strong>
@@ -3909,155 +3709,140 @@ function compararHorarios(sentiuSono, horarioSugeridoSono) {
                     ${new Date().toLocaleDateString('pt-BR')}
                 </div>
             </div>
-             <div class="row center-align" style="margin: 20px 0;">
-        <div class="col s12">
-            <a class="waves-effect waves-light btn red" onclick="excluirInicioDia()">
-                <i class="material-icons left">delete</i>Excluir Início do Dia
-            </a>
-        </div>
-    </div>
+            <div class="row center-align" style="margin: 20px 0;">
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn red" onclick="excluirInicioDia()">
+                        <i class="material-icons left">delete</i>Excluir Início do Dia
+                    </a>
+                </div>
+            </div>
         `);
-        }
+    }
 
-        // Atualizar sonecas
-        historicoSonecas.forEach((soneca, index) => {
-            const sonecaId = index + 1;
-            let $accordion = $(`#accordion-soneca-${sonecaId}`);
+    // Atualizar sonecas
+    $('#registro-sonecas').empty();
+    
+    historicoSonecas.forEach((soneca, index) => {
+        const sonecaId = index + 1;
+        
+        const isAdequada = ['1.1', '1.2'].includes(soneca.situacao) && soneca.duracao >= 40;
+        const statusClasse = isAdequada ? 'adequado' : 'atencao';
+        const statusTexto = isAdequada ? 'Adequada' : 'Atenção';
+        const statusLabel = isAdequada ? 'status-adequado' : 'status-atencao';
 
-            // Criar accordion se não existir
-            if ($accordion.length === 0) {
-                $('#registro-sonecas').append(`
-                <div class="accordion" id="accordion-soneca-${sonecaId}">
-                    <div class="accordion-header">
-                        <div style="display: flex; align-items: center; flex-grow: 1;">
-                            <i class="material-icons rotina-icon">hotel</i>
-                            <div class="rotina-info" style="margin-left: 15px;">
-                                <strong>${sonecaId}ª soneca:</strong>
-                                <span class="rotina-detalhe"></span>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="rotina-status"></span>
-                            <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
+        const detalhes = soneca.sentiuSono ?
+            `Sono: ${soneca.sentiuSono} | Soneca: ${soneca.inicio} - ${soneca.termino} (${soneca.duracao} min)` :
+            `Soneca: ${soneca.inicio} - ${soneca.termino} (${soneca.duracao} min)`;
+
+        $('#registro-sonecas').append(`
+            <div class="accordion ${statusClasse}" id="accordion-soneca-${sonecaId}">
+                <div class="accordion-header">
+                    <div style="display: flex; align-items: center; flex-grow: 1;">
+                        <i class="material-icons rotina-icon">hotel</i>
+                        <div class="rotina-info" style="margin-left: 15px;">
+                            <strong>${sonecaId}ª soneca:</strong>
+                            <span class="rotina-detalhe">${detalhes}</span>
                         </div>
                     </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner"></div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="rotina-status ${statusLabel}">${statusTexto}</span>
+                        <i class="material-icons accordion-icon" style="margin-left: 10px;">expand_more</i>
                     </div>
                 </div>
-            `);
-                $accordion = $(`#accordion-soneca-${sonecaId}`);
-            }
-
-            // Determinar status
-            const isAdequada = (soneca.situacao === '1.1') && (soneca.duracao >=40);
-            const statusClasse = isAdequada ? 'adequado' : 'atencao';
-            const statusTexto = isAdequada ? 'Adequada' : 'Atenção';
-            const statusLabel = isAdequada ? 'status-adequado' : 'status-atencao';
-
-            // Formatar detalhes
-            const detalhes = soneca.sentiuSono ?
-                `Sono: ${soneca.sentiuSono} | Soneca: ${soneca.inicio} - ${soneca.termino} (${soneca.duracao} min)` :
-                `Soneca: ${soneca.inicio} - ${soneca.termino} (${soneca.duracao} min)`;
-
-            // Atualizar header
-            $accordion.removeClass('vazio adequado atencao').addClass(statusClasse)
-                .find('.rotina-detalhe').html(detalhes);
-
-            $accordion.find('.rotina-status')
-                .removeClass('status-vazio status-adequado status-atencao')
-                .addClass(statusLabel)
-                .text(statusTexto);
-
-            // Atualizar conteúdo do accordion
-            const recomendacao = gerarRecomendacaoSoneca(soneca);
-            const respostasHTML = gerarRespostasQuestionario(soneca);
-$accordion.find('.accordion-content-inner').html(`
-    <div class="detalhes-soneca">
-        <div class="detalhe-item">
-            <strong>😴 Sentiu sono</strong>
-            ${soneca.sentiuSono || 'Não registrado'}
-        </div>
-        <div class="detalhe-item">
-            <strong>🛌 Início da soneca</strong>
-            ${soneca.inicio}
-        </div>
-        <div class="detalhe-item">
-            <strong>⏰ Término</strong>
-            ${soneca.termino}
-        </div>
-        <div class="detalhe-item">
-            <strong>⏱️ Duração</strong>
-            ${soneca.duracao} minutos
-        </div>
-       
-    </div>
-     <!-- Botões para ver detalhes -->
-    <div class="row center-align" style="margin: 20px 0;">
-        <div class="col s12 m6">
-            <a class="waves-effect waves-light btn blue modal-trigger" href="#modal-recomendacoes" onclick="carregarRecomendacoesAccordion('${soneca.situacao}', ${soneca.duracao}, ${index})">
-                <i class="material-icons left">lightbulb_outline</i>Recomendações
-            </a>
-        </div>
-          <div class="col s12 m6">
-                <a class="waves-effect waves-light btn red" onclick="excluirSoneca(${index})">
-                    <i class="material-icons left">delete</i>Excluir
-                </a>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <div class="detalhes-soneca">
+                            <div class="detalhe-item">
+                                <strong>😴 Sentiu sono</strong>
+                                ${soneca.sentiuSono || 'Não registrado'}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>🛌 Início da soneca</strong>
+                                ${soneca.inicio}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>⏰ Término</strong>
+                                ${soneca.termino}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>⏱️ Duração</strong>
+                                ${soneca.duracao} minutos
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>📊 Situação</strong>
+                                ${soneca.situacao}
+                            </div>
+                            <div class="detalhe-item">
+                                <strong>🎯 Status</strong>
+                                ${statusTexto}
+                            </div>
+                        </div>
+                        
+                        <div class="row center-align" style="margin: 20px 0;">
+                            <div class="col s12 m6">
+                                <a class="waves-effect waves-light btn blue modal-trigger" href="#modal-recomendacoes" 
+                                   onclick="carregarRecomendacoesAccordion('${soneca.situacao}', ${soneca.duracao}, ${index})">
+                                    <i class="material-icons left">lightbulb_outline</i>Recomendações
+                                </a>
+                            </div>
+                            <div class="col s12 m6">
+                                <a class="waves-effect waves-light btn red" onclick="excluirSoneca(${index})">
+                                    <i class="material-icons left">delete</i>Excluir
+                                </a>
+                            </div>
+                        </div>
+                        
+                        ${soneca.associacoes && soneca.associacoes.comoAdormeceu && soneca.associacoes.comoAdormeceu.length > 0 ? `
+                        <div class="associacoes-soneca" style="margin: 15px 0; padding: 15px; background: #f3e5f5; border-radius: 8px; border-left: 4px solid #7e57c2;">
+                            <h6 style="margin-top: 0; color: #7e57c2;">Associações de Sono</h6>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                ${soneca.associacoes.comoAdormeceu.length > 0 ? `
+                                <div>
+                                    <strong>🌙 Como adormeceu:</strong><br>
+                                    ${soneca.associacoes.comoAdormeceu.join(', ')}
+                                </div>
+                                ` : ''}
+                                
+                                ${soneca.associacoes.depoisAdormecer && soneca.associacoes.depoisAdormecer.length > 0 ? `
+                                <div>
+                                    <strong>😴 Durante a soneca:</strong><br>
+                                    ${soneca.associacoes.depoisAdormecer.join(', ')}
+                                </div>
+                                ` : ''}
+                                
+                                ${soneca.associacoes.detalhesAdormecer && Object.keys(soneca.associacoes.detalhesAdormecer).length > 0 ? `
+                                <div>
+                                    <strong>📝 Detalhes:</strong><br>
+                                    ${Object.values(soneca.associacoes.detalhesAdormecer).join(', ')}
+                                </div>
+                                ` : ''}
+                                
+                                ${soneca.associacoes.incomoda ? `
+                                <div>
+                                    <strong>🤔 Incomoda?</strong><br>
+                                    ${soneca.associacoes.incomoda}
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        <div class="recomendacao">
+                            <h6><i class="material-icons tiny">lightbulb_outline</i> Recomendações Resumidas</h6>
+                            ${gerarRecomendacaoSoneca(soneca)}
+                        </div>
+                        
+                        ${gerarRespostasQuestionario(soneca)}
+                    </div>
+                </div>
             </div>
-       
-    </div>
-    
-    <!-- SEÇÃO SEPARADA PARA ASSOCIAÇÕES -->
-    ${soneca.associacoes && soneca.associacoes.comoAdormeceu && soneca.associacoes.comoAdormeceu.length > 0 ? `
-    <div class="associacoes-soneca" style="margin: 15px 0; padding: 15px; background: #f3e5f5; border-radius: 8px; border-left: 4px solid #7e57c2;">
-        <h6 style="margin-top: 0; color: #7e57c2;">Associações de Sono</h6>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            ${soneca.associacoes.comoAdormeceu.length > 0 ? `
-            <div>
-                <strong>🌙 Como adormeceu:</strong><br>
-                ${soneca.associacoes.comoAdormeceu.join(', ')}
-            </div>
-            ` : ''}
-            
-            ${soneca.associacoes.depoisAdormecer && soneca.associacoes.depoisAdormecer.length > 0 ? `
-            <div>
-                <strong>😴 Durante a soneca:</strong><br>
-                ${soneca.associacoes.depoisAdormecer.join(', ')}
-            </div>
-            ` : ''}
-            
-            ${soneca.associacoes.detalhesAdormecer && Object.keys(soneca.associacoes.detalhesAdormecer).length > 0 ? `
-            <div>
-                <strong>📝 Detalhes:</strong><br>
-                ${Object.values(soneca.associacoes.detalhesAdormecer).join(', ')}
-            </div>
-            ` : ''}
-            
-            ${soneca.associacoes.incomoda ? `
-            <div>
-                <strong>🤔 Incomoda?</strong><br>
-                ${soneca.associacoes.incomoda}
-            </div>
-            ` : ''}
-        </div>
-    </div>
-    ` : ''}
-    
-   
-    
-   <!-- <div class="recomendacao">
-        <h6><i class="material-icons tiny">lightbulb_outline</i> Recomendações Resumidas</h6>
-        ${recomendacao}
-    </div>
-    -->
-    ${respostasHTML}
-`);
-        });
+        `);
+    });
 
-        // Adicionar próxima soneca vazia se necessário
-        const proximaSonecaId = historicoSonecas.length + 1;
-        if ($(`#accordion-soneca-${proximaSonecaId}`).length === 0 && proximaSonecaId <= 4) {
-            $('#registro-sonecas').append(`
+    // Adicionar próxima soneca vazia
+    const proximaSonecaId = historicoSonecas.length + 1;
+    if (proximaSonecaId <= 4) {
+        $('#registro-sonecas').append(`
             <div class="accordion vazio" id="accordion-soneca-${proximaSonecaId}">
                 <div class="accordion-header">
                     <div style="display: flex; align-items: center; flex-grow: 1;">
@@ -4081,26 +3866,206 @@ $accordion.find('.accordion-content-inner').html(`
                             </a>
                         </div>
                     </div>
-                                </div>
-               
+                </div>
             </div>
         `);
-        }
-
-        // Configurar eventos de clique para os accordions
-        $('.accordion .accordion-header').off('click').on('click', function () {
-            const $accordion = $(this).closest('.accordion');
-            const isOpen = $accordion.hasClass('open');
-
-            // Fechar todos os accordions
-            $('.accordion').removeClass('open');
-
-            // Abrir este accordion se não estava aberto
-            if (!isOpen) {
-                $accordion.addClass('open');
-            }
-        });
     }
+
+    // ATUALIZAR RITUAL NOTURNO
+     const ritualSalvo = localStorage.getItem('ritualNoturno');
+    if (ritualSalvo) {
+        try {
+            const ritual = JSON.parse(ritualSalvo);
+            const $accordionRitual = $('#accordion-ritual');
+            
+            $accordionRitual.removeClass('vazio').addClass('adequado')
+                .find('.rotina-detalhe').text(`${ritual.inicioRitual} - ${ritual.sonoNoturno} (${ritual.duracaoRitual} min) | ${ritual.localSono}`);
+            
+            $accordionRitual.find('.rotina-status')
+                .removeClass('status-vazio').addClass('status-adequado')
+                .text('Concluído');
+
+            $accordionRitual.find('.accordion-content-inner').html(`
+                <div class="detalhes-ritual">
+                    <div class="detalhe-item">
+                        <strong>🕒 Início do ritual</strong>
+                        ${ritual.inicioRitual}
+                    </div>
+                    <div class="detalhe-item">
+                        <strong>😴 Adormeceu</strong>
+                        ${ritual.sonoNoturno}
+                    </div>
+                    <div class="detalhe-item">
+                        <strong>⏱️ Duração do ritual</strong>
+                        ${ritual.duracaoRitual} minutos
+                    </div>
+                    <div class="detalhe-item">
+                        <strong>🛏️ Local</strong>
+                        ${ritual.localSono}
+                    </div>
+                    <div class="detalhe-item">
+                        <strong>🌙 Despertares</strong>
+                        ${historicoDespertares.length} registrado(s)
+                    </div>
+                </div>
+                
+                <div class="center-align" style="margin: 20px 0;">
+                    <a class="waves-effect waves-light btn purple modal-trigger" href="#modal-despertar" onclick="abrirModalDespertar()">
+                        <i class="material-icons left">add</i>Adicionar Despertar
+                    </a>
+                </div>
+
+                <div class="row center-align" style="margin: 20px 0;">
+                    <div class="col s12">
+                        <a class="waves-effect waves-light btn red" onclick="excluirRitualNoturno()">
+                            <i class="material-icons left">delete</i>Excluir Ritual Noturno
+                        </a>
+                    </div>
+                </div>
+            `);
+        } catch (e) {
+            console.error('Erro ao carregar ritual:', e);
+        }
+    }
+
+    // ATUALIZAR DESPERTARES
+    atualizarRegistroDespertares();
+
+    // MOSTRAR/OCULTAR CONTAINER DE FINALIZAR DIA
+    if (inicioDia && historicoSonecas.length > 0 && ritualSalvo) {
+        $('#container-finalizar-dia').removeClass('hidden');
+    } else {
+        $('#container-finalizar-dia').addClass('hidden');
+    }
+
+    // Configurar eventos de clique para os accordions
+    $('.accordion .accordion-header').off('click').on('click', function () {
+        const $accordion = $(this).closest('.accordion');
+        const isOpen = $accordion.hasClass('open');
+        $('.accordion').removeClass('open');
+        if (!isOpen) {
+            $accordion.addClass('open');
+        }
+    });
+}
+
+
+
+// FUNÇÕES AUXILIARES QUE PRECISAM SER CRIADAS
+
+function excluirRitualNoturno() {
+    if (confirm('Tem certeza que deseja excluir o ritual noturno?')) {
+        localStorage.removeItem('ritualNoturno');
+        $('#accordion-ritual')
+            .removeClass('adequado')
+            .addClass('vazio')
+            .find('.rotina-detalhe').text('Não registrado');
+        
+        $('#accordion-ritual .rotina-status')
+            .removeClass('status-adequado')
+            .addClass('status-vazio')
+            .text('Pendente');
+        
+        $('#accordion-ritual .accordion-content-inner').html(`
+            <p>O ritual noturno ainda não foi registrado.</p>
+            <div class="center-align" style="margin: 15px 0;">
+                <a class="waves-effect waves-light btn purple modal-trigger" href="#modal-ritual-noturno">
+                    <i class="material-icons left">add</i>Registrar Ritual Noturno
+                </a>
+            </div>
+        `);
+        
+        M.toast({html: 'Ritual noturno excluído com sucesso!'});
+        atualizarRegistroVisual();
+    }
+}
+
+function excluirDespertar(index) {
+    if (confirm('Tem certeza que deseja excluir este despertar?')) {
+        historicoDespertares.splice(index, 1);
+        
+        // Reorganizar números dos despertares
+        historicoDespertares.forEach((despertar, i) => {
+            despertar.numero = i + 1;
+        });
+        
+        M.toast({html: 'Despertar excluído com sucesso!'});
+        salvarEstado();
+        atualizarRegistroVisual();
+    }
+}
+
+function verRecomendacoesDespertar(index) {
+    const despertar = historicoDespertares[index];
+    
+    let recomendacoesHTML = `
+        <div class="card-panel teal lighten-4">
+            <h5>💡 Recomendações - ${despertar.numero}º Despertar</h5>
+            <p><strong>Horário:</strong> ${despertar.horaAcordou} - ${despertar.horaDormiu} (${despertar.duracao} min)</p>
+            <p><strong>Formas de voltar:</strong> ${despertar.formasVolta.join(', ')}</p>
+        </div>
+    `;
+    
+    // Lógica de recomendações específicas para despertares
+    if (despertar.duracao <= 30) {
+        recomendacoesHTML += `
+            <div class="card-panel green lighten-4">
+                <h6>✅ Despertar Rápido</h6>
+                <ul>
+                    <li>• O tempo para voltar a dormir está adequado</li>
+                    <li>• Continue com as estratégias que estão funcionando</li>
+                    <li>• Mantenha o ambiente consistente</li>
+                </ul>
+            </div>
+        `;
+    } else {
+        recomendacoesHTML += `
+            <div class="card-panel orange lighten-4">
+                <h6>⚠️ Despertar Longo</h6>
+                <ul>
+                    <li>• O tempo acordado pode estar afetando o descanso</li>
+                    <li>• Tente intervir mais rapidamente nos próximos despertares</li>
+                    <li>• Verifique se há desconfortos (fralda, temperatura, etc.)</li>
+                </ul>
+            </div>
+        `;
+    }
+    
+    if (despertar.formasVolta.includes('Sozinho')) {
+        recomendacoesHTML += `
+            <div class="card-panel green lighten-4">
+                <h6>🎉 Autonomia do Sono</h6>
+                <p>Seu bebê voltou a dormir sozinho - excelente sinal de autonomia!</p>
+            </div>
+        `;
+    } else {
+        recomendacoesHTML += `
+            <div class="card-panel blue lighten-4">
+                <h6>🔧 Associações de Sono</h6>
+                <p>Seu bebê precisa de ajuda para voltar a dormir. Considere:</p>
+                <ul>
+                    <li>• Gradualmente reduzir a intervenção</li>
+                    <li>• Criar associações mais independentes</li>
+                    <li>• Trabalhar a autonomia do sono durante o dia</li>
+                </ul>
+            </div>
+        `;
+    }
+    
+    $('#conteudo-recomendacoes').html(recomendacoesHTML);
+    $('#modal-recomendacoes').modal('open');
+}
+
+function configurarAccordionsDespertares() {
+    $('#registro-despertares .accordion .accordion-header').off('click').on('click', function () {
+        const $accordion = $(this).closest('.accordion');
+        const isOpen = $accordion.hasClass('open');
+        $('#registro-despertares .accordion').removeClass('open');
+        if (!isOpen) {
+            $accordion.addClass('open');
+        }
+    });
+}
 
     // Função para carregar recomendações do accordion
 function carregarRecomendacoesAccordion(codigoAnalise, duracao, sonecaIndex = null) {
@@ -4538,7 +4503,7 @@ function carregarRespostasAccordion(indexSoneca) {
             return respostasHTML;
         }
 
-      function abrirModalDespertar() {
+function abrirModalDespertar() {
     // Preencher com horário atual
     const agora = new Date();
     const horas = agora.getHours().toString().padStart(2, '0');
@@ -4550,8 +4515,7 @@ function carregarRespostasAccordion(indexSoneca) {
     
     // Limpar checkboxes
     $('.opcoes-volta-sono input[type="checkbox"]').prop('checked', false);
-    $('.sub-opcoes input[type="radio"]').prop('checked', false);
-    $('.outra-detalhe').addClass('hidden').val('');
+    $('#outra-detalhe-despertar').val('').addClass('hidden');
     
     // Atualizar título com o próximo número
     const proximoNumero = historicoDespertares.length + 1;
@@ -4592,9 +4556,12 @@ function salvarDespertar() {
     // Calcular duração
     const duracao = calcularDuracao(horaAcordou, horaDormiu);
     
+    // CORREÇÃO: Usar o número correto do despertar
+    const numeroDespertar = historicoDespertares.length + 1;
+    
     // Salvar no histórico
     historicoDespertares.push({
-        numero: despertarAtual,
+        numero: numeroDespertar,
         horaAcordou,
         horaDormiu,
         duracao,
@@ -4602,17 +4569,22 @@ function salvarDespertar() {
         timestamp: new Date().toLocaleTimeString('pt-BR')
     });
     
-    // Atualizar registro visual
-    atualizarRegistroDespertares();
+    console.log('Despertar salvo:', historicoDespertares); // Debug
     
-    // Fechar modal e preparar próximo
+    // Fechar modal
     $('#modal-despertar').modal('close');
-    despertarAtual++;
     
-    M.toast({html: `Despertar ${historicoDespertares.length} registrado com sucesso!`});
+    // Limpar formulário
+    $('#hora-acordou-despertar').val('');
+    $('#hora-dormiu-despertar').val('');
+    $('.opcoes-volta-sono input[type="checkbox"]').prop('checked', false);
+    $('#outra-detalhe-despertar').val('').addClass('hidden');
     
-    // Salvar estado
+    M.toast({html: `Despertar ${numeroDespertar} salvo com sucesso!`});
+    
+    // Salvar estado e atualizar visual
     salvarEstado();
+    atualizarRegistroVisual();
 }
 
 function atualizarRegistroDespertares() {

@@ -158,6 +158,10 @@ public function desafiosAnalisadosSemVideo(){
       if ($challenge->tipo == '1') {
          return view('admin.challenges.availables.new-show', compact('challenge', 'videos'));
       } else {
+         if ($challenge->tipo == '2') {
+           // dd($challenge->rotinas);
+            return view('admin.challenges.availables.new-show-2', compact('challenge', 'videos'));
+         }else
          return view('admin.challenges.availables.show', compact('challenge', 'videos'));
       }
    }

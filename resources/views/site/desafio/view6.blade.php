@@ -293,8 +293,7 @@
                                     <div>
                                         <strong>📊 Métricas:</strong><br>
                                         Janela de sono: {{ $soneca['janelaSono'] }}min<br>
-                                        Situação: {{ $soneca['situacao'] ?? 'N/A' }}<br>
-                                        Status: {{ $soneca['detalhes']['duracao']['status'] ?? 'N/A' }}
+                                      
                                     </div>
 
                                     @if(isset($soneca['associacoes']))
@@ -431,9 +430,7 @@
                                 </div>
                             </div>
 
-                            <div class="avaliacao">
-                                Avaliação: {{ $resumo['avaliacao'] }}
-                            </div>
+                           
                         </div>
                     </div>
                 @endif
@@ -490,7 +487,7 @@
             recomendacoesHTML = `
                 <div class="card-panel teal lighten-4">
                     <h5>💡 Recomendações Completas</h5>
-                    <p><strong>Situação:</strong> ${codigoAnalise} | <strong>Duração:</strong> ${duracao} minutos</p>
+                   <strong>Duração:</strong> ${duracao} minutos</p>
                 </div>
             `;
 

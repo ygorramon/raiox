@@ -55,10 +55,17 @@ class ChallengeController extends Controller
     public function store(Request $request)
     {
         $client = Auth::guard('clients')->user();
+
+        // Verifica se o cliente tem mais de 8 dias
+        $idadeCliente = Carbon::parse($client->created_at)->diffInDays(now());
+        $tipo = $idadeCliente > 8 ? '2' : '1';
+
         $challenge = $client->challenges()->create([
             'status' => 'INICIADO',
-            'tipo' => '1'
+            'tipo' => $tipo
         ]);
+
+
         return redirect()->route('desafio.introducao', $challenge->id);
     }
 

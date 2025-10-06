@@ -28,7 +28,8 @@ class Rotina extends Model
         'data' => 'date',
     ];
 
-    public function challenge(){
-        $this->belongsTo('App\Models\Challenge');
+    public function challenge()
+    {
+        return $this->belongsTo(Challenge::class);
     }
 }

@@ -17,6 +17,7 @@ class RotinaController extends Controller
 
         $data['data'] = \Carbon\Carbon::createFromFormat('d/m/Y', $data['data'])->format('Y-m-d');
     }
+  //  dd($request->historicoSonecas);
 //dd($data);
         Rotina::create([
             'day' => $day,
@@ -39,7 +40,14 @@ class RotinaController extends Controller
 
     public function show($id, $day)
     {
-        $rotina = Rotina::first();
+        $rotina = Rotina::with('challenge')
+            ->where('challenge_id', $id)
+            ->where('day', $day)
+            ->first();
+
+        if (!$rotina) {
+            return view('site.desafio.view6', ['rotina' => null]);
+        }
 
         return view('site.desafio.view6', compact('rotina'));
     }

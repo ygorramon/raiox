@@ -80,6 +80,10 @@ class ChallengeController extends Controller
 
         return view('site.desafio.show3', compact('analyzes', 'challenge'));
         }else{
+            if($challenge->tipo==2){
+                return view('site.desafio.show4', compact('analyzes', 'challenge'));
+
+            }
             return view('site.desafio.show', compact('analyzes', 'challenge'));
 
         }

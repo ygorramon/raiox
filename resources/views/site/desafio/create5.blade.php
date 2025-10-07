@@ -1381,9 +1381,11 @@ function verificarEstadoSalvo() {
 
 
 function finalizarDiaCompleto(observacoes = '') {
-    // Coletar todos os dados
+   
+   // alert(historicoSonecas);
+
     const diaCompleto = {
-        data: new Date().toLocaleDateString('pt-BR'),
+        data: dia,
         timestamp: new Date().toISOString(),
         inicioDia,
         historicoSonecas,
@@ -1433,7 +1435,6 @@ function finalizarDiaCompleto(observacoes = '') {
     };
 }
 
-console.log(diaCompleto);
     diaCompleto.observacoes = document.getElementById("observacoes-dia").value;
 
     // Preenche os inputs hidden
@@ -1460,6 +1461,7 @@ console.log(diaCompleto);
        // Função para salvar início do dia - MODIFICADA
 function salvarInicioDia() {
     inicioDia = $('#inicio-dia').val();
+    dia = new Date().toLocaleDateString('pt-BR');
     if (!inicioDia) {
         M.toast({html: 'Por favor, informe o horário que iniciou o dia'});
         return;
@@ -3147,7 +3149,7 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
         function renderizarProximaPergunta() {
             if (etapa >= perguntas.length) {
                 // Fim do fluxo
-                container.append(`<div class="card-panel green lighten-4"><p>Análise da situação 1.4 concluída!</p></div>`);
+                container.append(`<div class="card-panel green lighten-4"><p>Análise concluída!</p></div>`);
                 return;
             }
 
@@ -5125,8 +5127,9 @@ function verRecomendacoesDespertar(index) {
                 // Limpar observações anteriores
                 $('#observacoes-dia').val('');
                 $('#contador-observacoes').text('0');
-
+                
                 // Abrir modal
+              
                 $('#modal-observacoes-dia').modal('open');
             }
 

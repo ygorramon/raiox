@@ -1227,6 +1227,7 @@
         let ritualNoturnoRegistrado = false;
 
         let inicioDia = '';
+        let dia = '';
         let tempoAcordado = {{ calcularTempoAcordado($client->birthBaby) }};
         let sonecasRealizadas = 0;
         let historicoSonecas = [];

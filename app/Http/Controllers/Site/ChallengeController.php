@@ -58,8 +58,8 @@ class ChallengeController extends Controller
 
         // Verifica se o cliente tem mais de 8 dias
         $idadeCliente = Carbon::parse($client->created_at)->diffInDays(now());
-        $tipo = $idadeCliente > 8 ? '2' : '1';
-
+       // $tipo = $idadeCliente > 8 ? '2' : '1';
+        $tipo ='1';
         $challenge = $client->challenges()->create([
             'status' => 'INICIADO',
             'tipo' => $tipo

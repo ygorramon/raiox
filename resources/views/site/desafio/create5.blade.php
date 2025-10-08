@@ -2261,7 +2261,7 @@ function analisarJanelaSono(janela, janelaSinalSono,ritualSono) {
             recomendacao: 'Percebeu sinais de sono em tempo adequado, mas demorou muito a fazer dormir'
         };
     } 
-     else if (janela < parametrosJanelaSono.maxima && janelaSinalSono > parametrosJanelaSinalSono.maxima ) {
+     else if (janela <= parametrosJanelaSono.maxima && janelaSinalSono > parametrosJanelaSinalSono.maxima ) {
         return {
             status: 'longa',
             mensagem: 'Demorou a perceber sinais de sono, mas dormiu rápido, evitando a exaustão',

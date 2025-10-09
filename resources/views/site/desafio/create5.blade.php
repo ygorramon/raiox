@@ -4647,6 +4647,12 @@ function atualizarRegistroDespertares() {
                                     <i class="material-icons left">lightbulb_outline</i>Recomendações
                                 </a>
                             </div>
+                            <div class="col s12 m6">
+                                <a class="waves-effect waves-light btn red" onclick="excluirDespertar(${index})">
+                                    <i class="material-icons left">delete</i>Excluir
+                                </a>
+                            </div>
+                            
                         </div>
                         
                         <div class="recomendacao">

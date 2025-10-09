@@ -13,15 +13,20 @@ class RotinaController extends Controller
     $data = $request->all();
 
     // Ajusta formato da data (se vier dd/mm/yyyy)
-    if (isset($data['data'])) {
+        if (isset($data['data']) && !empty($data['data'])) {
+            try {
+                $data['data'] = \Carbon\Carbon::createFromFormat('d/m/Y', $data['data'])->format('Y-m-d');
+            } catch (\Exception $e) {
+                // Se houver erro na conversão, usa data atual
+                $data['data'] = now()->format('Y-m-d');
+            }
+        } else {
+            $data['data'] = now()->format('Y-m-d');
+        }
 
-        $data['data'] = \Carbon\Carbon::createFromFormat('d/m/Y', $data['data'])->format('Y-m-d');
-    }
-  //  dd($request->historicoSonecas);
-//dd($data);
         Rotina::create([
             'day' => $day,
-            'challenge_id' => $id, // vem do form ou sessão
+            'challenge_id' => $id,
             'data' => $data['data'],
             'inicioDia' => $request->input('inicioDia'),
             'historicoSonecas' => $request->input('historicoSonecas'),
@@ -31,7 +36,6 @@ class RotinaController extends Controller
             'idadeBebe' => $request->input('idadeBebe'),
             'tempoAcordadoEsperado' => $request->input('tempoAcordadoEsperado'),
             'observacoes' => $request->input('observacoes'),
-            
         ]);
 
         return redirect()->route('desafio.show', $id)->with('success', 'Rotina salva com sucesso!');

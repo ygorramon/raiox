@@ -1521,7 +1521,17 @@ function salvarInicioDia() {
             horarioSugeridoSoneca = formatarHora(minutosSugestaoSoneca);
 
             // Atualizar título e modal de sugestões
-            const tituloSoneca = sonecaAtual === 1 ? 'Primeira' : (sonecaAtual === 2 ? 'Segunda' : (sonecaAtual === 3 ? 'Terceira' : 'Quarta'));
+const tituloSoneca = sonecaAtual === 1 ? 'Primeira' : 
+                    sonecaAtual === 2 ? 'Segunda' : 
+                    sonecaAtual === 3 ? 'Terceira' : 
+                    sonecaAtual === 4 ? 'Quarta' : 
+                    sonecaAtual === 5 ? 'Quinta' : 
+                    sonecaAtual === 6 ? 'Sexta' : 
+                    sonecaAtual === 7 ? 'Sétima' : 
+                    sonecaAtual === 8 ? 'Oitava' : 
+                    sonecaAtual === 9 ? 'Nona' : 
+                    'Décima';
+
             $('#titulo-sugestao-soneca').text(`Sugestões para ${tituloSoneca} Soneca`);
             $('#horario-ultimo-acordou').text(ultimoHorarioAcordou);
             $('#sugestao-sono').text(horarioSugeridoSono);
@@ -1541,7 +1551,16 @@ function salvarInicioDia() {
         // Função para abrir modal de preenchimento da soneca
         function abrirModalPreenchimentoSoneca() {
             // Atualizar título
-            const tituloSoneca = sonecaAtual === 1 ? 'Primeira' : (sonecaAtual === 2 ? 'Segunda' : (sonecaAtual === 3 ? 'Terceira' : 'Quarta'));
+           const tituloSoneca = sonecaAtual === 1 ? 'Primeira' : 
+                    sonecaAtual === 2 ? 'Segunda' : 
+                    sonecaAtual === 3 ? 'Terceira' : 
+                    sonecaAtual === 4 ? 'Quarta' : 
+                    sonecaAtual === 5 ? 'Quinta' : 
+                    sonecaAtual === 6 ? 'Sexta' : 
+                    sonecaAtual === 7 ? 'Sétima' : 
+                    sonecaAtual === 8 ? 'Oitava' : 
+                    sonecaAtual === 9 ? 'Nona' : 
+                    'Décima';
             $('#titulo-preenchimento-soneca').text(`Registro da ${tituloSoneca} Soneca`);
             
             // Atualizar os horários sugeridos no modal de preenchimento

@@ -1056,14 +1056,14 @@
         </div>
 
         <div class="input-field">
-            <select id="local-sono">
+            <select id="local-sono" class="browser-default">
                 <option value="" disabled selected>Onde dormiu?</option>
                 <option value="berço">Berço próprio</option>
                 <option value="quarto-pais">Quarto dos pais</option>
                 <option value="cama-compartilhada">Cama compartilhada</option>
                 <option value="outro">Outro local</option>
             </select>
-            <label>Local do sono</label>
+            
         </div>
     </div>
     <div class="modal-footer">
@@ -1178,7 +1178,7 @@
 <!-- Modal 13: Observações Finais do Dia -->
 <div id="modal-observacoes-dia" class="modal">
     <div class="modal-content">
-        <h4>📝 Observações do Dia</h4>
+        <h4>📝 Observações do Dia </h4>
         <p>Antes de finalizar, gostaria de adicionar alguma observação sobre o dia do seu bebê?</p>
         
 <form id="formFinalizarDia" method="POST" action="{{ route('rotinas.store', ['id' => $challenge->id, 'day' => $day]) }}">
@@ -1336,6 +1336,7 @@ function verificarEstadoSalvo() {
         try {
             const estado = JSON.parse(estadoSalvo);
             inicioDia = estado.inicioDia || '';
+            dia = estado.dia || '';
             historicoSonecas = estado.historicoSonecas || [];
             ultimoHorarioAcordou = estado.ultimoHorarioAcordou || '';
             sonecaAtual = estado.sonecaAtual || 1;
@@ -1366,6 +1367,7 @@ function verificarEstadoSalvo() {
     console.log('SALVANDO ESTADO COMPLETO...');
     const estado = {
         inicioDia,
+        dia,
         sonecasRealizadas: historicoSonecas.length,
         historicoSonecas,
         ultimoHorarioAcordou,
@@ -1726,6 +1728,13 @@ function adicionarRespostaQuestionario(pergunta, resposta, detalhes = null) {
                 <i class="material-icons left">add</i>Adicionar Despertar
             </a>
         </div>
+        <div class="row center-align" style="margin: 20px 0;">
+                    <div class="col s12">
+                        <a class="waves-effect waves-light btn red" onclick="excluirRitualNoturno()">
+                            <i class="material-icons left">delete</i>Excluir Ritual Noturno
+                        </a>
+                    </div>
+                </div>
     `);
   $('#container-finalizar-dia').removeClass('hidden');
     // ATUALIZAR BOTÕES PRINCIPAIS
@@ -3709,7 +3718,7 @@ function atualizarRegistroVisual() {
                 </div>
                 <div class="detalhe-item">
                     <strong>📅 Data</strong>
-                    ${new Date().toLocaleDateString('pt-BR')}
+                    ${dia}
                 </div>
             </div>
             <div class="row center-align" style="margin: 20px 0;">
@@ -4980,20 +4989,7 @@ function verRecomendacoesDespertar(index) {
     }
 
     // Função para excluir ritual noturno (ATUALIZADA)
-    function excluirRitualNoturno() {
-        if (confirm('Tem certeza que deseja excluir o ritual noturno?')) {
-            // Limpar variável do ritual
-            ritualNoturnoRegistrado = false;
 
-            // SALVAR ESTADO
-            salvarEstado();
-
-            // FORÇAR ATUALIZAÇÃO VISUAL
-            forcarAtualizacaoRitual();
-
-            M.toast({ html: 'Ritual noturno excluído com sucesso' });
-        }
-    }
 
     // Função para excluir último despertar (ATUALIZADA)
     function excluirUltimaSoneca() {

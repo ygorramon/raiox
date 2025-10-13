@@ -1310,8 +1310,17 @@ const parametrosDuracaoSoneca = {
     horarioSugeridoSoneca = formatarHora(minutosSugestaoSoneca);
 
     // Atualizar título
-    const tituloSoneca = sonecaAtual === 1 ? 'Primeira' : (sonecaAtual === 2 ? 'Segunda' : (sonecaAtual === 3 ? 'Terceira' : 'Quarta'));
-    $('#titulo-preenchimento-soneca').text(`Registro da ${tituloSoneca} Soneca`);
+const tituloSoneca = sonecaAtual === 1 ? 'Primeira' : 
+                    sonecaAtual === 2 ? 'Segunda' : 
+                    sonecaAtual === 3 ? 'Terceira' : 
+                    sonecaAtual === 4 ? 'Quarta' : 
+                    sonecaAtual === 5 ? 'Quinta' : 
+                    sonecaAtual === 6 ? 'Sexta' : 
+                    sonecaAtual === 7 ? 'Sétima' : 
+                    sonecaAtual === 8 ? 'Oitava' : 
+                    sonecaAtual === 9 ? 'Nona' : 
+                    'Décima';
+                        $('#titulo-preenchimento-soneca').text(`Registro da ${tituloSoneca} Soneca`);
     
     // Atualizar os horários sugeridos
     $('#sugestao-sentiu-sono-horario').text(horarioSugeridoSono);
@@ -3853,7 +3862,7 @@ function atualizarRegistroVisual() {
 
     // Adicionar próxima soneca vazia
     const proximaSonecaId = historicoSonecas.length + 1;
-    if (proximaSonecaId <= 4) {
+    if (proximaSonecaId <= 7) {
         $('#registro-sonecas').append(`
             <div class="accordion vazio" id="accordion-soneca-${proximaSonecaId}">
                 <div class="accordion-header">

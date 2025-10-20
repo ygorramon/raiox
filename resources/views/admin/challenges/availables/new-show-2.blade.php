@@ -99,10 +99,10 @@
         <div class="row">
             @foreach($challenge->rotinas as $rotina)
                 @php
-                    $sonecas = json_decode($rotina->historicoSonecas, true);
-                    $ritual = json_decode($rotina->ritualNoturno, true);
-                    $despertares = json_decode($rotina->historicoDespertares, true);
-                    $resumo = json_decode($rotina->resumo, true);
+    $sonecas = json_decode($rotina->historicoSonecas, true);
+    $ritual = json_decode($rotina->ritualNoturno, true);
+    $despertares = json_decode($rotina->historicoDespertares, true);
+    $resumo = json_decode($rotina->resumo, true);
                 @endphp
 
                 <div class="col-md-12">
@@ -296,7 +296,216 @@
         </div>
     </div>
 </div>
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Formulário</h3>
+    </div>
+    <div class="card-body">
+<h5>PASSO 2 - FOME:</h5>
+<label>Peso Adequado:</label> <span class="badge  {{setStatus($challenge->formulario->fome_peso_adequado)->color}}">{{setStatus($challenge->formulario->fome_peso_adequado)->value}}</span> <br>
+<label>Ganho de Peso Adequado:</label> <span class="badge  {{setStatus($challenge->formulario->fome_peso_adequado)->color}}">{{setStatus($challenge->formulario->fome_peso_adequado)->value}}</span> <br>
+<label>Urina:</label> <span class="badge  {{setStatus($challenge->formulario->fome_urina)->color}}">{{setStatus($challenge->formulario->fome_urina)->value}}</span> <br>
+<label>Evacuações:</label> <span class="badge  {{setStatus($challenge->formulario->fome_evacuacoes)->color}}">{{setStatus($challenge->formulario->fome_evacuacoes)->value}}</span> <br>
 
+
+<label> Ajustes Fome: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_fome}}</textarea>
+
+<h5>PASSO 2 -  DOR:</h5>
+
+<label> Ajustes Dor - Geral: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor}}</textarea>
+<label> Ajustes Dor -Cólicas: </label>
+
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor_colica}}</textarea>
+
+<label> Ajustes Dor - Refluxo: </label>
+
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor_refluxo}}</textarea>
+
+<label> Ajustes Dor - Dentes: </label>
+
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_dor_dentes}}</textarea>
+
+<h5>PASSO 2 - Salto de Desenvolvimento:</h5>
+
+<label>Salto ?:</label> <span class="badge  {{setStatus($challenge->formulario->salto)->color}}">{{setStatus($challenge->formulario->salto)->value}}</span> <br>
+<label>Marcos:</label> <span class="badge  {{setStatus($challenge->formulario->salto_marcos)->color}}">{{setStatus($challenge->formulario->salto_marcos)->value}}</span> <br>
+<label> Ajustes Salto: </label>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_salto}}</textarea>  
+<h5>PASSO 2 - Angustia da Separação:</h5>
+
+<label>Angustia ?:</label> <span class="badge  {{setStatus($challenge->formulario->angustia)->color}}">{{setStatus($challenge->formulario->angustia)->value}}</span> <br>
+<label>Chora quando sai do campo de visão:</label> <span class="badge  {{setStatus($challenge->formulario->angustia_campo_visao)->color}}">{{setStatus($challenge->formulario->angustia_campo_visao)->value}}</span> <br>
+<label>Chora quando pai atende:</label> <span class="badge  {{setStatus($challenge->formulario->angustia_pai_atende)->color}}">{{setStatus($challenge->formulario->angustia_pai_atende)->value}}</span> <br>
+ <label> Ajustes Angustia: </label>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_angustia}}</textarea>    
+<h5>PASSO 2 - Telas:</h5>
+
+<label>Telas ?:</label> <span class="badge  {{setStatus($challenge->formulario->telas)->color}}">{{setStatus($challenge->formulario->telas)->value}}</span> <br>
+
+<label> Ajustes Telas: </label>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_telas}}</textarea>
+<h5>PASSO 3 :</h5>
+
+<label>Ritual do Bom Dia ?:</label> <span class="badge  {{setStatus($challenge->formulario->ritual_bom_dia)->color}}">{{setStatus($challenge->formulario->ritual_bom_dia)->value}}</span> <br>
+
+<label> Ajustes Ritual do Bom dia: </label>
+<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_ritual_bom_dia}}</textarea>
+<label> Ajustes Despertar: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_despertar}}</textarea>
+<label> Ajustes Duração de Sonecas: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajuste_duracao_sonecas}}</textarea>
+<label> Ajustes Rotina de Sonecas: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajuste_rotina_sonecas}}</textarea>
+<label> Ajustes Ritual do Sono: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->ritual_sono_ajuste}}</textarea>
+<label>Ambiente - Luminosidade: </label><span >{{$challenge->formulario->ambiente_luz}}</span> <br>
+<label>Ambiente - Sons: </label><span >{{$challenge->formulario->ambiente_barulho}}</span> <br>
+<label>Ambiente - Temperatura: </label><span >{{$challenge->formulario->ambiente_temperatura}}</span> <br>
+<label>Choro no Ritual: </label><span class="badge  {{setStatus($challenge->formulario->ritual_choro)->color}}">{{setStatus($challenge->formulario->ritual_choro)->value}}</span> <br>
+<label>Desacelera: </label><span class="badge  {{setStatus($challenge->formulario->desacelera)->color}}">{{setStatus($challenge->formulario->desacelera)->value}}</span> <br>
+
+<h5>PASSO 4 - Associações -  Soneca: </h5>
+Colo
+<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_colo)->color}}">{{setStatus($challenge->formulario->associacao_soneca_colo)->value}}</span>
+   
+Mamar
+<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_mamar)->color}}">{{setStatus($challenge->formulario->associacao_soneca_mamar)->value}}</span>
+   
+Cama Compartilhada
+<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_cc)->color}}">{{setStatus($challenge->formulario->associacao_soneca_cc)->value}}</span>
+ 
+Rede
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_rede)->color}}">{{setStatus($challenge->formulario->associacao_soneca_rede)->value}}</span>
+   
+    Chupar Dedo
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_chupar_dedo)->color}}">{{setStatus($challenge->formulario->associacao_soneca_chupar_dedo)->value}}</span>
+   
+    Naninha
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_naninha)->color}}">{{setStatus($challenge->formulario->associacao_soneca_naninha)->value}}</span>
+   
+    Ruído Branco
+    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_ruido)->color}}">{{setStatus($challenge->formulario->associacao_soneca_ruido)->value}}</span>
+<br><br>
+
+<h5>PASSO 4 - Associações -  Sono Noturno: </h5>
+Colo
+<span class="badge  {{setStatus($challenge->formulario->associacao_sono_colo)->color}}">{{setStatus($challenge->formulario->associacao_sono_colo)->value}}</span>
+   
+Mamar
+<span class="badge  {{setStatus($challenge->formulario->associacao_sono_mamar)->color}}">{{setStatus($challenge->formulario->associacao_sono_mamar)->value}}</span>
+   
+Cama Compartilhada
+<span class="badge  {{setStatus($challenge->formulario->associacao_sono_cc)->color}}">{{setStatus($challenge->formulario->associacao_sono_cc)->value}}</span>
+ 
+Rede
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_rede)->color}}">{{setStatus($challenge->formulario->associacao_sono_rede)->value}}</span>
+   
+    Chupar Do
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_chupar_dedo)->color}}">{{setStatus($challenge->formulario->associacao_sono_chupar_dedo)->value}}</span>
+   
+    Naninha
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_naninha)->color}}">{{setStatus($challenge->formulario->associacao_sono_naninha)->value}}</span>
+   
+    Ruído Branco
+    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_ruido)->color}}">{{setStatus($challenge->formulario->associacao_sono_ruido)->value}}</span>
+
+<br><br>
+<label>Associações Incomodam ?:</label> <span class="badge  {{setStatus($challenge->formulario->associacao_incomoda)->color}}">{{setStatus($challenge->formulario->associacao_incomoda)->value}}</span> <br>
+
+<label> Comentários Finais: </label>
+<textarea class="form-control" style="height:auto">{{$challenge->formulario->associacao_descricao}}</textarea>
+
+</div>
+@if(!$challenge->chat()->first())
+     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aprovarGepex">
+                               Responder
+                            </button>
+@endif
+ <div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="{{route('challenge.meus.iniciarchat', $challenge->id)}}" method="post">
+                                    {!! csrf_field() !!}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Iniciar CHAT</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+ <div class="row">
+                <div class="col-md-4 ">
+                    <label for="nomeMae">Nome da Mãe/Pai:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeMae" value="{{$challenge->client->name}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="nomeBebe">Nome do(a) Bebê:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeBebe" value="{{$challenge->client->nameBaby}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                 <div class="col-md-4">
+                    <label for="nomeBebe">Email:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nomeBebe" value="{{$challenge->client->email}}" placeholder="nomeMae">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 ">
+                    <label for="nascimentoBebe">Data de Nascimento do Bebê:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="nascimentoBebe" value="{{\Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y')}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="idadeBebe">Idade do Bebê: (DIAS / MESES)</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="idadeBebe" value="{{now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby))}} / {{now()->diffInMonths(\Carbon\Carbon::parse($challenge->client->birthBaby))}}" placeholder="nomeMae">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="sexoBebe">Sexo do Bebê:</label>
+
+                    <div>
+                        <input type="text" readonly class="form-control" id="sexoBebe" value="{{$challenge->client->sexBaby == 'M' ? "MASCULINO" : "FEMININO"}}" placeholder="nomeMae">
+                    </div>
+                </div>
+            </div>
+                                            
+                                            <label>Mensagem</label>
+                                            <textarea name="message" required class="form-control" style="height:auto"  rows="10"></textarea>
+                                            <div class="form-group">
+                                                <label>Selecionar Vídeos</label>
+                                                <div class="row">
+                                                    @foreach($videos as $video)
+                                                        <div class="col-md-4">
+                                                            <label>
+                                                                <input type="checkbox" name="videos[]" value="{{ $video->id }}"> {{ $video->title }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button  class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button name="status" value="APROVADO" class="btn btn-primary">ENVIAR</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+    </div>
 <!-- Restante do código do formulário (mantido igual) -->
 <div class="card card-info">
     <div class="card-header">

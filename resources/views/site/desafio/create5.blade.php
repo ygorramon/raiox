@@ -2696,6 +2696,7 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
                 extra: `<p style="margin-top: 10px;"><a href="https://youtu.be/qBaLf8aDLg4" target="_blank" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Assistir vídeo explicativo</a></p>`,
                 handler: (resposta, perguntaEl) => {
 
+
                     respostas.horarioInicio = resposta;
                                                     adicionarRespostaQuestionario("Horário de início do ritual", resposta);
 
@@ -3081,7 +3082,8 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
                 ],
                 handler: (resposta, perguntaEl) => {
                     respostas.confirmacaoHorario = resposta;
-
+                    
+                                adicionarRespostaQuestionario("Confirmação do Horário", resposta);
                     if (resposta === "Esse foi o momento que comecei a fazer dormir, mas começou a sentir sono antes disso") {
                         // Caso 1: Sono foi antes
                         perguntaEl.append(`
@@ -3291,7 +3293,8 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
                 { texto: "Não", classe: "red" }
             ],
             handler: (resposta, perguntaEl) => {
-                respostas.foraRotina = resposta;
+                    respostas.foraRotina = resposta;
+                     adicionarRespostaQuestionario("Fora da rotina", resposta);
                 
                 if (resposta === "Sim") {
                     perguntaEl.append(`
@@ -3394,6 +3397,8 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             ],
             condicao: () => respostas.foraRotina === "Não",
             handler: (resposta, perguntaEl) => {
+                adicionarRespostaQuestionario("Dor atrapalhou", resposta);
+
                 respostas.dorAtrapalhou = resposta;
                 
                 if (resposta === "Sim") {
@@ -3448,6 +3453,8 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             ],
             condicao: () => respostas.foraRotina === "Não",
             handler: (resposta, perguntaEl) => {
+               adicionarRespostaQuestionario("Gatilho de choro", resposta);
+
                 respostas.gatilhoChoro = resposta;
                 
                 if (resposta === "Sim") {
@@ -3476,6 +3483,7 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             condicao: () => respostas.foraRotina === "Não",
             handler: (resposta, perguntaEl) => {
                 respostas.localSono = resposta;
+                                adicionarRespostaQuestionario("Local do sono", resposta);
                 
                 // Perguntas subsequentes sobre ambiente
                 perguntaEl.append(`
@@ -3507,7 +3515,11 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
                         
                         // Verificar se precisa mostrar sugestão
                         const ambiente = $('.ambiente-btn.green').data('valor');
+                                                                        adicionarRespostaQuestionario("Ambiente", ambiente);
+
                         const ruido = $('.ruido-btn.green').data('valor');
+                                            adicionarRespostaQuestionario("Ruídos", ruido);
+
                         
                         if ((ambiente === 'claro' || ruido === 'barulhento')) {
                             $('#sugestao-ambiente-1-5').removeClass('hidden');
@@ -3531,6 +3543,8 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             extra: `<p style="margin-top: 10px;"><a href="https://youtube.com/shorts/VAOuMO-9OZE?feature=share" target="_blank" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Vídeo sobre brigas para dormir</a></p>`,
             handler: (resposta, perguntaEl) => {
                 respostas.brigaDormir = resposta;
+                                                adicionarRespostaQuestionario("Briga para dormir", resposta);
+
                 return false;
             }
         },
@@ -3546,6 +3560,7 @@ function mostrarResultadoAnalise(analiseJanela, analiseDuracao, situacaoGeral, s
             extra: `<p style="margin-top: 10px;"><a href="https://youtu.be/-FdKVp5mg4w" target="_blank" class="teal-text"><i class="material-icons tiny">play_circle_outline</i> Vídeo sobre associações de sono</a></p>`,
             handler: (resposta, perguntaEl) => {
                 respostas.associacaoSono = resposta;
+                                adicionarRespostaQuestionario("Tentou sem associação", resposta);
                 perguntaEl.append(`<p class="green-text" style="margin-top: 15px;"><i class="material-icons tiny">check_circle</i> Continuando para análise da duração das sonecas...</p>`);
                 return true;
             }

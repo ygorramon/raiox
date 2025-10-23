@@ -1347,6 +1347,7 @@ function verificarEstadoSalvo() {
             inicioDia = estado.inicioDia || '';
             dia = estado.dia || '';
             historicoSonecas = estado.historicoSonecas || [];
+            historicoDespertares = estado.historicoDespertares || [];
             ultimoHorarioAcordou = estado.ultimoHorarioAcordou || '';
             sonecaAtual = estado.sonecaAtual || 1;
             rotinaIniciada = estado.rotinaIniciada || false;
@@ -1379,6 +1380,7 @@ function verificarEstadoSalvo() {
         dia,
         sonecasRealizadas: historicoSonecas.length,
         historicoSonecas,
+        historicoDespertares,
         ultimoHorarioAcordou,
         sonecaAtual,
         rotinaIniciada,
@@ -4993,6 +4995,7 @@ function verRecomendacoesDespertar(index) {
 
             // Limpar localStorage
             localStorage.removeItem('rotinaSono');
+            localStorage.removeItem('ritualNoturno');
 
             // Resetar interface
             $('#btn-iniciar-rotina').html('<i class="material-icons left">access_time</i>Iniciar Rotina');

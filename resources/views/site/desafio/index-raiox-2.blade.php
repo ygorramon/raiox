@@ -11,6 +11,30 @@
                 <div id="card-widgets">
                     <div class="row">
                         <div class="col s12">
+                            <!-- Modal do Vídeo Explicativo -->
+                            <div id="modalVideoExplicativo" class="modal">
+                                <div class="modal-content">
+                                    <h4>🎥 Como usar as Análises Individuais</h4>
+                                    <p>Assista a este vídeo para entender como aproveitar ao máximo suas análises individuais:</p>
+                                    
+                                    <div class="video-container">
+                                        <video id="videoExplicativo" width="100%" controls>
+                                            <source src="{{ asset('storage/videos/analises-individuais-explicacao.mp4') }}" type="video/mp4">
+                                            Seu navegador não suporta vídeos.
+                                        </video>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="modal-close btn waves-effect waves-light green" onclick="marcarComoVisto()">
+                                            ✅ Entendi, não mostrar novamente
+                                        </button>
+                                        <button type="button" class="modal-close btn waves-effect waves-light grey">
+                                            Fechar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <ul id="task-card" class="collection with-header animate fadeLeft">
                                 <li class="collection-header red">
                                     <h5 class="task-card-title mb-3">Minhas Análises Individuais</h5>
@@ -87,12 +111,53 @@
 @section('js')
 <script>
     $(document).ready(function(){
-        $('.modal').modal({
-            // Configurações do modal se necessário
-        });
+        // Inicializa todos os modais
+        $('.modal').modal();
+        
+        // Verifica se é a primeira vez do usuário ou se já viu o vídeo
+        const jaViuVideo = localStorage.getItem('videoAnalisesIndividuaisVisto');
+        
+        if (!jaViuVideo) {
+            // Abre o modal automaticamente após 1 segundo
+            setTimeout(function() {
+                $('#modalVideoExplicativo').modal('open');
+                
+                // Tenta reproduzir o vídeo automaticamente
+                const video = document.getElementById('videoExplicativo');
+                if (video) {
+                    video.play().catch(function(error) {
+                        console.log('Reprodução automática bloqueada:', error);
+                    });
+                }
+            }, 1000);
+        }
         
         // Inicializa tooltips se estiver usando
         $('.tooltipped').tooltip();
+    });
+
+    // Função para marcar que o usuário já viu o vídeo
+    function marcarComoVisto() {
+        localStorage.setItem('videoAnalisesIndividuaisVisto', 'true');
+        
+        // Pausa o vídeo quando fecha
+        const video = document.getElementById('videoExplicativo');
+        if (video) {
+            video.pause();
+        }
+    }
+
+    // Também pausa o vídeo quando o modal é fechado de outras formas
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('modalVideoExplicativo');
+        if (modal) {
+            modal.addEventListener('close', function() {
+                const video = document.getElementById('videoExplicativo');
+                if (video) {
+                    video.pause();
+                }
+            });
+        }
     });
 </script>
 @endsection

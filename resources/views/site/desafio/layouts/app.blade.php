@@ -30,9 +30,24 @@
     <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
       <li class="bold"><a class="waves-effect waves-cyan " href="{{route('desafio.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Desafio de 7 Dias</span></a>
       </li>
-      <!-- li class="bold"><a class="waves-effect waves-cyan " href="{{route('raiox.index')}}"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Raio x</span></a>
-      </li>
--->
+
+  @auth('clients')
+    @php
+        $client = Auth::guard('clients')->user();
+        $diasCadastro = \Carbon\Carbon::parse($client->created_at)->diffInDays(now());
+        $mostrarRaioX = $diasCadastro > 8;
+    @endphp
+
+    @if($mostrarRaioX)
+        <li class="bold">
+            <a class="waves-effect waves-cyan" href="{{ route('analises.individuais.index') }}">
+                <i class="material-icons">mail_outline</i>
+                <span class="menu-title" data-i18n="Mail">Raio x</span>
+            </a>
+        </li>
+    @endif
+@endauth
+
        <!-- li class="bold"><a class="waves-effect waves-cyan " href="{{route('doubtCenter.index')}}"><i class="material-icons">help</i><span class="menu-title" data-i18n="Mail">Perguntas Frequentes</span></a>
       </li>
 

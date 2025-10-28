@@ -37,4 +37,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Doubt::class);
     }
+
+    public function analisesIndividuais()
+    {
+        return $this->hasMany(AnaliseIndividual::class);
+    }
 }

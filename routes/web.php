@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AnaliseIndividualController;
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
@@ -151,6 +153,15 @@ Route::middleware('auth.client:clients')
 
         Route::post('/desafio/{id}/chat', 'Site\ChallengeController@chatStore')->name('challenge.chat.store');
 
+        Route::prefix('analises-individuais')->group(function () {
+            Route::get('/', [AnaliseIndividualController::class, 'index'])->name('analises.individuais.index');
+            Route::get('/create', [AnaliseIndividualController::class, 'create'])->name('analises.individuais.create');
+            Route::post('/', [AnaliseIndividualController::class, 'store'])->name('analises.individuais.store');
+            Route::get('/{id}', [AnaliseIndividualController::class, 'show'])->name('analises.individuais.show');
+            Route::get('/{id}/edit', [AnaliseIndividualController::class, 'edit'])->name('analises.individuais.edit');
+            Route::put('/{id}', [AnaliseIndividualController::class, 'update'])->name('analises.individuais.update');
+            Route::delete('/{id}', [AnaliseIndividualController::class, 'destroy'])->name('analises.individuais.destroy');
+        });
 
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioUpdate')->name('desafio.update');
         Route::put('/desafio/{id}/', 'Site\ChallengeController@desafioFinalizar')->name('desafio.finalizado');

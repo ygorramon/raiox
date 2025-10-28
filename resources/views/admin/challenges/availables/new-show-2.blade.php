@@ -572,12 +572,9 @@
 <h5>PASSO 2 - FOME:</h5>
 <label>Peso Adequado:</label> <span class="badge  {{setStatus($challenge->formulario->fome_peso_adequado)->color}}">{{setStatus($challenge->formulario->fome_peso_adequado)->value}}</span> <br>
 <label>Ganho de Peso Adequado:</label> <span class="badge  {{setStatus($challenge->formulario->fome_peso_adequado)->color}}">{{setStatus($challenge->formulario->fome_peso_adequado)->value}}</span> <br>
-<label>Urina:</label> <span class="badge  {{setStatus($challenge->formulario->fome_urina)->color}}">{{setStatus($challenge->formulario->fome_urina)->value}}</span> <br>
-<label>Evacuações:</label> <span class="badge  {{setStatus($challenge->formulario->fome_evacuacoes)->color}}">{{setStatus($challenge->formulario->fome_evacuacoes)->value}}</span> <br>
 
 
-<label> Ajustes Fome: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_fome}}</textarea>
+
 
 <h5>PASSO 2 -  DOR:</h5>
 

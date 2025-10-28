@@ -228,6 +228,17 @@
                                                         @else
                                                                 value="carrinho" {{ old('soneca1_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                                 @endif>Carrinho</option>
+                                                                <option    @if (
+    isset(
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1
+)
+    &&
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_1 == "rede"
+)
+                                                        selected value="rede"
+                                                        @else
+                                                                value="rede" {{ old('soneca1_onde_dormiu') == 'rede' ? 'selected' : '' }}
+                                                                @endif>Rede</option>
                                                             </select>
 
                                                         </div>
@@ -373,7 +384,18 @@
                                                         selected value="carrinho"
                                                         @else
                                                                 value="carrinho" {{ old('soneca2_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
-                                                                @endif>Carrinho</option>
+                                                                @endif>Carrinho </option>
+                                                                <option    @if (
+    isset(
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2
+)
+    &&
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_2 == "rede"
+)
+                                                        selected value="rede"
+                                                        @else
+                                                                value="rede" {{ old('soneca2_onde_dormiu') == 'rede' ? 'selected' : '' }}
+                                                                @endif>Rede </option>
                                                             </select>
 
                                                         </div>
@@ -518,6 +540,17 @@
                                                         @else
                                                                 value="carrinho" {{ old('soneca3_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                                 @endif>Carrinho</option>
+                                                                <option    @if (
+    isset(
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3
+)
+    &&
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_3 == "rede"
+)
+                                                        selected  value="rede"
+                                                        @else
+                                                                value="rede" {{ old('soneca3_onde_dormiu') == 'rede' ? 'selected' : '' }}
+                                                                @endif>Rede</option>
                                                             </select>
 
                                                         </div>
@@ -662,6 +695,17 @@
                                                         @else
                                                                 value="carrinho" {{ old('soneca4_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                                 @endif>Carrinho</option>
+                                                                <option    @if (
+    isset(
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4
+)
+    &&
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_4 == "rede"
+)
+                                                        selected  value="rede"
+                                                        @else
+                                                                value="carrinho" {{ old('soneca4_onde_dormiu') == 'rede' ? 'selected' : '' }}
+                                                                @endif>Rede</option>
                                                             </select>
 
                                                         </div>
@@ -806,6 +850,17 @@
                                                         @else
                                                                 value="carrinho" {{ old('soneca5_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                                 @endif>Carrinho</option>
+                                                                <option    @if (
+    isset(
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5
+)
+    &&
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_5 == "rede"
+)
+                                                        selected  value="rede"
+                                                        @else
+                                                                value="rede" {{ old('soneca5_onde_dormiu') == 'rede' ? 'selected' : '' }}
+                                                                @endif>Rede</option>
                                                             </select>
 
                                                         </div>
@@ -950,6 +1005,17 @@
                                                         @else
                                                                 value="carrinho" {{ old('soneca6_onde_dormiu') == 'carrinho' ? 'selected' : '' }}
                                                                 @endif>Carrinho</option>
+                                                                <option    @if (
+    isset(
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6
+)
+    &&
+    $challenge->analyzes()->where('day', $day)->first()->dados()->first()->nap_onde_dormiu_6 == "rede"
+)
+                                                        selected  value="rede"
+                                                        @else
+                                                                value="rede" {{ old('soneca6_onde_dormiu') == 'rede' ? 'selected' : '' }}
+                                                                @endif>Rede</option>
                                                             </select>
 
                                                         </div>

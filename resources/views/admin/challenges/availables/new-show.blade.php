@@ -424,7 +424,14 @@
 <textarea class="form-control" style="height:auto">{{$challenge->formulario->ritual_sono_ajuste}}</textarea>
 <label>Ambiente - Luminosidade: </label><span >{{$challenge->formulario->ambiente_luz}}</span> <br>
 <label>Ambiente - Sons: </label><span >{{$challenge->formulario->ambiente_barulho}}</span> <br>
-<label>Ambiente - Temperatura: </label><span >{{$challenge->formulario->ambiente_temperatura}}</span> <br>
+<label>Ambiente - Temperatura: </label>
+<span>
+    @if($challenge->formulario->ambiente_temperatura == 'nao_sei')
+        agradável
+    @else
+        {{$challenge->formulario->ambiente_temperatura}}
+    @endif
+</span> <br>
 <label>Choro no Ritual: </label><span class="badge  {{setStatus($challenge->formulario->ritual_choro)->color}}">{{setStatus($challenge->formulario->ritual_choro)->value}}</span> <br>
 <label>Desacelera: </label><span class="badge  {{setStatus($challenge->formulario->desacelera)->color}}">{{setStatus($challenge->formulario->desacelera)->value}}</span> <br>
 

@@ -99,10 +99,10 @@
         <div class="row">
             @foreach($challenge->rotinas as $rotina)
                                                                                 @php
-                $sonecas = json_decode($rotina->historicoSonecas, true);
-                $ritual = json_decode($rotina->ritualNoturno, true);
-                $despertares = json_decode($rotina->historicoDespertares, true);
-                $resumo = json_decode($rotina->resumo, true);
+    $sonecas = json_decode($rotina->historicoSonecas, true);
+    $ritual = json_decode($rotina->ritualNoturno, true);
+    $despertares = json_decode($rotina->historicoDespertares, true);
+    $resumo = json_decode($rotina->resumo, true);
                                                                                 @endphp
 
                                                                                 <div class="col-md-12">
@@ -180,17 +180,17 @@
                                                             <tbody>
                                                                 @foreach($sonecas as $soneca)
                                                                                                                                                                             @php
-                                                                                $idadeBebe = now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby));
-                                                                                $janelaIdeal = getJanela($idadeBebe);
-                                                                                $janelaMin = $janelaIdeal->janelaIdealInicio;
-                                                                                $janelaMax = $janelaIdeal->janelaIdealFim;
-                                                                                $statusJanela = 'ideal';
+            $idadeBebe = now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby));
+            $janelaIdeal = getJanela($idadeBebe);
+            $janelaMin = $janelaIdeal->janelaIdealInicio;
+            $janelaMax = $janelaIdeal->janelaIdealFim;
+            $statusJanela = 'ideal';
 
-                                                                                if ($soneca['janelaSono'] < $janelaMin) {
-                                                                                    $statusJanela = 'curta';
-                                                                                } elseif ($soneca['janelaSono'] > $janelaMax) {
-                                                                                    $statusJanela = 'longa';
-                                                                                }
+            if ($soneca['janelaSono'] < $janelaMin) {
+                $statusJanela = 'curta';
+            } elseif ($soneca['janelaSono'] > $janelaMax) {
+                $statusJanela = 'longa';
+            }
                                                                                                                                                                             @endphp
 
                                                                                                                                                                             <tr>
@@ -231,25 +231,25 @@
                                                                                                                                                                                 <td style="max-width: 150px; min-width: 120px;">
                                                                         @if(isset($soneca['associacoes']['comoAdormeceu']))
                                                                             @php
-                                                                                $associacoesParaMostrar = [];
-                                                                                $totalAssociacoes = count($soneca['associacoes']['comoAdormeceu']);
-                                                                                $temOutrosLongo = false;
-                                                                                $textoOutros = '';
+                $associacoesParaMostrar = [];
+                $totalAssociacoes = count($soneca['associacoes']['comoAdormeceu']);
+                $temOutrosLongo = false;
+                $textoOutros = '';
 
-                                                                                // Filtra as associações
-                                                                                foreach ($soneca['associacoes']['comoAdormeceu'] as $associacao) {
-                                                                                    if (strpos($associacao, 'Outro:') !== false || strpos($associacao, 'Outros:') !== false) {
-                                                                                        $temOutrosLongo = true;
-                                                                                        $textoOutros = $associacao;
-                                                                                    } else {
-                                                                                        $associacoesParaMostrar[] = $associacao;
-                                                                                    }
-                                                                                }
+                // Filtra as associações
+                foreach ($soneca['associacoes']['comoAdormeceu'] as $associacao) {
+                    if (strpos($associacao, 'Outro:') !== false || strpos($associacao, 'Outros:') !== false) {
+                        $temOutrosLongo = true;
+                        $textoOutros = $associacao;
+                    } else {
+                        $associacoesParaMostrar[] = $associacao;
+                    }
+                }
 
-                                                                                // Limita para mostrar no máximo 2 associações normais
-                                                                                $associacoesParaMostrar = array_slice($associacoesParaMostrar, 0, 2);
-                                                                                $totalParaMostrar = count($associacoesParaMostrar);
-                                                                                $mostrarBotao = $totalAssociacoes > $totalParaMostrar || $temOutrosLongo;
+                // Limita para mostrar no máximo 2 associações normais
+                $associacoesParaMostrar = array_slice($associacoesParaMostrar, 0, 2);
+                $totalParaMostrar = count($associacoesParaMostrar);
+                $mostrarBotao = $totalAssociacoes > $totalParaMostrar || $temOutrosLongo;
                                                                             @endphp
 
                                                                             <!-- Mostra associações normais -->
@@ -293,9 +293,9 @@
                                                                                                                     <strong>Outros:</strong><br>
                                                                                                                     <span class="text-dark">
                                                                                                                         @php
-                                                                                                                            // Remove "Outro:" ou "Outros:" do texto
-                                                                                                                            $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $associacao);
-                                                                                                                            echo trim($textoLimpo);
+                        // Remove "Outro:" ou "Outros:" do texto
+                        $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $associacao);
+                        echo trim($textoLimpo);
                                                                                                                         @endphp
                                                                                                                     </span>
                                                                                                                 </div>
@@ -317,8 +317,8 @@
                                                                                                                 <div class="w-100 mb-2 p-2 bg-light rounded">
                                                                                                                     <strong>Outros:</strong> 
                                                                                                                     @php
-                                                                                                                        $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $local);
-                                                                                                                        echo trim($textoLimpo);
+                            $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $local);
+                            echo trim($textoLimpo);
                                                                                                                     @endphp
                                                                                                                 </div>
                                                                                                             @else
@@ -627,7 +627,13 @@
 <textarea class="form-control" style="height:auto">{{$challenge->formulario->ritual_sono_ajuste}}</textarea>
 <label>Ambiente - Luminosidade: </label><span >{{$challenge->formulario->ambiente_luz}}</span> <br>
 <label>Ambiente - Sons: </label><span >{{$challenge->formulario->ambiente_barulho}}</span> <br>
-<label>Ambiente - Temperatura: </label><span >{{$challenge->formulario->ambiente_temperatura}}</span> <br>
+<span>
+    @if($challenge->formulario->ambiente_temperatura == 'nao_sei')
+        agradável
+    @else
+        {{$challenge->formulario->ambiente_temperatura}}
+    @endif
+</span> <br>
 <label>Choro no Ritual: </label><span class="badge  {{setStatus($challenge->formulario->ritual_choro)->color}}">{{setStatus($challenge->formulario->ritual_choro)->value}}</span> <br>
 <label>Desacelera: </label><span class="badge  {{setStatus($challenge->formulario->desacelera)->color}}">{{setStatus($challenge->formulario->desacelera)->value}}</span> <br>
 

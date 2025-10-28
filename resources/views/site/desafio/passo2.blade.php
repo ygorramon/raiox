@@ -493,97 +493,207 @@
 @endsection
 @section('js')
 
-        <script>
-            $(document).ready(function() {
-                $('.modal').modal({
+            <script>
+                $(document).ready(function() {
+                    $('.modal').modal({
 
+                    });
+
+
+
+                            $('#colica_subtipos').hide();
+                        $('#dor_colica').on('change', function () {
+                    if ($(this).is(':checked')) {
+                            $('#colica_subtipos').slideDown();
+                    } else {
+                            $('#colica_subtipos').slideUp();
+                        $('#colica_subtipos input[type="checkbox"]').prop('checked', false);
+                    }
                 });
 
 
-               
-                        $('#colica_subtipos').hide();
-                    $('#dor_colica').on('change', function () {
-                if ($(this).is(':checked')) {
-                        $('#colica_subtipos').slideDown();
-                } else {
-                        $('#colica_subtipos').slideUp();
-                    $('#colica_subtipos input[type="checkbox"]').prop('checked', false);
-                }
-            });
-        
+
+                $('#refluxo_subtipos').hide();
+            $('#dor_refluxo').on('change', function () {
+                    if ($(this).is(':checked')) {
+                $('#refluxo_subtipos').slideDown();
+                    } else {
+                $('#refluxo_subtipos').slideUp();
+            $('#refluxo_subtipos input[type="checkbox"]').prop('checked', false);
+                    }
+                });
+
+                    //$('#modal1').modal('open');
 
 
-            $('#refluxo_subtipos').hide();
-        $('#dor_refluxo').on('change', function () {
-                if ($(this).is(':checked')) {
-            $('#refluxo_subtipos').slideDown();
-                } else {
-            $('#refluxo_subtipos').slideUp();
-        $('#refluxo_subtipos input[type="checkbox"]').prop('checked', false);
-                }
-            });
-       
-                //$('#modal1').modal('open');
+                    $('#fome_pediatra_não').hide();
+                    $('#fome_pediatra_peso').hide();
+                    $('#fome_pediatra_peso_atual_nao').hide();
+                    $('#fome_pediatra_ganho_peso').hide();
+                    $('#fome_pediatra_ganho_peso_nao').hide();
+                    $('#fome_pediatra_fraldas').hide();
+                    $('#fome_fraldas_nao').hide();
+                    $('#fome_pediatra_evacuacao').hide();
+                    $('#fome_pediatra_evacuacao_nao').hide();
+                    $('#fome_final').hide();
+                    $('#dor_causa').hide();
+                    $('#salto_sim').hide();
+                    $('#salto_marcos_sim').hide();
+                    $('#angustia_sim').hide();
+                    $('#fome_pediatra_fraldas_medio').hide();
+                    $('#fome_pediatra_evacuacao_medio').hide();
+                    $('#fome_pediatra_peso_maior').hide();
+                    $('#conclusao_dor_colica').hide();
+                    $('#conclusao_dor_refluxo').hide();
+                    $('#conclusao_dor_dente').hide();
+                    $('#dor_outro_desc').hide();
+                    @if($babyAge >= 730)
+                        $('#fome_pediatra_peso_maior').show();
+                        $('#fome_peso_atual_maior').on('change', function() {
+
+                            var opt = $(this).children("option:selected").val();
+                            if (opt == 'S') {
+
+                                $('#conclusao_fome').val(
+                                    'Ótimo! Nessa idade é bem improvável que o seu filho ainda acorde por fome.Seus principais Desafios agora são outros, principalmente gasto de energia, birras, falta de bons hábitos e associações. Mas caso suspeite de que a alimentação do seu filho não está sendo o suficiente, me comunique por aqui e passe por uma consulta com seu pediatra ou nutricionista. Trabalharemos em conjunto para te ajudar.'
+                                );
+
+                                M.textareaAutoResize($('#conclusao_fome'));
+                            }
+                            if (opt == 'N') {
 
 
-                $('#fome_pediatra_não').hide();
-                $('#fome_pediatra_peso').hide();
-                $('#fome_pediatra_peso_atual_nao').hide();
-                $('#fome_pediatra_ganho_peso').hide();
-                $('#fome_pediatra_ganho_peso_nao').hide();
-                $('#fome_pediatra_fraldas').hide();
-                $('#fome_fraldas_nao').hide();
-                $('#fome_pediatra_evacuacao').hide();
-                $('#fome_pediatra_evacuacao_nao').hide();
-                $('#fome_final').hide();
-                $('#dor_causa').hide();
-                $('#salto_sim').hide();
-                $('#salto_marcos_sim').hide();
-                $('#angustia_sim').hide();
-                $('#fome_pediatra_fraldas_medio').hide();
-                $('#fome_pediatra_evacuacao_medio').hide();
-                $('#fome_pediatra_peso_maior').hide();
-                $('#conclusao_dor_colica').hide();
-                $('#conclusao_dor_refluxo').hide();
-                $('#conclusao_dor_dente').hide();
-                $('#dor_outro_desc').hide();
-                @if($babyAge >= 730)
-                    $('#fome_pediatra_peso_maior').show();
-                    $('#fome_peso_atual_maior').on('change', function() {
+                                $('#conclusao_fome').val(
+                                    'É muito importante saber se o peso atual está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra as-sim que possível para continuarmos.'
+                                );
+                                M.textareaAutoResize($('#conclusao_fome'));
+
+                            }
+
+                        });
+                    @endif
+
+
+
+                    @if($babyAge > 365 && $babyAge < 730)
+                        $('#fome_pediatra_peso_medio').show();
+
+                        $('#fome_peso_atual_medio').on('change', function() {
+
+                            var opt = $(this).children("option:selected").val();
+                            if (opt == 'S') {
+                                $('#fome_pediatra_peso_atual_nao').hide();
+                                $('#fome_pediatra_fraldas_medio').show();
+                                $('#fome_pediatra_ganho_peso_nao').hide();
+                                $('#fome_pediatra_fraldas').hide();
+                                $('#fome_fraldas_nao').hide();
+                                $('#conclusao_fome').val('');
+                                M.textareaAutoResize($('#conclusao_fome'));
+                            }
+                            if (opt == 'N') {
+
+                                $('#fome_pediatra_ganho_peso').hide();
+                                $('#fome_pediatra_ganho_peso_nao').hide();
+                                $('#fome_pediatra_fraldas_medio').hide();
+                                $('#fome_fraldas_nao').hide();
+                                $('#conclusao_fome').val(
+                                    'É muito importante saber se o peso atual está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
+                                );
+                                M.textareaAutoResize($('#conclusao_fome'));
+                            }
+
+                        });
+
+                        $('#fome_fraldas_medio').on('change', function() {
+
+                            var opt = $(this).children("option:selected").val();
+                            if (opt == 'S') {
+
+                                $('#fome_pediatra_evacuacao_medio').show();
+                                $('#conclusao_fome').val('');
+                                M.textareaAutoResize($('#conclusao_fome'));
+                            }
+                            if (opt == 'N') {
+                                $('#fome_pediatra_ganho_peso_nao').hide();
+                                $('#fome_pediatra_evacuacao').hide();
+                                $('#fome_pediatra_evacuacao_nao').hide();
+                                $('#conclusao_fome').val(
+                                    'Como o principal alimento do bebê é o leite, sabe-se que sempre que houver algum prejuízo na alimentação, a diurese será o primeiro sinal a ser alterado. Como você referiu diminuição na diurese, o ideal é que procure seu pediatra para avaliar o seu bebê e retornaremos a avaliação após.'
+                                );
+                                M.textareaAutoResize($('#conclusao_fome'));
+
+                            }
+
+                        });
+
+                        $('#fome_evacuacao_medio').on('change', function() {
+
+                            var opt = $(this).children("option:selected").val();
+                            if (opt == 'S') {
+
+                                $('#conclusao_fome').val(
+                                    'Conclusão: Ótimo! Todos os critérios de eficácia na alimentação estão adequados, o que nos leva a concluir que você está com uma boa rotina alimentar e podemos descartar a fome como causa de despertares. E se caso surgir a dúvida pois ele só volta a dormir mamando, lembre que o bebê mama por várias razões, não apenas a fome. Mamar relaxa, acolhe, alivia a dor e a associação. Nós encontraremos a causa para esses despertares.'
+                                );
+
+                                M.textareaAutoResize($('#conclusao_fome'));
+                            }
+                            if (opt == 'N') {
+
+
+                                $('#conclusao_fome').val(
+                                    'Esse é um achado mais tardio, em relação ao padrão de diurese, mas que também estará alterado em casos de prejuízos na alimentação do bebê. Como você referiu não identificar facilmente o padrão de evacuações do seu bebê, o ideal é que procure seu pediatra para avaliar o seu bebê e retornaremos a avaliação após.'
+                                );
+                                M.textareaAutoResize($('#conclusao_fome'));
+
+                            }
+
+                        });
+
+                    @endif
+
+
+
+
+
+
+
+
+                    $('#fome_pediatra').on('change', function() {
 
                         var opt = $(this).children("option:selected").val();
                         if (opt == 'S') {
-
-                            $('#conclusao_fome').val(
-                                'Ótimo! Nessa idade é bem improvável que o seu filho ainda acorde por fome.Seus principais Desafios agora são outros, principalmente gasto de energia, birras, falta de bons hábitos e associações. Mas caso suspeite de que a alimentação do seu filho não está sendo o suficiente, me comunique por aqui e passe por uma consulta com seu pediatra ou nutricionista. Trabalharemos em conjunto para te ajudar.'
-                            );
-
+                            $('#fome_pediatra_não').hide();
+                            $('#fome_pediatra_peso_atual_nao').hide();
+                            $('#fome_pediatra_peso').show();
+                            $('#fome_pediatra_ganho_peso').hide();
+                            $('#fome_pediatra_ganho_peso_nao').hide();
+                            $('#fome_pediatra_fraldas').hide();
+                            $('#fome_fraldas_nao').hide();
+                            $('#conclusao_fome').val('');
                             M.textareaAutoResize($('#conclusao_fome'));
                         }
                         if (opt == 'N') {
-
-
+                            $('#fome_pediatra_não').show();
+                            $('#fome_pediatra_peso_atual_nao').hide();
+                            $('#fome_pediatra_peso').hide();
+                            $('#fome_pediatra_ganho_peso').hide();
+                            $('#fome_pediatra_ganho_peso_nao').hide();
+                            $('#fome_pediatra_fraldas').hide();
+                            $('#fome_fraldas_nao').hide();
                             $('#conclusao_fome').val(
-                                'É muito importante saber se o peso atual está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra as-sim que possível para continuarmos.'
+                                'É muito importante ter a avaliação do seu pediatra para podermos descartar fome. Se ele não avaliou, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
                             );
                             M.textareaAutoResize($('#conclusao_fome'));
-
                         }
 
                     });
-                @endif
 
-
-
-                @if($babyAge > 365 && $babyAge < 730)
-                    $('#fome_pediatra_peso_medio').show();
-
-                    $('#fome_peso_atual_medio').on('change', function() {
+                    $('#fome_peso_atual').on('change', function() {
 
                         var opt = $(this).children("option:selected").val();
                         if (opt == 'S') {
                             $('#fome_pediatra_peso_atual_nao').hide();
-                            $('#fome_pediatra_fraldas_medio').show();
+                            $('#fome_pediatra_ganho_peso').show();
                             $('#fome_pediatra_ganho_peso_nao').hide();
                             $('#fome_pediatra_fraldas').hide();
                             $('#fome_fraldas_nao').hide();
@@ -594,7 +704,7 @@
 
                             $('#fome_pediatra_ganho_peso').hide();
                             $('#fome_pediatra_ganho_peso_nao').hide();
-                            $('#fome_pediatra_fraldas_medio').hide();
+                            $('#fome_pediatra_fraldas').hide();
                             $('#fome_fraldas_nao').hide();
                             $('#conclusao_fome').val(
                                 'É muito importante saber se o peso atual está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
@@ -604,12 +714,35 @@
 
                     });
 
-                    $('#fome_fraldas_medio').on('change', function() {
+                    $('#fome_ganho_peso').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+                            $('#fome_pediatra_peso_atual_nao').hide();
+                            $('#fome_pediatra_fraldas').show();
+                            $('#fome_fraldas_nao').hide();
+                            $('#conclusao_fome').val('');
+                            M.textareaAutoResize($('#conclusao_fome'));
+                        }
+                        if (opt == 'N') {
+
+                            $('#fome_pediatra_fraldas').hide();
+                            $('#fome_fraldas_nao').hide();
+                            $('#conclusao_fome').val(
+                                'É muito importante saber se o ganho de peso está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
+                            );
+                            M.textareaAutoResize($('#conclusao_fome'));
+
+                        }
+
+                    });
+
+                    $('#fome_fraldas').on('change', function() {
 
                         var opt = $(this).children("option:selected").val();
                         if (opt == 'S') {
 
-                            $('#fome_pediatra_evacuacao_medio').show();
+                            $('#fome_pediatra_evacuacao').show();
                             $('#conclusao_fome').val('');
                             M.textareaAutoResize($('#conclusao_fome'));
                         }
@@ -625,16 +758,20 @@
                         }
 
                     });
-
-                    $('#fome_evacuacao_medio').on('change', function() {
+                    $('#fome_evacuacao').on('change', function() {
 
                         var opt = $(this).children("option:selected").val();
                         if (opt == 'S') {
-
-                            $('#conclusao_fome').val(
-                                'Conclusão: Ótimo! Todos os critérios de eficácia na alimentação estão adequados, o que nos leva a concluir que você está com uma boa rotina alimentar e podemos descartar a fome como causa de despertares. E se caso surgir a dúvida pois ele só volta a dormir mamando, lembre que o bebê mama por várias razões, não apenas a fome. Mamar relaxa, acolhe, alivia a dor e a associação. Nós encontraremos a causa para esses despertares.'
-                            );
-
+                            @if($babyAge <= 90)
+                                $('#conclusao_fome').val(
+                                    'Conclusão: Ótimo! Todos os critérios de eficácia na alimentação estão adequados, o que nos leva a concluir que você está com uma boa rotina alimentar, mas como ele ainda é muito pequeno, pode ainda apresentar alguns despertares por fome. Lembrando que dificilmente terá mais do que 2 ou 3 despertares por isso e caso seu bebê acorde mais vezes, devemos continuar buscando novas causas.'
+                                );
+                            @endif
+                            @if($babyAge > 90)
+                                $('#conclusao_fome').val(
+                                    'Conclusão: Ótimo! Todos os critérios de eficácia na alimentação estão adequados, o que nos leva a concluir que você está com uma boa rotina alimentar e podemos descartar a fome como causa de despertares. E se caso surgir a dúvida pois ele só volta a dormir mamando, lembre que o bebê mama por várias razões, não apenas a fome. Mamar relaxa, acolhe, alivia a dor e a associação. Nós encontraremos a causa para esses despertares.'
+                                );
+                            @endif
                             M.textareaAutoResize($('#conclusao_fome'));
                         }
                         if (opt == 'N') {
@@ -649,368 +786,231 @@
 
                     });
 
-                @endif
+                    $('#dor').on('change', function() {
 
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
 
 
+                            $('#conclusao_dor').val('É importante descartar todo tipo de desconforto do bebê!');
+                            M.textareaAutoResize($('#conclusao_dor'));
+                            $('#dor_causa').show();
 
-
-
-
-
-                $('#fome_pediatra').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-                        $('#fome_pediatra_não').hide();
-                        $('#fome_pediatra_peso_atual_nao').hide();
-                        $('#fome_pediatra_peso').show();
-                        $('#fome_pediatra_ganho_peso').hide();
-                        $('#fome_pediatra_ganho_peso_nao').hide();
-                        $('#fome_pediatra_fraldas').hide();
-                        $('#fome_fraldas_nao').hide();
-                        $('#conclusao_fome').val('');
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-                    if (opt == 'N') {
-                        $('#fome_pediatra_não').show();
-                        $('#fome_pediatra_peso_atual_nao').hide();
-                        $('#fome_pediatra_peso').hide();
-                        $('#fome_pediatra_ganho_peso').hide();
-                        $('#fome_pediatra_ganho_peso_nao').hide();
-                        $('#fome_pediatra_fraldas').hide();
-                        $('#fome_fraldas_nao').hide();
-                        $('#conclusao_fome').val(
-                            'É muito importante ter a avaliação do seu pediatra para podermos descartar fome. Se ele não avaliou, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
-                        );
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-
-                });
-
-                $('#fome_peso_atual').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-                        $('#fome_pediatra_peso_atual_nao').hide();
-                        $('#fome_pediatra_ganho_peso').show();
-                        $('#fome_pediatra_ganho_peso_nao').hide();
-                        $('#fome_pediatra_fraldas').hide();
-                        $('#fome_fraldas_nao').hide();
-                        $('#conclusao_fome').val('');
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-                    if (opt == 'N') {
-
-                        $('#fome_pediatra_ganho_peso').hide();
-                        $('#fome_pediatra_ganho_peso_nao').hide();
-                        $('#fome_pediatra_fraldas').hide();
-                        $('#fome_fraldas_nao').hide();
-                        $('#conclusao_fome').val(
-                            'É muito importante saber se o peso atual está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
-                        );
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-
-                });
-
-                $('#fome_ganho_peso').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-                        $('#fome_pediatra_peso_atual_nao').hide();
-                        $('#fome_pediatra_fraldas').show();
-                        $('#fome_fraldas_nao').hide();
-                        $('#conclusao_fome').val('');
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-                    if (opt == 'N') {
-
-                        $('#fome_pediatra_fraldas').hide();
-                        $('#fome_fraldas_nao').hide();
-                        $('#conclusao_fome').val(
-                            'É muito importante saber se o ganho de peso está adequado para podermos descartar fome. Se não estiver, não poderemos descartar essa possível causa. Recomendo levar ao pediatra assim que possível para continuarmos.'
-                        );
-                        M.textareaAutoResize($('#conclusao_fome'));
-
-                    }
-
-                });
-
-                $('#fome_fraldas').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-
-                        $('#fome_pediatra_evacuacao').show();
-                        $('#conclusao_fome').val('');
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-                    if (opt == 'N') {
-                        $('#fome_pediatra_ganho_peso_nao').hide();
-                        $('#fome_pediatra_evacuacao').hide();
-                        $('#fome_pediatra_evacuacao_nao').hide();
-                        $('#conclusao_fome').val(
-                            'Como o principal alimento do bebê é o leite, sabe-se que sempre que houver algum prejuízo na alimentação, a diurese será o primeiro sinal a ser alterado. Como você referiu diminuição na diurese, o ideal é que procure seu pediatra para avaliar o seu bebê e retornaremos a avaliação após.'
-                        );
-                        M.textareaAutoResize($('#conclusao_fome'));
-
-                    }
-
-                });
-                $('#fome_evacuacao').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-                        @if($babyAge <= 90)
-                            $('#conclusao_fome').val(
-                                'Conclusão: Ótimo! Todos os critérios de eficácia na alimentação estão adequados, o que nos leva a concluir que você está com uma boa rotina alimentar, mas como ele ainda é muito pequeno, pode ainda apresentar alguns despertares por fome. Lembrando que dificilmente terá mais do que 2 ou 3 despertares por isso e caso seu bebê acorde mais vezes, devemos continuar buscando novas causas.'
-                            );
-                        @endif
-                        @if($babyAge > 90)
-                            $('#conclusao_fome').val(
-                                'Conclusão: Ótimo! Todos os critérios de eficácia na alimentação estão adequados, o que nos leva a concluir que você está com uma boa rotina alimentar e podemos descartar a fome como causa de despertares. E se caso surgir a dúvida pois ele só volta a dormir mamando, lembre que o bebê mama por várias razões, não apenas a fome. Mamar relaxa, acolhe, alivia a dor e a associação. Nós encontraremos a causa para esses despertares.'
-                            );
-                        @endif
-                        M.textareaAutoResize($('#conclusao_fome'));
-                    }
-                    if (opt == 'N') {
-
-
-                        $('#conclusao_fome').val(
-                            'Esse é um achado mais tardio, em relação ao padrão de diurese, mas que também estará alterado em casos de prejuízos na alimentação do bebê. Como você referiu não identificar facilmente o padrão de evacuações do seu bebê, o ideal é que procure seu pediatra para avaliar o seu bebê e retornaremos a avaliação após.'
-                        );
-                        M.textareaAutoResize($('#conclusao_fome'));
-
-                    }
-
-                });
-
-                $('#dor').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-
-
-                        $('#conclusao_dor').val('É importante descartar todo tipo de desconforto do bebê!');
-                        M.textareaAutoResize($('#conclusao_dor'));
-                        $('#dor_causa').show();
-
-                    }
-                    if (opt == 'N') {
-
-                        $('#conclusao_dor').val('Conclusão: Ótimo! Então está descartada como possível causa de despertares!');
-                        M.textareaAutoResize($('#conclusao_dor'));
-                        $('#dor_causa').hide();
-                    }
-
-                });
-
-                $('#dor_colica').click(function() {
-                    if($('#dor_colica').is(':checked')){
-                        $('#conclusao_dor_colica').show();
-                    $('#conclusao_dor_colica').val('Cólicas, gases e disquesia realmente podem causar dor e desconforto no bebê, consequentemente, pode causar despertares. Por isso eu criei o curso gratuito "Descomplicando as cólicas do bebê”, no qual eu ensino tudo sobre essa importante causa de dor. Você já assistiu? Se não, vou deixar aqui o link para você: https://youtube.com/playlist?list=PLaQhiV_BorwFDdu3bs90TQfZCTVoSJtQx Além disso, é muito importante que o seu pediatra esteja ciente do que está acontecendo porque infe-lizmente nós não podemos abordar alguns temas como diagnóstico e tratamento individuais aqui. Mas é muito importante que você entenda que a dor não pode ser uma razão para você abandonar os ajustes e o acompanhamento. Na verdade, o ideal é que, se possível, você atue paralelamente no alívio do desconforto e nos ajustes de sono. Conta conosco para isso!');
-                        M.textareaAutoResize($('#conclusao_dor_colica'));
-
-                    }else
-                    {
-                        $('#conclusao_dor_colica').hide();
-
-                    }
-
-        });
-                $('#dor_refluxo').click(function() {
-
-                    if($('#dor_refluxo').is(':checked')){
-                        $('#conclusao_dor_refluxo').show();
-                    $('#conclusao_dor_refluxo').val('Quanto ao refluxo, é importante lembrar que existe uma grande diferença entre “refluxo fisiológico”, que é aquele bebê que golfa, não causa grandes desconfortos ou comprometimento no ganho de peso, logo, também não é o suficiente para causar despertares. Enquanto a doença do refluxo é a condição patológica que realmente pode trazer prejuízos à saúde do seu filho, como dor e perda de peso, re-sultando em despertares à noite bastante desconfortáveis. Se o seu caso realmente for doença do refluxo, sugiro fazer os ajustes de sono concomitantes ao seu tratamento afim de estabilizar o desconforto, ou seja, não é preciso esperar a cura desse refluxo para começar a ter melhorias no sono do bebê.');
-                        M.textareaAutoResize($('#conclusao_dor_refluxo'));
-
-                    }else
-                    {
-                        $('#conclusao_dor_refluxo').hide();
-
-                    }
-
-        });
-                $('#dor_dente').click(function() {
-
-                    if($('#dor_dente').is(':checked')){
-                        $('#conclusao_dor_dente').show();
-                    $('#conclusao_dor_dente').val('Quanto ao nascimento de dentes, essa é outra importante causa de dor, desconforto e de despertares, mas que costuma ser facilmente resolvida com medidas não medicamentosas como mordedores gela-dos. Se a dor estiver muito intensa, você pode oferecer analgésicos simples prescritos pelo seu pedi-atra. OBS: Não é comum que seja causa de muitos despertares noturnos.');
-                        M.textareaAutoResize($('#conclusao_dor_dente'));
-
-                    }else
-                    {
-                        $('#conclusao_dor_dente').hide();
-
-                    }
-
-        });
-                $('#dor_outra').click(function() {
-
-                    if($('#dor_outra').is(':checked')){
-                        $('#dor_outro_desc').show();
-
-
-                    }else
-                    {
-                        $('#dor_outro_desc').hide();
-
-                    }
-
-        });
-
-
-
-                $('#salto').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-
-
-                        $('#conclusao_salto').val('');
-                        M.textareaAutoResize($('#conclusao_salto'));
-                        $('#salto_sim').show();
-
-                    }
-                    if (opt == 'N') {
-
-                        $('#conclusao_salto').val('Conclusão: Ótimo! Os saltos são momentos especiais de desenvolvimento do bebê, mas que podem vir acompanhados de despertares. Que bom que não é o seu caso, vamos passar para a próxima!');
-                        M.textareaAutoResize($('#conclusao_salto'));
-                        $('#salto_sim').hide();
-                        $('#salto_marcos_sim').hide();
-
-                    }
-
-                });
-
-                $('#salto_marcos').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-
-
-                        $('#conclusao_salto').val('Os saltos são mesmo importantes causas de despertares porque o bebê pode ficar mais alerta ou assus-tado devido a tantas novidades. Pode ser que fique inevitável desenvolver associações nesse período, mas se esse for o caso, nós iremos desfaze-la assim que o salto acabar. Além disso, é importante verificarmos quais necessidades de sono do seu bebê estão mudan-do. E o Desafio é fundamental para isso! Conte conosco.');
-                        M.textareaAutoResize($('#conclusao_salto'));
-                        $('#salto_sim').show();
-                        $('#salto_marcos_sim').show();
-
-
-                    }
-                    if (opt == 'N') {
-
-                        $('#conclusao_salto').val('Lembra que o salto de desenvolvimento é identificado pelos novos marcos de desenvolvimento! E não pelo aumento de despertares, ok?');
-                        M.textareaAutoResize($('#conclusao_salto'));
-
-                        $('#salto_marcos_sim').hide();
-
-                    }
-
-                });
-
-                $('#angustia').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-
-
-                        $('#conclusao_angustia').val('');
-                        M.textareaAutoResize($('#conclusao_angustia'));
-                        $('#angustia_sim').show();
-
-                    }
-                    if (opt == 'N') {
-
-                        $('#conclusao_angustia').val('Conclusão: Ótimo! A angústia da separação não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
-                        M.textareaAutoResize($('#conclusao_angustia'));
-                        $('#angustia_sim').hide();
-
-
-                    }
-
-                });
-
-                $('#angustia_sim_pai').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-                        if ($('#angustia_sim_campo').children("option:selected").val() == 'S') {
-
-                            $('#conclusao_angustia').val('Pela idade e pelas suas respostas, faz sentido pensar em angústia da separação, mas preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
-                            M.textareaAutoResize($('#conclusao_angustia'));
-                            $('#angustia_sim').show();
                         }
-                    }
-                    if (opt == 'N') {
+                        if (opt == 'N') {
 
-                        $('#conclusao_angustia').val('Pela idade, até faz sentido pensar, mas pelas suas respostas, não ficou muito claro se realmente se trata de angústia da separação. De qualquer forma, preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
-                        M.textareaAutoResize($('#conclusao_angustia'));
-
-
-
-                    }
-
-                });
-
-                $('#angustia_sim_campo').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-                        if ($('#angustia_sim_pai').children("option:selected").val() == 'S') {
-
-                            $('#conclusao_angustia').val('Pela idade e pelas suas respostas, faz sentido pensar em angústia da separação, mas preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
-                            M.textareaAutoResize($('#conclusao_angustia'));
-                            $('#angustia_sim').show();
+                            $('#conclusao_dor').val('Conclusão: Ótimo! Então está descartada como possível causa de despertares!');
+                            M.textareaAutoResize($('#conclusao_dor'));
+                            $('#dor_causa').hide();
                         }
-                    }
-                    if (opt == 'N') {
 
-                        $('#conclusao_angustia').val('Pela idade, até faz sentido pensar, mas pelas suas respostas, não ficou muito claro se realmente se trata de angústia da separação. De qualquer forma, preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
-                        M.textareaAutoResize($('#conclusao_angustia'));
+                    });
 
+                    $('#dor_colica').click(function() {
+                        if($('#dor_colica').is(':checked')){
+                            $('#conclusao_dor_colica').show();
+                        $('#conclusao_dor_colica').val('Cólicas, gases e disquesia realmente podem causar dor e desconforto no bebê, consequentemente, podem causar despertares, mas não é comum que causem MUITOS DESPERTARES.    A conduta é buscar o alívio da dor, priorizando medidas não medicamentosas, como a osteopatia e a higiene natural, mas se necessário, existem opções medicamentosas também.    Além disso, o que você precisa ficar atenta é quanto à possibilidade haver sinais de risco de APLV:                                Sintomas se iniciando antes de 1 mês de vida.    Persistência dos sintomas após 3 meses.    Sintomas muito intensos.    Presença de muco ou sangue nas fezes.    Na presença de qualquer um desses, seu pediatra precisa ser consultado.');
+                            M.textareaAutoResize($('#conclusao_dor_colica'));
 
+                        }else
+                        {
+                            $('#conclusao_dor_colica').hide();
 
-                    }
-
-                });
-
-                $('#telas').on('change', function() {
-
-                    var opt = $(this).children("option:selected").val();
-                    if (opt == 'S') {
-
-
-                        $('#conclusao_telas').val('Lembre que as telas podem atrapalhar o sono do bebê de 2 formas:   Pela exposição à luz azul, que prejudica o sono e a produção de melatonina;   Pelo hiperestímulo que ocorre devido ao excesso de dopamina liberado no organismo quando o bebê é exposto. A Sociedade Brasileira de Pediatria e a Academia Americana de Pediatria recomendam que o bebê não deve ser exposto às telas antes dos 2 anos de idade.');
-                        M.textareaAutoResize($('#conclusao_telas'));
-
-
-                    }
-                    if (opt == 'N') {
-
-                        $('#conclusao_telas').val('Conclusão: Ótimo! A Sociedade Brasileira de Pediatria e a Academia Americana de Pediatria recomendam que o bebê não deve ser exposto às telas antes dos 2 anos de idade.');
-                        M.textareaAutoResize($('#conclusao_telas'));
-
-                    }
-
-                });
-
+                        }
 
             });
-        </script>
+                    $('#dor_refluxo').click(function() {
 
+                        if($('#dor_refluxo').is(':checked')){
+                            $('#conclusao_dor_refluxo').show();
+                        $('#conclusao_dor_refluxo').val('Quanto ao refluxo, é importante lembrar que existe uma grande diferença entre “refluxo fisiológico”, que é aquele bebê que golfa, não causa grandes desconfortos ou comprometimento no ganho de peso, logo, também não é o suficiente para causar despertares. Enquanto a doença do refluxo é a condição patológica que realmente pode trazer prejuízos à saúde do seu filho, como dor e perda de peso, re-sultando em despertares à noite bastante desconfortáveis. Se o seu caso realmente for doença do refluxo, sugiro fazer os ajustes de sono concomitantes ao seu tratamento afim de estabilizar o desconforto, ou seja, não é preciso esperar a cura desse refluxo para começar a ter melhorias no sono do bebê.');
+                            M.textareaAutoResize($('#conclusao_dor_refluxo'));
 
-        <script>
-            $(document).ready(function() {
-                $('.modal').modal({
+                        }else
+                        {
+                            $('#conclusao_dor_refluxo').hide();
 
-                });
-                $('#modal1').modal('open');
-
-
+                        }
 
             });
-        </script>
+                    $('#dor_dente').click(function() {
+
+                        if($('#dor_dente').is(':checked')){
+                            $('#conclusao_dor_dente').show();
+                        $('#conclusao_dor_dente').val('Quanto ao nascimento de dentes, essa é outra importante causa de dor, desconforto e de despertares, mas que costuma ser facilmente resolvida com medidas não medicamentosas como mordedores gela-dos. Se a dor estiver muito intensa, você pode oferecer analgésicos simples prescritos pelo seu pedi-atra. OBS: Não é comum que seja causa de muitos despertares noturnos.');
+                            M.textareaAutoResize($('#conclusao_dor_dente'));
+
+                        }else
+                        {
+                            $('#conclusao_dor_dente').hide();
+
+                        }
+
+            });
+                    $('#dor_outra').click(function() {
+
+                        if($('#dor_outra').is(':checked')){
+                            $('#dor_outro_desc').show();
+
+
+                        }else
+                        {
+                            $('#dor_outro_desc').hide();
+
+                        }
+
+            });
+
+
+
+                    $('#salto').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+
+
+                            $('#conclusao_salto').val('');
+                            M.textareaAutoResize($('#conclusao_salto'));
+                            $('#salto_sim').show();
+
+                        }
+                        if (opt == 'N') {
+
+                            $('#conclusao_salto').val('Conclusão: Ótimo! Os saltos são momentos especiais de desenvolvimento do bebê, mas que podem vir acompanhados de despertares. Que bom que não é o seu caso, vamos passar para a próxima!');
+                            M.textareaAutoResize($('#conclusao_salto'));
+                            $('#salto_sim').hide();
+                            $('#salto_marcos_sim').hide();
+
+                        }
+
+                    });
+
+                    $('#salto_marcos').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+
+
+                            $('#conclusao_salto').val('Os saltos são mesmo importantes causas de despertares porque o bebê pode ficar mais alerta ou assus-tado devido a tantas novidades. Pode ser que fique inevitável desenvolver associações nesse período, mas se esse for o caso, nós iremos desfaze-la assim que o salto acabar. Além disso, é importante verificarmos quais necessidades de sono do seu bebê estão mudan-do. E o Desafio é fundamental para isso! Conte conosco.');
+                            M.textareaAutoResize($('#conclusao_salto'));
+                            $('#salto_sim').show();
+                            $('#salto_marcos_sim').show();
+
+
+                        }
+                        if (opt == 'N') {
+
+                            $('#conclusao_salto').val('Lembra que o salto de desenvolvimento é identificado pelos novos marcos de desenvolvimento! E não pelo aumento de despertares, ok?');
+                            M.textareaAutoResize($('#conclusao_salto'));
+
+                            $('#salto_marcos_sim').hide();
+
+                        }
+
+                    });
+
+                    $('#angustia').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+
+
+                            $('#conclusao_angustia').val('');
+                            M.textareaAutoResize($('#conclusao_angustia'));
+                            $('#angustia_sim').show();
+
+                        }
+                        if (opt == 'N') {
+
+                            $('#conclusao_angustia').val('Conclusão: Ótimo! A angústia da separação não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
+                            M.textareaAutoResize($('#conclusao_angustia'));
+                            $('#angustia_sim').hide();
+
+
+                        }
+
+                    });
+
+                    $('#angustia_sim_pai').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+                            if ($('#angustia_sim_campo').children("option:selected").val() == 'S') {
+
+                                $('#conclusao_angustia').val('Pela idade e pelas suas respostas, faz sentido pensar em angústia da separação, mas preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
+                                M.textareaAutoResize($('#conclusao_angustia'));
+                                $('#angustia_sim').show();
+                            }
+                        }
+                        if (opt == 'N') {
+
+                            $('#conclusao_angustia').val('Pela idade, até faz sentido pensar, mas pelas suas respostas, não ficou muito claro se realmente se trata de angústia da separação. De qualquer forma, preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
+                            M.textareaAutoResize($('#conclusao_angustia'));
+
+
+
+                        }
+
+                    });
+
+                    $('#angustia_sim_campo').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+                            if ($('#angustia_sim_pai').children("option:selected").val() == 'S') {
+
+                                $('#conclusao_angustia').val('Pela idade e pelas suas respostas, faz sentido pensar em angústia da separação, mas preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
+                                M.textareaAutoResize($('#conclusao_angustia'));
+                                $('#angustia_sim').show();
+                            }
+                        }
+                        if (opt == 'N') {
+
+                            $('#conclusao_angustia').val('Pela idade, até faz sentido pensar, mas pelas suas respostas, não ficou muito claro se realmente se trata de angústia da separação. De qualquer forma, preciso te lembrar que ela não costuma causar tantos despertares assim. O mais comum é haver o aumento da intensidade do choro durante esses despertares que foram causados por outras razões. Vamos continuar nossa análise!');
+                            M.textareaAutoResize($('#conclusao_angustia'));
+
+
+
+                        }
+
+                    });
+
+                    $('#telas').on('change', function() {
+
+                        var opt = $(this).children("option:selected").val();
+                        if (opt == 'S') {
+
+
+                            $('#conclusao_telas').val('Lembre que as telas podem atrapalhar o sono do bebê de 2 formas:   Pela exposição à luz azul, que prejudica o sono e a produção de melatonina;   Pelo hiperestímulo que ocorre devido ao excesso de dopamina liberado no organismo quando o bebê é exposto. A Sociedade Brasileira de Pediatria e a Academia Americana de Pediatria recomendam que o bebê não deve ser exposto às telas antes dos 2 anos de idade.');
+                            M.textareaAutoResize($('#conclusao_telas'));
+
+
+                        }
+                        if (opt == 'N') {
+
+                            $('#conclusao_telas').val('Conclusão: Ótimo! A Sociedade Brasileira de Pediatria e a Academia Americana de Pediatria recomendam que o bebê não deve ser exposto às telas antes dos 2 anos de idade.');
+                            M.textareaAutoResize($('#conclusao_telas'));
+
+                        }
+
+                    });
+
+
+                });
+            </script>
+
+
+            <script>
+                $(document).ready(function() {
+                    $('.modal').modal({
+
+                    });
+                    $('#modal1').modal('open');
+
+
+
+                });
+            </script>
 
 
 @endsection

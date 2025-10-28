@@ -1,6 +1,31 @@
 @extends('site.desafio.layouts.app')
 @section('css')
 <link type="text/css" rel="stylesheet" href="{{ asset('css/login.css') }}" media="screen,projection" />
+<style>
+    /* CSS específico para vídeos verticais (selfie) */
+    .video-container-vertical {
+        position: relative;
+        width: 100%;
+        max-width: 400px; /* Largura máxima para manter proporção vertical */
+        margin: 0 auto;
+        background: #000;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .video-container-vertical video {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    /* Para telas muito pequenas */
+    @media (max-width: 480px) {
+        .video-container-vertical {
+            max-width: 100%;
+        }
+    }
+</style>
 @stop
 
 @section('content')
@@ -13,12 +38,13 @@
                         <div class="col s12">
                             <!-- Modal do Vídeo Explicativo -->
                             <div id="modalVideoExplicativo" class="modal">
-                                <div class="modal-content">
+                                <div class="modal-content center-align">
                                     <h4>🎥 Como usar as Análises Individuais</h4>
                                     <p>Assista a este vídeo para entender como aproveitar ao máximo suas análises individuais:</p>
                                     
-                                    <div class="video-container">
-                                        <video id="videoExplicativo" width="100%" controls>
+                                    <!-- Container especial para vídeo vertical -->
+                                    <div class="video-container-vertical">
+                                        <video id="videoExplicativo" controls playsinline>
                                             <source src="{{ asset('storage/videos/analises-individuais-explicacao.mp4') }}" type="video/mp4">
                                             Seu navegador não suporta vídeos.
                                         </video>
@@ -34,6 +60,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <ul id="task-card" class="collection with-header animate fadeLeft">
                                 <li class="collection-header red">

@@ -229,3 +229,38 @@ function calcularTempoAcordado($birthBaby)
 }
 
 
+
+
+// Adicione esta função em um helper ou no controller
+function calcularDiferencaMinutos($horaInicio, $horaFim) {
+    try {
+        // Verificar se as horas são válidas
+        if (empty($horaInicio) || empty($horaFim)) {
+            return null;
+        }
+        
+        // Remover segundos se existirem
+        $horaInicio = substr($horaInicio, 0, 5); // Pega apenas HH:MM
+        $horaFim = substr($horaFim, 0, 5); // Pega apenas HH:MM
+        
+        // Verificar formato
+        if (!preg_match('/^\d{2}:\d{2}$/', $horaInicio) || !preg_match('/^\d{2}:\d{2}$/', $horaFim)) {
+            return null;
+        }
+        
+        $inicio = \Carbon\Carbon::createFromFormat('H:i', $horaInicio);
+        $fim = \Carbon\Carbon::createFromFormat('H:i', $horaFim);
+        
+        // Se a hora fim for menor que a início, assume que é no dia seguinte
+        if ($fim->lessThan($inicio)) {
+            $fim->addDay();
+        }
+        
+        return $inicio->diffInMinutes($fim);
+        
+    } catch (\Exception $e) {
+        // Log do erro se necessário
+        \Log::error('Erro ao calcular diferença de minutos: ' . $e->getMessage());
+        return null;
+    }
+}

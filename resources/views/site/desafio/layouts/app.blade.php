@@ -44,7 +44,7 @@
                 <i class="material-icons">mail_outline</i>
                 <span class="menu-title" data-i18n="Mail">Raio x</span>
             </a>
-        < /li>
+        </li>
         
     @endif
 @endauth

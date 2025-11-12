@@ -409,19 +409,7 @@
                                                                                 </tbody>
                                                                             </table>
 
-                                                                           @foreach($sonecas as $soneca)
-                                                            @if(isset($soneca['respostas']) && count($soneca['respostas']) > 0)
-                                                                <div class="modal fade" id="questionarioSoneca{{ $soneca['numero'] }}" tabindex="-1" role="dialog">
-                                                                    <div class="modal-dialog modal-lg" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title">Questionário - Soneca {{ $soneca['numero'] }}</h5>
-                                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                                    <span>&times;</span>
-                                                                                </button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <div class="row">
+                                                                         
                                                                                   @foreach($sonecas as $soneca)
                                                             @if(isset($soneca['respostas']) && count($soneca['respostas']) > 0)
                                                                 <div class="modal fade" id="questionarioSoneca{{ $soneca['numero'] }}" tabindex="-1" role="dialog">

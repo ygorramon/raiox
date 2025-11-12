@@ -39,13 +39,13 @@
     @endphp
 
     @if($mostrarRaioX)
-        <!-- li class="bold">
+        <li class="bold">
             <a class="waves-effect waves-cyan" href="{{ route('analises.individuais.index') }}">
                 <i class="material-icons">mail_outline</i>
                 <span class="menu-title" data-i18n="Mail">Raio x</span>
             </a>
         < /li>
-        <-->
+        
     @endif
 @endauth
 

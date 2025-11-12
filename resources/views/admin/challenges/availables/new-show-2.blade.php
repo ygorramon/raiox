@@ -410,17 +410,45 @@
                                                                             </table>
 
                                                                             <!-- Resto do código dos modais permanece igual -->
-                                                                            @foreach($sonecas as $soneca)
-                                                                                @if(isset($soneca['respostas']) && count($soneca['respostas']) > 0)
-                                                                                    <div class="modal fade" id="questionarioSoneca{{ $soneca['numero'] }}" tabindex="-1" role="dialog">
-                                                                                        <div class="modal-dialog modal-lg" role="document">
-                                                                                            <div class="modal-content">
-                                                                                                <!-- Conteúdo do modal permanece igual -->
+                                                                           @foreach($sonecas as $soneca)
+                                                            @if(isset($soneca['respostas']) && count($soneca['respostas']) > 0)
+                                                                <div class="modal fade" id="questionarioSoneca{{ $soneca['numero'] }}" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title">Questionário - Soneca {{ $soneca['numero'] }}</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal">
+                                                                                    <span>&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="row">
+                                                                                    @foreach($soneca['respostas'] as $pergunta => $resposta)
+                                                                                        <div class="col-md-6 mb-3">
+                                                                                            <div class="card">
+                                                                                                <div class="card-body">
+                                                                                                    <h6 class="card-title text-primary">{{ $pergunta }}</h6>
+                                                                                                    <p class="card-text">
+                                                                                                        <strong>Resposta:</strong>
+                                                                                                        <span
+                                                                                                            class="badge bg-{{ $resposta['resposta'] == 'Sim' ? 'success' : ($resposta['resposta'] == 'Não' ? 'danger' : 'info') }}">
+                                                                                                            {{ $resposta['resposta'] }}
+                                                                                                        </span>
+                                                                                                    </p>
+                                                                                                    @if(isset($resposta['detalhes']) && $resposta['detalhes'])
+                                                                                                        <p class="card-text">
+                                                                                                            <strong>Detalhes:</strong> {{ $resposta['detalhes'] }}
+                                                                                                        </p>
+                                                                                                    @endif
+                                                                                                    @if(isset($resposta['timestamp']))
+                                                                                                        <small class="text-muted">
+                                                                                                            Registrado: {{ \Carbon\Carbon::parse($resposta['timestamp'])->format('H:i') }}
+                                                                                                        </small>
+                                                                                                    @endif
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @endif
-                                                                            @endforeach
+                                                                                    @endforeach
                                                                         @endif
 
                                                                                                                     <!-- Ritual Noturno -->

@@ -18,7 +18,9 @@ class Challenge extends Model
         'passo4_associacoes_noturno','conclusao','tipo'
     ];
 
-
+    protected $casts = [
+        'analises' => 'array',
+    ];
     
     public function analyzes()
     {

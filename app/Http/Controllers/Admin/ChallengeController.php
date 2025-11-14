@@ -35,7 +35,7 @@ class ChallengeController extends Controller
          ->orderBy('sended_at', 'desc')
          ->get();
 
-      return view('admin.relatorios.enviados', compact('challenges'));
+      return view('admin.relatorios.enviados2', compact('challenges'));
    }
 public function desafiosAnalisadosVideo()
    {
@@ -54,7 +54,7 @@ public function desafiosAnalisadosVideo()
          ->orderBy('sended_at', 'desc')
          ->get();
 
-      return view('admin.relatorios.enviados', compact('challenges'));
+      return view('admin.relatorios.enviados2', compact('challenges'));
    }
 
 public function desafiosAnalisadosSemVideo(){
@@ -74,7 +74,7 @@ public function desafiosAnalisadosSemVideo(){
          ->orderBy('sended_at', 'desc')
          ->get();
 
-      return view('admin.relatorios.enviados', compact('challenges'));
+      return view('admin.relatorios.enviados2', compact('challenges'));
    }
 
    public function new_availables()
@@ -1043,21 +1043,49 @@ public function desafiosAnalisadosSemVideo(){
    {
       $request->validate([
          'challenge_id' => 'required|exists:challenges,id',
-         'analise_video' => 'required|mimes:mp4|max:204800' // 200MB, ajuste se quiser
+         'analise_videos' => 'required|array|min:1',
+         'analise_videos.*' => 'required|mimes:mp4|max:204800', // 200MB por vídeo
+         'total_partes' => 'required|integer|min:1'
       ]);
 
       $challenge = Challenge::findOrFail($request->challenge_id);
 
-      if ($request->hasFile('analise_video')) {
-         $path = $request->file('analise_video')->store('public/analises');
-         $filename = basename($path);
+      $analises = $challenge->analises ?? [];
 
-         // Exemplo: salva no campo 'analise_video' (adicione na sua tabela)
-         $challenge->analise_video = 'analises/' . $filename;
+      try {
+         foreach ($request->file('analise_videos') as $index => $video) {
+            $parteNumero = $index + 1;
+
+            // Gerar nome único para o arquivo
+            $filename = 'analise_parte_' . $parteNumero . '_' . time() . '_' . $video->getClientOriginalName();
+            $path = $video->storeAs('public/analises', $filename);
+
+            // Adicionar à array de análises
+            $analises[] = [
+               'parte' => $parteNumero,
+               'caminho' => 'analises/' . $filename,
+               'nome_original' => $video->getClientOriginalName(),
+               'tamanho' => $video->getSize(),
+               'data_upload' => now()->toDateTimeString(),
+               'parte_total' => $request->total_partes
+            ];
+         }
+
+         // Ordenar por parte
+         usort($analises, function ($a, $b) {
+            return $a['parte'] <=> $b['parte'];
+         });
+
+         // Salvar no desafio
+         $challenge->analises = $analises;
          $challenge->save();
-      }
 
-      return redirect()->back()->with('success', 'Análise enviada com sucesso!');
+         return response()->json(['success' => 'Análises enviadas com sucesso!'], 200);
+
+      } catch (\Exception $e) {
+         \Log::error('Erro no upload de análises: ' . $e->getMessage());
+         return response()->json(['error' => 'Erro ao enviar análises: ' . $e->getMessage()], 500);
+      }
    }
    public function updateSono(Request $request, $id)
    {

@@ -50,7 +50,10 @@ public function desafiosAnalisadosVideo()
       $challenges = Challenge::where('status', 'FINALIZADO')
          ->whereDate('sended_at', '>=', '2025-07-23')
          ->whereNotNull('user_id')
-    ->whereNotNull('analise_video')
+         ->where(function ($query) {
+            $query->whereNotNull('analise_video')
+               ->orWhereNotNull('analises');
+         })
          ->orderBy('sended_at', 'desc')
          ->get();
 
@@ -71,6 +74,7 @@ public function desafiosAnalisadosSemVideo(){
          ->whereDate('sended_at', '>=', '2025-07-23')
          ->whereNotNull('user_id')
     ->whereNull('analise_video')
+    ->whereNull('analises')
          ->orderBy('sended_at', 'desc')
          ->get();
 

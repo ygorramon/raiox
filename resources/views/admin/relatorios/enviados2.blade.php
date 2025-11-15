@@ -12,10 +12,23 @@
 @section('content')
 <div class="card">
     <div class="card-body">
+        <div class="row mb-3">
+    <div class="col-md-3">
+        <label for="filtroFaixa">Filtrar por Faixa Etária:</label>
+        <select id="filtroFaixa" class="form-control">
+            <option value="">Todas as faixas</option>
+            <option value="1 a 3 meses">1 a 3 meses</option>
+            <option value="4 a 6 meses">4 a 6 meses</option>
+            <option value="6 a 12 meses">6 a 12 meses</option>
+            <option value="Maiores de 1 ano">Maiores de 1 ano</option>
+        </select>
+    </div>
+</div>
         <table class="table table-condensed" id="table">
     <thead>
         <tr>
             <th>ID</th>
+            <th>Faixa Etária</th>
             <th>Nome da Mãe</th>
             <th>Bebê</th>
             <th>Data de Nascimento - Idade</th>
@@ -43,33 +56,28 @@
                     $ageInMonths = $birthDate->diffInMonths(now());
                     
                     if ($ageInMonths <= 3) {
-                        $faixasEtarias['1 a 3 meses'][] = $challenge;
+                        $faixa = '1 a 3 meses';
                     } elseif ($ageInMonths <= 6) {
-                        $faixasEtarias['4 a 6 meses'][] = $challenge;
+                        $faixa = '4 a 6 meses';
                     } elseif ($ageInMonths <= 12) {
-                        $faixasEtarias['6 a 12 meses'][] = $challenge;
+                        $faixa = '6 a 12 meses';
                     } else {
-                        $faixasEtarias['Maiores de 1 ano'][] = $challenge;
+                        $faixa = 'Maiores de 1 ano';
                     }
                 } else {
-                    // Caso não tenha data de nascimento, colocar em "Maiores de 1 ano" ou outra categoria padrão
-                    $faixasEtarias['Maiores de 1 ano'][] = $challenge;
+                    $faixa = 'Maiores de 1 ano';
                 }
+                
+                $challenge->faixa_etaria = $faixa;
+                $faixasEtarias[$faixa][] = $challenge;
             }
         @endphp
 
         @foreach($faixasEtarias as $faixa => $desafios)
-            @if(count($desafios) > 0)
-                <tr class="table-info">
-                    <td colspan="10" class="font-weight-bold">
-                        <i class="fas fa-baby"></i> Faixa Etária: {{ $faixa }} 
-                        <span class="badge badge-primary ml-2">{{ count($desafios) }} registro(s)</span>
-                    </td>
-                </tr>
-                
-                @foreach($desafios as $challenge)
-                <tr>
+            @foreach($desafios as $challenge)
+                <tr data-faixa="{{ $faixa }}">
                     <td>{{ $challenge->id }}</td>
+                    <td>{{ $faixa }}</td>
                     <td>{{ $challenge->client->name }}</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
                     <td>
@@ -100,36 +108,36 @@
                         @endswitch
                     </td>
                     <td>
-                        @if($challenge->status != 'INICIADO')
-                            <a class="btn btn-primary btn-sm" href="{{ route('challenge.meus.show', $challenge->id) }}">Ver Desafio</a>
-                            <a class="btn btn-warning btn-sm" href="{{ route('challenge.meus.respostas', $challenge->id) }}">Ver Respostas</a>
-                            @if(isset($challenge->chat))
-                                <a class="btn btn-success btn-sm" href="{{ route('challenge.meus.chat', $challenge->id) }}">Ver Chat</a>
+                        <div class="btn-group-vertical">
+                            @if($challenge->status != 'INICIADO')
+                                <a class="btn btn-primary btn-sm mb-1" href="{{ route('challenge.meus.show', $challenge->id) }}">Ver Desafio</a>
+                                <a class="btn btn-warning btn-sm mb-1" href="{{ route('challenge.meus.respostas', $challenge->id) }}">Ver Respostas</a>
+                                @if(isset($challenge->chat))
+                                    <a class="btn btn-success btn-sm mb-1" href="{{ route('challenge.meus.chat', $challenge->id) }}">Ver Chat</a>
+                                @endif
                             @endif
-                        @endif
-                        <form action="{{ route('challenge.getanalise', $challenge->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-primary btn-sm">Pegar</button>
-                        </form>
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#uploadModal" data-id="{{ $challenge->id }}">
-                            Upload de Análise
-                        </button>
-                        
-                        <!-- Botões para ver análises existentes -->
-                        @if($challenge->analises && count($challenge->analises) > 0)
-                            @foreach($challenge->analises as $index => $analise)
-                                <button class="btn btn-dark btn-sm view-analise-btn mt-1"
-                                        data-video-url="{{ Storage::url($analise['caminho']) }}"
-                                        data-parte="{{ $analise['parte'] }}">
-                                    Ver Análise Parte {{ $analise['parte'] }}
-                                </button>
-                            @endforeach
-                        @endif
+                            <form action="{{ route('challenge.getanalise', $challenge->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-primary btn-sm mb-1">Pegar</button>
+                            </form>
+                            <button class="btn btn-info btn-sm mb-1" data-toggle="modal" data-target="#uploadModal" data-id="{{ $challenge->id }}">
+                                Upload
+                            </button>
+                            
+                            @if($challenge->analises && count($challenge->analises) > 0)
+                                @foreach($challenge->analises as $index => $analise)
+                                    <button class="btn btn-dark btn-sm mb-1 view-analise-btn"
+                                            data-video-url="{{ Storage::url($analise['caminho']) }}"
+                                            data-parte="{{ $analise['parte'] }}">
+                                        Análise {{ $analise['parte'] }}
+                                    </button>
+                                @endforeach
+                            @endif
+                        </div>
                     </td>
                 </tr>
-                @endforeach
-            @endif
+            @endforeach
         @endforeach
     </tbody>
 </table>
@@ -205,11 +213,54 @@
 @section('js')
 <script>
 $(document).ready(function() {
-    $('#table').DataTable({
+ var table = $('#table').DataTable({
         paging: true,
-        language: { search: "Filtrar: " },
-        order: [[6, "asc"]]
+        language: { 
+            search: "Filtrar: ",
+            paginate: {
+                previous: "Anterior",
+                next: "Próximo"
+            },
+            info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            infoEmpty: "Mostrando 0 a 0 de 0 registros",
+            lengthMenu: "Mostrar _MENU_ registros"
+        },
+        order: [[0, "desc"]], // Ordena pelo ID decrescente
+        columnDefs: [
+            {
+                target: 1, // Coluna da Faixa Etária
+                visible: false // Oculta a coluna, mas mantém para filtros
+            }
+        ],
+        drawCallback: function(settings) {
+            // Agrupa as linhas por faixa etária após o desenho da tabela
+            var api = this.api();
+            var rows = api.rows({page:'current'}).nodes();
+            var last = null;
+
+            api.column(1, {page:'current'}).data().each(function(group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                        '<tr class="group table-info"><td colspan="11" class="font-weight-bold">' +
+                        '<i class="fas fa-baby"></i> Faixa Etária: ' + group + 
+                        '</td></tr>'
+                    );
+                    last = group;
+                }
+            });
+        }
     });
+
+    // Filtro personalizado por faixa etária
+    $('#filtroFaixa').on('change', function() {
+        var faixa = $(this).val();
+        if (faixa) {
+            table.column(1).search(faixa).draw();
+        } else {
+            table.column(1).search('').draw();
+        }
+    });
+
 
     let videoCount = 1;
 

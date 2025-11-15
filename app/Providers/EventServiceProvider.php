@@ -78,6 +78,7 @@ class EventServiceProvider extends ServiceProvider
          ->whereNotNull('user_id')
                     ->whereDate('sended_at', '>=', '2025-07-23')
                     ->whereNull('analise_video')
+                     ->whereNull('analises')
         
          ->count(),
 

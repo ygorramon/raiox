@@ -13,27 +13,72 @@
 <div class="card">
     <div class="card-body">
         <table class="table table-condensed" id="table">
-            <thead>
-                <tr>
-                    <th>Nome da Mãe</th>
-                    <th>Bebê</th>
-                    <th>Data de Nascimento - Idade</th>
-                    <th>Email</th>
-                    <th>Turma</th>
-                    <th>Data de Envio</th>
-                    <th>Terapeuta</th>
-                    <th>Status</th>
-                    <th>Ações</th>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome da Mãe</th>
+            <th>Bebê</th>
+            <th>Data de Nascimento - Idade</th>
+            <th>Email</th>
+            <th>Turma</th>
+            <th>Data de Envio</th>
+            <th>Terapeuta</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+            // Agrupar desafios por faixa etária
+            $faixasEtarias = [
+                '1 a 3 meses' => [],
+                '4 a 6 meses' => [],
+                '6 a 12 meses' => [],
+                'Maiores de 1 ano' => []
+            ];
+            
+            foreach ($challenges as $challenge) {
+                if ($challenge->client->birthBaby) {
+                    $birthDate = \Carbon\Carbon::parse($challenge->client->birthBaby);
+                    $ageInMonths = $birthDate->diffInMonths(now());
+                    
+                    if ($ageInMonths <= 3) {
+                        $faixasEtarias['1 a 3 meses'][] = $challenge;
+                    } elseif ($ageInMonths <= 6) {
+                        $faixasEtarias['4 a 6 meses'][] = $challenge;
+                    } elseif ($ageInMonths <= 12) {
+                        $faixasEtarias['6 a 12 meses'][] = $challenge;
+                    } else {
+                        $faixasEtarias['Maiores de 1 ano'][] = $challenge;
+                    }
+                } else {
+                    // Caso não tenha data de nascimento, colocar em "Maiores de 1 ano" ou outra categoria padrão
+                    $faixasEtarias['Maiores de 1 ano'][] = $challenge;
+                }
+            }
+        @endphp
+
+        @foreach($faixasEtarias as $faixa => $desafios)
+            @if(count($desafios) > 0)
+                <tr class="table-info">
+                    <td colspan="10" class="font-weight-bold">
+                        <i class="fas fa-baby"></i> Faixa Etária: {{ $faixa }} 
+                        <span class="badge badge-primary ml-2">{{ count($desafios) }} registro(s)</span>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($challenges as $challenge)
+                
+                @foreach($desafios as $challenge)
                 <tr>
+                    <td>{{ $challenge->id }}</td>
                     <td>{{ $challenge->client->name }}</td>
                     <td>{{ $challenge->client->nameBaby }}</td>
                     <td>
                         @if($challenge->client->birthBaby)
                             {{ \Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y') }}
+                            <br>
+                            <small class="text-muted">
+                                ({{ \Carbon\Carbon::parse($challenge->client->birthBaby)->diffInMonths(now()) }} meses)
+                            </small>
                         @endif
                     </td>
                     <td>{{ $challenge->client->email }}</td>
@@ -56,25 +101,25 @@
                     </td>
                     <td>
                         @if($challenge->status != 'INICIADO')
-                            <a class="btn btn-primary" href="{{ route('challenge.meus.show', $challenge->id) }}">Ver Desafio</a>
-                            <a class="btn btn-warning" href="{{ route('challenge.meus.respostas', $challenge->id) }}">Ver Respostas</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('challenge.meus.show', $challenge->id) }}">Ver Desafio</a>
+                            <a class="btn btn-warning btn-sm" href="{{ route('challenge.meus.respostas', $challenge->id) }}">Ver Respostas</a>
                             @if(isset($challenge->chat))
-                                <a class="btn btn-success" href="{{ route('challenge.meus.chat', $challenge->id) }}">Ver Chat</a>
+                                <a class="btn btn-success btn-sm" href="{{ route('challenge.meus.chat', $challenge->id) }}">Ver Chat</a>
                             @endif
                         @endif
                         <form action="{{ route('challenge.getanalise', $challenge->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
-                            <button class="btn btn-primary">Pegar</button>
+                            <button class="btn btn-primary btn-sm">Pegar</button>
                         </form>
-                        <button class="btn btn-info" data-toggle="modal" data-target="#uploadModal" data-id="{{ $challenge->id }}">
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#uploadModal" data-id="{{ $challenge->id }}">
                             Upload de Análise
                         </button>
                         
                         <!-- Botões para ver análises existentes -->
                         @if($challenge->analises && count($challenge->analises) > 0)
                             @foreach($challenge->analises as $index => $analise)
-                                <button class="btn btn-dark view-analise-btn mt-1"
+                                <button class="btn btn-dark btn-sm view-analise-btn mt-1"
                                         data-video-url="{{ Storage::url($analise['caminho']) }}"
                                         data-parte="{{ $analise['parte'] }}">
                                     Ver Análise Parte {{ $analise['parte'] }}
@@ -84,8 +129,10 @@
                     </td>
                 </tr>
                 @endforeach
-            </tbody>
-        </table>
+            @endif
+        @endforeach
+    </tbody>
+</table>
     </div>
 </div>
 

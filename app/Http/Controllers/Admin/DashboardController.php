@@ -127,7 +127,7 @@ class DashboardController extends Controller
    public function enviados()
    {
       $challenges = Challenge::whereIn('status', ['ENVIADO', 'ANALISE','RESPONDIDO','FINALIZADO'])->orderBy('sended_at', 'desc')->get();
-      return view('admin.relatorios.enviados', compact('challenges'));
+      return view('admin.relatorios.enviados2', compact('challenges'));
    }
 
    public function transferirChallenge($id){

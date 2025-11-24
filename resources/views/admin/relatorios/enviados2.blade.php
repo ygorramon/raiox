@@ -134,6 +134,10 @@
                                     </button>
                                 @endforeach
                             @endif
+                            @if($challenge->analise_video!=null)
+                             <button class="btn btn-dark btn-sm mb-1 view-analise-btn"
+                                            >Análise Antiga</button>
+                            @endif
                         </div>
                     </td>
                 </tr>

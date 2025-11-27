@@ -2419,12 +2419,16 @@ dd($janelas);
         $challenge = Challenge::find($id);
         $client = Challenge::find($id)->client;
 
-        $qtd_despertares_inadequadas = count($challenge->wakes->where('duration', '>', 30));
-        $qtd_rituais_inadequadas = count($challenge->analyzes->where('day', 3)->first()->naps->where('windowSignalSlept', '>', 30));
-
-
-
+        $analyzes = $challenge->analyzes->where('day', 3)->first();
+        $qtd_rituais_inadequadas = 0;
+        $qtd_despertares_inadequadas =0;
+        if ($analyzes && isset($analyzes->naps)) {
+            $qtd_rituais_inadequadas = count($analyzes->naps->where('windowSignalSlept', '>', 30));
+        }
+//                $qtd_rituais_inadequadas = count($challenge->analyzes->where('day', 3)->first()->naps->where('windowSignalSlept', '>', 30) ?? []);
         $janelas = [];
+ if ($analyzes && isset($analyzes->naps)) {
+       
 
         foreach ($challenge->analyzes->where('day', 3)->first()->naps as $nap) {
             if (($nap->window - $nap->windowSignalSlept) > getSinalSono(getIdade($client->birthBaby))->janelaIdealFim) {
@@ -2438,13 +2442,13 @@ dd($janelas);
             }
         }
 
-
+        }
         if (count($janelas) > 0) {
             $media_janelas = array_sum($janelas) / count($janelas);
         } else {
             $media_janelas = 0;
         }
-
+ 
 
 
         return view('site.desafio.passo3_pilares', compact('challenge', 'client', 'janelas', 'media_janelas', 'qtd_despertares_inadequadas', 'qtd_rituais_inadequadas'));

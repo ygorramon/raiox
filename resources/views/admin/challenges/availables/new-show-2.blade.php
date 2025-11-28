@@ -99,10 +99,10 @@
         <div class="row">
             @foreach($challenge->rotinas as $rotina)
                                                                                                                     @php
-                $sonecas = json_decode($rotina->historicoSonecas, true);
-                $ritual = json_decode($rotina->ritualNoturno, true);
-                $despertares = json_decode($rotina->historicoDespertares, true);
-                $resumo = json_decode($rotina->resumo, true);
+    $sonecas = json_decode($rotina->historicoSonecas, true);
+    $ritual = json_decode($rotina->ritualNoturno, true);
+    $despertares = json_decode($rotina->historicoDespertares, true);
+    $resumo = json_decode($rotina->resumo, true);
                                                                                                                     @endphp
 
                                                                                                                     <div class="col-md-12">
@@ -181,48 +181,48 @@
                                                                                                                                                             <tbody>
                                                                                                                                                                 @foreach($sonecas as $index => $soneca)
                                                                                                                                                                     @php
-                                                                                        $idadeBebe = now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby));
-                                                                                        $janelaIdeal = getJanela($idadeBebe);
-                                                                                        $janelaMin = $janelaIdeal->janelaIdealInicio;
-                                                                                        $janelaMax = $janelaIdeal->janelaIdealFim;
-                                                                                        $statusJanela = 'ideal';
+            $idadeBebe = now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby));
+            $janelaIdeal = getJanela($idadeBebe);
+            $janelaMin = $janelaIdeal->janelaIdealInicio;
+            $janelaMax = $janelaIdeal->janelaIdealFim;
+            $statusJanela = 'ideal';
 
-                                                                                        if ($soneca['janelaSono'] < $janelaMin) {
-                                                                                            $statusJanela = 'curta';
-                                                                                        } elseif ($soneca['janelaSono'] > $janelaMax) {
-                                                                                            $statusJanela = 'longa';
-                                                                                        }
+            if ($soneca['janelaSono'] < $janelaMin) {
+                $statusJanela = 'curta';
+            } elseif ($soneca['janelaSono'] > $janelaMax) {
+                $statusJanela = 'longa';
+            }
 
-                                                                                        // CALCULAR JANELA DO SINAL DE SONO - CORREÇÃO AQUI
-                                                                                        $janelaSinalSono = null;
-                                                                                        $statusJanelaSinal = 'nao-registrado';
+            // CALCULAR JANELA DO SINAL DE SONO - CORREÇÃO AQUI
+            $janelaSinalSono = null;
+            $statusJanelaSinal = 'nao-registrado';
 
-                                                                                        if (isset($soneca['sentiuSono']) && $soneca['sentiuSono']) {
-                                                                                            // Encontrar horário que acordou da soneca anterior
-                                                                                            $horarioAcordouAnterior = null;
+            if (isset($soneca['sentiuSono']) && $soneca['sentiuSono']) {
+                // Encontrar horário que acordou da soneca anterior
+                $horarioAcordouAnterior = null;
 
-                                                                                            if ($index == 0) {
-                                                                                                // CORREÇÃO: Usar $rotina->inicioDia que está no escopo do foreach principal
-                                                                                                $horarioAcordouAnterior = $rotina->inicioDia ?? '07:00';
-                                                                                            } else {
-                                                                                                // Usar horário que terminou a soneca anterior
-                                                                                                $horarioAcordouAnterior = $sonecas[$index - 1]['termino'];
-                                                                                            }
+                if ($index == 0) {
+                    // CORREÇÃO: Usar $rotina->inicioDia que está no escopo do foreach principal
+                    $horarioAcordouAnterior = $rotina->inicioDia ?? '07:00';
+                } else {
+                    // Usar horário que terminou a soneca anterior
+                    $horarioAcordouAnterior = $sonecas[$index - 1]['termino'];
+                }
 
-                                                                                            if ($horarioAcordouAnterior) {
-                                                                                                // Calcular diferença em minutos entre acordar e sentir sono
-                                                                                                $janelaSinalSono = calcularDiferencaMinutos($horarioAcordouAnterior, $soneca['sentiuSono']);
+                if ($horarioAcordouAnterior) {
+                    // Calcular diferença em minutos entre acordar e sentir sono
+                    $janelaSinalSono = calcularDiferencaMinutos($horarioAcordouAnterior, $soneca['sentiuSono']);
 
-                                                                                                // Determinar status da janela do sinal de sono
-                                                                                                $maxSinalSono = $janelaMax - 30; // Máximo sugerido para sinal de sono
+                    // Determinar status da janela do sinal de sono
+                    $maxSinalSono = $janelaMax - 30; // Máximo sugerido para sinal de sono
 
-                                                                                                if ($janelaSinalSono <= $maxSinalSono) {
-                                                                                                    $statusJanelaSinal = 'ideal';
-                                                                                                } else {
-                                                                                                    $statusJanelaSinal = 'longa';
-                                                                                                }
-                                                                                            }
-                                                                                        }
+                    if ($janelaSinalSono <= $maxSinalSono) {
+                        $statusJanelaSinal = 'ideal';
+                    } else {
+                        $statusJanelaSinal = 'longa';
+                    }
+                }
+            }
                                                                                                                                                                     @endphp
 
                                                                                                                                                                     <tr>
@@ -288,23 +288,23 @@
                                                                                                                                                                         <td style="max-width: 150px; min-width: 120px;">
                                                                                                                                                                             @if(isset($soneca['associacoes']['comoAdormeceu']))
                                                                                                                                                                                 @php
-                                                                                            $associacoesParaMostrar = [];
-                                                                                            $totalAssociacoes = count($soneca['associacoes']['comoAdormeceu']);
-                                                                                            $temOutrosLongo = false;
-                                                                                            $textoOutros = '';
+                $associacoesParaMostrar = [];
+                $totalAssociacoes = count($soneca['associacoes']['comoAdormeceu']);
+                $temOutrosLongo = false;
+                $textoOutros = '';
 
-                                                                                            foreach ($soneca['associacoes']['comoAdormeceu'] as $associacao) {
-                                                                                                if (strpos($associacao, 'Outro:') !== false || strpos($associacao, 'Outros:') !== false) {
-                                                                                                    $temOutrosLongo = true;
-                                                                                                    $textoOutros = $associacao;
-                                                                                                } else {
-                                                                                                    $associacoesParaMostrar[] = $associacao;
-                                                                                                }
-                                                                                            }
+                foreach ($soneca['associacoes']['comoAdormeceu'] as $associacao) {
+                    if (strpos($associacao, 'Outro:') !== false || strpos($associacao, 'Outros:') !== false) {
+                        $temOutrosLongo = true;
+                        $textoOutros = $associacao;
+                    } else {
+                        $associacoesParaMostrar[] = $associacao;
+                    }
+                }
 
-                                                                                            $associacoesParaMostrar = array_slice($associacoesParaMostrar, 0, 2);
-                                                                                            $totalParaMostrar = count($associacoesParaMostrar);
-                                                                                            $mostrarBotao = $totalAssociacoes > $totalParaMostrar || $temOutrosLongo;
+                $associacoesParaMostrar = array_slice($associacoesParaMostrar, 0, 2);
+                $totalParaMostrar = count($associacoesParaMostrar);
+                $mostrarBotao = $totalAssociacoes > $totalParaMostrar || $temOutrosLongo;
                                                                                                                                                                                 @endphp
 
                                                                                                                                                                                 @foreach($associacoesParaMostrar as $associacao)
@@ -344,8 +344,8 @@
                                                                                                                                                                                                                         <strong>Outros:</strong><br>
                                                                                                                                                                                                                         <span class="text-dark">
                                                                                                                                                                                                                             @php
-                                                                                                    $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $associacao);
-                                                                                                    echo trim($textoLimpo);
+                        $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $associacao);
+                        echo trim($textoLimpo);
                                                                                                                                                                                                                             @endphp
                                                                                                                                                                                                                         </span>
                                                                                                                                                                                                                     </div>
@@ -366,8 +366,8 @@
                                                                                                                                                                                                                     <div class="w-100 mb-2 p-2 bg-light rounded">
                                                                                                                                                                                                                         <strong>Outros:</strong> 
                                                                                                                                                                                                                         @php
-                                                                                                        $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $local);
-                                                                                                        echo trim($textoLimpo);
+                            $textoLimpo = str_replace(['Outro:', 'Outros:'], '', $local);
+                            echo trim($textoLimpo);
                                                                                                                                                                                                                         @endphp
                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                 @else
@@ -620,129 +620,295 @@
 </div>
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title">Formulário</h3>
+        <h3 class="card-title"><i class="fas fa-file-medical-alt mr-2"></i>Formulário de Avaliação</h3>
     </div>
     <div class="card-body">
-<h5>PASSO 2 - FOME:</h5>
-<label>Peso Adequado:</label> <span class="badge  {{setStatus($challenge->formulario->fome_peso_adequado)->color}}">{{setStatus($challenge->formulario->fome_peso_adequado)->value}}</span> <br>
-<label>Ganho de Peso Adequado:</label> <span class="badge  {{setStatus($challenge->formulario->fome_peso_adequado)->color}}">{{setStatus($challenge->formulario->fome_peso_adequado)->value}}</span> <br>
+        <div class="row">
+            <!-- FOME -->
+            <div class="col-md-6 mb-4">
+                <div class="card card-hover">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="card-title mb-0"><i class="fas fa-utensils mr-2"></i>FOME</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div
+                            class="status-indicator {{ $challenge->formulario->fome_peso_adequado == 'SIM' ? 'status-success' : 'status-danger' }}">
+                            <i
+                                class="fas {{ $challenge->formulario->fome_peso_adequado == 'SIM' ? 'fa-check-circle' : 'fa-exclamation-circle' }} fa-2x mb-2"></i>
+                            <h6>{{ $challenge->formulario->fome_peso_adequado == 'SIM' ? 'SEM PROBLEMAS' : 'ATENÇÃO NECESSÁRIA' }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- DOR -->
+            <div class="col-md-6 mb-4">
+                <div class="card card-hover">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="card-title mb-0"><i class="fas fa-first-aid mr-2"></i>DOR</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div
+                            class="status-indicator {{ str_contains($challenge->formulario->ajustes_dor, 'Ótimo') ? 'status-success' : 'status-danger' }}">
+                            <i
+                                class="fas {{ str_contains($challenge->formulario->ajustes_dor, 'Ótimo') ? 'fa-check-circle' : 'fa-exclamation-circle' }} fa-2x mb-2"></i>
+                            <h6>{{ str_contains($challenge->formulario->ajustes_dor, 'Ótimo') ? 'SEM DOR' : 'QUEIXA DE DOR' }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- SALTO DE DESENVOLVIMENTO -->
+        <div class="card card-hover mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0"><i class="fas fa-chart-line mr-2"></i>SALTO DE DESENVOLVIMENTO</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Salto Identificado:</label>
+                            <span
+                                class="badge badge-pill {{ $challenge->formulario->salto == 'SIM' ? 'badge-warning' : 'badge-success' }} ml-2 p-2">
+                                {{ $challenge->formulario->salto == 'SIM' ? 'SIM' : 'NÃO' }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Marcos:</label>
+                            <span
+                                class="badge badge-pill {{ setStatus($challenge->formulario->salto_marcos)->color }} ml-2 p-2">
+                                {{ setStatus($challenge->formulario->salto_marcos)->value }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- ROTINA E AMBIENTE -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card card-hover h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0"><i class="fas fa-sun mr-2"></i>ROTINA</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="routine-item mb-3">
+                            <label class="font-weight-bold">Ritual do Bom Dia:</label>
+                            <span
+                                class="badge badge-pill {{ setStatus($challenge->formulario->ritual_bom_dia)->color }} float-right">
+                                {{ setStatus($challenge->formulario->ritual_bom_dia)->value }}
+                            </span>
+                        </div>
+                        <div class="routine-item mb-3">
+                            <label class="font-weight-bold">Telas:</label>
+                            <span
+                                class="badge badge-pill {{ setStatus($challenge->formulario->telas)->color }} float-right">
+                                {{ setStatus($challenge->formulario->telas)->value }}
+                            </span>
+                        </div>
+                        <div class="routine-item mb-3">
+                            <label class="font-weight-bold">Desacelera:</label>
+                            <span
+                                class="badge badge-pill {{ setStatus($challenge->formulario->desacelera)->color }} float-right">
+                                {{ setStatus($challenge->formulario->desacelera)->value }}
+                            </span>
+                        </div>
+                        <div class="routine-item">
+                            <label class="font-weight-bold">Choro no Ritual:</label>
+                            <span
+                                class="badge badge-pill {{ setStatus($challenge->formulario->ritual_choro)->color }} float-right">
+                                {{ setStatus($challenge->formulario->ritual_choro)->value }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<h5>PASSO 2 -  DOR:</h5>
+            <!-- AMBIENTE -->
+            <div class="col-md-6 mb-4">
+                <div class="card card-hover h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0"><i class="fas fa-bed mr-2"></i>AMBIENTE</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        @if($challenge->formulario->ambiente_luz == 'escuro' && $challenge->formulario->ambiente_barulho == 'silencio' && $challenge->formulario->ambiente_temperatura == 'agradavel')
+                            <div class="status-indicator status-success">
+                                <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+                                <h5 class="text-success">AMBIENTE AGRADÁVEL</h5>
+                                <small class="text-muted">Luz, som e temperatura adequados</small>
+                            </div>
+                        @else
+                            <div class="status-indicator status-danger">
+                                <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+                                <h5 class="text-danger">AMBIENTE DESAJUSTADO</h5>
+                                <div class="mt-3 text-left">
+                                    @if($challenge->formulario->ambiente_luz != 'escuro')
+                                        <small class="d-block"><i class="fas fa-lightbulb text-warning"></i> Luz:
+                                            {{ $challenge->formulario->ambiente_luz }}</small>
+                                    @endif
+                                    @if($challenge->formulario->ambiente_barulho != 'silencio')
+                                        <small class="d-block"><i class="fas fa-volume-up text-warning"></i> Som:
+                                            {{ $challenge->formulario->ambiente_barulho }}</small>
+                                    @endif
+                                    @if($challenge->formulario->ambiente_temperatura != 'agradavel')
+                                        <small class="d-block"><i class="fas fa-thermometer-half text-warning"></i> Temperatura:
+                                            {{ $challenge->formulario->ambiente_temperatura }}</small>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<label> Ajustes Dor - Geral: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor}}</textarea>
-<label> Ajustes Dor -Cólicas: </label>
+        <!-- ASSOCIAÇÕES - SONECA -->
+        <div class="card card-hover mb-4">
+            <div class="card-header bg-purple text-white">
+                <h5 class="card-title mb-0"><i class="fas fa-moon mr-2"></i>ASSOCIAÇÕES - SONECA</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    @php
+                        $associacoesSoneca = [
+                            'Colo' => $challenge->formulario->associacao_soneca_colo,
+                            'Mamar' => $challenge->formulario->associacao_soneca_mamar,
+                            'Cama Compartilhada' => $challenge->formulario->associacao_soneca_cc,
+                            'Rede' => $challenge->formulario->associacao_soneca_rede,
+                            'Chupar Dedo' => $challenge->formulario->associacao_soneca_chupar_dedo,
+                            'Naninha' => $challenge->formulario->associacao_soneca_naninha,
+                            'Ruído Branco' => $challenge->formulario->associacao_soneca_ruido
+                        ];
+                    @endphp
 
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor_colica}}</textarea>
+                    @foreach($associacoesSoneca as $nome => $valor)
+                        <div class="col-md-4 mb-3">
+                            <div
+                                class="associacao-item d-flex justify-content-between align-items-center p-2 border rounded">
+                                <span class="font-weight-bold">{{ $nome }}:</span>
+                                <span class="badge {{ setStatus($valor)->color }}">{{ setStatus($valor)->value }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
 
-<label> Ajustes Dor - Refluxo: </label>
+        <!-- ASSOCIAÇÕES - SONO NOTURNO -->
+        <div class="card card-hover mb-4">
+            <div class="card-header bg-indigo text-white">
+                <h5 class="card-title mb-0"><i class="fas fa-star mr-2"></i>ASSOCIAÇÕES - SONO NOTURNO</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    @php
+                        $associacoesSono = [
+                            'Colo' => $challenge->formulario->associacao_sono_colo,
+                            'Mamar' => $challenge->formulario->associacao_sono_mamar,
+                            'Cama Compartilhada' => $challenge->formulario->associacao_sono_cc,
+                            'Rede' => $challenge->formulario->associacao_sono_rede,
+                            'Chupar Dedo' => $challenge->formulario->associacao_sono_chupar_dedo,
+                            'Naninha' => $challenge->formulario->associacao_sono_naninha,
+                            'Ruído Branco' => $challenge->formulario->associacao_sono_ruido
+                        ];
+                    @endphp
 
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_dor_refluxo}}</textarea>
+                    @foreach($associacoesSono as $nome => $valor)
+                        <div class="col-md-4 mb-3">
+                            <div
+                                class="associacao-item d-flex justify-content-between align-items-center p-2 border rounded">
+                                <span class="font-weight-bold">{{ $nome }}:</span>
+                                <span class="badge {{ setStatus($valor)->color }}">{{ setStatus($valor)->value }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
 
-<label> Ajustes Dor - Dentes: </label>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Associações Incomodam:</label>
+                            <span
+                                class="badge badge-pill {{ setStatus($challenge->formulario->associacao_incomoda)->color }} ml-2 p-2">
+                                {{ setStatus($challenge->formulario->associacao_incomoda)->value }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_dor_dentes}}</textarea>
-
-<h5>PASSO 2 - Salto de Desenvolvimento:</h5>
-
-<label>Salto ?:</label> <span class="badge  {{setStatus($challenge->formulario->salto)->color}}">{{setStatus($challenge->formulario->salto)->value}}</span> <br>
-<label>Marcos:</label> <span class="badge  {{setStatus($challenge->formulario->salto_marcos)->color}}">{{setStatus($challenge->formulario->salto_marcos)->value}}</span> <br>
-<label> Ajustes Salto: </label>
-<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_salto}}</textarea>  
-<h5>PASSO 2 - Angustia da Separação:</h5>
-
-<label>Angustia ?:</label> <span class="badge  {{setStatus($challenge->formulario->angustia)->color}}">{{setStatus($challenge->formulario->angustia)->value}}</span> <br>
-<label>Chora quando sai do campo de visão:</label> <span class="badge  {{setStatus($challenge->formulario->angustia_campo_visao)->color}}">{{setStatus($challenge->formulario->angustia_campo_visao)->value}}</span> <br>
-<label>Chora quando pai atende:</label> <span class="badge  {{setStatus($challenge->formulario->angustia_pai_atende)->color}}">{{setStatus($challenge->formulario->angustia_pai_atende)->value}}</span> <br>
- <label> Ajustes Angustia: </label>
-<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_angustia}}</textarea>    
-<h5>PASSO 2 - Telas:</h5>
-
-<label>Telas ?:</label> <span class="badge  {{setStatus($challenge->formulario->telas)->color}}">{{setStatus($challenge->formulario->telas)->value}}</span> <br>
-
-<label> Ajustes Telas: </label>
-<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_telas}}</textarea>
-<h5>PASSO 3 :</h5>
-
-<label>Ritual do Bom Dia ?:</label> <span class="badge  {{setStatus($challenge->formulario->ritual_bom_dia)->color}}">{{setStatus($challenge->formulario->ritual_bom_dia)->value}}</span> <br>
-
-<label> Ajustes Ritual do Bom dia: </label>
-<textarea class="form-control textarea" style="height:auto">{{$challenge->formulario->ajustes_ritual_bom_dia}}</textarea>
-<label> Ajustes Despertar: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajustes_despertar}}</textarea>
-<label> Ajustes Duração de Sonecas: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajuste_duracao_sonecas}}</textarea>
-<label> Ajustes Rotina de Sonecas: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ajuste_rotina_sonecas}}</textarea>
-<label> Ajustes Ritual do Sono: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->ritual_sono_ajuste}}</textarea>
-<label>Ambiente - Luminosidade: </label><span >{{$challenge->formulario->ambiente_luz}}</span> <br>
-<label>Ambiente - Sons: </label><span >{{$challenge->formulario->ambiente_barulho}}</span> <br>
-<span>
-    @if($challenge->formulario->ambiente_temperatura == 'nao_sei')
-        agradável
-    @else
-        {{$challenge->formulario->ambiente_temperatura}}
-    @endif
-</span> <br>
-<label>Choro no Ritual: </label><span class="badge  {{setStatus($challenge->formulario->ritual_choro)->color}}">{{setStatus($challenge->formulario->ritual_choro)->value}}</span> <br>
-<label>Desacelera: </label><span class="badge  {{setStatus($challenge->formulario->desacelera)->color}}">{{setStatus($challenge->formulario->desacelera)->value}}</span> <br>
-
-<h5>PASSO 4 - Associações -  Soneca: </h5>
-Colo
-<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_colo)->color}}">{{setStatus($challenge->formulario->associacao_soneca_colo)->value}}</span>
-   
-Mamar
-<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_mamar)->color}}">{{setStatus($challenge->formulario->associacao_soneca_mamar)->value}}</span>
-   
-Cama Compartilhada
-<span class="badge  {{setStatus($challenge->formulario->associacao_soneca_cc)->color}}">{{setStatus($challenge->formulario->associacao_soneca_cc)->value}}</span>
- 
-Rede
-    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_rede)->color}}">{{setStatus($challenge->formulario->associacao_soneca_rede)->value}}</span>
-   
-    Chupar Dedo
-    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_chupar_dedo)->color}}">{{setStatus($challenge->formulario->associacao_soneca_chupar_dedo)->value}}</span>
-   
-    Naninha
-    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_naninha)->color}}">{{setStatus($challenge->formulario->associacao_soneca_naninha)->value}}</span>
-   
-    Ruído Branco
-    <span class="badge  {{setStatus($challenge->formulario->associacao_soneca_ruido)->color}}">{{setStatus($challenge->formulario->associacao_soneca_ruido)->value}}</span>
-<br><br>
-
-<h5>PASSO 4 - Associações -  Sono Noturno: </h5>
-Colo
-<span class="badge  {{setStatus($challenge->formulario->associacao_sono_colo)->color}}">{{setStatus($challenge->formulario->associacao_sono_colo)->value}}</span>
-   
-Mamar
-<span class="badge  {{setStatus($challenge->formulario->associacao_sono_mamar)->color}}">{{setStatus($challenge->formulario->associacao_sono_mamar)->value}}</span>
-   
-Cama Compartilhada
-<span class="badge  {{setStatus($challenge->formulario->associacao_sono_cc)->color}}">{{setStatus($challenge->formulario->associacao_sono_cc)->value}}</span>
- 
-Rede
-    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_rede)->color}}">{{setStatus($challenge->formulario->associacao_sono_rede)->value}}</span>
-   
-    Chupar Do
-    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_chupar_dedo)->color}}">{{setStatus($challenge->formulario->associacao_sono_chupar_dedo)->value}}</span>
-   
-    Naninha
-    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_naninha)->color}}">{{setStatus($challenge->formulario->associacao_sono_naninha)->value}}</span>
-   
-    Ruído Branco
-    <span class="badge  {{setStatus($challenge->formulario->associacao_sono_ruido)->color}}">{{setStatus($challenge->formulario->associacao_sono_ruido)->value}}</span>
-
-<br><br>
-<label>Associações Incomodam ?:</label> <span class="badge  {{setStatus($challenge->formulario->associacao_incomoda)->color}}">{{setStatus($challenge->formulario->associacao_incomoda)->value}}</span> <br>
-
-<label> Comentários Finais: </label>
-<textarea class="form-control" style="height:auto">{{$challenge->formulario->associacao_descricao}}</textarea>
-
+        <!-- COMENTÁRIOS FINAIS -->
+        <div class="card card-hover">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0"><i class="fas fa-comments mr-2"></i>COMENTÁRIOS FINAIS</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <textarea class="form-control" rows="4" readonly
+                        style="background-color: #f8f9fa; border: 1px solid #e3e6f0;">{{ $challenge->formulario->associacao_descricao ?: 'Nenhum comentário adicional' }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .status-indicator {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .status-success {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+    }
+
+    .status-danger {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+    }
+
+    .routine-item {
+        padding: 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .routine-item:last-child {
+        border-bottom: none;
+    }
+
+    .associacao-item:hover {
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease;
+    }
+
+    .bg-purple {
+        background-color: #6f42c1 !important;
+    }
+
+    .bg-indigo {
+        background-color: #6610f2 !important;
+    }
+
+    .badge-pill {
+        font-size: 0.85em;
+        padding: 0.5em 1em;
+    }
+</style>
+
 @if(!$challenge->chat()->first())
      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aprovarGepex">
                                Responder
@@ -831,21 +997,7 @@ Rede
                             </div>
                         </div>
     </div>
-<!-- Restante do código do formulário (mantido igual) -->
-<div class="card card-info">
-    <div class="card-header">
-        <h3 class="card-title">Formulário</h3>
-    </div>
-    <div class="card-body">
-        <!-- ... (mantenha o código do formulário existente) ... -->
-    </div>
-</div>
 
-@if(!$challenge->chat()->first())
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aprovarGepex">
-        Responder
-    </button>
-@endif
 
 <!-- Modal (mantido igual) -->
 <div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

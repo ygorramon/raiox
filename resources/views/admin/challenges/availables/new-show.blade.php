@@ -519,15 +519,15 @@
             <div class="card-body">
                 <div class="row">
                     @php
-                        $associacoesSoneca = [
-                            'Colo' => $challenge->formulario->associacao_soneca_colo,
-                            'Mamar' => $challenge->formulario->associacao_soneca_mamar,
-                            'Cama Compartilhada' => $challenge->formulario->associacao_soneca_cc,
-                            'Rede' => $challenge->formulario->associacao_soneca_rede,
-                            'Chupar Dedo' => $challenge->formulario->associacao_soneca_chupar_dedo,
-                            'Naninha' => $challenge->formulario->associacao_soneca_naninha,
-                            'Ruído Branco' => $challenge->formulario->associacao_soneca_ruido
-                        ];
+$associacoesSoneca = [
+    'Colo' => $challenge->formulario->associacao_soneca_colo,
+    'Mamar' => $challenge->formulario->associacao_soneca_mamar,
+    'Cama Compartilhada' => $challenge->formulario->associacao_soneca_cc,
+    'Rede' => $challenge->formulario->associacao_soneca_rede,
+    'Chupar Dedo' => $challenge->formulario->associacao_soneca_chupar_dedo,
+    'Naninha' => $challenge->formulario->associacao_soneca_naninha,
+    'Ruído Branco' => $challenge->formulario->associacao_soneca_ruido
+];
                     @endphp
 
                     @foreach($associacoesSoneca as $nome => $valor)
@@ -551,15 +551,15 @@
             <div class="card-body">
                 <div class="row">
                     @php
-                        $associacoesSono = [
-                            'Colo' => $challenge->formulario->associacao_sono_colo,
-                            'Mamar' => $challenge->formulario->associacao_sono_mamar,
-                            'Cama Compartilhada' => $challenge->formulario->associacao_sono_cc,
-                            'Rede' => $challenge->formulario->associacao_sono_rede,
-                            'Chupar Dedo' => $challenge->formulario->associacao_sono_chupar_dedo,
-                            'Naninha' => $challenge->formulario->associacao_sono_naninha,
-                            'Ruído Branco' => $challenge->formulario->associacao_sono_ruido
-                        ];
+$associacoesSono = [
+    'Colo' => $challenge->formulario->associacao_sono_colo,
+    'Mamar' => $challenge->formulario->associacao_sono_mamar,
+    'Cama Compartilhada' => $challenge->formulario->associacao_sono_cc,
+    'Rede' => $challenge->formulario->associacao_sono_rede,
+    'Chupar Dedo' => $challenge->formulario->associacao_sono_chupar_dedo,
+    'Naninha' => $challenge->formulario->associacao_sono_naninha,
+    'Ruído Branco' => $challenge->formulario->associacao_sono_ruido
+];
                     @endphp
 
                     @foreach($associacoesSono as $nome => $valor)
@@ -651,6 +651,130 @@
         padding: 0.5em 1em;
     }
 </style>
+@if(!$challenge->chat()->first())
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aprovarGepex">
+        Responder
+    </button>
+@endif
+<div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="{{route('challenge.meus.iniciarchat', $challenge->id)}}" method="post">
+                {!! csrf_field() !!}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Iniciar CHAT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <label for="nomeMae">Nome da Mãe/Pai:</label>
+
+                            <div>
+                                <input type="text" readonly class="form-control" id="nomeMae"
+                                    value="{{$challenge->client->name}}" placeholder="nomeMae">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="nomeBebe">Nome do(a) Bebê:</label>
+
+                            <div>
+                                <input type="text" readonly class="form-control" id="nomeBebe"
+                                    value="{{$challenge->client->nameBaby}}" placeholder="nomeMae">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="nomeBebe">Email:</label>
+
+                            <div>
+                                <input type="text" readonly class="form-control" id="nomeBebe"
+                                    value="{{$challenge->client->email}}" placeholder="nomeMae">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <label for="nascimentoBebe">Data de Nascimento do Bebê:</label>
+
+                            <div>
+                                <input type="text" readonly class="form-control" id="nascimentoBebe"
+                                    value="{{\Carbon\Carbon::parse($challenge->client->birthBaby)->format('d/m/Y')}}"
+                                    placeholder="nomeMae">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="idadeBebe">Idade do Bebê: (DIAS / MESES)</label>
+
+                            <div>
+                                <input type="text" readonly class="form-control" id="idadeBebe"
+                                    value="{{now()->diffInDays(\Carbon\Carbon::parse($challenge->client->birthBaby))}} / {{now()->diffInMonths(\Carbon\Carbon::parse($challenge->client->birthBaby))}}"
+                                    placeholder="nomeMae">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="sexoBebe">Sexo do Bebê:</label>
+
+                            <div>
+                                <input type="text" readonly class="form-control" id="sexoBebe"
+                                    value="{{$challenge->client->sexBaby == 'M' ? "MASCULINO" : "FEMININO"}}"
+                                    placeholder="nomeMae">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label>Mensagem</label>
+                    <textarea name="message" required class="form-control" style="height:auto" rows="10"></textarea>
+                    <div class="form-group">
+                        <label>Selecionar Vídeos</label>
+                        <div class="row">
+                            @foreach($videos as $video)
+                                <div class="col-md-4">
+                                    <label>
+                                        <input type="checkbox" name="videos[]" value="{{ $video->id }}"> {{ $video->title }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button name="status" value="APROVADO" class="btn btn-primary">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Modal (mantido igual) -->
+<div class="modal fade" id="aprovarGepex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="{{route('challenge.meus.iniciarchat', $challenge->id)}}" method="post">
+                {!! csrf_field() !!}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Iniciar CHAT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- ... (mantenha o código do modal existente) ... -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button name="status" value="APROVADO" class="btn btn-primary">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     @section('js')
 <script>
     $(document).ready(function() {

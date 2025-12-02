@@ -374,12 +374,21 @@
                         <h5 class="card-title mb-0"><i class="fas fa-utensils mr-2"></i>FOME</h5>
                     </div>
                     <div class="card-body text-center">
-                        <div
-                            class="status-indicator {{ $challenge->formulario->fome_peso_adequado == 'SIM' ? 'status-success' : 'status-danger' }}">
-                            <i
-                                class="fas {{ $challenge->formulario->fome_peso_adequado == 'SIM' ? 'fa-check-circle' : 'fa-exclamation-circle' }} fa-2x mb-2"></i>
-                            <h6>{{ $challenge->formulario->fome_peso_adequado == 'SIM' ? 'SEM PROBLEMAS' : 'ATENÇÃO NECESSÁRIA' }}
-                            </h6>
+                        <div class="status-indicator 
+                            {{ is_null($challenge->formulario->fome_peso_adequado)
+    ? 'status-warning'
+    : ($challenge->formulario->fome_peso_adequado == 'S' ? 'status-success' : 'status-danger') }}">
+                        
+                            @if(is_null($challenge->formulario->fome_peso_adequado))
+                                <i class="fas fa-question-circle fa-2x mb-2 text-warning"></i>
+                                <h6 class="text-warning">NÃO AVALIADO</h6>
+                            @else
+                                <i
+                                    class="fas {{ $challenge->formulario->fome_peso_adequado == 'S' ? 'fa-check-circle text-success' : 'fa-exclamation-circle text-danger' }} fa-2x mb-2"></i>
+                                <h6 class="{{ $challenge->formulario->fome_peso_adequado == 'S' ? 'text-success' : 'text-danger' }}">
+                                    {{ $challenge->formulario->fome_peso_adequado == 'S' ? 'SEM PROBLEMAS' : 'ATENÇÃO NECESSÁRIA' }}
+                                </h6>
+                            @endif
                         </div>
                     </div>
                 </div>

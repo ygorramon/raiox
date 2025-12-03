@@ -489,7 +489,7 @@
                         <h5 class="card-title mb-0"><i class="fas fa-bed mr-2"></i>AMBIENTE</h5>
                     </div>
                     <div class="card-body text-center">
-                        @if($challenge->formulario->ambiente_luz == 'escuro' && $challenge->formulario->ambiente_barulho == 'silencio' && $challenge->formulario->ambiente_temperatura == 'agradavel')
+                        @if($challenge->formulario->ambiente_luz == 'escuro' && in_array($challenge->formulario->ambiente_barulho, ['silencio', 'ruido_branco']) && $challenge->formulario->ambiente_temperatura == 'agradavel')
                             <div class="status-indicator status-success">
                                 <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
                                 <h5 class="text-success">AMBIENTE AGRADÁVEL</h5>

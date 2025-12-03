@@ -656,12 +656,49 @@
                         <h5 class="card-title mb-0"><i class="fas fa-first-aid mr-2"></i>DOR</h5>
                     </div>
                     <div class="card-body text-center">
-                        <div
-                            class="status-indicator {{ str_contains($challenge->formulario->ajustes_dor, 'Ótimo') ? 'status-success' : 'status-danger' }}">
+                        @php
+                            $temDor = !str_contains($challenge->formulario->ajustes_dor, 'Ótimo');
+                            $dores = [];
+
+                            // Verificar cada tipo de dor
+                            if (!empty($challenge->formulario->ajustes_dor_colica)) {
+                                $dores[] = ['nome' => 'Cólica', 'cor' => 'warning'];
+                            }
+                            if (!empty($challenge->formulario->ajustes_dor_refluxo)) {
+                                $dores[] = ['nome' => 'Refluxo', 'cor' => 'info'];
+                            }
+                            if (!empty($challenge->formulario->ajustes_dor_dentes)) {
+                                $dores[] = ['nome' => 'Dor de Dente', 'cor' => 'danger'];
+                            }
+
+                            $temDoresEspecificas = count($dores) > 0;
+                        @endphp
+                    
+                        <div class="status-indicator {{ $temDor ? 'status-danger' : 'status-success' }}">
                             <i
-                                class="fas {{ str_contains($challenge->formulario->ajustes_dor, 'Ótimo') ? 'fa-check-circle' : 'fa-exclamation-circle' }} fa-2x mb-2"></i>
-                            <h6>{{ str_contains($challenge->formulario->ajustes_dor, 'Ótimo') ? 'SEM DOR' : 'QUEIXA DE DOR' }}
-                            </h6>
+                                class="fas {{ $temDor ? 'fa-exclamation-circle' : 'fa-check-circle' }} fa-2x mb-2 {{ $temDor ? 'text-danger' : 'text-success' }}"></i>
+                            <h5 class="{{ $temDor ? 'text-danger' : 'text-success' }}">
+                                {{ $temDor ? 'QUEIXA DE DOR' : 'SEM DOR' }}
+                            </h5>
+                    
+                            @if($temDor && $temDoresEspecificas)
+                                <div class="mt-3">
+                                    <p class="mb-2"><small>Tipos identificados:</small></p>
+                                    <div class="d-flex justify-content-center flex-wrap">
+                                        @foreach($dores as $dor)
+                                            <span class="badge badge-{{ $dor['cor'] }} m-1 p-2">
+                                                <i
+                                                    class="fas fa-{{ $dor['cor'] == 'warning' ? 'stomach' : ($dor['cor'] == 'info' ? 'heartburn' : 'tooth') }} mr-1"></i>
+                                                {{ $dor['nome'] }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @elseif($temDor)
+                                <div class="mt-2">
+                                    <small class="text-muted">Tipo de dor não especificado</small>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

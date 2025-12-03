@@ -914,6 +914,10 @@ $associacoesSono = [
         font-size: 0.85em;
         padding: 0.5em 1em;
     }
+    .status-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+}
 </style>
 
 @if(!$challenge->chat()->first())

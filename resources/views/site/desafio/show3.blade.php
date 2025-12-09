@@ -1637,7 +1637,7 @@
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-red btn-flat">Fechar</a>
             <button id="playAllBtn" class="waves-effect waves-green btn teal">
-                <i class="material-icons left">play_circle_filled</i>Reproduzir Todas
+                <i class="material-icons left">play_ciscle_filled</i>Reproduzir Todas
             </button>
         </div>
     </div>
@@ -1649,9 +1649,9 @@
         <div id="modalVideo{{ $video->id }}" class="modal">
             <div class="modal-content">
                 <h4>{{ $video->title ?? 'Vídeo Adicional' }}</h4>
-                @if($video->path)
+                @if($video->file_path)
                     <video width="100%" controls>
-                        <source src="{{ asset('storage/' . $video->path) }}" type="video/mp4">
+                        <source src="{{ asset('storage/' . $video->file_path) }}" type="video/mp4">
                         Seu navegador não suporta vídeos.
                     </video>
                 @else
